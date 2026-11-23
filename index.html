@@ -159,7 +159,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T21:37:00Z">21:37 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T21:50:00Z">21:50 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -201,8 +201,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 5 of 7</span> Recognisable picture</p>
-          <p class="status">Main branch, 20:47 UTC: the game&#x27;s first menu, the account prompt, is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card with about 19 GB of memory committed. The maintainer has not checked further than that menu, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A separate contributor&#x27;s pull request from 20:15 UTC goes further: the legal menus can be stepped through with a gamepad. A fix for their missing body text was merged at 21:20 UTC. At 21:36 UTC that contributor said in the project&#x27;s chat that his build now gets through the menus, saves preferences, selects a player and begins loading the game itself. Nothing in the repository shows that yet, and no frame of the game world has been reported.</p>
-          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, and a contributor&#x27;s open pull request · last change <time datetime="2026-11-23T21:37:00Z">21:37 UTC</time></p>
+          <p class="status">Main branch, 20:47 UTC: the game&#x27;s first menu, the account prompt, is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card with about 19 GB of memory committed. The maintainer has not checked further than that menu, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A separate contributor&#x27;s pull request from 20:15 UTC goes further: the legal menus can be stepped through with a gamepad. A fix for their missing body text was merged at 21:20 UTC. In the project&#x27;s chat at 21:36 and 21:38 UTC that contributor said his build now gets through the menus and begins loading the game itself, then stalls because most storage requests fail during world loading. Nothing in the repository shows that yet, and no frame of the game world has been reported.</p>
+          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, and a contributor&#x27;s open pull request · last change <time datetime="2026-11-23T21:50:00Z">21:50 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -214,8 +214,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">The game runs its frame loop at its own 30 frames per second with no crash, and every frame is still black. Start-up loading completes, about 53,600 pipelines, and the game then idles on an early screen that draws two blits a frame. The project now reads the black as the game&#x27;s own, a fade from black while it waits on something, and has ruled out fences, frame pacing and queries as the cause.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T21:21:00Z">21:21 UTC</time></p>
+          <p class="status">The game runs its frame loop at its own 30 frames per second with no crash, and every frame is still black. Start-up loading completes, about 53,600 pipelines, and the game then idles on an early screen that draws two blits a frame. The project reads the black as the game&#x27;s own, a fade from black while it waits on something, and has ruled out fences, frame pacing, queries and network access as the cause.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T21:47:00Z">21:47 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -227,8 +227,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">On Linux, the game opens its window, starts audio and opens its movie and level archives. It clears its two 4K display buffers and presents, but the window stays black.</p>
-          <p class="meta">Source: Project progress notes · last change <time datetime="2026-11-23T18:14:00Z">18:14 UTC</time></p>
+          <p class="status">On Linux, the game opens its window, starts audio and reads a packaged movie&#x27;s frame-buffer details. It clears its two 4K display buffers and presents, but the window stays black during the game&#x27;s start-up.</p>
+          <p class="meta">Source: Project progress notes · last change <time datetime="2026-11-23T21:38:00Z">21:38 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -266,8 +266,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">Names GTA VI: the game boots to a running frame loop and its first present, with black frames, then stops at a GPU hang about 5 seconds in. An early device removal also happens now and then. It credits XCL for part of the approach.</p>
-          <p class="meta">Source: Project README and commit message · last change <time datetime="2026-11-23T21:08:00Z">21:08 UTC</time></p>
+          <p class="status">Names GTA VI: the game boots to a running frame loop and its first present, with black frames, then stops at a GPU hang about 5 seconds in. A 21:29 UTC commit fixes an early device removal. It credits XCL for part of the approach.</p>
+          <p class="meta">Source: Project README and commit message · last change <time datetime="2026-11-23T21:29:00Z">21:29 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -293,6 +293,13 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T21:50:00Z">21:50</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>No change at the front</h3>
+          <ul><li>XCL: main branch unchanged since 21:30 UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T21:37:00Z">21:37</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
