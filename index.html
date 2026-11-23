@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA VI PC Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a timing board. Summary strip first, then a ranked board with a 7-step stage bar per entry, then a dated log. */
+:root {
+  --bg: #f3f5f4;
+  --surface: #ffffff;
+  --ink: #131a1e;
+  --muted: #56636c;
+  --line: #d6dcde;
+  --accent: #0b6a70;
+  --pre: #2f6fb0;
+  --frames: #a86200;
+  --play: #2c7a34;
+  --idle: #8c979e;
+  --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f1518;
+    --surface: #161e22;
+    --ink: #e7ecee;
+    --muted: #9aa7af;
+    --line: #2a353b;
+    --accent: #58c4c6;
+    --pre: #6aa9e6;
+    --frames: #efae3d;
+    --play: #6fcb76;
+    --idle: #68757d;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1518;
+  --surface: #161e22;
+  --ink: #e7ecee;
+  --muted: #9aa7af;
+  --line: #2a353b;
+  --accent: #58c4c6;
+  --pre: #6aa9e6;
+  --frames: #efae3d;
+  --play: #6fcb76;
+  --idle: #68757d;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.5 var(--body);
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 56px; display: flex; flex-direction: column; gap: 30px; }
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1 { font: 700 clamp(2.1rem, 7vw, 3.2rem)/1.02 var(--display); letter-spacing: 0.005em; text-wrap: balance; text-transform: uppercase; }
+h2 { font: 700 1.5rem/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; text-wrap: balance; }
+h3 { font: 600 1.06rem/1.25 var(--body); text-wrap: balance; }
+.mast { display: flex; flex-direction: column; gap: 10px; border-bottom: 3px solid var(--ink); padding-bottom: 18px; }
+.kicker { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.checked { font: 400 0.9rem/1.4 var(--mono); color: var(--muted); }
+.checked time { color: var(--ink); font-weight: 500; }
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); background: var(--surface); }
+.cell { padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cell + .cell { border-left: 1px solid var(--line); }
+.cell .label { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.cell .value { font: 700 1.7rem/1.05 var(--display); text-transform: uppercase; overflow-wrap: anywhere; }
+.cell .value.no { color: var(--frames); }
+.lede { font-size: 1.08rem; line-height: 1.5; max-width: 62ch; }
+.lede strong { font-weight: 600; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 400 0.8rem/1.4 var(--mono); color: var(--muted); }
+.legend .num { color: var(--ink); font-weight: 500; margin-right: 5px; }
+.board { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 6px 12px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.pos { font: 700 1.9rem/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; grid-row: 1 / span 2; }
+.who { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.slug { font: 400 0.82rem/1.4 var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.kind { font-size: 0.86rem; color: var(--muted); }
+.where { grid-column: 2; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.bar { display: flex; gap: 3px; max-width: 320px; }
+.seg { flex: 1 1 0; height: 9px; background: var(--line); }
+.bar.pre .seg.on { background: var(--pre); }
+.bar.frames .seg.on { background: var(--frames); }
+.bar.play .seg.on { background: var(--play); }
+.stage { font-size: 0.92rem; font-weight: 500; }
+.pill { display: inline-block; font: 500 0.72rem/1 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 7px; margin-right: 6px; border: 1px solid currentColor; }
+.pill.pre { color: var(--pre); }
+.pill.frames { color: var(--frames); }
+.pill.play { color: var(--play); }
+.pill.idle { color: var(--idle); }
+.status { max-width: 64ch; }
+.meta { font: 400 0.78rem/1.4 var(--mono); color: var(--muted); }
+@media (min-width: 720px) {
+  .row { grid-template-columns: 56px minmax(0, 15rem) minmax(0, 1fr); gap: 8px 20px; }
+  .pos { grid-row: auto; font-size: 2.3rem; }
+  .where { grid-column: 3; }
+}
+.also { display: flex; flex-direction: column; gap: 8px; }
+.also h3 { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.also ul { display: flex; flex-direction: column; gap: 8px; }
+.also li { font-size: 0.92rem; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+.wname { font-weight: 600; }
+.wnote { flex-basis: 100%; color: var(--muted); }
+.log { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.entry { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.when { display: flex; flex-direction: column; gap: 2px; font: 500 0.98rem/1.2 var(--mono); font-variant-numeric: tabular-nums; }
+.when .date { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+.what { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.what ul { display: flex; flex-direction: column; gap: 6px; max-width: 66ch; }
+.what li { padding-left: 14px; position: relative; font-size: 0.95rem; }
+.what li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 2px; background: var(--accent); }
+.notes { display: flex; flex-direction: column; gap: 10px; max-width: 68ch; border-left: 3px solid var(--frames); padding-left: 14px; }
+.notes li { font-size: 0.95rem; }
+footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 420px) {
+  .strip { grid-template-columns: 1fr; }
+  .cell + .cell { border-left: 0; border-top: 1px solid var(--line); }
+  .entry { grid-template-columns: 1fr; gap: 6px; }
+  .when { flex-direction: row; gap: 8px; align-items: baseline; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
+    <h1>The race to run GTA VI on PC</h1>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T17:13:00Z">17:13 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+  </header>
+
+  <div class="strip">
+    <div class="cell"><span class="label">Playable?</span><span class="value no">No</span></div>
+    <div class="cell"><span class="label">Leader</span><span class="value">XCL</span></div>
+    <div class="cell"><span class="label">Furthest point</span><span class="value">First frames</span></div>
+  </div>
+
+  <p class="lede"><strong>XCL runs the game for about three minutes. Nothing is playable.</strong> Five projects now start the game&#x27;s leaked Xbox executable on a PC. Only XCL has reached the point of showing frames, and nobody has checked what those frames contain.</p>
+
+  <section aria-labelledby="standings">
+    <h2 id="standings">Standings</h2>
+    <ul class="legend" aria-label="Stages"><li><span class="num">0</span>Not started</li><li><span class="num">1</span>Loads</li><li><span class="num">2</span>Starts up</li><li><span class="num">3</span>Graphics device</li><li><span class="num">4</span>First frames</li><li><span class="num">5</span>Recognisable picture</li><li><span class="num">6</span>In-game</li><li><span class="num">7</span>Playable</li></ul>
+    <ol class="board">
+      <li class="row">
+        <div class="pos" aria-label="Position 1">1</div>
+        <div class="who">
+          <h3>XCL</h3>
+          <p class="slug">ivall/xcl</p>
+          <p class="kind">Compatibility layer for Xbox Series games</p>
+        </div>
+        <div class="where">
+          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
+          <p class="status">The game runs about 3 minutes without a crash. It shows two frames after about 4 seconds, loads roughly 3,500 shaders, then stops when five mesh-shader pipelines fail. Nobody has checked what the frames show.</p>
+          <p class="meta">Source: Maintainer&#x27;s notes · last change <time datetime="2026-11-23T17:03:00Z">17:03 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="who">
+          <h3>five-star-recomp</h3>
+          <p class="slug">ThatRecompDev/five-star-recomp</p>
+          <p class="kind">GTA VI recompilation toolchain</p>
+        </div>
+        <div class="where">
+          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
+          <p class="status">The game starts under its loader and sets up memory, archives, the graphics device, GPU-memory buffers and descriptor heaps. It then stops when an invalid call removes the graphics device. No frame.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T17:07:00Z">17:07 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="who">
+          <h3>OpenScarlett</h3>
+          <p class="slug">californiaAlmonds/OpenScarlett</p>
+          <p class="kind">Compatibility layer for Xbox Series games</p>
+        </div>
+        <div class="where">
+          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
+          <p class="status">Reports 17 early boot obstacles cleared, as far as a 4K render target and ray-tracing setup. It does not name the game, but the 587 imports it resolves match the count others give for GTA VI&#x27;s executable. No frame claimed.</p>
+          <p class="meta">Source: Project README · last change <time datetime="2026-11-23T16:50:00Z">16:50 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="who">
+          <h3>Leonida</h3>
+          <p class="slug">ItsNotRexed/Leonida</p>
+          <p class="kind">GTA VI recompilation, largest contributor base</p>
+        </div>
+        <div class="where">
+          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
+          <p class="status">One contributor&#x27;s local build runs the game as far as its first descriptor heap, then halts on an assert, the 13th obstacle in the project&#x27;s boot notes. The main branch has mapped and initialised the executable but not run it.</p>
+          <p class="meta">Source: Contributor&#x27;s boot notes · last change <time datetime="2026-11-23T15:36:00Z">15:36 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 5">5</div>
+        <div class="who">
+          <h3>xbox-emulator</h3>
+          <p class="slug">omonkeyz/xbox-emulator</p>
+          <p class="kind">Compatibility layer for Xbox Series games</p>
+        </div>
+        <div class="where">
+          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
+          <p class="status">A contributor&#x27;s notes in an issue thread reportedly reach the game window, graphics device and archives with local patches. The repository itself has had no commits since 11:58 UTC.</p>
+          <p class="meta">Source: Second-hand, from a community project list · last change <time datetime="2026-11-23T16:56:00Z">16:56 UTC</time></p>
+        </div>
+      </li>
+    </ol>
+    <div class="also">
+      <h3>Also watched, not started on the game</h3>
+      <ul><li><span class="wname">XValkyrie</span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. No GTA VI work published.</span></li><li><span class="wname">Xbox2Windows</span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname">OpenScarlett (OpenCommunityEdition)</span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname">TuxBox</span> <span class="slug">brcly/TuxBox</span><span class="wnote">Linux and Proton. Calls GTA VI a launch target; no run of the executable published.</span></li><li><span class="wname">ScarlettX</span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">scarlett-layer</span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">AnyPS5</span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="updates">
+    <h2 id="updates">Updates</h2>
+    <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T17:13:00Z">17:13</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>XCL runs for about three minutes</h3>
+          <ul><li>XCL: the game runs about 3 minutes without a crash, up from 45 seconds. It shows two frames after about 4 seconds, loads roughly 3,500 shaders, then stops at about 183 seconds when five mesh-shader pipelines fail. The frames have not been checked.</li><li>five-star-recomp: now gets past the game&#x27;s GPU-memory buffers and descriptor heaps, then stops when an invalid call removes the graphics device.</li><li>xbox-emulator: a community project list reports a contributor reaching the game window, graphics device and archives with local patches. This is second-hand; the repository has no new commits.</li></ul>
+        </div>
+      </li>
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T16:55:00Z">16:55</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>A fourth project starts the game</h3>
+          <ul><li>five-star-recomp: the executable starts under its loader and gets through memory setup, archive opening and graphics device setup, then stops before a first frame.</li><li>OpenScarlett: its README now documents 17 cleared boot obstacles. The 587 imports it cites match the count five-star-recomp gives for GTA VI&#x27;s executable.</li></ul>
+        </div>
+      </li>
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T16:37:00Z">16:37</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>XCL stops crashing</h3>
+          <ul><li>XCL: the game runs 45 seconds without a crash. Memory use falls from 28.7 GB to 16 or 17 GB and the first frame arrives at 3.6 seconds.</li><li>OpenScarlett: reports clearing 17 early boot obstacles on a retail title, as far as a 4K render target and ray-tracing setup.</li></ul>
+        </div>
+      </li>
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T16:17:00Z">16:17</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>Leonida reaches the graphics device</h3>
+          <ul><li>Leonida: a contributor&#x27;s local build runs the executable as far as creating the graphics device and its first descriptor heap, then halts on an assert. The main branch has mapped and initialised the file.</li></ul>
+        </div>
+      </li>
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T15:44:00Z">15:44</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>First frame on a PC</h3>
+          <ul><li>XCL: the game starts and presents a first frame after 8.3 seconds at 3840 by 2160, then runs out of memory at about 20 seconds while compiling pipelines. Nobody looked at the frame.</li></ul>
+        </div>
+      </li>
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T14:00:00Z">about 14:00</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>The executable appears</h3>
+          <ul><li>The leaker known as CyberLeek publishes the game&#x27;s main executable, the one file missing from the Xbox build it released on 19 November. Press reports put this about three hours before its own 17:00 UTC deadline.</li></ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="caveats">
+    <h2 id="caveats">Read this first</h2>
+    <ul class="notes"><li>Nothing is playable. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</li><li>The build these projects work from was leaked. Rockstar has not released or announced a PC version. This page does not link to the leak and does not explain how to get or run it.</li><li>Every stage shown here is the project&#x27;s own claim, read from its public repository. Nobody independent has verified them.</li><li>By one project&#x27;s own notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</li><li>Compiled automatically by an AI assistant (Claude) from the projects&#x27; public READMEs, status notes and commit logs. It can be wrong. All times are UTC.</li><li>Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</li></ul>
+  </section>
+
+  <footer>Times are UTC. Positions with an equals sign are level.</footer>
+</div>
+<script>
+(function () {
+  try {
+    var t = document.getElementById("checked");
+    var mins = Math.round((Date.now() - new Date(t.getAttribute("datetime")).getTime()) / 60000);
+    if (isFinite(mins) && mins >= 0) {
+      var text = mins < 1 ? "just now" : mins < 90 ? mins + " min ago" : Math.round(mins / 60) + " h ago";
+      document.getElementById("ago").textContent = " (" + text + ")";
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
