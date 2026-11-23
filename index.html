@@ -159,7 +159,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:40:00Z">18:40 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:56:00Z">18:56 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -168,7 +168,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     <div class="cell"><span class="label">Furthest point</span><span class="value">First frames</span></div>
   </div>
 
-  <p class="lede"><strong>XCL runs the game at a steady 30 frames per second, but the screen is black. Nothing is playable.</strong> Six projects now start the game&#x27;s leaked Xbox executable on a PC. Three of them present frames: XCL, TuxBox and five-star-recomp. All three show only a black or empty picture so far.</p>
+  <p class="lede"><strong>XCL runs the game at a steady 30 frames per second, but the screen is black. Nothing is playable.</strong> Six projects now start the game&#x27;s leaked Xbox executable on a PC. Four of them present frames: XCL, TuxBox, five-star-recomp and OpenScarlett. None has shown a visible picture yet.</p>
 
   <section class="forecast" aria-labelledby="forecast">
     <h2 id="forecast">Best estimate: time to playable</h2>
@@ -227,25 +227,25 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">The game&#x27;s first present now appears in its own window. Nothing is drawn in it, and the game then stops in the graphics driver while recording its first graphics work. A first version of placing textures at the game&#x27;s own GPU addresses is in.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T18:35:00Z">18:35 UTC</time></p>
+          <p class="status">The game&#x27;s first frame now records its work with real pipelines and bound descriptors and appears in its own window, with nothing visible in it. The graphics card then hangs before a second frame.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T18:43:00Z">18:43 UTC</time></p>
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 4=">4=</div>
+        <div class="pos" aria-label="Position 2=">2=</div>
         <div class="who">
           <h3><a href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
           <p class="slug">californiaAlmonds/OpenScarlett</p>
           <p class="kind">Compatibility layer for Xbox Series games</p>
         </div>
         <div class="where">
-          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
-          <p class="status">Reports 17 early boot obstacles cleared, as far as a 4K render target and ray-tracing setup. It does not name the game, but the 587 imports it resolves match the count others give for GTA VI&#x27;s executable. No frame claimed.</p>
-          <p class="meta">Source: Project README · last change <time datetime="2026-11-23T16:50:00Z">16:50 UTC</time></p>
+          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
+          <p class="status">Reports 34 boot obstacles cleared and the game presenting to a 4K window. It does not say what the window shows, and it still does not name the game; the 587 imports it resolves match GTA VI&#x27;s executable.</p>
+          <p class="meta">Source: Commit message · last change <time datetime="2026-11-23T18:26:00Z">18:26 UTC</time></p>
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 4=">4=</div>
+        <div class="pos" aria-label="Position 5">5</div>
         <div class="who">
           <h3><a href="https://github.com/ItsNotRexed/Leonida" rel="noopener">Leonida</a></h3>
           <p class="slug">ItsNotRexed/Leonida</p>
@@ -280,6 +280,13 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T18:56:00Z">18:56</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>OpenScarlett presents too, making four</h3>
+          <ul><li>OpenScarlett: a commit reports 34 boot obstacles cleared, up from 17, and the game presenting to a 4K window. It does not describe the picture.</li><li>five-star-recomp: the first frame now records its work with real pipelines and bound descriptors. The graphics card then hangs before a second frame.</li><li>XCL: no commits since 18:11. Leonida: active, with no change to its boot notes.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T18:40:00Z">18:40</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
