@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. VIctory is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T22:34:00Z">22:34 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T22:37:00Z">22:37 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,8 +291,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">22:34 UTC</span></p>
-          <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">five-star-recomp, TuxBox, OpenScarlett, Leonida, PercyScarlett</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">22:37 UTC</span></p>
+          <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL, TuxBox</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">five-star-recomp, OpenScarlett, Leonida, PercyScarlett</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T02:00:00Z">about 3 days</span></p>
         </div>
       </div>
@@ -323,12 +323,24 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. Gameplay is not reached: a contributor says world loading stalls on failed storage requests.</p>
-            <p class="small muted">Source: maintainer&#x27;s notes on the main branch and a contributor&#x27;s chat reports. Changed <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time>.</p>
+            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. Gameplay is not reached. An open pull request fixes most of the storage requests that failed while the world loads.</p>
+            <p class="small muted">Source: maintainer&#x27;s notes on the main branch and a contributor&#x27;s pull requests. Changed <time datetime="2026-11-23T22:37:00Z">22:37 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
           <p class="board__pos" aria-label="Position 3">3</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
+            <p class="small muted">Compatibility layer for Linux (Proton)</p>
+            <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">On Linux, shows the game&#x27;s player-selection prompt at 4K. The intro video and gameplay beyond it are not verified.</p>
+            <p class="small muted">Source: project README and progress notes. Changed <time datetime="2026-11-23T22:25:00Z">22:25 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 4">4</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
             <p class="small muted">GTA VI recompilation toolchain</p>
@@ -340,19 +352,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
         </li>
         <li class="board__row">
-          <p class="board__pos" aria-label="Position 4=">4=</p>
-          <div class="board__who">
-            <h3 class="t-card"><a class="name" href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
-            <p class="small muted">Compatibility layer for Linux (Proton)</p>
-            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
-          </div>
-          <div class="board__where">
-            <p class="measure">On Linux the game opens its window, starts audio and presents frames. The window stays black.</p>
-            <p class="small muted">Source: project progress notes. Changed <time datetime="2026-11-23T21:38:00Z">21:38 UTC</time>.</p>
-          </div>
-        </li>
-        <li class="board__row">
-          <p class="board__pos" aria-label="Position 4=">4=</p>
+          <p class="board__pos" aria-label="Position 5=">5=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games</p>
@@ -364,7 +364,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
         </li>
         <li class="board__row">
-          <p class="board__pos" aria-label="Position 4=">4=</p>
+          <p class="board__pos" aria-label="Position 5=">5=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ProjectLeonida/Leonida" rel="noopener">Leonida</a></h3>
             <p class="small muted">GTA VI recompilation, largest contributor base</p>
@@ -376,7 +376,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
         </li>
         <li class="board__row">
-          <p class="board__pos" aria-label="Position 4=">4=</p>
+          <p class="board__pos" aria-label="Position 5=">5=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></h3>
             <p class="small muted">Xbox Series compatibility layer</p>
@@ -433,6 +433,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T22:37:00Z">22:37</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">TuxBox shows the first menu on Linux</h3>
+            <ul class="points measure"><li>TuxBox: a 22:25&nbsp;UTC commit shows the game&#x27;s player-selection prompt at 4K on Linux. It moves to stage 5, the third project with a picture.</li><li>XCL: a contributor&#x27;s pull request fixes most of the storage requests that failed while the world loads. In his 170-second run 16,384 requests now land and 2,227 still fail. Another pull request fixes the green screen where the intro video plays. Neither is merged.</li><li>VIctory: no commits since 22:15&nbsp;UTC. Leonida: merging pull requests again at its new address.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T22:34:00Z">22:34</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A new leader: VIctory loads the game world, with a black picture</h3>
@@ -453,6 +460,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>XCL: main branch unchanged since 21:30&nbsp;UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 20 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T21:37:00Z">21:37</time> <span>23 Nov</span></p>
           <div class="log__what">
@@ -460,10 +471,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>XCL: the contributor behind the first-menus pull request said in the project&#x27;s chat at 21:36&nbsp;UTC that his build now saves preferences, selects a player and begins loading into the main game. His earlier menu report was confirmed on the main branch within about half an hour.</li><li>This is a chat message, not a commit or pull request, and it does not claim a frame of the game world or player control. XCL stays at stage 5.</li><li>Forecast: the in-game step is brought forward to about a day. The playable date is unchanged.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 19 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T21:31:00Z">21:31</time> <span>23 Nov</span></p>
           <div class="log__what">
@@ -605,7 +612,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
   <section id="method">
     <div class="wrap">
       <h2>Method and limits</h2>
-      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim, and most are unverified. The menus are reported by three separate builds.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>An equals sign means level.</p></li></ul>
+      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim, and most are unverified. The menus are reported by several separate builds.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>An equals sign means level.</p></li></ul>
     </div>
   </section>
 </main>
