@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. VIctory is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T23:14:00Z">23:14 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T23:31:00Z">23:31 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">23:14 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">23:31 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL, TuxBox</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">five-star-recomp, OpenScarlett, Leonida, PercyScarlett</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T02:00:00Z">about 3 days</span></p>
         </div>
@@ -311,8 +311,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Runs the game through its first-boot screens, intro video and menus at 30&nbsp;frames a second, then loads the world in about 50&nbsp;seconds. There the picture is black and the graphics device fails within seconds.</p>
-            <p class="small muted">Source: project README and commit message, tested on one machine. Changed <time datetime="2026-11-23T22:15:00Z">22:15 UTC</time>.</p>
+            <p class="measure">Runs the game through its menus at 30&nbsp;frames a second and loads the world, which now stays up for minutes without a graphics failure. The picture there is black, at 1.5 to 3&nbsp;seconds a frame.</p>
+            <p class="small muted">Source: project README and commit message, tested on one machine. Changed <time datetime="2026-11-23T23:13:00Z">23:13 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -323,8 +323,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. A fix for storage requests that failed while the world loads was merged at 22:54&nbsp;UTC; its status line still says gameplay is not reached.</p>
-            <p class="small muted">Source: maintainer&#x27;s notes and commits on the main branch. Changed <time datetime="2026-11-23T22:54:00Z">22:54 UTC</time>.</p>
+            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. Fixes for world-loading storage requests and for the intro video are merged; its status line still says gameplay is not reached.</p>
+            <p class="small muted">Source: maintainer&#x27;s notes and commits on the main branch. Changed <time datetime="2026-11-23T23:18:00Z">23:18 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -415,7 +415,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           <p class="lead">Around <time datetime="2026-11-27T02:00:00Z">the early hours of Fri 27 Nov</time>.</p>
           <p class="measure">At least one project reports the game in-game and under player control for 30&nbsp;minutes or more without a crash, at 20&nbsp;frames per second or better on some PC.</p>
           <h3 class="t-card">What the estimate rests on</h3>
-          <ul class="points measure"><li>One project went from nothing public to loading the game world in a day. XCL went from its first frame to the menus in about five hours.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable in a day or two.</li><li>The next gate is a picture of the world. The one project that loads it gets black frames that take seconds each, and a graphics device that fails.</li><li>Risks: takedowns, a blocker nobody has hit yet, and low frame rates in the game itself.</li><li>One project&#x27;s own README expects longer than this page does: at least a few weeks.</li></ul>
+          <ul class="points measure"><li>One project went from nothing public to loading the game world in a day. XCL went from its first frame to the menus in about five hours.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable in a day or two.</li><li>The next gate is a picture of the world. The one project that runs it gets a black picture at 1.5 to 3&nbsp;seconds a frame, with much of the scene not yet drawn.</li><li>Risks: takedowns, a blocker nobody has hit yet, and low frame rates in the game itself.</li><li>One project&#x27;s own README expects longer than this page does: at least a few weeks.</li></ul>
         </div>
         <div class="fc__side">
           <h3 class="t-card">Chances</h3>
@@ -432,6 +432,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
     <div class="wrap">
       <h2>Updates</h2>
       <ol class="log">
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T23:31:00Z">23:31</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">VIctory keeps the game world running, still black</h3>
+            <ul class="points measure"><li>VIctory: a 23:13&nbsp;UTC commit fixes the graphics-device failure. The world ran to a four-minute limit. The picture is black, at 1.5 to 3&nbsp;seconds a frame.</li><li>By its notes, most of the world&#x27;s geometry is drawn through a path that is switched off for now, and hundreds of draws a frame have no translated shader.</li><li>XCL: merged another batch, including the intro-video fix. Its status is unchanged.</li></ul>
+          </div>
+        </li>
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T23:14:00Z">23:14</time> <span>23 Nov</span></p>
           <div class="log__what">
@@ -453,6 +460,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>VIctory, a one-person project published today, reports the game running through its first-boot screens, intro video and menus at 30&nbsp;frames a second, then loading the world in about 50&nbsp;seconds. In the world the picture is black and the graphics device fails within seconds. Tested on one machine.</li><li>It stays at stage 5: stage 6 needs a picture of the world and player control.</li><li>Correction on Leonida: its repository was not taken down. The maintainer moved it to a GitHub organisation at about 22:10&nbsp;UTC, and the old address stopped answering for a few minutes. Pull requests are being merged again.</li><li>This page was redesigned at 22:33&nbsp;UTC.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 22 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T22:17:00Z">22:17</time> <span>23 Nov</span></p>
           <div class="log__what">
@@ -460,10 +471,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Leonida: the GitHub repository answered at 22:08&nbsp;UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16&nbsp;UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01&nbsp;UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30&nbsp;frames per second, with memory use down to about 15&nbsp;GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 21 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T21:50:00Z">21:50</time> <span>23 Nov</span></p>
           <div class="log__what">
