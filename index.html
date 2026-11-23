@@ -1,481 +1,646 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-type="software" data-radius="sharp" data-buttons="tonal">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI PC Race</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GTA VI PC Race: live tracker of unofficial PC ports</title>
+<meta name="description" content="How far each open-source project has got in running the Xbox build of GTA VI on a PC, checked every 15 minutes, with a best estimate of when it becomes playable.">
+<meta name="page-type" content="software">
+<meta name="site-kind" content="software">
+<meta name="theme-color" content="#dfdedb">
+<meta property="og:title" content="GTA VI PC Race: live tracker of unofficial PC ports">
+<meta property="og:description" content="How far each open-source project has got in running the Xbox build of GTA VI on a PC, checked every 15 minutes, with a best estimate of when it becomes playable.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://vuyp.github.io/gta6-pc-race/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%2326251e'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='19' font-weight='600' fill='%23dfdedb'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Layout idea: a timing board. Summary strip first, then a ranked board with a 7-step stage bar per entry, then a dated log. */
+/* One system for the page. Palette stone-blueprint, type onest, radius sharp, buttons tonal. */
+@font-face { font-family: "Onest"; src: url("fonts/onest-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
 :root {
-  --bg: #f3f5f4;
-  --surface: #ffffff;
-  --ink: #131a1e;
-  --muted: #56636c;
-  --line: #d6dcde;
-  --accent: #0b6a70;
-  --pre: #2f6fb0;
-  --frames: #a86200;
-  --play: #2c7a34;
-  --idle: #8c979e;
-  --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  --body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --p-bg: #dfdedb; --p-surface: #d3d2ce; --p-ink: #26251e; --p-muted: #5a5951;
+  --p-accent: #2456d6; --p-accent-ink: #ffffff;
+  --p-inv-bg: #26251e; --p-inv-surface: #33322b; --p-inv-ink: #dfdedb; --p-inv-muted: #9f9e99;
+
+  --bg: var(--p-bg); --surface: var(--p-surface); --ink: var(--p-ink); --muted: var(--p-muted);
+  --action: var(--p-accent); --action-ink: var(--p-accent-ink);
+  --line: color-mix(in oklab, var(--ink) 11%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 20%, transparent);
+
+  --font-display: "Onest", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-text: "Onest", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  --nav: 72px; --padt: 120px; --padb: 72px; --gut: 80px; --hgap: 48px; --hpadb: 64px; --head-gap: 48px;
+  --container: 1280px; --gutter: 24px;
+
+  --t-h1: clamp(38px, 3.24vw + 25.4px, 72px);
+  --t-h2: clamp(30px, 1.72vw + 23.3px, 48px);
+  --t-h3: 28px; --t-lead: 20px; --t-card: 20px; --t-body: 16px; --t-small: 14px; --t-label: 13px;
+  --t-stat: clamp(28px, .952vw + 24.29px, 38px);
+
+  --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-btn: 4px; --r-frame: 12px; --btn-h: 44px;
+  --ease: cubic-bezier(.2, .8, .2, 1); --dur: 180ms;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #0f1518;
-    --surface: #161e22;
-    --ink: #e7ecee;
-    --muted: #9aa7af;
-    --line: #2a353b;
-    --accent: #58c4c6;
-    --pre: #6aa9e6;
-    --frames: #efae3d;
-    --play: #6fcb76;
-    --idle: #68757d;
-  }
+@media (max-width: 1023px) { :root { --gut: 48px; --t-h3: 24px; --t-lead: 18px; --t-card: 18px; } }
+@media (max-width: 639px) { :root { --nav: 56px; --padt: 96px; --padb: 48px; --hgap: 40px; --hpadb: 24px; --gut: 24px; --gutter: 12px; --head-gap: 32px; } }
+
+.ground-inverse {
+  --bg: var(--p-inv-bg); --surface: var(--p-inv-surface); --ink: var(--p-inv-ink); --muted: var(--p-inv-muted);
+  --action: var(--p-inv-ink); --action-ink: var(--p-inv-bg);
+  --line: color-mix(in oklab, var(--ink) 14%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+  background: var(--bg); color: var(--ink);
 }
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #0f1518;
-  --surface: #161e22;
-  --ink: #e7ecee;
-  --muted: #9aa7af;
-  --line: #2a353b;
-  --accent: #58c4c6;
-  --pre: #6aa9e6;
-  --frames: #efae3d;
-  --play: #6fcb76;
-  --idle: #68757d;
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 400 16px/1.5 var(--body);
-}
-.wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 56px; display: flex; flex-direction: column; gap: 30px; }
+
+/* ---------------------------------------------------------------- base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; margin: 0; scroll-padding-top: var(--nav); }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--t-body)/1.625 var(--font-text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 h1, h2, h3, p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
-h1 { font: 700 clamp(2.1rem, 7vw, 3.2rem)/1.02 var(--display); letter-spacing: 0.005em; text-wrap: balance; text-transform: uppercase; }
-h2 { font: 700 1.5rem/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; text-wrap: balance; }
-h3 { font: 600 1.06rem/1.25 var(--body); text-wrap: balance; }
-a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-a:hover { color: var(--accent); }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.mast { display: flex; flex-direction: column; gap: 10px; border-bottom: 3px solid var(--ink); padding-bottom: 18px; }
-.kicker { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
-.checked { font: 400 0.9rem/1.4 var(--mono); color: var(--muted); }
-.checked time { color: var(--ink); font-weight: 500; }
-.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); background: var(--surface); }
-.cell { padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.cell + .cell { border-left: 1px solid var(--line); }
-.cell .label { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.cell .value { font: 700 1.7rem/1.05 var(--display); text-transform: uppercase; overflow-wrap: anywhere; }
-.cell .value.no { color: var(--frames); }
-.lede { font-size: 1.08rem; line-height: 1.5; max-width: 62ch; }
-.lede strong { font-weight: 600; }
-section { display: flex; flex-direction: column; gap: 14px; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 400 0.8rem/1.4 var(--mono); color: var(--muted); }
-.legend .num { color: var(--ink); font-weight: 500; margin-right: 5px; }
-.board { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
-.row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 6px 12px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.pos { font: 700 1.9rem/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; grid-row: 1 / span 2; }
-.who { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.slug { font: 400 0.82rem/1.4 var(--mono); color: var(--muted); overflow-wrap: anywhere; }
-.kind { font-size: 0.86rem; color: var(--muted); }
-.where { grid-column: 2; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.bar { display: flex; gap: 3px; max-width: 320px; }
-.seg { flex: 1 1 0; height: 9px; background: var(--line); }
-.bar.pre .seg.on { background: var(--pre); }
-.bar.frames .seg.on { background: var(--frames); }
-.bar.play .seg.on { background: var(--play); }
-.stage { font-size: 0.92rem; font-weight: 500; }
-.pill { display: inline-block; font: 500 0.72rem/1 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 7px; margin-right: 6px; border: 1px solid currentColor; }
-.pill.pre { color: var(--pre); }
-.pill.frames { color: var(--frames); }
-.pill.play { color: var(--play); }
-.pill.idle { color: var(--idle); }
-.status { max-width: 64ch; }
-.meta { font: 400 0.78rem/1.4 var(--mono); color: var(--muted); }
-@media (min-width: 720px) {
-  .row { grid-template-columns: 56px minmax(0, 15rem) minmax(0, 1fr); gap: 8px 20px; }
-  .pos { grid-row: auto; font-size: 2.3rem; }
-  .where { grid-column: 3; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; }
+h1 { font-size: var(--t-h1); line-height: 1.04; letter-spacing: -0.04em; }
+h2 { font-size: var(--t-h2); line-height: 1.08; letter-spacing: -0.035em; }
+h3 { font-size: var(--t-h3); line-height: 1.2; letter-spacing: -0.02em; }
+.t-card { font-size: var(--t-card); line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
+.lead { font-size: var(--t-lead); line-height: 1.5; }
+.small { font-size: var(--t-small); line-height: 1.5; }
+.label { font-size: var(--t-label); line-height: 1.4; font-weight: 500; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.measure { max-width: 62ch; }
+
+a { color: inherit; }
+a.name, .legal a { text-decoration: underline; text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color var(--dur) var(--ease); }
+a.name:hover, .legal a:hover { text-decoration-color: currentColor; }
+/* a name link keeps a 44px touch area without moving the line */
+h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
+:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { width: min(100% - 2 * var(--gut), var(--container)); margin-inline: auto; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+
+/* ---------------------------------------------------------------- buttons: one pair, tonal */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  height: var(--btn-h); padding: 0 var(--s-5); border-radius: var(--r-btn); border: 1px solid transparent;
+  font: 500 var(--t-body)/1 var(--font-text); white-space: nowrap; cursor: pointer; text-decoration: none;
+  transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.forecast { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 18px 16px; }
-.fc { display: flex; flex-wrap: wrap; gap: 16px 36px; align-items: flex-start; }
-.fc-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.fc-big { font: 700 clamp(2.6rem, 11vw, 4rem)/0.95 var(--display); text-transform: uppercase; color: var(--accent); }
-.fc-date { font: 500 0.95rem/1.3 var(--mono); color: var(--muted); }
-.fc-date time { color: var(--ink); }
-.odds { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.odds li { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 10px; align-items: baseline; font-size: 0.95rem; }
-.odds .chance { font: 500 0.9rem/1.3 var(--mono); font-variant-numeric: tabular-nums; }
-.fc-def { max-width: 66ch; font-size: 0.95rem; }
-.fc-def strong { font-weight: 600; }
-.scroll { overflow-x: auto; }
-.steps { border-collapse: collapse; width: 100%; max-width: 520px; font-size: 0.92rem; }
-.steps th, .steps td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
-.steps thead th { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.steps tbody th { font-weight: 600; }
-.steps .d { font-family: var(--mono); font-size: 0.86rem; white-space: nowrap; }
-.why { display: flex; flex-direction: column; gap: 6px; max-width: 66ch; }
-.why li { padding-left: 14px; position: relative; font-size: 0.93rem; }
-.why li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 2px; background: var(--accent); }
-.also { display: flex; flex-direction: column; gap: 8px; }
-.also h3 { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.also ul { display: flex; flex-direction: column; gap: 8px; }
-.also li { font-size: 0.92rem; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
-.wname { font-weight: 600; }
-.wnote { flex-basis: 100%; color: var(--muted); }
-.log { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
-.entry { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-.when { display: flex; flex-direction: column; gap: 2px; font: 500 0.98rem/1.2 var(--mono); font-variant-numeric: tabular-nums; }
-.when .date { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
-.what { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.what ul { display: flex; flex-direction: column; gap: 6px; max-width: 66ch; }
-.what li { padding-left: 14px; position: relative; font-size: 0.95rem; }
-.what li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 2px; background: var(--accent); }
-.notes { display: flex; flex-direction: column; gap: 10px; max-width: 68ch; border-left: 3px solid var(--frames); padding-left: 14px; }
-.notes li { font-size: 0.95rem; }
-footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
-@media (max-width: 420px) {
-  .strip { grid-template-columns: 1fr; }
-  .cell + .cell { border-left: 0; border-top: 1px solid var(--line); }
-  .entry { grid-template-columns: 1fr; gap: 6px; }
-  .when { flex-direction: row; gap: 8px; align-items: baseline; }
+.btn--primary { background: var(--action); color: var(--action-ink); }
+.btn--primary:hover { background: color-mix(in oklab, var(--action) 86%, var(--ink)); }
+.ground-inverse .btn--primary:hover { background: color-mix(in oklab, var(--action) 88%, var(--bg)); }
+.btn--secondary { background: color-mix(in oklab, var(--ink) 8%, var(--bg)); color: var(--ink); }
+.btn--secondary:hover { background: color-mix(in oklab, var(--ink) 14%, var(--bg)); }
+.btn:active { transform: translateY(1px) scale(.985); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.link { font-weight: 500; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; transition: text-decoration-color var(--dur) var(--ease); }
+.link:hover, summary:hover .link { text-decoration-color: currentColor; }
+
+/* ---------------------------------------------------------------- nav: fixed, opaque, one hairline */
+.nav { position: fixed; inset: 0 0 auto 0; height: var(--nav); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav__bar { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: var(--s-5); position: relative; }
+.nav__logo { justify-self: start; display: inline-flex; align-items: center; gap: var(--s-3); min-height: 44px; text-decoration: none; font: 500 20px/1 var(--font-display); letter-spacing: -0.02em; white-space: nowrap; }
+.mark--initial { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 3px; background: var(--ink); color: var(--bg); font: 600 15px/1 var(--font-display); letter-spacing: 0; }
+.nav__links { display: flex; gap: var(--s-6); }
+.nav__links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 500; white-space: nowrap; text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(50% + 13px) / 0 1px no-repeat; transition: background-size var(--dur) var(--ease); }
+.nav__links a:hover { background-size: 100% 1px; }
+.nav__actions { justify-self: end; display: flex; gap: var(--s-2); }
+.nav__toggle { display: none; width: 44px; padding: 0; }
+.nav__toggle span, .nav__toggle span::before { display: block; width: 18px; height: 1.5px; background: currentColor; }
+.nav__toggle span { position: relative; top: -3px; }
+.nav__toggle span::before { content: ""; position: absolute; top: 6px; left: 0; }
+.skip-link { position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; padding: var(--s-3) var(--s-4); background: var(--ink); color: var(--bg); border-radius: var(--r-btn); font-weight: 500; text-decoration: none; opacity: 0; pointer-events: none; }
+.skip-link:focus-visible { opacity: 1; pointer-events: auto; }
+@media (max-width: 1023px) {
+  .nav__bar { grid-template-columns: minmax(0, 1fr) auto; }
+  .nav__toggle { display: inline-flex; }
+  .nav__links { display: none; position: fixed; inset: var(--nav) 0 0 0; background: var(--bg); flex-direction: column; gap: 0; padding: var(--s-4) var(--gut) var(--s-7); overflow-y: auto; }
+  .nav.is-open .nav__links { display: flex; }
+  .nav__links a { min-height: 56px; font-size: 18px; border-bottom: 1px solid var(--line); background: none; }
 }
+@media (max-width: 639px) {
+  .nav__logo { font-size: 18px; }
+  .nav__actions .btn--primary { display: none; }
+}
+
+/* ---------------------------------------------------------------- sections: the h2 first, one rhythm */
+section { padding: var(--padt) 0 var(--padb); }
+section > .wrap > h2 { margin-bottom: var(--head-gap); }
+.sub { margin-top: var(--s-8); margin-bottom: var(--s-5); }
+
+/* ---------------------------------------------------------------- hero: alone on the first screen */
+.hero { min-height: 100svh; padding: calc(var(--nav) + var(--hgap)) 0 var(--hpadb); display: flex; align-items: center; }
+.hero .grid { align-items: center; row-gap: var(--s-7); }
+.hero__words { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: var(--s-5); }
+.hero__fact { font-weight: 500; max-width: 36ch; text-wrap: balance; }
+.hero__how { max-width: 52ch; }
+.hero__visual { grid-column: 8 / span 5; }
+@media (max-width: 1023px) {
+  .hero { align-items: flex-start; }
+  .hero__words, .hero__visual { grid-column: 1 / -1; }
+}
+@media (max-width: 639px) { .btn-row .btn { flex: 1 1 100%; } }
+@media (min-width: 1024px) and (max-height: 820px) { .hero { --hgap: 24px; --hpadb: 24px; } .hero__words { gap: var(--s-4); } }
+
+/* the stage ladder, as one window: a single box on the ground */
+.frame { border: 1px solid var(--line-strong); border-radius: var(--r-frame); background: var(--surface); overflow: hidden; }
+.frame__head, .frame__foot { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); padding: var(--s-4) var(--s-5); font-size: var(--t-small); }
+.frame__head { border-bottom: 1px solid var(--line); color: var(--muted); }
+.frame__head .mono { font-size: var(--t-label); }
+.frame__foot { border-top: 1px solid var(--line); font-weight: 500; }
+.lad__row { display: grid; grid-template-columns: 20px minmax(0, 11rem) minmax(0, 1fr); column-gap: var(--s-4); align-items: baseline; padding: 9px var(--s-5); min-height: 44px; }
+.lad__row + .lad__row { border-top: 1px solid var(--line); }
+.lad__n { font: 400 var(--t-label)/1.6 var(--font-mono); color: var(--muted); }
+.lad__who { font-weight: 500; }
+.lad__row--ahead .lad__stage { color: var(--muted); }
+.lad__row--lead .lad__n { color: var(--action); font-weight: 500; }
+.lad__row--lead .lad__stage { font-weight: 500; }
+@media (max-width: 479px) {
+  .lad__row { grid-template-columns: 20px minmax(0, 1fr); }
+  .lad__who { grid-column: 2; }
+  .lad__who:empty { display: none; }
+}
+
+/* ---------------------------------------------------------------- standings: one row recipe */
+.board__row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-3); padding-block: var(--s-5); border-bottom: 1px solid var(--line); }
+.board__row:first-child { padding-top: 0; }
+.board__pos { grid-column: 1 / span 1; font: 400 var(--t-h3)/1.1 var(--font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.board__who { grid-column: 2 / span 3; display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
+.board__who .meter { margin-top: var(--s-3); }
+.board__where { grid-column: 6 / span 7; display: flex; flex-direction: column; gap: var(--s-2); min-width: 0; }
+.meter { display: flex; gap: 3px; width: min(100%, 280px); }
+.meter__seg { flex: 1 1 0; height: 6px; background: var(--line-strong); }
+.meter__seg.is-on { background: var(--action); }
+@media (max-width: 1023px) {
+  .board__pos { grid-column: 1 / span 2; }
+  .board__who { grid-column: 3 / -1; }
+  .board__where { grid-column: 3 / -1; }
+}
+@media (max-width: 639px) {
+  .board__pos { grid-column: 1 / span 2; }
+  .board__who { grid-column: 3 / -1; }
+  .board__where { grid-column: 1 / -1; }
+}
+
+/* also watched: two columns of a name over one line */
+.pairs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+.pairs > li { display: flex; flex-direction: column; gap: var(--s-1); padding-block: var(--s-4); border-bottom: 1px solid var(--line); }
+.pairs > li > p { max-width: 52ch; }
+.idle { margin-top: var(--s-5); }
+@media (max-width: 767px) { .pairs { grid-template-columns: 1fr; } }
+
+/* rows: a 1px rule closes each */
+.rows > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-5); row-gap: var(--s-1); padding-block: var(--s-4); border-bottom: 1px solid var(--line); }
+.rows > li:first-child { padding-top: 0; }
+.rows__name { font-weight: 500; }
+.rows__value { text-align: right; }
+.rows--spec > li { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+.rows--spec .rows__name { grid-column: 1 / span 4; }
+.rows--spec > li > p { grid-column: 6 / span 7; max-width: 62ch; }
+.rows--spec .rows__name { font-weight: 400; color: var(--muted); }
+@media (max-width: 767px) {
+  .rows--spec .rows__name, .rows--spec > li > p { grid-column: 1 / -1; }
+}
+
+/* ---------------------------------------------------------------- forecast: the one inverse band */
+.fc { row-gap: var(--s-7); }
+.fc__main { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: var(--s-4); }
+.fc__side { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: var(--s-4); }
+.fc__main h3, .fc__side h3:not(:first-child) { margin-top: var(--s-6); }
+.fc__side > .small { margin-top: var(--s-5); }
+.stat { font: 400 var(--t-stat)/1.1 var(--font-display); letter-spacing: -0.03em; }
+.points { display: flex; flex-direction: column; gap: var(--s-3); list-style: disc; padding-left: 1.15em; }
+.points > li::marker { color: var(--muted); }
+@media (max-width: 1023px) { .fc__main, .fc__side { grid-column: 1 / -1; } }
+
+/* ---------------------------------------------------------------- updates */
+.log__row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-2); padding-block: var(--s-5); border-bottom: 1px solid var(--line); }
+.log__row:first-child { padding-top: 0; }
+.log__when { grid-column: 1 / span 2; font: 400 var(--t-small)/1.9 var(--font-mono); color: var(--muted); }
+.log__when time { color: var(--ink); font-weight: 500; }
+.log__what { grid-column: 3 / span 9; display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
+@media (max-width: 767px) { .log__when, .log__what { grid-column: 1 / -1; } }
+.more { margin-top: var(--s-6); }
+.more > summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; list-style: none; }
+.more > summary::-webkit-details-marker { display: none; }
+.more[open] > summary { margin-bottom: var(--s-6); }
+
+/* ---------------------------------------------------------------- footer: the close and the legal row in one slab */
+.footer--statement { padding: 0 0 var(--s-7); }
+.slab { background: var(--surface); border-radius: var(--r-lg); padding: var(--s-8) var(--s-7) var(--s-6); overflow: hidden; }
+.close__head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s-6); flex-wrap: wrap; }
+.close__head h2 { max-width: 16ch; }
+.close__name { margin-top: var(--s-8); font: 400 clamp(44px, 12.4vw, 176px)/.9 var(--font-display); letter-spacing: -0.05em; white-space: nowrap; }
+.legal { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+@media (max-width: 639px) {
+  .slab { padding: var(--s-7) var(--s-5) var(--s-5); }
+  .close__head .btn { flex: 1 1 100%; }
+}
+
+/* ---------------------------------------------------------------- motion: the hero enters once; nothing moves on scroll */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  [data-enter] .enter { animation: rise 640ms var(--ease) both; }
+  [data-enter] .enter:nth-child(2) { animation-delay: 70ms; }
+  [data-enter] .enter:nth-child(3) { animation-delay: 140ms; }
+  [data-enter] .enter:nth-child(4) { animation-delay: 210ms; }
+  [data-enter] .hero__visual.enter { animation-delay: 160ms; }
+  [data-enter] .lad__row { animation: rise 420ms var(--ease) both; animation-delay: calc(360ms + var(--i) * 45ms); }
+}
+
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="mast">
-    <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
-    <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T22:17:00Z">22:17 UTC, 23 Nov 2026</time><span id="ago"></span></p>
-  </header>
-
-  <div class="strip">
-    <div class="cell"><span class="label">Playable?</span><span class="value no">No</span></div>
-    <div class="cell"><span class="label">Leader</span><span class="value">XCL</span></div>
-    <div class="cell"><span class="label">Furthest point</span><span class="value">Recognisable picture</span></div>
+<!-- deal: palette stone-blueprint · type onest · radius sharp · buttons tonal · mark initial · nav-centre · footer-statement · close-word · rhythm dark-band (forecast) -->
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top" aria-label="GTA VI PC Race, top of page"><span class="mark mark--initial" aria-hidden="true">G</span><span>GTA VI PC Race</span></a>
+    <nav class="nav__links" id="menu" aria-label="Sections">
+      <a href="#standings">Standings</a>
+      <a href="#forecast">Forecast</a>
+      <a href="#updates">Updates</a>
+      <a href="#method">Method</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="#standings">See the standings</a>
+      <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
+    </div>
   </div>
+</header>
 
-  <p class="lede"><strong>XCL shows the game&#x27;s menus and settings screens at a steady 30 frames per second. Gameplay has not been reached, and nothing is playable.</strong> Seven projects start the game&#x27;s leaked Xbox executable on a PC and six present frames. XCL is ahead: its main branch goes through the first menu into the settings screens. Every other project is still on black frames. Leonida&#x27;s GitHub repository stopped being publicly readable at about 22:10 UTC, cause not yet known.</p>
-
-  <section class="forecast" aria-labelledby="forecast">
-    <h2 id="forecast">Best estimate: time to playable</h2>
-    <div class="fc">
-      <div class="fc-main">
-        <p class="fc-big" id="fc-rel" data-target="2026-11-27T02:00:00Z">about 3 days</p>
-        <p class="fc-date">around <time datetime="2026-11-27T02:00:00Z">the early hours of Fri 27 Nov</time></p>
+<main id="top">
+  <section class="hero" data-enter>
+    <div class="wrap grid">
+      <div class="hero__words">
+        <h1 class="enter">GTA VI PC port tracker</h1>
+        <p class="lead hero__fact enter">Playable: no. XCL is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
+        <p class="hero__how enter">Seven open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T22:17:00Z">22:17 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
+        <div class="btn-row enter">
+          <a class="btn btn--primary" href="#standings">See the standings</a>
+          <a class="btn btn--secondary" href="#updates">Read the latest update</a>
+        </div>
       </div>
-      <ul class="odds" aria-label="Chances"><li><span class="chance">nearly 5 in 10</span><span class="by">by Thu 26 Nov</span></li><li><span class="chance">7 in 10</span><span class="by">by Mon 30 Nov</span></li><li><span class="chance">8 in 10</span><span class="by">by Christmas</span></li><li><span class="chance">1 in 10</span><span class="by">it stalls until an official PC version</span></li></ul>
-    </div>
-    <p class="fc-def"><strong>What counts as playable:</strong> At least one project reports the game in-game and under player control for 30 minutes or more without a crash, at 20 frames per second or better on some PC.</p>
-    <div class="scroll"><table class="steps">
-      <thead><tr><th scope="col">Milestone</th><th scope="col">Best estimate</th><th scope="col">Around</th></tr></thead>
-      <tbody><tr><th scope="row">Recognisable picture</th><td>reached</td><td class="d">Mon 23 Nov</td></tr><tr><th scope="row">In-game with control</th><td>about a day</td><td class="d">Tue 24 Nov</td></tr><tr><th scope="row">Playable</th><td>about 3 days</td><td class="d">Fri 27 Nov</td></tr></tbody>
-    </table></div>
-    <ul class="why"><li>Two independent projects, XCL and five-star-recomp, got from first start to a continuously running frame loop within about five hours of the executable appearing.</li><li>The first menu appeared on the evening of 23 November, first in a contributor&#x27;s build and then on XCL&#x27;s main branch, about half a day sooner than this page expected.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable within a day or two.</li><li>The open problems are known and specific: game memory the graphics card cannot see yet, mesh-shader pipelines, and a few unimplemented calls.</li><li>On XCL&#x27;s main branch the menus and settings screens hold a steady 30 frames per second on a 16 GB graphics card. The next gate is loading the game world: a contributor reports most storage requests failing there, and the mesh pipelines the minimap needs are still refused.</li><li>What could stretch it: takedowns, a blocker nobody has hit yet, and low frame rates once the game is running. One project&#x27;s GitHub repository became unreadable on the evening of 23 November, cause not yet known.</li><li>One project&#x27;s own README guesses longer than this page does: at least a few weeks before the game is minimally playable.</li></ul>
-    <p class="meta">A forecast by the AI that compiles this page, not a promise. It can be badly wrong and moves when the evidence does. Last revised <time datetime="2026-11-23T21:37:00Z">21:37 UTC, 23 Nov 2026</time>: In-game step brought forward to about a day. A contributor reports in the project&#x27;s chat that his build gets through the menus and starts loading the game itself. Nothing in the repository shows it yet. Playable date unchanged, because that depends on frame rate and stability once in-game.</p>
-  </section>
-
-  <section aria-labelledby="standings">
-    <h2 id="standings">Standings</h2>
-    <ul class="legend" aria-label="Stages"><li><span class="num">0</span>Not started</li><li><span class="num">1</span>Loads</li><li><span class="num">2</span>Starts up</li><li><span class="num">3</span>Graphics device</li><li><span class="num">4</span>First frames</li><li><span class="num">5</span>Recognisable picture</li><li><span class="num">6</span>In-game</li><li><span class="num">7</span>Playable</li></ul>
-    <ol class="board">
-      <li class="row">
-        <div class="pos" aria-label="Position 1">1</div>
-        <div class="who">
-          <h3><a href="https://github.com/ivall/xcl" rel="noopener">XCL</a></h3>
-          <p class="slug">ivall/xcl</p>
-          <p class="kind">Compatibility layer for Xbox Series games</p>
+      <div class="hero__visual enter">
+        <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
+          <p class="frame__head"><span>Stages reached</span><span class="mono">22:17 UTC</span></p>
+          <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">XCL</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">five-star-recomp, TuxBox, OpenScarlett, Leonida, PercyScarlett</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
+          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T02:00:00Z">about 3 days</span></p>
         </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 5 of 7</span> Recognisable picture</p>
-          <p class="status">Main branch, 21:49 UTC: the game shows its menus at a steady 30 frames per second with no crash and goes on past the first one into its settings screens, with about 15 GB of memory committed. By the project&#x27;s own status line, gameplay has not been reached, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A pull request that restores the missing letters in menu text is open. In the project&#x27;s chat at 21:36 and 21:38 UTC, the contributor who first reached the menus said his build begins loading the game itself and then stalls because most storage requests fail. Nothing in the repository shows that yet, and no frame of the game world has been reported.</p>
-          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, a contributor&#x27;s pull request and chat reports · last change <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 2">2</div>
-        <div class="who">
-          <h3><a href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
-          <p class="slug">ThatRecompDev/five-star-recomp</p>
-          <p class="kind">GTA VI recompilation toolchain</p>
-        </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">The game runs its frame loop at its own 30 frames per second with no crash, and every frame is still black. Start-up loading completes, about 53,600 pipelines, and the game then idles on an early screen that draws two blits a frame. The project reads the black as the game&#x27;s own, a fade from black while it waits on something, and has ruled out fences, frame pacing, queries and network access as the cause.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T21:47:00Z">21:47 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
-        <div class="who">
-          <h3><a href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
-          <p class="slug">brcly/TuxBox</p>
-          <p class="kind">Compatibility layer for Linux (Proton)</p>
-        </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">On Linux, the game opens its window, starts audio and reads a packaged movie&#x27;s frame-buffer details. It clears its two 4K display buffers and presents, but the window stays black during the game&#x27;s start-up.</p>
-          <p class="meta">Source: Project progress notes · last change <time datetime="2026-11-23T21:38:00Z">21:38 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
-        <div class="who">
-          <h3><a href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
-          <p class="slug">californiaAlmonds/OpenScarlett</p>
-          <p class="kind">Compatibility layer for Xbox Series games</p>
-        </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">Reports 36 boot obstacles cleared and the game presenting to a 4K window: more than 360 frames without a crash on a 4 GB GTX 1650 Ti, after memory work in a 21:17 UTC commit. It does not say what the window shows, and it still does not name the game; the 587 imports it resolves match GTA VI&#x27;s executable.</p>
-          <p class="meta">Source: Commit message · last change <time datetime="2026-11-23T21:17:00Z">21:17 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
-        <div class="who">
-          <h3><a href="https://git.notrexed.dev/notrexed/Leonida" rel="noopener">Leonida</a></h3>
-          <p class="slug">ItsNotRexed/Leonida</p>
-          <p class="kind">GTA VI recompilation, largest contributor base</p>
-        </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">Its GitHub repository stopped being publicly readable between 22:08 and 22:12 UTC. The cause is not known: a takedown, action by GitHub, or the maintainers withdrawing it are all possible. Contributors&#x27; forks and the owner&#x27;s other repository were still up at 22:16 UTC, and no notice has been published. The project&#x27;s own mirror, linked here, holds the same history up to the last commit at 21:01 UTC. Before that, in pull requests that were never merged, one contributor&#x27;s build ran the game into its frame loop with stand-in pipelines and black frames.</p>
-          <p class="meta">Source: Contributors&#x27; notes in open pull requests, not yet merged · last change <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
-        <div class="who">
-          <h3><a href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></h3>
-          <p class="slug">rpatty-dev/PercyScarlett</p>
-          <p class="kind">Xbox Series compatibility layer</p>
-        </div>
-        <div class="where">
-          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">Names GTA VI: the game boots to a running frame loop and its first present, with black frames, then stops at a GPU hang about 5 seconds in. A 21:29 UTC commit fixes an early device removal. It credits XCL for part of the approach.</p>
-          <p class="meta">Source: Project README and commit message · last change <time datetime="2026-11-23T21:29:00Z">21:29 UTC</time></p>
-        </div>
-      </li>
-      <li class="row">
-        <div class="pos" aria-label="Position 7">7</div>
-        <div class="who">
-          <h3><a href="https://github.com/omonkeyz/xbox-emulator" rel="noopener">xbox-emulator</a></h3>
-          <p class="slug">omonkeyz/xbox-emulator</p>
-          <p class="kind">Compatibility layer for Xbox Series games</p>
-        </div>
-        <div class="where">
-          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
-          <p class="status">A contributor&#x27;s notes in an issue thread reportedly reach the game window, graphics device and archives with local patches. The repository itself has had no commits since 11:58 UTC.</p>
-          <p class="meta">Source: Second-hand, from a community project list · last change <time datetime="2026-11-23T16:56:00Z">16:56 UTC</time></p>
-        </div>
-      </li>
-    </ol>
-    <div class="also">
-      <h3>Also watched</h3>
-      <ul><li><span class="wname"><a href="https://github.com/LooperSalty/AnyXboxX" rel="noopener">AnyXboxX</a></span> <span class="slug">LooperSalty/AnyXboxX</span><span class="wnote">Works only on GTA VI. Has documented the executable&#x27;s first boot under another project&#x27;s runtime. Its README expects at least a few weeks before the game is minimally playable.</span></li><li><span class="wname"><a href="https://github.com/fablinoo/palmwave" rel="noopener">Palmwave</a></span> <span class="slug">fablinoo/palmwave</span><span class="wnote">Starts the executable it tests and reaches graphics initialisation on Vulkan, then stops during start-up. By its own README, no menu or rendered frame has been observed. It no longer names the game.</span></li><li><span class="wname"><a href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span> <span class="slug">Kajcsi/G6Recomp</span><span class="wnote">A GTA VI recompiler in early development. Nothing boots.</span></li><li><span class="wname"><a href="https://github.com/mewiof/Holy-Interoperability" rel="noopener">Holy-Interoperability</a></span> <span class="slug">mewiof/Holy-Interoperability</span><span class="wnote">Loads a retail title as far as its window, graphics device and first graphics pipelines. Nothing is rendered yet.</span></li><li><span class="wname"><a href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. A 19:23 UTC commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</span></li><li><span class="wname"><a href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname"><a href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (OpenCommunityEdition)</a></span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a></span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a></span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
+      </div>
     </div>
   </section>
 
-  <section aria-labelledby="updates">
-    <h2 id="updates">Updates</h2>
-    <ol class="log">
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T22:17:00Z">22:17</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Leonida&#x27;s GitHub repository goes dark; XCL reaches the settings screens</h3>
-          <ul><li>Leonida: the GitHub repository answered at 22:08 UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16 UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01 UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30 frames per second, with memory use down to about 15 GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T21:50:00Z">21:50</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>No change at the front</h3>
-          <ul><li>XCL: main branch unchanged since 21:30 UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T21:37:00Z">21:37</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Chat report: an XCL build gets through the menus and starts loading the game</h3>
-          <ul><li>XCL: the contributor behind the first-menus pull request said in the project&#x27;s chat at 21:36 UTC that his build now saves preferences, selects a player and begins loading into the main game. His earlier menu report was confirmed on the main branch within about half an hour.</li><li>This is a chat message, not a commit or pull request, and it does not claim a frame of the game world or player control. XCL stays at stage 5.</li><li>Forecast: the in-game step is brought forward to about a day. The playable date is unchanged.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T21:31:00Z">21:31</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>A sixth project presents frames; no new milestone at the front</h3>
-          <ul><li>PercyScarlett: reaches the game&#x27;s frame loop and first present with black frames, then a GPU hang about 5 seconds in. Added to the standings at stage 4.</li><li>XCL: about 35 more commits merged, including a fix for the menus&#x27; missing body text. Its status is unchanged: first menu at 30 frames per second, nothing checked past it. A pull request for the mesh pipelines its minimap needs is open.</li><li>five-star-recomp: now reads its black frames as the game&#x27;s own fade from black while it waits on something.</li><li>OpenScarlett: two more boot obstacles cleared and more than 360 frames at 4K without a crash on a 4 GB graphics card. No picture described.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T21:11:00Z">21:11</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>No new milestone; XCL merges fast behind its first menu</h3>
-          <ul><li>XCL: eleven pull requests merged at 20:49 to 20:50 UTC and review fixes at 20:56. Two new pull requests go at the known gaps: one for the missing menu text, one for the mesh-shader slot that the main branch refuses. Neither is merged.</li><li>Leonida: a correction. Its README now lists the project&#x27;s own server as a mirror of the repository, so this is a mirror for now, not a move. Both copies match.</li><li>five-star-recomp, OpenScarlett and TuxBox: no change. Palmwave no longer names the game in its README.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T20:50:00Z">20:50</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>XCL&#x27;s main branch shows the first menu at 30 frames per second</h3>
-          <ul><li>XCL: a 20:47 UTC commit by the maintainer puts the first menu on the main branch. The account prompt is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card. It uses parts of the earlier pull request and its own memory handling. Nothing past that menu has been checked on main.</li><li>five-star-recomp: start-up loading completes and the game then idles on an early screen, still black.</li><li>OpenScarlett: reports the first frame&#x27;s three draws executing and boot moving on into render-graph set-up. No picture described.</li><li>Leonida: its main branch on GitHub moved again at 20:34 UTC with two commits from the maintainer. The copy on its new server followed within a minute.</li><li>Forecast unchanged at about 3 days. The low frame rate seen in the earlier pull request does not appear on the main branch.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T20:32:00Z">20:32</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Leonida&#x27;s official repository appears on its new server</h3>
-          <ul><li>Leonida: the official repository is now on the project&#x27;s own server. For now it is a copy of the GitHub repository with the same main branch, still the 18:54 UTC commit. This page watches both.</li><li>XCL: the first-menus pull request is still open and unmerged. A second contributor&#x27;s rectangle-list fix already tests against what that build reported. Main branch unchanged since 18:11 UTC.</li><li>Palmwave reaches its first console command list. five-star-recomp, TuxBox and OpenScarlett: no change.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T20:25:00Z">20:25</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>XCL: a pull request reports the game&#x27;s first menus on screen</h3>
-          <ul><li>XCL: a contributor&#x27;s pull request, opened at 20:15 UTC on top of the main branch, reports the account prompt and the legal menus on screen after about 45 seconds of black frames, navigable with a gamepad. A four-minute run did not crash. XCL moves to stage 5.</li><li>Its limits, by its own description: one machine with a top-end graphics card, most letters missing from the menu body text, 7 to 28 frames per second in the menus, tests not run, and nothing seen past the menus. It is not merged or reviewed.</li><li>The video noted in the last update matches it. The pull request says one later screen came out as a single solid colour, and that colour is the exact green seen in the video.</li><li>Forecast pulled in to about 3 days.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T20:11:00Z">20:11</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Leonida is further on than its main branch shows</h3>
-          <ul><li>Leonida: pull requests that are still waiting to be merged show one contributor&#x27;s build reaching the game&#x27;s frame loop, with black frames and stand-in pipelines, and another working out why the first interface draw shows nothing. Leonida moves to stage 4. This page now reads Leonida&#x27;s open pull requests as well as its main branch.</li><li>Leonida: a pull request adds a notice that the project is moving its git hosting to its own server. The official repository was not there yet at 20:10 UTC. The main branch on GitHub has merged nothing since 18:54 UTC.</li><li>five-star-recomp: rectangle lists fixed and the frame loop is now stable at 30 frames per second in two-minute runs. Frames are still black, and the project says the game is waiting in an early splash or loading state.</li><li>Unverified sighting: a screen-share video shows a near-empty first screen with controller prompts, a plain green screen for a few seconds, then the game&#x27;s legal notices menu. The details fit a real early boot, including Xbox prompts and the green of a movie playing with empty frames. No repository has claimed it, so no project is credited and no stage moves.</li><li>XCL: no commits on its main branch since 18:11 UTC.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T19:57:00Z">19:57</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Leonida&#x27;s main branch has stopped merging; a menu clip is unconfirmed</h3>
-          <ul><li>Leonida: no merges into the main branch since 18:54 UTC, after an earlier gap from 17:23 to 18:20. New pull requests keep arriving at several hundred an hour, and their numbers have passed 8,900 while the last one merged is near 6,530. This page reads the main branch, so Leonida may be further on than shown.</li><li>People in the project chats say GitHub is rate limiting Leonida and that it may move its git hosting. Nothing in its repository or on its website confirms a move yet.</li><li>Unconfirmed: a clip said to show the game&#x27;s legal notices screen running on a PC is being passed around project chats. No repository reports a visible picture yet, and a clip with the same screens posted on 19 November was shown to be fake. It is not counted here.</li><li>XCL and five-star-recomp: no change. Both still run the frame loop on a black screen.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T19:45:00Z">19:45</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Five projects added to the watch list</h3>
-          <ul><li>Added after a wider search: AnyXboxX, Palmwave, PercyScarlett, G6Recomp and Holy-Interoperability. None has shown the game running.</li><li>XCL: a user in its issue tracker reports reproducing the 30 frames per second run on the latest commit, 6,557 frames over 231 seconds, ending in an assert. Nobody there reports a visible picture.</li><li>No project has published a menu, a logo or any visible picture from the game.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T19:30:00Z">19:30</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>five-star-recomp draws level with XCL</h3>
-          <ul><li>five-star-recomp: the game now presents frames continuously, about 27,000 in a two-minute run. Every frame is black. The project lists the causes it knows: rectangle lists drawn as one triangle, render-target states and many views.</li><li>XCL: no commits since 18:11. It runs the same loop at a steady 30 frames per second, also black.</li><li>XValkyrie: a commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</li><li>Forecast pulled in by a day, to about 4 days.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T18:56:00Z">18:56</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>OpenScarlett presents too, making four</h3>
-          <ul><li>OpenScarlett: a commit reports 34 boot obstacles cleared, up from 17, and the game presenting to a 4K window. It does not describe the picture.</li><li>five-star-recomp: the first frame now records its work with real pipelines and bound descriptors. The graphics card then hangs before a second frame.</li><li>XCL: no commits since 18:11. Leonida: active, with no change to its boot notes.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T18:40:00Z">18:40</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Three projects now present frames</h3>
-          <ul><li>five-star-recomp: the game&#x27;s first present now appears in its own window through a swap chain. Nothing is drawn, and the game then stops in the graphics driver. The project also has a first version of placing textures at the game&#x27;s own GPU addresses.</li><li>XCL: no commits since 18:11.</li><li>Leonida: merging to its main branch has resumed, with no change to its boot notes.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T18:21:00Z">18:21</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>XCL holds 30 fps on a black screen</h3>
-          <ul><li>XCL: the game now runs at a steady 30 frames per second, 1,449 frames in a 60-second test with no crash. The picture is black. Its command lists now really execute; until this change they went through a placeholder.</li><li>TuxBox: on Linux, the game opens its window, starts audio, opens its archives and presents at 3840 by 2160. The window stays black.</li><li>Leonida: no commits to its main branch for an hour.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T18:04:00Z">18:04</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>five-star-recomp reaches its first present</h3>
-          <ul><li>five-star-recomp: the game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet. It stops in the graphics driver because descriptor heaps are not bound on command lists and resources at the game&#x27;s own GPU addresses are not real yet.</li><li>XCL: no commits since 17:03. It still stops at about three minutes.</li><li>Leonida: no commits to its main branch since 17:23.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T17:13:00Z">17:13</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>XCL runs for about three minutes</h3>
-          <ul><li>XCL: the game runs about 3 minutes without a crash, up from 45 seconds. It shows two frames after about 4 seconds, loads roughly 3,500 shaders, then stops at about 183 seconds when five mesh-shader pipelines fail. The frames have not been checked.</li><li>five-star-recomp: now gets past the game&#x27;s GPU-memory buffers and descriptor heaps, then stops when an invalid call removes the graphics device.</li><li>xbox-emulator: a community project list reports a contributor reaching the game window, graphics device and archives with local patches. This is second-hand; the repository has no new commits.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T16:55:00Z">16:55</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>A fourth project starts the game</h3>
-          <ul><li>five-star-recomp: the executable starts under its loader and gets through memory setup, archive opening and graphics device setup, then stops before a first frame.</li><li>OpenScarlett: its README now documents 17 cleared boot obstacles. The 587 imports it cites match the count five-star-recomp gives for GTA VI&#x27;s executable.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T16:37:00Z">16:37</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>XCL stops crashing</h3>
-          <ul><li>XCL: the game runs 45 seconds without a crash. Memory use falls from 28.7 GB to 16 or 17 GB and the first frame arrives at 3.6 seconds.</li><li>OpenScarlett: reports clearing 17 early boot obstacles on a retail title, as far as a 4K render target and ray-tracing setup.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T16:17:00Z">16:17</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>Leonida reaches the graphics device</h3>
-          <ul><li>Leonida: a contributor&#x27;s local build runs the executable as far as creating the graphics device and its first descriptor heap, then halts on an assert. The main branch has mapped and initialised the file.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T15:44:00Z">15:44</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>First frame on a PC</h3>
-          <ul><li>XCL: the game starts and presents a first frame after 8.3 seconds at 3840 by 2160, then runs out of memory at about 20 seconds while compiling pipelines. Nobody looked at the frame.</li></ul>
-        </div>
-      </li>
-      <li class="entry">
-        <p class="when"><time datetime="2026-11-23T14:00:00Z">about 14:00</time><span class="date">23 Nov 2026</span></p>
-        <div class="what">
-          <h3>The executable appears</h3>
-          <ul><li>The leaker known as CyberLeek publishes the game&#x27;s main executable, the one file missing from the Xbox build it released on 19 November. Press reports put this about three hours before its own 17:00 UTC deadline.</li></ul>
-        </div>
-      </li>
-    </ol>
+  <section id="standings">
+    <div class="wrap">
+      <h2>Standings</h2>
+      <ol class="board">
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 1">1</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/ivall/xcl" rel="noopener">XCL</a></h3>
+            <p class="small muted">Compatibility layer for Xbox Series games</p>
+            <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. Gameplay is not reached: a contributor says world loading stalls on failed storage requests.</p>
+            <p class="small muted">Source: maintainer&#x27;s notes on the main branch and a contributor&#x27;s chat reports. Changed <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 2">2</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
+            <p class="small muted">GTA VI recompilation toolchain</p>
+            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">Runs the game&#x27;s frame loop at 30&nbsp;frames a second with no crash. Every frame is black, which the project reads as the game&#x27;s own fade while it waits on something.</p>
+            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-23T21:47:00Z">21:47 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 3=">3=</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
+            <p class="small muted">Compatibility layer for Linux (Proton)</p>
+            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">On Linux the game opens its window, starts audio and presents frames. The window stays black.</p>
+            <p class="small muted">Source: project progress notes. Changed <time datetime="2026-11-23T21:38:00Z">21:38 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 3=">3=</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
+            <p class="small muted">Compatibility layer for Xbox Series games</p>
+            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">Presents more than 360&nbsp;frames at 4K on a 4&nbsp;GB graphics card. It does not say what the window shows and does not name the game.</p>
+            <p class="small muted">Source: commit messages and README. Changed <time datetime="2026-11-23T21:17:00Z">21:17 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 3=">3=</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://git.notrexed.dev/notrexed/Leonida" rel="noopener">Leonida</a></h3>
+            <p class="small muted">GTA VI recompilation, largest contributor base</p>
+            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">Its GitHub repository has been unreadable since about 22:10&nbsp;UTC and the cause is not known. The project&#x27;s own mirror is up. Unmerged work had run the game into a black frame loop.</p>
+            <p class="small muted">Source: git checks from this page and contributors&#x27; unmerged notes. Changed <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 3=">3=</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></h3>
+            <p class="small muted">Xbox Series compatibility layer</p>
+            <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">Reaches the game&#x27;s frame loop with black frames, then a GPU hang about 5&nbsp;seconds in.</p>
+            <p class="small muted">Source: project README and commit message. Changed <time datetime="2026-11-23T21:29:00Z">21:29 UTC</time>.</p>
+          </div>
+        </li>
+        <li class="board__row">
+          <p class="board__pos" aria-label="Position 7">7</p>
+          <div class="board__who">
+            <h3 class="t-card"><a class="name" href="https://github.com/omonkeyz/xbox-emulator" rel="noopener">xbox-emulator</a></h3>
+            <p class="small muted">Compatibility layer for Xbox Series games</p>
+            <div class="meter" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 3 of 7: Graphics device</p>
+          </div>
+          <div class="board__where">
+            <p class="measure">A contributor&#x27;s notes reportedly reach the game window and graphics device. The repository has had no commits since 11:58&nbsp;UTC.</p>
+            <p class="small muted">Source: second-hand, from a community project list. Changed <time datetime="2026-11-23T16:56:00Z">16:56 UTC</time>.</p>
+          </div>
+        </li>
+      </ol>
+      <h3 class="sub">Also watched</h3>
+      <ul class="pairs"><li><span class="rows__name"><a class="name" href="https://github.com/LooperSalty/AnyXboxX" rel="noopener">AnyXboxX</a></span><p>Works only on GTA VI. Its README expects at least a few weeks before the game is minimally playable.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/fablinoo/palmwave" rel="noopener">Palmwave</a></span><p>Reaches graphics initialisation, then stops during start-up. No menu or rendered frame observed.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span><p>A GTA VI recompiler in early development. Nothing boots.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/mewiof/Holy-Interoperability" rel="noopener">Holy-Interoperability</a></span><p>Loads a retail title as far as its window, graphics device and first graphics pipelines. Nothing is rendered yet.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span><p>Runs other Xbox Series games. A 19:23&nbsp;UTC commit prepares for a newer title without naming one.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></span><p>Research harness. Has not run the game&#x27;s code.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span><p>The PlayStation route. Blocked: no PS5 build of the game is public.</p></li></ul>
+      <p class="small muted measure idle">Also checked, with no GTA VI work published: <a class="name" href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (OpenCommunityEdition)</a>, <a class="name" href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a> and <a class="name" href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a>.</p>
+    </div>
   </section>
 
-  <section aria-labelledby="caveats">
-    <h2 id="caveats">Read this first</h2>
-    <ul class="notes"><li>Nothing is playable. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</li><li>The build these projects work from was leaked. Rockstar has not released or announced a PC version. This page does not link to the leak and does not explain how to get or run it.</li><li>Project names link to each project&#x27;s public source repository, to credit the work.</li><li>Every stage shown here is the project&#x27;s own claim, read from its public repository or its open pull requests. Most are unverified. XCL&#x27;s first menu is reported by its maintainer and, separately, by a contributor&#x27;s build.</li><li>By one project&#x27;s own notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</li><li>Compiled automatically by an AI assistant (Claude) from the projects&#x27; public READMEs, status notes and commit logs. It can be wrong. All times are UTC.</li><li>Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</li></ul>
+  <section id="forecast" class="ground-inverse">
+    <div class="wrap">
+      <h2>Time to playable</h2>
+      <div class="grid fc">
+        <div class="fc__main">
+          <p class="stat" id="fc-rel" data-target="2026-11-27T02:00:00Z">about 3 days</p>
+          <p class="lead">Around <time datetime="2026-11-27T02:00:00Z">the early hours of Fri 27 Nov</time>.</p>
+          <p class="measure">At least one project reports the game in-game and under player control for 30&nbsp;minutes or more without a crash, at 20&nbsp;frames per second or better on some PC.</p>
+          <h3 class="t-card">What the estimate rests on</h3>
+          <ul class="points measure"><li>XCL went from its first frame to the game&#x27;s menus in about five hours.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable in a day or two.</li><li>The next gate is loading the game world. Storage requests fail there, and the mesh pipelines the minimap needs are refused.</li><li>Risks: takedowns, a blocker nobody has hit yet, and low frame rates in the game itself. One project&#x27;s GitHub repository went dark on 23 November, cause not known.</li><li>One project&#x27;s own README expects longer than this page does: at least a few weeks.</li></ul>
+        </div>
+        <div class="fc__side">
+          <h3 class="t-card">Chances</h3>
+          <ul class="rows"><li><span class="rows__name">By Thu 26 Nov</span><span class="rows__value">nearly 5 in 10</span></li><li><span class="rows__name">By Mon 30 Nov</span><span class="rows__value">7 in 10</span></li><li><span class="rows__name">By Christmas</span><span class="rows__value">8 in 10</span></li><li><span class="rows__name">It stalls until an official PC version</span><span class="rows__value">1 in 10</span></li></ul>
+          <h3 class="t-card">Milestones</h3>
+          <ul class="rows"><li><span class="rows__name">Recognisable picture</span><span class="rows__value">reached, Mon 23 Nov</span></li><li><span class="rows__name">In-game with control</span><span class="rows__value">about a day, Tue 24 Nov</span></li><li><span class="rows__name">Playable</span><span class="rows__value">about 3 days, Fri 27 Nov</span></li></ul>
+          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="2026-11-23T21:37:00Z">21:37 UTC on 23 Nov</time>: In-game step brought forward to about a day. A contributor reports in the project&#x27;s chat that his build gets through the menus and starts loading the game itself. Nothing in the repository shows it yet. Playable date unchanged, because that depends on frame rate and stability once in-game.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>Times are UTC. Positions with an equals sign are level.</footer>
-</div>
+  <section id="updates">
+    <div class="wrap">
+      <h2>Updates</h2>
+      <ol class="log">
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T22:17:00Z">22:17</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Leonida&#x27;s GitHub repository goes dark; XCL reaches the settings screens</h3>
+            <ul class="points measure"><li>Leonida: the GitHub repository answered at 22:08&nbsp;UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16&nbsp;UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01&nbsp;UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30&nbsp;frames per second, with memory use down to about 15&nbsp;GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T21:50:00Z">21:50</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">No change at the front</h3>
+            <ul class="points measure"><li>XCL: main branch unchanged since 21:30&nbsp;UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T21:37:00Z">21:37</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Chat report: an XCL build gets through the menus and starts loading the game</h3>
+            <ul class="points measure"><li>XCL: the contributor behind the first-menus pull request said in the project&#x27;s chat at 21:36&nbsp;UTC that his build now saves preferences, selects a player and begins loading into the main game. His earlier menu report was confirmed on the main branch within about half an hour.</li><li>This is a chat message, not a commit or pull request, and it does not claim a frame of the game world or player control. XCL stays at stage 5.</li><li>Forecast: the in-game step is brought forward to about a day. The playable date is unchanged.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T21:31:00Z">21:31</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">A sixth project presents frames; no new milestone at the front</h3>
+            <ul class="points measure"><li>PercyScarlett: reaches the game&#x27;s frame loop and first present with black frames, then a GPU hang about 5&nbsp;seconds in. Added to the standings at stage 4.</li><li>XCL: about 35 more commits merged, including a fix for the menus&#x27; missing body text. Its status is unchanged: first menu at 30&nbsp;frames per second, nothing checked past it. A pull request for the mesh pipelines its minimap needs is open.</li><li>five-star-recomp: now reads its black frames as the game&#x27;s own fade from black while it waits on something.</li><li>OpenScarlett: two more boot obstacles cleared and more than 360&nbsp;frames at 4K without a crash on a 4&nbsp;GB graphics card. No picture described.</li></ul>
+          </div>
+        </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 18 earlier updates</span></summary>
+        <ol class="log">
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T21:11:00Z">21:11</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">No new milestone; XCL merges fast behind its first menu</h3>
+            <ul class="points measure"><li>XCL: eleven pull requests merged at 20:49 to 20:50&nbsp;UTC and review fixes at 20:56. Two new pull requests go at the known gaps: one for the missing menu text, one for the mesh-shader slot that the main branch refuses. Neither is merged.</li><li>Leonida: a correction. Its README now lists the project&#x27;s own server as a mirror of the repository, so this is a mirror for now, not a move. Both copies match.</li><li>five-star-recomp, OpenScarlett and TuxBox: no change. Palmwave no longer names the game in its README.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T20:50:00Z">20:50</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL&#x27;s main branch shows the first menu at 30 frames per second</h3>
+            <ul class="points measure"><li>XCL: a 20:47&nbsp;UTC commit by the maintainer puts the first menu on the main branch. The account prompt is visible at a steady 30&nbsp;frames per second with no crash, on a 16&nbsp;GB graphics card. It uses parts of the earlier pull request and its own memory handling. Nothing past that menu has been checked on main.</li><li>five-star-recomp: start-up loading completes and the game then idles on an early screen, still black.</li><li>OpenScarlett: reports the first frame&#x27;s three draws executing and boot moving on into render-graph set-up. No picture described.</li><li>Leonida: its main branch on GitHub moved again at 20:34&nbsp;UTC with two commits from the maintainer. The copy on its new server followed within a minute.</li><li>Forecast unchanged at about 3&nbsp;days. The low frame rate seen in the earlier pull request does not appear on the main branch.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T20:32:00Z">20:32</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Leonida&#x27;s official repository appears on its new server</h3>
+            <ul class="points measure"><li>Leonida: the official repository is now on the project&#x27;s own server. For now it is a copy of the GitHub repository with the same main branch, still the 18:54&nbsp;UTC commit. This page watches both.</li><li>XCL: the first-menus pull request is still open and unmerged. A second contributor&#x27;s rectangle-list fix already tests against what that build reported. Main branch unchanged since 18:11&nbsp;UTC.</li><li>Palmwave reaches its first console command list. five-star-recomp, TuxBox and OpenScarlett: no change.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T20:25:00Z">20:25</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL: a pull request reports the game&#x27;s first menus on screen</h3>
+            <ul class="points measure"><li>XCL: a contributor&#x27;s pull request, opened at 20:15&nbsp;UTC on top of the main branch, reports the account prompt and the legal menus on screen after about 45&nbsp;seconds of black frames, navigable with a gamepad. A four-minute run did not crash. XCL moves to stage 5.</li><li>Its limits, by its own description: one machine with a top-end graphics card, most letters missing from the menu body text, 7 to 28&nbsp;frames per second in the menus, tests not run, and nothing seen past the menus. It is not merged or reviewed.</li><li>The video noted in the last update matches it. The pull request says one later screen came out as a single solid colour, and that colour is the exact green seen in the video.</li><li>Forecast pulled in to about 3&nbsp;days.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T20:11:00Z">20:11</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Leonida is further on than its main branch shows</h3>
+            <ul class="points measure"><li>Leonida: pull requests that are still waiting to be merged show one contributor&#x27;s build reaching the game&#x27;s frame loop, with black frames and stand-in pipelines, and another working out why the first interface draw shows nothing. Leonida moves to stage 4. This page now reads Leonida&#x27;s open pull requests as well as its main branch.</li><li>Leonida: a pull request adds a notice that the project is moving its git hosting to its own server. The official repository was not there yet at 20:10&nbsp;UTC. The main branch on GitHub has merged nothing since 18:54&nbsp;UTC.</li><li>five-star-recomp: rectangle lists fixed and the frame loop is now stable at 30&nbsp;frames per second in two-minute runs. Frames are still black, and the project says the game is waiting in an early splash or loading state.</li><li>Unverified sighting: a screen-share video shows a near-empty first screen with controller prompts, a plain green screen for a few seconds, then the game&#x27;s legal notices menu. The details fit a real early boot, including Xbox prompts and the green of a movie playing with empty frames. No repository has claimed it, so no project is credited and no stage moves.</li><li>XCL: no commits on its main branch since 18:11&nbsp;UTC.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T19:57:00Z">19:57</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Leonida&#x27;s main branch has stopped merging; a menu clip is unconfirmed</h3>
+            <ul class="points measure"><li>Leonida: no merges into the main branch since 18:54&nbsp;UTC, after an earlier gap from 17:23 to 18:20. New pull requests keep arriving at several hundred an hour, and their numbers have passed 8,900 while the last one merged is near 6,530. This page reads the main branch, so Leonida may be further on than shown.</li><li>People in the project chats say GitHub is rate limiting Leonida and that it may move its git hosting. Nothing in its repository or on its website confirms a move yet.</li><li>Unconfirmed: a clip said to show the game&#x27;s legal notices screen running on a PC is being passed around project chats. No repository reports a visible picture yet, and a clip with the same screens posted on 19 November was shown to be fake. It is not counted here.</li><li>XCL and five-star-recomp: no change. Both still run the frame loop on a black screen.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T19:45:00Z">19:45</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Five projects added to the watch list</h3>
+            <ul class="points measure"><li>Added after a wider search: AnyXboxX, Palmwave, PercyScarlett, G6Recomp and Holy-Interoperability. None has shown the game running.</li><li>XCL: a user in its issue tracker reports reproducing the 30&nbsp;frames per second run on the latest commit, 6,557&nbsp;frames over 231&nbsp;seconds, ending in an assert. Nobody there reports a visible picture.</li><li>No project has published a menu, a logo or any visible picture from the game.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T19:30:00Z">19:30</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">five-star-recomp draws level with XCL</h3>
+            <ul class="points measure"><li>five-star-recomp: the game now presents frames continuously, about 27,000 in a two-minute run. Every frame is black. The project lists the causes it knows: rectangle lists drawn as one triangle, render-target states and many views.</li><li>XCL: no commits since 18:11. It runs the same loop at a steady 30&nbsp;frames per second, also black.</li><li>XValkyrie: a commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</li><li>Forecast pulled in by a day, to about 4&nbsp;days.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T18:56:00Z">18:56</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">OpenScarlett presents too, making four</h3>
+            <ul class="points measure"><li>OpenScarlett: a commit reports 34 boot obstacles cleared, up from 17, and the game presenting to a 4K window. It does not describe the picture.</li><li>five-star-recomp: the first frame now records its work with real pipelines and bound descriptors. The graphics card then hangs before a second frame.</li><li>XCL: no commits since 18:11. Leonida: active, with no change to its boot notes.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T18:40:00Z">18:40</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Three projects now present frames</h3>
+            <ul class="points measure"><li>five-star-recomp: the game&#x27;s first present now appears in its own window through a swap chain. Nothing is drawn, and the game then stops in the graphics driver. The project also has a first version of placing textures at the game&#x27;s own GPU addresses.</li><li>XCL: no commits since 18:11.</li><li>Leonida: merging to its main branch has resumed, with no change to its boot notes.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T18:21:00Z">18:21</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL holds 30 fps on a black screen</h3>
+            <ul class="points measure"><li>XCL: the game now runs at a steady 30&nbsp;frames per second, 1,449&nbsp;frames in a 60-second test with no crash. The picture is black. Its command lists now really execute; until this change they went through a placeholder.</li><li>TuxBox: on Linux, the game opens its window, starts audio, opens its archives and presents at 3840 by 2160. The window stays black.</li><li>Leonida: no commits to its main branch for an hour.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T18:04:00Z">18:04</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">five-star-recomp reaches its first present</h3>
+            <ul class="points measure"><li>five-star-recomp: the game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet. It stops in the graphics driver because descriptor heaps are not bound on command lists and resources at the game&#x27;s own GPU addresses are not real yet.</li><li>XCL: no commits since 17:03. It still stops at about three minutes.</li><li>Leonida: no commits to its main branch since 17:23.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T17:13:00Z">17:13</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL runs for about three minutes</h3>
+            <ul class="points measure"><li>XCL: the game runs about 3&nbsp;minutes without a crash, up from 45&nbsp;seconds. It shows two frames after about 4&nbsp;seconds, loads roughly 3,500 shaders, then stops at about 183&nbsp;seconds when five mesh-shader pipelines fail. The frames have not been checked.</li><li>five-star-recomp: now gets past the game&#x27;s GPU-memory buffers and descriptor heaps, then stops when an invalid call removes the graphics device.</li><li>xbox-emulator: a community project list reports a contributor reaching the game window, graphics device and archives with local patches. This is second-hand; the repository has no new commits.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T16:55:00Z">16:55</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">A fourth project starts the game</h3>
+            <ul class="points measure"><li>five-star-recomp: the executable starts under its loader and gets through memory setup, archive opening and graphics device setup, then stops before a first frame.</li><li>OpenScarlett: its README now documents 17 cleared boot obstacles. The 587 imports it cites match the count five-star-recomp gives for GTA VI&#x27;s executable.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T16:37:00Z">16:37</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL stops crashing</h3>
+            <ul class="points measure"><li>XCL: the game runs 45&nbsp;seconds without a crash. Memory use falls from 28.7&nbsp;GB to 16 or 17&nbsp;GB and the first frame arrives at 3.6&nbsp;seconds.</li><li>OpenScarlett: reports clearing 17 early boot obstacles on a retail title, as far as a 4K render target and ray-tracing setup.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T16:17:00Z">16:17</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Leonida reaches the graphics device</h3>
+            <ul class="points measure"><li>Leonida: a contributor&#x27;s local build runs the executable as far as creating the graphics device and its first descriptor heap, then halts on an assert. The main branch has mapped and initialised the file.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T15:44:00Z">15:44</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">First frame on a PC</h3>
+            <ul class="points measure"><li>XCL: the game starts and presents a first frame after 8.3&nbsp;seconds at 3840 by 2160, then runs out of memory at about 20&nbsp;seconds while compiling pipelines. Nobody looked at the frame.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T14:00:00Z">about 14:00</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">The executable appears</h3>
+            <ul class="points measure"><li>The leaker known as CyberLeek publishes the game&#x27;s main executable, the one file missing from the Xbox build it released on 19 November. Press reports put this about three hours before its own 17:00&nbsp;UTC deadline.</li></ul>
+          </div>
+        </li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <h2>Method and limits</h2>
+      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim, and most are unverified. XCL&#x27;s first menu is reported by its maintainer and, separately, by a contributor&#x27;s build.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>An equals sign means level.</p></li></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing footer--statement">
+  <div class="wrap slab">
+    <div class="close close--word">
+      <div class="close__head">
+        <h2>Standings checked every 15 minutes</h2>
+        <a class="btn btn--primary" href="#standings">See the standings</a>
+      </div>
+      <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
+    </div>
+    <p class="legal small muted">GTA VI PC Race, 2026. Not affiliated with Rockstar Games or Take-Two Interactive. Times are UTC.</p>
+  </div>
+</footer>
 <script>
 (function () {
+  // The menu button says its state; the sheet closes on any tap inside it and on Escape.
+  var nav = document.querySelector(".nav");
+  var toggle = document.querySelector(".nav__toggle");
+  function setOpen(open) {
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  if (nav && toggle) {
+    toggle.addEventListener("click", function () { setOpen(!nav.classList.contains("is-open")); });
+    nav.querySelector(".nav__links").addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { setOpen(false); } });
+  }
+  // How long ago the page was checked.
   try {
     var t = document.getElementById("checked");
     var mins = Math.round((Date.now() - new Date(t.getAttribute("datetime")).getTime()) / 60000);
     if (isFinite(mins) && mins >= 0) {
       var text = mins < 1 ? "just now" : mins < 90 ? mins + " min ago" : Math.round(mins / 60) + " h ago";
-      document.getElementById("ago").textContent = " (" + text + ")";
+      document.getElementById("ago").textContent = ", " + text;
     }
   } catch (e) {}
+  // The estimate counts down between checks.
   try {
-    var f = document.getElementById("fc-rel");
-    var hours = (new Date(f.getAttribute("data-target")).getTime() - Date.now()) / 3600000;
-    if (isFinite(hours)) {
-      var rel = hours < 0 ? "any time now" : hours < 12 ? "within hours" : hours < 36 ? "about a day" : "about " + Math.round(hours / 24) + " days";
-      f.textContent = rel;
-    }
+    ["fc-rel", "fc-short"].forEach(function (id) {
+      var f = document.getElementById(id);
+      if (!f) { return; }
+      var hours = (new Date(f.getAttribute("data-target")).getTime() - Date.now()) / 3600000;
+      if (!isFinite(hours)) { return; }
+      var days = Math.round(hours / 12) / 2;
+      var rel = hours < 0 ? "any time now" : hours < 12 ? "within hours" : hours < 36 ? "about a day"
+        : "about " + (days % 1 ? Math.floor(days) + "½" : days) + " days";
+      f.textContent = id === "fc-rel" ? rel.charAt(0).toUpperCase() + rel.slice(1) : rel;
+    });
   } catch (e) {}
 })();
+
 </script>
 </body>
 </html>

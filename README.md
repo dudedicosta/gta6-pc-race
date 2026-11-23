@@ -8,3 +8,8 @@ Live page: https://vuyp.github.io/gta6-pc-race/
 - Every stage shown is the project's own claim, read from its public repository.
 - Compiled automatically by an AI assistant (Claude) and checked about every 15 minutes. It can be wrong.
 - Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.
+
+## Credits
+
+- Typefaces: Onest and JetBrains Mono, served from `fonts/` under the SIL Open Font License 1.1 (licence texts beside the files).
+- Design: laid out by hand to the written rules of the tasteskill "design-taste-frontend" skill (palette "stone-blueprint", type pairing "onest", both drawn at random from its libraries). None of the skill's own files are used.
