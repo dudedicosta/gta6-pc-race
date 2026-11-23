@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. VIctory is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T22:55:00Z">22:55 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Eight open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-23T23:14:00Z">23:14 UTC on 23 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">22:55 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">23:14 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL, TuxBox</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">five-star-recomp, OpenScarlett, Leonida, PercyScarlett</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T02:00:00Z">about 3 days</span></p>
         </div>
@@ -323,8 +323,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. Gameplay is not reached. An open pull request fixes most of the storage requests that failed while the world loads.</p>
-            <p class="small muted">Source: maintainer&#x27;s notes on the main branch and a contributor&#x27;s pull requests. Changed <time datetime="2026-11-23T22:37:00Z">22:37 UTC</time>.</p>
+            <p class="measure">Shows the game&#x27;s menus and settings screens at a steady 30&nbsp;frames a second on its main branch. A fix for storage requests that failed while the world loads was merged at 22:54&nbsp;UTC; its status line still says gameplay is not reached.</p>
+            <p class="small muted">Source: maintainer&#x27;s notes and commits on the main branch. Changed <time datetime="2026-11-23T22:54:00Z">22:54 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -348,7 +348,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Runs the game&#x27;s frame loop at 30&nbsp;frames a second with no crash, and every frame is black. It traces the stall to four pipeline jobs that never finish, which stops the game pairing a gamepad and moving on.</p>
-            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-23T22:44:00Z">22:44 UTC</time>.</p>
+            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-23T23:10:00Z">23:10 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -433,6 +433,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-23T23:14:00Z">23:14</time> <span>23 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">XCL merges its world-loading fix</h3>
+            <ul class="points measure"><li>XCL: the fix for storage requests that failed while the world loads is on the main branch since 22:54&nbsp;UTC. No picture of the world is reported yet.</li><li>VIctory: a contributor&#x27;s change gets the game past start-up on Intel processors, tested on a second machine. Its status is unchanged: the world loads and the picture is black.</li><li>Leonida: a pull request reports a repeating render loop that tries to present frames, and says visible frames are not verified.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T22:37:00Z">22:37</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">TuxBox shows the first menu on Linux</h3>
@@ -453,6 +460,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Leonida: the GitHub repository answered at 22:08&nbsp;UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16&nbsp;UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01&nbsp;UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30&nbsp;frames per second, with memory use down to about 15&nbsp;GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 21 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T21:50:00Z">21:50</time> <span>23 Nov</span></p>
           <div class="log__what">
@@ -460,10 +471,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>XCL: main branch unchanged since 21:30&nbsp;UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 20 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-23T21:37:00Z">21:37</time> <span>23 Nov</span></p>
           <div class="log__what">
