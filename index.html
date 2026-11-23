@@ -159,7 +159,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T21:11:00Z">21:11 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T21:31:00Z">21:31 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -168,7 +168,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     <div class="cell"><span class="label">Furthest point</span><span class="value">Recognisable picture</span></div>
   </div>
 
-  <p class="lede"><strong>XCL now shows the game&#x27;s first menu at a steady 30 frames per second. Nothing past the menus has been seen, and nothing is playable.</strong> Six projects start the game&#x27;s leaked Xbox executable on a PC and five present frames. XCL is ahead: its main branch shows the game&#x27;s first menu, the account prompt, and a contributor&#x27;s build goes on into the legal menus. Every other project is still on black frames.</p>
+  <p class="lede"><strong>XCL now shows the game&#x27;s first menu at a steady 30 frames per second. Nothing past the menus has been seen, and nothing is playable.</strong> Seven projects start the game&#x27;s leaked Xbox executable on a PC and six present frames. XCL is ahead: its main branch shows the game&#x27;s first menu, the account prompt, and a contributor&#x27;s build goes on into the legal menus. Every other project is still on black frames.</p>
 
   <section class="forecast" aria-labelledby="forecast">
     <h2 id="forecast">Best estimate: time to playable</h2>
@@ -201,8 +201,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 5 of 7</span> Recognisable picture</p>
-          <p class="status">Main branch, 20:47 UTC: the game&#x27;s first menu, the account prompt, is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card with about 19 GB of memory committed. The maintainer has not checked further than that menu, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A separate contributor&#x27;s pull request from 20:15 UTC goes further: the legal menus can be stepped through with a gamepad, with most body text missing and 7 to 28 frames per second on that machine. New pull requests at 21:03 and 21:05 UTC address the mesh-shader slot and the missing text. Neither is merged. Nothing past the menus has been seen.</p>
-          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, and a contributor&#x27;s open pull request · last change <time datetime="2026-11-23T21:11:00Z">21:11 UTC</time></p>
+          <p class="status">Main branch, 20:47 UTC: the game&#x27;s first menu, the account prompt, is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card with about 19 GB of memory committed. The maintainer has not checked further than that menu, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A separate contributor&#x27;s pull request from 20:15 UTC goes further: the legal menus can be stepped through with a gamepad, at 7 to 28 frames per second on that machine. A fix for the menus&#x27; missing body text was merged at 21:20 UTC, and a pull request for the mesh pipelines is open. Nothing past the menus has been seen.</p>
+          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, and a contributor&#x27;s open pull request · last change <time datetime="2026-11-23T21:31:00Z">21:31 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -214,8 +214,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">The game runs its frame loop at its own 30 frames per second with no crash, and every frame is still black. Start-up loading now completes, about 53,600 pipelines, and the game then idles on an early screen that draws two blits a frame. What it is waiting for is still open. The project&#x27;s own summary: it does not get past its first screens yet.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T20:40:00Z">20:40 UTC</time></p>
+          <p class="status">The game runs its frame loop at its own 30 frames per second with no crash, and every frame is still black. Start-up loading completes, about 53,600 pipelines, and the game then idles on an early screen that draws two blits a frame. The project now reads the black as the game&#x27;s own, a fade from black while it waits on something, and has ruled out fences, frame pacing and queries as the cause.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T21:21:00Z">21:21 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -240,8 +240,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">Reports 34 boot obstacles cleared and the game presenting to a 4K window. A 20:42 UTC commit reports the first frame&#x27;s three draws executing on a GTX 1650 Ti and boot moving on into render-graph set-up. It does not say what the window shows, and it still does not name the game; the 587 imports it resolves match GTA VI&#x27;s executable.</p>
-          <p class="meta">Source: Commit message · last change <time datetime="2026-11-23T20:42:00Z">20:42 UTC</time></p>
+          <p class="status">Reports 36 boot obstacles cleared and the game presenting to a 4K window: more than 360 frames without a crash on a 4 GB GTX 1650 Ti, after memory work in a 21:17 UTC commit. It does not say what the window shows, and it still does not name the game; the 587 imports it resolves match GTA VI&#x27;s executable.</p>
+          <p class="meta">Source: Commit message · last change <time datetime="2026-11-23T21:17:00Z">21:17 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -258,7 +258,20 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 6">6</div>
+        <div class="pos" aria-label="Position 3=">3=</div>
+        <div class="who">
+          <h3><a href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></h3>
+          <p class="slug">rpatty-dev/PercyScarlett</p>
+          <p class="kind">Xbox Series compatibility layer</p>
+        </div>
+        <div class="where">
+          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
+          <p class="status">Names GTA VI: the game boots to a running frame loop and its first present, with black frames, then stops at a GPU hang about 5 seconds in. An early device removal also happens now and then. It credits XCL for part of the approach.</p>
+          <p class="meta">Source: Project README and commit message · last change <time datetime="2026-11-23T21:08:00Z">21:08 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 7">7</div>
         <div class="who">
           <h3><a href="https://github.com/omonkeyz/xbox-emulator" rel="noopener">xbox-emulator</a></h3>
           <p class="slug">omonkeyz/xbox-emulator</p>
@@ -273,13 +286,20 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     </ol>
     <div class="also">
       <h3>Also watched</h3>
-      <ul><li><span class="wname"><a href="https://github.com/LooperSalty/AnyXboxX" rel="noopener">AnyXboxX</a></span> <span class="slug">LooperSalty/AnyXboxX</span><span class="wnote">Works only on GTA VI. Has documented the executable&#x27;s first boot under another project&#x27;s runtime. Its README expects at least a few weeks before the game is minimally playable.</span></li><li><span class="wname"><a href="https://github.com/fablinoo/palmwave" rel="noopener">Palmwave</a></span> <span class="slug">fablinoo/palmwave</span><span class="wnote">Starts the executable it tests and reaches graphics initialisation on Vulkan, then stops during start-up. By its own README, no menu or rendered frame has been observed. It no longer names the game.</span></li><li><span class="wname"><a href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></span> <span class="slug">rpatty-dev/PercyScarlett</span><span class="wnote">Runs retail Minecraft in-game. GTA VI is staged but had not been run at its last commit, 14:19 UTC.</span></li><li><span class="wname"><a href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span> <span class="slug">Kajcsi/G6Recomp</span><span class="wnote">A GTA VI recompiler in early development. Nothing boots.</span></li><li><span class="wname"><a href="https://github.com/mewiof/Holy-Interoperability" rel="noopener">Holy-Interoperability</a></span> <span class="slug">mewiof/Holy-Interoperability</span><span class="wnote">Loads a retail title as far as its window, graphics device and compute pipelines. Nothing is rendered yet.</span></li><li><span class="wname"><a href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. A 19:23 UTC commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</span></li><li><span class="wname"><a href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname"><a href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (OpenCommunityEdition)</a></span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a></span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a></span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
+      <ul><li><span class="wname"><a href="https://github.com/LooperSalty/AnyXboxX" rel="noopener">AnyXboxX</a></span> <span class="slug">LooperSalty/AnyXboxX</span><span class="wnote">Works only on GTA VI. Has documented the executable&#x27;s first boot under another project&#x27;s runtime. Its README expects at least a few weeks before the game is minimally playable.</span></li><li><span class="wname"><a href="https://github.com/fablinoo/palmwave" rel="noopener">Palmwave</a></span> <span class="slug">fablinoo/palmwave</span><span class="wnote">Starts the executable it tests and reaches graphics initialisation on Vulkan, then stops during start-up. By its own README, no menu or rendered frame has been observed. It no longer names the game.</span></li><li><span class="wname"><a href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span> <span class="slug">Kajcsi/G6Recomp</span><span class="wnote">A GTA VI recompiler in early development. Nothing boots.</span></li><li><span class="wname"><a href="https://github.com/mewiof/Holy-Interoperability" rel="noopener">Holy-Interoperability</a></span> <span class="slug">mewiof/Holy-Interoperability</span><span class="wnote">Loads a retail title as far as its window, graphics device and first graphics pipelines. Nothing is rendered yet.</span></li><li><span class="wname"><a href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. A 19:23 UTC commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</span></li><li><span class="wname"><a href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname"><a href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (OpenCommunityEdition)</a></span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a></span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a></span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
     </div>
   </section>
 
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T21:31:00Z">21:31</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>A sixth project presents frames; no new milestone at the front</h3>
+          <ul><li>PercyScarlett: reaches the game&#x27;s frame loop and first present with black frames, then a GPU hang about 5 seconds in. Added to the standings at stage 4.</li><li>XCL: about 35 more commits merged, including a fix for the menus&#x27; missing body text. Its status is unchanged: first menu at 30 frames per second, nothing checked past it. A pull request for the mesh pipelines its minimap needs is open.</li><li>five-star-recomp: now reads its black frames as the game&#x27;s own fade from black while it waits on something.</li><li>OpenScarlett: two more boot obstacles cleared and more than 360 frames at 4K without a crash on a 4 GB graphics card. No picture described.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T21:11:00Z">21:11</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
