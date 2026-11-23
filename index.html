@@ -159,7 +159,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T21:50:00Z">21:50 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T22:17:00Z">22:17 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -168,7 +168,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     <div class="cell"><span class="label">Furthest point</span><span class="value">Recognisable picture</span></div>
   </div>
 
-  <p class="lede"><strong>XCL now shows the game&#x27;s first menu at a steady 30 frames per second. Nothing past the menus has been seen, and nothing is playable.</strong> Seven projects start the game&#x27;s leaked Xbox executable on a PC and six present frames. XCL is ahead: its main branch shows the game&#x27;s first menu, the account prompt, and a contributor&#x27;s build goes on into the legal menus. Every other project is still on black frames.</p>
+  <p class="lede"><strong>XCL shows the game&#x27;s menus and settings screens at a steady 30 frames per second. Gameplay has not been reached, and nothing is playable.</strong> Seven projects start the game&#x27;s leaked Xbox executable on a PC and six present frames. XCL is ahead: its main branch goes through the first menu into the settings screens. Every other project is still on black frames. Leonida&#x27;s GitHub repository stopped being publicly readable at about 22:10 UTC, cause not yet known.</p>
 
   <section class="forecast" aria-labelledby="forecast">
     <h2 id="forecast">Best estimate: time to playable</h2>
@@ -184,7 +184,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <thead><tr><th scope="col">Milestone</th><th scope="col">Best estimate</th><th scope="col">Around</th></tr></thead>
       <tbody><tr><th scope="row">Recognisable picture</th><td>reached</td><td class="d">Mon 23 Nov</td></tr><tr><th scope="row">In-game with control</th><td>about a day</td><td class="d">Tue 24 Nov</td></tr><tr><th scope="row">Playable</th><td>about 3 days</td><td class="d">Fri 27 Nov</td></tr></tbody>
     </table></div>
-    <ul class="why"><li>Two independent projects, XCL and five-star-recomp, got from first start to a continuously running frame loop within about five hours of the executable appearing.</li><li>The first menu appeared on the evening of 23 November, first in a contributor&#x27;s build and then on XCL&#x27;s main branch, about half a day sooner than this page expected.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable within a day or two.</li><li>The open problems are known and specific: game memory the graphics card cannot see yet, mesh-shader pipelines, and a few unimplemented calls.</li><li>On XCL&#x27;s main branch the first menu holds a steady 30 frames per second on a 16 GB graphics card. The next gate is getting from the menus into the game, and the mesh pipelines its minimap needs are still refused.</li><li>What could stretch it: takedowns, a blocker nobody has hit yet, and low frame rates once the game is running.</li><li>One project&#x27;s own README guesses longer than this page does: at least a few weeks before the game is minimally playable.</li></ul>
+    <ul class="why"><li>Two independent projects, XCL and five-star-recomp, got from first start to a continuously running frame loop within about five hours of the executable appearing.</li><li>The first menu appeared on the evening of 23 November, first in a contributor&#x27;s build and then on XCL&#x27;s main branch, about half a day sooner than this page expected.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable within a day or two.</li><li>The open problems are known and specific: game memory the graphics card cannot see yet, mesh-shader pipelines, and a few unimplemented calls.</li><li>On XCL&#x27;s main branch the menus and settings screens hold a steady 30 frames per second on a 16 GB graphics card. The next gate is loading the game world: a contributor reports most storage requests failing there, and the mesh pipelines the minimap needs are still refused.</li><li>What could stretch it: takedowns, a blocker nobody has hit yet, and low frame rates once the game is running. One project&#x27;s GitHub repository became unreadable on the evening of 23 November, cause not yet known.</li><li>One project&#x27;s own README guesses longer than this page does: at least a few weeks before the game is minimally playable.</li></ul>
     <p class="meta">A forecast by the AI that compiles this page, not a promise. It can be badly wrong and moves when the evidence does. Last revised <time datetime="2026-11-23T21:37:00Z">21:37 UTC, 23 Nov 2026</time>: In-game step brought forward to about a day. A contributor reports in the project&#x27;s chat that his build gets through the menus and starts loading the game itself. Nothing in the repository shows it yet. Playable date unchanged, because that depends on frame rate and stability once in-game.</p>
   </section>
 
@@ -201,8 +201,8 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 5 of 7</span> Recognisable picture</p>
-          <p class="status">Main branch, 20:47 UTC: the game&#x27;s first menu, the account prompt, is visible at a steady 30 frames per second with no crash, on a 16 GB graphics card with about 19 GB of memory committed. The maintainer has not checked further than that menu, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A separate contributor&#x27;s pull request from 20:15 UTC goes further: the legal menus can be stepped through with a gamepad. A fix for their missing body text was merged at 21:20 UTC. In the project&#x27;s chat at 21:36 and 21:38 UTC that contributor said his build now gets through the menus and begins loading the game itself, then stalls because most storage requests fail during world loading. Nothing in the repository shows that yet, and no frame of the game world has been reported.</p>
-          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, and a contributor&#x27;s open pull request · last change <time datetime="2026-11-23T21:50:00Z">21:50 UTC</time></p>
+          <p class="status">Main branch, 21:49 UTC: the game shows its menus at a steady 30 frames per second with no crash and goes on past the first one into its settings screens, with about 15 GB of memory committed. By the project&#x27;s own status line, gameplay has not been reached, and the mesh pipelines the game&#x27;s minimap needs are refused for now. A pull request that restores the missing letters in menu text is open. In the project&#x27;s chat at 21:36 and 21:38 UTC, the contributor who first reached the menus said his build begins loading the game itself and then stalls because most storage requests fail. Nothing in the repository shows that yet, and no frame of the game world has been reported.</p>
+          <p class="meta">Source: Maintainer&#x27;s notes on the main branch, a contributor&#x27;s pull request and chat reports · last change <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -247,14 +247,14 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 3=">3=</div>
         <div class="who">
-          <h3><a href="https://github.com/ItsNotRexed/Leonida" rel="noopener">Leonida</a></h3>
+          <h3><a href="https://git.notrexed.dev/notrexed/Leonida" rel="noopener">Leonida</a></h3>
           <p class="slug">ItsNotRexed/Leonida</p>
           <p class="kind">GTA VI recompilation, largest contributor base</p>
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">In open pull requests, one contributor&#x27;s local build runs the game into its frame loop on Windows with stand-in pipelines: frames are presented, all black. A second note finds that the first interface draw writes no pixels and explains why. None of this is on the main branch yet. Main went quiet from 18:54 to 20:34 UTC and has taken only a few commits from the maintainers since. The project now runs a mirror of its repository on its own server, listed in its README, and both copies match.</p>
-          <p class="meta">Source: Contributors&#x27; notes in open pull requests, not yet merged · last change <time datetime="2026-11-23T21:11:00Z">21:11 UTC</time></p>
+          <p class="status">Its GitHub repository stopped being publicly readable between 22:08 and 22:12 UTC. The cause is not known: a takedown, action by GitHub, or the maintainers withdrawing it are all possible. Contributors&#x27; forks and the owner&#x27;s other repository were still up at 22:16 UTC, and no notice has been published. The project&#x27;s own mirror, linked here, holds the same history up to the last commit at 21:01 UTC. Before that, in pull requests that were never merged, one contributor&#x27;s build ran the game into its frame loop with stand-in pipelines and black frames.</p>
+          <p class="meta">Source: Contributors&#x27; notes in open pull requests, not yet merged · last change <time datetime="2026-11-23T22:17:00Z">22:17 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -293,6 +293,13 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T22:17:00Z">22:17</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>Leonida&#x27;s GitHub repository goes dark; XCL reaches the settings screens</h3>
+          <ul><li>Leonida: the GitHub repository answered at 22:08 UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16 UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01 UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30 frames per second, with memory use down to about 15 GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T21:50:00Z">21:50</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
