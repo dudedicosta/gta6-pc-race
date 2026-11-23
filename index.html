@@ -156,7 +156,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:04:00Z">18:04 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:21:00Z">18:21 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -165,7 +165,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     <div class="cell"><span class="label">Furthest point</span><span class="value">First frames</span></div>
   </div>
 
-  <p class="lede"><strong>XCL runs the game for about three minutes. Nothing is playable.</strong> Five projects now start the game&#x27;s leaked Xbox executable on a PC. Only XCL has reached the point of showing frames, and nobody has checked what those frames contain.</p>
+  <p class="lede"><strong>XCL runs the game at a steady 30 frames per second, but the screen is black. Nothing is playable.</strong> Six projects now start the game&#x27;s leaked Xbox executable on a PC. XCL and TuxBox present frames, and both show only a black screen so far.</p>
 
   <section class="forecast" aria-labelledby="forecast">
     <h2 id="forecast">Best estimate: time to playable</h2>
@@ -198,12 +198,25 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
-          <p class="status">The game runs about 3 minutes without a crash. It shows two frames after about 4 seconds, loads roughly 3,500 shaders, then stops when five mesh-shader pipelines fail. Nobody has checked what the frames show.</p>
-          <p class="meta">Source: Maintainer&#x27;s notes · last change <time datetime="2026-11-23T17:03:00Z">17:03 UTC</time></p>
+          <p class="status">The game runs at a steady 30 frames per second with no crash in a 60-second test. The picture is black: its loading screen issues three draws a frame and none of them show. One kind of mesh-shader pipeline is not supported yet.</p>
+          <p class="meta">Source: Maintainer&#x27;s notes · last change <time datetime="2026-11-23T18:11:00Z">18:11 UTC</time></p>
         </div>
       </li>
       <li class="row">
         <div class="pos" aria-label="Position 2">2</div>
+        <div class="who">
+          <h3>TuxBox</h3>
+          <p class="slug">brcly/TuxBox</p>
+          <p class="kind">Compatibility layer for Linux (Proton)</p>
+        </div>
+        <div class="where">
+          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
+          <p class="status">On Linux, the game opens its window, starts audio and opens its movie and level archives. It clears its two 4K display buffers and presents, but the window stays black.</p>
+          <p class="meta">Source: Project progress notes · last change <time datetime="2026-11-23T18:14:00Z">18:14 UTC</time></p>
+        </div>
+      </li>
+      <li class="row">
+        <div class="pos" aria-label="Position 3">3</div>
         <div class="who">
           <h3>five-star-recomp</h3>
           <p class="slug">ThatRecompDev/five-star-recomp</p>
@@ -216,7 +229,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
+        <div class="pos" aria-label="Position 4=">4=</div>
         <div class="who">
           <h3>OpenScarlett</h3>
           <p class="slug">californiaAlmonds/OpenScarlett</p>
@@ -229,7 +242,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 3=">3=</div>
+        <div class="pos" aria-label="Position 4=">4=</div>
         <div class="who">
           <h3>Leonida</h3>
           <p class="slug">ItsNotRexed/Leonida</p>
@@ -242,7 +255,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 5">5</div>
+        <div class="pos" aria-label="Position 6">6</div>
         <div class="who">
           <h3>xbox-emulator</h3>
           <p class="slug">omonkeyz/xbox-emulator</p>
@@ -257,13 +270,20 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     </ol>
     <div class="also">
       <h3>Also watched, not started on the game</h3>
-      <ul><li><span class="wname">XValkyrie</span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. No GTA VI work published.</span></li><li><span class="wname">Xbox2Windows</span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname">OpenScarlett (OpenCommunityEdition)</span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname">TuxBox</span> <span class="slug">brcly/TuxBox</span><span class="wnote">Linux and Proton. Calls GTA VI a launch target; no run of the executable published.</span></li><li><span class="wname">ScarlettX</span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">scarlett-layer</span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">AnyPS5</span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
+      <ul><li><span class="wname">XValkyrie</span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. No GTA VI work published.</span></li><li><span class="wname">Xbox2Windows</span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname">OpenScarlett (OpenCommunityEdition)</span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname">ScarlettX</span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">scarlett-layer</span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">AnyPS5</span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
     </div>
   </section>
 
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T18:21:00Z">18:21</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>XCL holds 30 fps on a black screen</h3>
+          <ul><li>XCL: the game now runs at a steady 30 frames per second, 1,449 frames in a 60-second test with no crash. The picture is black. Its command lists now really execute; until this change they went through a placeholder.</li><li>TuxBox: on Linux, the game opens its window, starts audio, opens its archives and presents at 3840 by 2160. The window stays black.</li><li>Leonida: no commits to its main branch for an hour.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T18:04:00Z">18:04</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
