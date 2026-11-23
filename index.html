@@ -156,7 +156,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T17:46:00Z">17:46 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:04:00Z">18:04 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -203,7 +203,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="pos" aria-label="Position 2">2</div>
         <div class="who">
           <h3>five-star-recomp</h3>
           <p class="slug">ThatRecompDev/five-star-recomp</p>
@@ -211,12 +211,12 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
         <div class="where">
           <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
-          <p class="status">The game starts under its loader and sets up memory, archives, the graphics device, GPU-memory buffers and descriptor heaps. It then stops when an invalid call removes the graphics device. No frame.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T17:07:00Z">17:07 UTC</time></p>
+          <p class="status">The game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet: it stops in the graphics driver while recording its first graphics work.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T17:55:00Z">17:55 UTC</time></p>
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="pos" aria-label="Position 3=">3=</div>
         <div class="who">
           <h3>OpenScarlett</h3>
           <p class="slug">californiaAlmonds/OpenScarlett</p>
@@ -229,7 +229,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 2=">2=</div>
+        <div class="pos" aria-label="Position 3=">3=</div>
         <div class="who">
           <h3>Leonida</h3>
           <p class="slug">ItsNotRexed/Leonida</p>
@@ -264,6 +264,13 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T18:04:00Z">18:04</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>five-star-recomp reaches its first present</h3>
+          <ul><li>five-star-recomp: the game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet. It stops in the graphics driver because descriptor heaps are not bound on command lists and resources at the game&#x27;s own GPU addresses are not real yet.</li><li>XCL: no commits since 17:03. It still stops at about three minutes.</li><li>Leonida: no commits to its main branch since 17:23.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T17:13:00Z">17:13</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
