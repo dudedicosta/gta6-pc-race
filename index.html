@@ -159,7 +159,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <header class="mast">
     <p class="kicker">Unofficial tracker · checked about every 15 minutes</p>
     <h1>The race to run GTA VI on PC</h1>
-    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:21:00Z">18:21 UTC, 23 Nov 2026</time><span id="ago"></span></p>
+    <p class="checked">Last checked <time id="checked" datetime="2026-11-23T18:40:00Z">18:40 UTC, 23 Nov 2026</time><span id="ago"></span></p>
   </header>
 
   <div class="strip">
@@ -168,7 +168,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     <div class="cell"><span class="label">Furthest point</span><span class="value">First frames</span></div>
   </div>
 
-  <p class="lede"><strong>XCL runs the game at a steady 30 frames per second, but the screen is black. Nothing is playable.</strong> Six projects now start the game&#x27;s leaked Xbox executable on a PC. XCL and TuxBox present frames, and both show only a black screen so far.</p>
+  <p class="lede"><strong>XCL runs the game at a steady 30 frames per second, but the screen is black. Nothing is playable.</strong> Six projects now start the game&#x27;s leaked Xbox executable on a PC. Three of them present frames: XCL, TuxBox and five-star-recomp. All three show only a black or empty picture so far.</p>
 
   <section class="forecast" aria-labelledby="forecast">
     <h2 id="forecast">Best estimate: time to playable</h2>
@@ -206,7 +206,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 2">2</div>
+        <div class="pos" aria-label="Position 2=">2=</div>
         <div class="who">
           <h3><a href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
           <p class="slug">brcly/TuxBox</p>
@@ -219,16 +219,16 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
         </div>
       </li>
       <li class="row">
-        <div class="pos" aria-label="Position 3">3</div>
+        <div class="pos" aria-label="Position 2=">2=</div>
         <div class="who">
           <h3><a href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
           <p class="slug">ThatRecompDev/five-star-recomp</p>
           <p class="kind">GTA VI recompilation toolchain</p>
         </div>
         <div class="where">
-          <div class="bar pre" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill pre">Stage 3 of 7</span> Graphics device</p>
-          <p class="status">The game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet: it stops in the graphics driver while recording its first graphics work.</p>
-          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T17:55:00Z">17:55 UTC</time></p>
+          <div class="bar frames" role="img" aria-label="Stage 4 of 7: First frames"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg off"></span><span class="seg off"></span><span class="seg off"></span></div><p class="stage"><span class="pill frames">Stage 4 of 7</span> First frames</p>
+          <p class="status">The game&#x27;s first present now appears in its own window. Nothing is drawn in it, and the game then stops in the graphics driver while recording its first graphics work. A first version of placing textures at the game&#x27;s own GPU addresses is in.</p>
+          <p class="meta">Source: Project status page · last change <time datetime="2026-11-23T18:35:00Z">18:35 UTC</time></p>
         </div>
       </li>
       <li class="row">
@@ -280,6 +280,13 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   <section aria-labelledby="updates">
     <h2 id="updates">Updates</h2>
     <ol class="log">
+      <li class="entry">
+        <p class="when"><time datetime="2026-11-23T18:40:00Z">18:40</time><span class="date">23 Nov 2026</span></p>
+        <div class="what">
+          <h3>Three projects now present frames</h3>
+          <ul><li>five-star-recomp: the game&#x27;s first present now appears in its own window through a swap chain. Nothing is drawn, and the game then stops in the graphics driver. The project also has a first version of placing textures at the game&#x27;s own GPU addresses.</li><li>XCL: no commits since 18:11.</li><li>Leonida: merging to its main branch has resumed, with no change to its boot notes.</li></ul>
+        </div>
+      </li>
       <li class="entry">
         <p class="when"><time datetime="2026-11-23T18:21:00Z">18:21</time><span class="date">23 Nov 2026</span></p>
         <div class="what">
