@@ -66,6 +66,9 @@ ul, ol { padding: 0; list-style: none; }
 h1 { font: 700 clamp(2.1rem, 7vw, 3.2rem)/1.02 var(--display); letter-spacing: 0.005em; text-wrap: balance; text-transform: uppercase; }
 h2 { font: 700 1.5rem/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; text-wrap: balance; }
 h3 { font: 600 1.06rem/1.25 var(--body); text-wrap: balance; }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mast { display: flex; flex-direction: column; gap: 10px; border-bottom: 3px solid var(--ink); padding-bottom: 18px; }
 .kicker { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .checked { font: 400 0.9rem/1.4 var(--mono); color: var(--muted); }
@@ -192,7 +195,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 1">1</div>
         <div class="who">
-          <h3>XCL</h3>
+          <h3><a href="https://github.com/ivall/xcl" rel="noopener">XCL</a></h3>
           <p class="slug">ivall/xcl</p>
           <p class="kind">Compatibility layer for Xbox Series games</p>
         </div>
@@ -205,7 +208,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 2">2</div>
         <div class="who">
-          <h3>TuxBox</h3>
+          <h3><a href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
           <p class="slug">brcly/TuxBox</p>
           <p class="kind">Compatibility layer for Linux (Proton)</p>
         </div>
@@ -218,7 +221,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 3">3</div>
         <div class="who">
-          <h3>five-star-recomp</h3>
+          <h3><a href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
           <p class="slug">ThatRecompDev/five-star-recomp</p>
           <p class="kind">GTA VI recompilation toolchain</p>
         </div>
@@ -231,7 +234,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 4=">4=</div>
         <div class="who">
-          <h3>OpenScarlett</h3>
+          <h3><a href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
           <p class="slug">californiaAlmonds/OpenScarlett</p>
           <p class="kind">Compatibility layer for Xbox Series games</p>
         </div>
@@ -244,7 +247,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 4=">4=</div>
         <div class="who">
-          <h3>Leonida</h3>
+          <h3><a href="https://github.com/ItsNotRexed/Leonida" rel="noopener">Leonida</a></h3>
           <p class="slug">ItsNotRexed/Leonida</p>
           <p class="kind">GTA VI recompilation, largest contributor base</p>
         </div>
@@ -257,7 +260,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
       <li class="row">
         <div class="pos" aria-label="Position 6">6</div>
         <div class="who">
-          <h3>xbox-emulator</h3>
+          <h3><a href="https://github.com/omonkeyz/xbox-emulator" rel="noopener">xbox-emulator</a></h3>
           <p class="slug">omonkeyz/xbox-emulator</p>
           <p class="kind">Compatibility layer for Xbox Series games</p>
         </div>
@@ -270,7 +273,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     </ol>
     <div class="also">
       <h3>Also watched, not started on the game</h3>
-      <ul><li><span class="wname">XValkyrie</span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. No GTA VI work published.</span></li><li><span class="wname">Xbox2Windows</span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname">OpenScarlett (OpenCommunityEdition)</span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname">ScarlettX</span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">scarlett-layer</span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname">AnyPS5</span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
+      <ul><li><span class="wname"><a href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span> <span class="slug">sammwyy/xvalkyrie</span><span class="wnote">Runs other Xbox Series games. No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></span> <span class="slug">R0Y00/Xbox2Windows</span><span class="wnote">Research harness. Has not run the game&#x27;s code.</span></li><li><span class="wname"><a href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (OpenCommunityEdition)</a></span> <span class="slug">OpenCommunityEdition/OpenScarlett</span><span class="wnote">A separate project with the same name. No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a></span> <span class="slug">Freminet/ScarlettX</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a></span> <span class="slug">jadeowaowa/scarlett-layer</span><span class="wnote">No GTA VI work published.</span></li><li><span class="wname"><a href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span> <span class="slug">boykopovar/AnyPS5</span><span class="wnote">The PlayStation route. Blocked: no PS5 build of the game is public.</span></li></ul>
     </div>
   </section>
 
@@ -338,7 +341,7 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
 
   <section aria-labelledby="caveats">
     <h2 id="caveats">Read this first</h2>
-    <ul class="notes"><li>Nothing is playable. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</li><li>The build these projects work from was leaked. Rockstar has not released or announced a PC version. This page does not link to the leak and does not explain how to get or run it.</li><li>Every stage shown here is the project&#x27;s own claim, read from its public repository. Nobody independent has verified them.</li><li>By one project&#x27;s own notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</li><li>Compiled automatically by an AI assistant (Claude) from the projects&#x27; public READMEs, status notes and commit logs. It can be wrong. All times are UTC.</li><li>Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</li></ul>
+    <ul class="notes"><li>Nothing is playable. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</li><li>The build these projects work from was leaked. Rockstar has not released or announced a PC version. This page does not link to the leak and does not explain how to get or run it.</li><li>Project names link to each project&#x27;s public source repository, to credit the work.</li><li>Every stage shown here is the project&#x27;s own claim, read from its public repository. Nobody independent has verified them.</li><li>By one project&#x27;s own notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</li><li>Compiled automatically by an AI assistant (Claude) from the projects&#x27; public READMEs, status notes and commit logs. It can be wrong. All times are UTC.</li><li>Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</li></ul>
   </section>
 
   <footer>Times are UTC. Positions with an equals sign are level.</footer>
