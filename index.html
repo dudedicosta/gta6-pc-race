@@ -106,6 +106,26 @@ section { display: flex; flex-direction: column; gap: 14px; }
   .pos { grid-row: auto; font-size: 2.3rem; }
   .where { grid-column: 3; }
 }
+.forecast { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 18px 16px; }
+.fc { display: flex; flex-wrap: wrap; gap: 16px 36px; align-items: flex-start; }
+.fc-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.fc-big { font: 700 clamp(2.6rem, 11vw, 4rem)/0.95 var(--display); text-transform: uppercase; color: var(--accent); }
+.fc-date { font: 500 0.95rem/1.3 var(--mono); color: var(--muted); }
+.fc-date time { color: var(--ink); }
+.odds { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.odds li { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 10px; align-items: baseline; font-size: 0.95rem; }
+.odds .chance { font: 500 0.9rem/1.3 var(--mono); font-variant-numeric: tabular-nums; }
+.fc-def { max-width: 66ch; font-size: 0.95rem; }
+.fc-def strong { font-weight: 600; }
+.scroll { overflow-x: auto; }
+.steps { border-collapse: collapse; width: 100%; max-width: 520px; font-size: 0.92rem; }
+.steps th, .steps td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.steps thead th { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.steps tbody th { font-weight: 600; }
+.steps .d { font-family: var(--mono); font-size: 0.86rem; white-space: nowrap; }
+.why { display: flex; flex-direction: column; gap: 6px; max-width: 66ch; }
+.why li { padding-left: 14px; position: relative; font-size: 0.93rem; }
+.why li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 2px; background: var(--accent); }
 .also { display: flex; flex-direction: column; gap: 8px; }
 .also h3 { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .also ul { display: flex; flex-direction: column; gap: 8px; }
@@ -146,6 +166,24 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
   </div>
 
   <p class="lede"><strong>XCL runs the game for about three minutes. Nothing is playable.</strong> Five projects now start the game&#x27;s leaked Xbox executable on a PC. Only XCL has reached the point of showing frames, and nobody has checked what those frames contain.</p>
+
+  <section class="forecast" aria-labelledby="forecast">
+    <h2 id="forecast">Best estimate: time to playable</h2>
+    <div class="fc">
+      <div class="fc-main">
+        <p class="fc-big" id="fc-rel" data-target="2026-11-28T18:00:00Z">about 5 days</p>
+        <p class="fc-date">around <time datetime="2026-11-28T18:00:00Z">Sat 28 Nov</time></p>
+      </div>
+      <ul class="odds" aria-label="Chances"><li><span class="chance">3 in 10</span><span class="by">by Thu 26 Nov</span></li><li><span class="chance">6 in 10</span><span class="by">by Mon 30 Nov</span></li><li><span class="chance">8 in 10</span><span class="by">by Christmas</span></li><li><span class="chance">1 in 10</span><span class="by">it stalls until an official PC version</span></li></ul>
+    </div>
+    <p class="fc-def"><strong>What counts as playable:</strong> At least one project reports the game in-game and under player control for 30 minutes or more without a crash, at 20 frames per second or better on some PC.</p>
+    <div class="scroll"><table class="steps">
+      <thead><tr><th scope="col">Milestone</th><th scope="col">Best estimate</th><th scope="col">Around</th></tr></thead>
+      <tbody><tr><th scope="row">Recognisable picture</th><td>about 1 day</td><td class="d">Tue 24 Nov</td></tr><tr><th scope="row">In-game with control</th><td>2 to 3 days</td><td class="d">Thu 26 Nov</td></tr><tr><th scope="row">Playable</th><td>about 5 days</td><td class="d">Sat 28 Nov</td></tr></tbody>
+    </table></div>
+    <ul class="why"><li>XCL went from its first start of the game to three minutes of runtime in about three hours.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable within a day or two.</li><li>The open problems are known and specific: game memory the graphics card cannot see yet, mesh-shader pipelines, and a few unimplemented calls.</li><li>What could stretch it: takedowns, a blocker nobody has hit yet, and low frame rates once the game is running.</li></ul>
+    <p class="meta">A forecast by the AI that compiles this page, not a promise. It can be badly wrong and moves when the evidence does. Last revised <time datetime="2026-11-23T17:40:00Z">17:40 UTC, 23 Nov 2026</time>: First estimate.</p>
+  </section>
 
   <section aria-labelledby="standings">
     <h2 id="standings">Standings</h2>
@@ -286,6 +324,14 @@ footer { font: 400 0.78rem/1.5 var(--mono); color: var(--muted); border-top: 1px
     if (isFinite(mins) && mins >= 0) {
       var text = mins < 1 ? "just now" : mins < 90 ? mins + " min ago" : Math.round(mins / 60) + " h ago";
       document.getElementById("ago").textContent = " (" + text + ")";
+    }
+  } catch (e) {}
+  try {
+    var f = document.getElementById("fc-rel");
+    var hours = (new Date(f.getAttribute("data-target")).getTime() - Date.now()) / 3600000;
+    if (isFinite(hours)) {
+      var rel = hours < 0 ? "any time now" : hours < 12 ? "within hours" : hours < 36 ? "about a day" : "about " + Math.round(hours / 24) + " days";
+      f.textContent = rel;
     }
   } catch (e) {}
 })();
