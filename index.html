@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. CGBJ, a private build, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T17:33:00Z">17:33 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T17:53:00Z">17:53 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">17:33 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">17:53 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">CGBJ, VIctory, AnyXboxX</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">XCL, Palmwave, five-star-recomp, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-28T06:00:00Z">about 3½ days</span></p>
         </div>
@@ -371,8 +371,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows every first-run screen and loads story mode, where one run reached the story intro&#x27;s title card. Its graphics hangs and the game&#x27;s own hang check are dealt with, and runs now stop 130 to 150&nbsp;seconds in, when a culling pass it has now identified writes over game memory.</p>
-            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-24T17:33:00Z">17:33 UTC</time>.</p>
+            <p class="measure">Shows every first-run screen and loads story mode, where one run reached the story intro&#x27;s title card. The memory corruption that stopped its story load is fixed, and runs now end about 200&nbsp;seconds in, when graphics frames take so long that the game&#x27;s own hang check stops them.</p>
+            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-24T17:53:00Z">17:53 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -517,6 +517,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-24T17:53:00Z">17:53</time> <span>24 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">five-star-recomp fixes its memory corruption</h3>
+            <ul class="points measure"><li>five-star-recomp says the memory corruption in its story load is fixed. A translator bug had made a culling pass write its counts to the wrong place, and a boot now runs past 200&nbsp;seconds.</li><li>Its new stop is the game&#x27;s own hang check, at about 200&nbsp;seconds, because graphics frames take too long during the load. Three compute programs still run their loops to the safety cap.</li><li>An open VIctory pull request ports XCL&#x27;s way of running 64-lane compute shaders on cards with 32 lanes. It is a first cut, off by default, and claims no in-game result.</li><li>VIctory&#x27;s main branch has had no commit since 09:53&nbsp;UTC, while more than 1,000 pull requests have been opened against it. Contributors are now bundling groups of them and testing the bundles together.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T17:33:00Z">17:33</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX measures 3.2 frames a second and narrows down the black picture</h3>
@@ -537,6 +544,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Palmwave&#x27;s rewritten status says only part of the world&#x27;s geometry is drawn: poles, power lines, fences and bike racks, with about 91% of the depth buffer still empty. The entry here at 15:51 said the street was drawn.</li><li>Its world frames now take about 10&nbsp;seconds, lighting shows in about 1.5% of its target, and it has not tested controls in the world.</li><li>AnyXboxX&#x27;s author has sent the change behind its tenfold speed gain to VIctory as a pull request.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 64 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T16:13:00Z">16:13</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -544,10 +555,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>five-star-recomp says the game&#x27;s 30-second hang check no longer ends its story load, and a memory blow-up from the graphics driver&#x27;s shader compiler is contained. Runs now stop about 130&nbsp;seconds in, when graphics work corrupts game memory again.</li><li>XCL&#x27;s main branch is taking merges again after two quiet hours. Its status line has not changed.</li><li>VGC and Eurogamer now cover Leonida&#x27;s shutdown. Rockstar and Take-Two have still said nothing, and no takedown notice names a GTA VI project.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 63 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T15:51:00Z">15:51</time> <span>24 Nov</span></p>
           <div class="log__what">
