@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. CGBJ, a private build, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T16:50:00Z">16:50 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T17:14:00Z">17:14 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">16:50 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">17:14 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">CGBJ, VIctory, AnyXboxX</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">XCL, Palmwave, five-star-recomp, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-28T06:00:00Z">about 3½ days</span></p>
         </div>
@@ -323,8 +323,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
           </div>
           <div class="board__where">
-            <p class="measure">In an open pull request, a contributor reports the world running 8&nbsp;minutes without a graphics fault under Proton on Linux, with its geometry visible through a debug view and a player able to walk the first mission&#x27;s street. The project&#x27;s README still describes the scene after the title card as dark, at 0.5 to 1.8&nbsp;seconds a frame.</p>
-            <p class="small muted">Source: an open pull request by a contributor, measured on one Linux machine, and the project README, which has not caught up. Changed <time datetime="2026-11-24T15:08:00Z">15:08 UTC</time>.</p>
+            <p class="measure">Open pull requests report the world staying up for 8&nbsp;minutes under Proton on Linux, with geometry visible through a debug view and a player walking the first mission&#x27;s street, and for more than 6&nbsp;minutes on an NVIDIA RTX 4080 Super. The project&#x27;s README still describes the scene after the title card as dark, at 0.5 to 1.8&nbsp;seconds a frame.</p>
+            <p class="small muted">Source: open pull requests by contributors, each measured on one machine, and the project README, which has not caught up. Changed <time datetime="2026-11-24T17:14:00Z">17:14 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -517,6 +517,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-24T17:14:00Z">17:14</time> <span>24 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">A VIctory pull request holds the world for six minutes on an NVIDIA card</h3>
+            <ul class="points measure"><li>An open VIctory pull request reports more than 6&nbsp;minutes in game without a crash on an NVIDIA RTX 4080 Super, with the settings menu opening. Before it, the same card lost its graphics device within 10&nbsp;seconds of entering the world.</li><li>The change marks the game&#x27;s 64-lane shaders so that a card with 32 lanes refuses them cleanly, where before they ran, looped forever and hung the card. The pull request does not say what the picture shows.</li><li>Another open pull request stops graphics memory filling up on Linux, which had ended runs after a few minutes in the world. Use fell from 15&nbsp;GB to about 4.6&nbsp;GB.</li><li>Late addition: PortWatch reported early on 24 November that XCL told it the game runs at 30&nbsp;frames a second in game, without saying whether that means menus or gameplay. XCL&#x27;s README still says gameplay is not reached, and PortWatch has not moved XCL up.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T16:32:00Z">16:32</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave narrows its claim</h3>
@@ -537,6 +544,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>AnyXboxX says a local branch reaches the world with a controllable character. The game&#x27;s movement tutorial shows over a 3D image that is still black.</li><li>That branch runs at about 2.4&nbsp;frames a second on an RTX 4070 SUPER, up from 0.2 this morning, after it removed several per-frame costs. About 170 shaders are still untranslated in game, down from 456.</li><li>Palmwave now draws the first mission&#x27;s street into its internal buffers and stays in the world for 3&nbsp;minutes. Its screen is still one flat colour, because the lighting passes run out of order, and a frame takes 12 to 19&nbsp;seconds.</li><li>AnyXboxX moves to stage 6. Three builds now report the game world under control or on screen: one private, one in an open pull request, and this one.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 62 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T15:08:00Z">15:08</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -544,10 +555,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>A Reddit post shows a VIctory build running under CrossOver on an M5 Max Mac: bare grey geometry at 4&nbsp;frames a second, then about six hours later a textured, sunlit prison yard with characters. Its author says matching the console&#x27;s picture is proving hard.</li><li>An open VIctory pull request reports a similar view from public code. Under Proton on Linux the world ran 8&nbsp;minutes without a graphics fault, its geometry showed through a debug view, and a player could walk the first mission&#x27;s street.</li><li>VIctory moves to stage 6 on that report. Its own README has not changed and still calls the scene dark.</li><li>The estimate moves in by half a day, to about the morning of Sat 28 Nov.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 61 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T14:14:00Z">14:14</time> <span>24 Nov</span></p>
           <div class="log__what">
