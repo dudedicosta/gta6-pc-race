@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. VIctory is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Thirteen open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T08:11:00Z">08:11 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Thirteen open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T08:30:00Z">08:30 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">08:11 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">08:30 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL, Palmwave, five-star-recomp, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-28T06:00:00Z">about 4 days</span></p>
         </div>
@@ -371,8 +371,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows the account picker, the intro video in full colour and the first-time setup screens on an unmodified executable, with screenshots in its repository. Some menu text is missing letters, and it reports streaming world data after the legal screens.</p>
-            <p class="small muted">Source: project README and its screenshots, one of which this page checked. Changed <time datetime="2026-11-24T08:05:00Z">08:05 UTC</time>.</p>
+            <p class="measure">Shows the account picker, video playback in full colour and the first-time setup screens on an unmodified executable, and reports world streaming after them. It has withdrawn its screenshots and no longer names the title.</p>
+            <p class="small muted">Source: project README, and a screenshot this page checked before the project withdrew it. Changed <time datetime="2026-11-24T08:30:00Z">08:30 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -493,6 +493,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-24T08:30:00Z">08:30</time> <span>24 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">PercyScarlett withdraws its screenshots</h3>
+            <ul class="points measure"><li>About 20&nbsp;minutes after publishing them, PercyScarlett removed its screenshots and the game&#x27;s name from its repository. Its description of how far it gets is unchanged.</li><li>VIctory&#x27;s maintainer has merged about 50 fixes from outside contributors since 07:46&nbsp;UTC. Its status is unchanged.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T08:11:00Z">08:11</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">PercyScarlett shows the setup screens, with screenshots</h3>
@@ -513,6 +520,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Xbox2Windows now says its run to the loading screen used a modified diagnostic copy of the executable and a debugger set to continue past assertions. Start-up of the original executable is unverified.</li><li>It moves down one place, behind OpenScarlett (Community Edition), which reports its result on an unmodified executable.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 43 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T07:14:00Z">07:14</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -520,10 +531,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Palmwave now loads the world and keeps running for up to an hour with sound, with the game&#x27;s hang check switched off. It shows nothing after loading while the world&#x27;s compute shaders compile, a few of which take up to 30&nbsp;minutes each.</li><li>five-star-recomp has traced its hang to the first frame after loading, at the game&#x27;s meshlet culling step.</li><li>A second project called OpenScarlett, from OpenCommunityEdition, joins the standings in sixth. It runs a retail game it does not name through its first screens and intro video, then stops as the scene behind the menus streams in.</li><li>VIctory, the only project to have shown a picture inside the world, has had no commit since 00:57&nbsp;UTC.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 42 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T06:55:00Z">06:55</time> <span>24 Nov</span></p>
           <div class="log__what">
