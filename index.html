@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. VIctory is furthest, at stage&nbsp;5&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Eleven open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T01:38:00Z">01:38 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Eleven open-source projects are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T01:58:00Z">01:58 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,9 +291,9 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">01:38 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">01:58 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--ahead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, XCL, Palmwave, five-star-recomp, TuxBox</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">OpenScarlett, Leonida, PercyScarlett, Holy-Interoperability</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">Xbox2Windows, xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
-          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T02:00:00Z">about 3 days</span></p>
+          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-28T06:00:00Z">about 4 days</span></p>
         </div>
       </div>
     </div>
@@ -335,8 +335,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Measures a retail game it does not name through its first screens and intro video into world loading. There it manages 0 to 2&nbsp;frames a second while memory grows until the run is stopped.</p>
-            <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-24T00:49:00Z">00:49 UTC</time>.</p>
+            <p class="measure">Measures a retail game it does not name into world loading at 5 to 30&nbsp;frames a second, with memory levelling off. It stops as the world starts to draw, when the game&#x27;s own watchdog ends a 30&nbsp;second wait for pipelines still compiling.</p>
+            <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-24T01:39:00Z">01:39 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -447,18 +447,18 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Time to playable</h2>
       <div class="grid fc">
         <div class="fc__main">
-          <p class="stat" id="fc-rel" data-target="2026-11-27T02:00:00Z">about 3 days</p>
-          <p class="lead">Around <time datetime="2026-11-27T02:00:00Z">the early hours of Fri 27 Nov</time>.</p>
+          <p class="stat" id="fc-rel" data-target="2026-11-28T06:00:00Z">about 4 days</p>
+          <p class="lead">Around <time datetime="2026-11-28T06:00:00Z">the morning of Sat 28 Nov</time>.</p>
           <p class="measure">At least one project reports the game in-game and under player control for 30&nbsp;minutes or more without a crash, at 20&nbsp;frames per second or better on some PC.</p>
           <h3 class="t-card">What the estimate rests on</h3>
-          <ul class="points measure"><li>One project went from nothing public to loading the game world in a day. XCL went from its first frame to the menus in about five hours.</li><li>The same compatibility layers took other retail Xbox Series games from first boot to playable in a day or two.</li><li>The next gate is a picture of the world. One project runs it and draws a title card, then a dark scene at 0.5 to 1.8&nbsp;seconds a frame. A second code base reaches world loading at 0 to 2&nbsp;frames a second.</li><li>Risks: takedowns, a blocker nobody has hit yet, and low frame rates in the game itself. The largest project lost its lead, its repository and its chat on 23 November; whether a takedown was involved is not known.</li><li>One project&#x27;s own README expects longer than this page does: at least a few weeks.</li></ul>
+          <ul class="points measure"><li>One project went from nothing public to loading the game world in a day. XCL went from its first frame to the menus in about five hours.</li><li>XCL took lighter retail games from first boot to playable in a day or two. No project has done that with a game of this size.</li><li>The next gate is a picture of the world. One project is inside it, with a title card and then a dark scene at 0.5 to 1.8&nbsp;seconds a frame. A second code base loads the world at 5 to 30&nbsp;frames a second and stops as it starts to draw.</li><li>Risks: takedowns, a blocker nobody has hit yet, and low frame rates in the game itself. The largest project lost its lead, its repository and its chat on 23 November; whether a takedown was involved is not known.</li><li>One project&#x27;s own README expects longer than this page does: at least a few weeks.</li></ul>
         </div>
         <div class="fc__side">
           <h3 class="t-card">Chances</h3>
-          <ul class="rows"><li><span class="rows__name">By Thu 26 Nov</span><span class="rows__value">nearly 5 in 10</span></li><li><span class="rows__name">By Mon 30 Nov</span><span class="rows__value">7 in 10</span></li><li><span class="rows__name">By Christmas</span><span class="rows__value">8 in 10</span></li><li><span class="rows__name">It stalls until an official PC version</span><span class="rows__value">1 in 10</span></li></ul>
+          <ul class="rows"><li><span class="rows__name">By Thu 26 Nov</span><span class="rows__value">3 in 10</span></li><li><span class="rows__name">By Mon 30 Nov</span><span class="rows__value">6 in 10</span></li><li><span class="rows__name">By Christmas</span><span class="rows__value">8 in 10</span></li><li><span class="rows__name">It stalls until an official PC version</span><span class="rows__value">1 in 10</span></li></ul>
           <h3 class="t-card">Milestones</h3>
-          <ul class="rows"><li><span class="rows__name">Recognisable picture</span><span class="rows__value">reached, Mon 23 Nov</span></li><li><span class="rows__name">In-game with control</span><span class="rows__value">about a day, Tue 24 Nov</span></li><li><span class="rows__name">Playable</span><span class="rows__value">about 3 days, Fri 27 Nov</span></li></ul>
-          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="2026-11-23T21:37:00Z">21:37 UTC on 23 Nov</time>: In-game step brought forward to about a day. A contributor reports in the project&#x27;s chat that his build gets through the menus and starts loading the game itself. Nothing in the repository shows it yet. Playable date unchanged, because that depends on frame rate and stability once in-game.</p>
+          <ul class="rows"><li><span class="rows__name">Recognisable picture</span><span class="rows__value">reached, Mon 23 Nov</span></li><li><span class="rows__name">In-game with control</span><span class="rows__value">about a day and a half, Wed 25 Nov</span></li><li><span class="rows__name">Playable</span><span class="rows__value">about 4 days, Sat 28 Nov</span></li></ul>
+          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="2026-11-24T01:58:00Z">01:58 UTC on 24 Nov</time>: Pushed back by about a day, to about 4&nbsp;days. No project has drawn the world in the three and a half hours since the first one got inside it, frame times there are ten times or more too slow, and work on the two leading projects has slowed overnight. The in-game step moves to about a day and a half.</p>
         </div>
       </div>
     </div>
@@ -468,6 +468,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
     <div class="wrap">
       <h2>Updates</h2>
       <ol class="log">
+        <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-24T01:58:00Z">01:58</time> <span>24 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">Estimate moves back a day</h3>
+            <ul class="points measure"><li>The best estimate to playable moves from about 3&nbsp;days to about 4, around Sat 28 Nov. Nobody has drawn the world in the three and a half hours since the first project got inside it, and frame times there are ten times or more too slow.</li><li>Palmwave now loads the world at 5 to 30&nbsp;frames a second with memory levelling off. It stops as the world starts to draw, when the game&#x27;s watchdog ends a wait for pipelines still compiling.</li><li>five-star-recomp added a disk pipeline cache. VIctory and XCL&#x27;s main branch have had no substantive change for about two hours.</li><li>Press coverage has started: outlets report the game reaching its settings and legal screens on PC, with nothing playable.</li></ul>
+          </div>
+        </li>
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T01:38:00Z">01:38</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -489,6 +496,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Palmwave, a fork of XCL, measures a retail game it does not name into world loading on an RTX 5080: 0 to 2&nbsp;frames a second, with memory growing until the run is stopped at 140&nbsp;seconds. It joins the standings in third.</li><li>Its own fix lifts the intro video from 3.5 to about 19&nbsp;frames a second. It reports that compressed world textures are not decoded yet in this code.</li><li>Xbox2Windows says local runs of the main executable now reach graphics pipeline creation, its first report of running the title&#x27;s own code. No rendered frame is verified.</li><li>Holy-Interoperability presents its first frame of a retail title it does not name, then stops in start-up.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 30 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T00:39:00Z">00:39</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -496,10 +507,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Palmwave, now built on XCL&#x27;s code, measured a retail game it does not name on an RTX 5080. It shows first screens at up to 30&nbsp;frames a second, slows to about 3&nbsp;frames a second, then crashes as memory grows while the world loads.</li><li>Its list of what separates that code from playable: memory growth in world loading, which XCL has since fixed, texture decoding failures, refused mesh pipelines and a slow phase with no known cause.</li><li>TuxBox: shader preparation now compiles 2,755 of 11,429 requests captured from its runs. Its picture is unchanged at the player-selection prompt.</li><li>VIctory merged 11 fixes from outside contributors in half an hour. Its status is unchanged.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 29 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T00:19:00Z">00:19</time> <span>24 Nov</span></p>
           <div class="log__what">
