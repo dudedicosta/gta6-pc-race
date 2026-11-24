@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. CGBJ, a private build, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T13:51:00Z">13:51 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Fourteen open-source projects and one private build are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-24T14:14:00Z">14:14 UTC on 24 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">13:51 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">14:14 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">CGBJ</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">VIctory, AnyXboxX, XCL, Palmwave, five-star-recomp, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-28T18:00:00Z">about 4 days</span></p>
         </div>
@@ -371,8 +371,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
           </div>
           <div class="board__where">
-            <p class="measure">Shows every first-run screen, loads story mode and, on one run, reached the story intro&#x27;s title card before stopping. Its blocker is graphics work that writes past its buffers into the game&#x27;s own memory, which corrupts it or hangs the graphics card.</p>
-            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-24T12:28:00Z">12:28 UTC</time>.</p>
+            <p class="measure">Shows every first-run screen and loads story mode, where one run reached the story intro&#x27;s title card. Its memory corruption is fixed, and the game now ends itself late in the load, most likely through its own hang check while shaders are still compiling.</p>
+            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-24T14:14:00Z">14:14 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -517,6 +517,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-24T14:14:00Z">14:14</time> <span>24 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">five-star-recomp clears its memory fault; press reports more chat servers gone</h3>
+            <ul class="points measure"><li>five-star-recomp says the memory corruption and graphics hangs in its story load are fixed. The game now ends itself late in the load, most likely through its own hang check while shaders are still compiling.</li><li>VGTimes reports that the VIctory team&#x27;s Discord server was blocked, without saying by whom, and that XCL&#x27;s team deleted its own group chat. Rockstar has not commented.</li><li>VIctory&#x27;s public repository has had no commit since 09:53&nbsp;UTC, while the private build based on it moves ahead.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T13:31:00Z">13:31</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three more projects on the watch list</h3>
@@ -537,6 +544,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>On one run, five-star-recomp loaded story mode and showed the story intro&#x27;s title card before stopping. Its other runs stop earlier.</li><li>Its notes blame graphics work that writes past its buffers into the game&#x27;s own memory, probably because the console&#x27;s bounds checks are not applied yet.</li><li>Three separate code bases have now shown that card: VIctory&#x27;s, XCL&#x27;s through Palmwave, and five-star-recomp&#x27;s. None of them draws the scene after it in public code.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 57 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T12:10:00Z">12:10</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -544,10 +555,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>DSOGaming reports that a private build called CGBJ, based on VIctory with some of XCL&#x27;s work, has reached in-game. It has no public code or download.</li><li>That matches the stream footage logged at 11:10&nbsp;UTC, which X accounts had described as the VIctory team&#x27;s. Which description is right is not settled.</li><li>No public repository shows a visible world yet. Palmwave&#x27;s copy of XCL now decodes the game&#x27;s textures, and it is still chasing the bad geometry behind its blank frames.</li><li>GamesRadar now covers Leonida&#x27;s shutdown. No outlet reports a statement from Rockstar or Take-Two, and reports of wider Discord takedowns rest on Reddit posts.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 56 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T11:49:00Z">11:49</time> <span>24 Nov</span></p>
           <div class="log__what">
