@@ -102,6 +102,15 @@ h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
 .link { font-weight: 500; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; transition: text-decoration-color var(--dur) var(--ease); }
 .link:hover, summary:hover .link { text-decoration-color: currentColor; }
+/* the star link: the secondary button with an outline star and, when it is known, the count */
+.btn__icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; transition: fill var(--dur) var(--ease); }
+.btn:hover .btn__icon { fill: currentColor; }
+.btn__count { display: inline-flex; align-items: center; height: 18px; margin-left: var(--s-1); padding-left: var(--s-3); border-left: 1px solid var(--line-strong); font: 500 var(--t-label)/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+/* a quiet text button, for the one setting the page has: which zone its times are shown in */
+.textbtn { appearance: none; border: 0; border-radius: 0; background: none; margin: -10px 0; padding: 10px 0; font: inherit; font-weight: 500; color: inherit; cursor: pointer; white-space: nowrap;
+  text-decoration: underline; text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color var(--dur) var(--ease); }
+.textbtn:hover { text-decoration-color: currentColor; }
+.textbtn[hidden] { display: none; }
 
 /* ---------------------------------------------------------------- nav: fixed, opaque, one hairline */
 .nav { position: fixed; inset: 0 0 auto 0; height: var(--nav); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
@@ -113,6 +122,7 @@ h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
   background: linear-gradient(currentColor, currentColor) 0 calc(50% + 13px) / 0 1px no-repeat; transition: background-size var(--dur) var(--ease); }
 .nav__links a:hover { background-size: 100% 1px; }
 .nav__actions { justify-self: end; display: flex; gap: var(--s-2); }
+.nav__star { padding: 0 var(--s-4); }
 .nav__toggle { display: none; width: 44px; padding: 0; }
 .nav__toggle span, .nav__toggle span::before { display: block; width: 18px; height: 1.5px; background: currentColor; }
 .nav__toggle span { position: relative; top: -3px; }
@@ -130,6 +140,19 @@ h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
   .nav__logo { font-size: 18px; }
   .nav__actions .btn--primary { display: none; }
 }
+/* where the bar is tight the star link is the icon and the count */
+@media (max-width: 719px), (min-width: 1024px) and (max-width: 1279px) {
+  .nav__star { padding: 0 var(--s-3); }
+  .nav__star .btn__word { display: none; }
+  .nav__star .btn__count { height: auto; margin-left: 0; padding-left: 0; border-left: 0; }
+}
+/* on the narrower desktops the links sit between the name and the actions, not on the page's centre */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav__bar { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .nav__links { justify-self: center; }
+}
+/* the narrowest phones keep the name whole: the star link is still in the footer */
+@media (max-width: 359px) { .nav__star { display: none; } }
 
 /* ---------------------------------------------------------------- sections: the h2 first, one rhythm */
 section { padding: var(--padt) 0 var(--padb); }
@@ -159,7 +182,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
 .lad__row { display: grid; grid-template-columns: 20px minmax(0, 11rem) minmax(0, 1fr); column-gap: var(--s-4); align-items: baseline; padding: 9px var(--s-5); min-height: 44px; }
 .lad__row + .lad__row { border-top: 1px solid var(--line); }
 .lad__n { font: 400 var(--t-label)/1.6 var(--font-mono); color: var(--muted); }
-.lad__who { font-weight: 500; }
+.lad__who { font-weight: 500; overflow-wrap: anywhere; }
+.lad__more { color: var(--muted); font-weight: 400; }
 .lad__row--ahead .lad__stage { color: var(--muted); }
 .lad__row--lead .lad__n { color: var(--action); font-weight: 500; }
 .lad__row--lead .lad__stage { font-weight: 500; }
@@ -237,12 +261,15 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
 .footer--statement { padding: 0 0 var(--s-7); }
 .slab { background: var(--surface); border-radius: var(--r-lg); padding: var(--s-8) var(--s-7) var(--s-6); overflow: hidden; }
 .close__head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s-6); flex-wrap: wrap; }
+/* on the slab the tonal button is mixed from the slab's own ground, so it still reads as a button */
+.slab .btn--secondary { background: color-mix(in oklab, var(--ink) 10%, var(--surface)); }
+.slab .btn--secondary:hover { background: color-mix(in oklab, var(--ink) 16%, var(--surface)); }
 .close__head h2 { max-width: 16ch; }
 .close__name { margin-top: var(--s-8); font: 400 clamp(44px, 12.4vw, 176px)/.9 var(--font-display); letter-spacing: -0.05em; white-space: nowrap; }
 .legal { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--line); }
 @media (max-width: 639px) {
   .slab { padding: var(--s-7) var(--s-5) var(--s-5); }
-  .close__head .btn { flex: 1 1 100%; }
+  .close__head .btn-row, .close__head .btn { flex: 1 1 100%; }
 }
 
 /* ---------------------------------------------------------------- motion: the hero enters once; nothing moves on scroll */
@@ -271,6 +298,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <a href="#method">Method</a>
     </nav>
     <div class="nav__actions">
+      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (17 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">17</span></a>
       <a class="btn btn--primary" href="#standings">See the standings</a>
       <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
     </div>
@@ -283,7 +311,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. victory-fork, a public fork of VIctory, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Twenty-six open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T10:59:00Z">10:59 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Twenty-six open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T10:59:00Z" data-t="clock-day">10:59 UTC on 25 Nov</time><span id="ago"></span>. <button class="textbtn" type="button" data-tz aria-pressed="false" hidden>Show local time</button></span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,8 +319,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">10:59 UTC</span></p>
-          <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">victory-fork, AnyXboxX, klbf-lab, VIctory-Belobug-AMD, ztrx, VItoriaBr, victory-perf, ScarlettPort, omonkey, suri, CGBJ, VIctory</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">PercyScarlett, Scarlight, XCL, VIctory-macOS, five-star-recomp, Leonida Continued, OpenScarlett (Community Edition), Xbox2Windows, OpenScarlett, TuxBox, Port of the Americas, GTA6-BootTest, g6shim</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability, palmetto</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
+          <p class="frame__head"><span>Stages reached</span><time class="mono" datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time></p>
+          <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">victory-fork, AnyXboxX, klbf-lab, VIctory-Belobug-AMD, ztrx <span class="lad__more">and&nbsp;7&nbsp;more</span></span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">PercyScarlett, Scarlight, XCL, VIctory-macOS, five-star-recomp <span class="lad__more">and&nbsp;8&nbsp;more</span></span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability, palmetto</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T00:00:00Z">about a day and a half</span></p>
         </div>
       </div>
@@ -312,7 +340,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its maintainer merged a second batch of frame-rate work at 10:20&nbsp;UTC on 25 November: on an RTX 4070 the first room went from about 3.5 to 4&nbsp;frames a second to 4.5 to 5 by default and 6 to 7 with every new switch on, with no device loss in five runs and frame-rate dips still unexplained. Reports built on its code go further: an open pull request describes a 30-minute run at about 7.6&nbsp;frames a second on an RTX 4090, and ztrx reports the whole opening mission played in one session of more than 90&nbsp;minutes.</p>
-            <p class="small muted">Source: project README and commit notes, open pull requests measured by their authors, and builds that use its code. Changed <time datetime="2026-11-25T10:36:00Z">10:36 UTC</time>.</p>
+            <p class="small muted">Source: project README and commit notes, open pull requests measured by their authors, and builds that use its code. Changed <time datetime="2026-11-25T10:36:00Z" data-t="clock">10:36 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -324,7 +352,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Runs victory-fork with fifteen of that project&#x27;s pull requests at 5.3 to 6.9&nbsp;frames a second in the world on an RTX 4070 SUPER, with ray-traced lighting still off. Its maintainer reports every cutscene playing in full, at 7 to 8&nbsp;frames a second by the window caption against logged medians of 2 to 3 in one scripted run, and relays a contributor&#x27;s report of the first two missions completed in about 45&nbsp;minutes at about 2&nbsp;frames a second.</p>
-            <p class="small muted">Source: project README and run notes: the maintainer&#x27;s own measurements on one machine, and one contributor&#x27;s report that the maintainer relays. Changed <time datetime="2026-11-25T02:49:00Z">02:49 UTC</time>.</p>
+            <p class="small muted">Source: project README and run notes: the maintainer&#x27;s own measurements on one machine, and one contributor&#x27;s report that the maintainer relays. Changed <time datetime="2026-11-25T02:49:00Z" data-t="clock">02:49 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -336,7 +364,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the player in control from the opening mission to the start of the second at 5.7&nbsp;frames a second while playing and 7.3 standing still, on a Radeon RX 9070 XT at reduced resolution, with 74&nbsp;minutes in one session without a crash. It says rendering is mostly right, the second mission fails because the boat sits too low in the water, and the figures are self-reported from one machine.</p>
-            <p class="small muted">Source: project README: the maintainer&#x27;s own figures from one machine, with one tester&#x27;s report from a second card. Changed <time datetime="2026-11-25T10:59:00Z">10:59 UTC</time>.</p>
+            <p class="small muted">Source: project README: the maintainer&#x27;s own figures from one machine, with one tester&#x27;s report from a second card. Changed <time datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -348,7 +376,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the world lit with textures, people, vehicles, vegetation, water and sky at 3 to 5&nbsp;frames a second on a Radeon RX 9070 XT, about 3 while driving, with moving vehicles broken, distant trees missing and a flat stand-in for ray-traced light. PortWatch, whose owner reports having seen the build, says it looks close to the retail game, plays through missions and rarely crashes.</p>
-            <p class="small muted">Source: project README, tested on one machine, and PortWatch, whose owner reports having seen the build. Changed <time datetime="2026-11-25T10:59:00Z">10:59 UTC</time>.</p>
+            <p class="small muted">Source: project README, tested on one machine, and PortWatch, whose owner reports having seen the build. Changed <time datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -360,7 +388,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the whole opening mission playable on an RTX 3050 with 8&nbsp;GB, in one session of more than 1&nbsp;hour 30&nbsp;minutes without a crash, at 1 to 3&nbsp;frames a second with everything in shadow black. PortWatch says it verified the build going on into the next mission.</p>
-            <p class="small muted">Source: project README, and PortWatch, which first listed it as a private build. Changed <time datetime="2026-11-25T01:28:00Z">01:28 UTC</time>.</p>
+            <p class="small muted">Source: project README, and PortWatch, which first listed it as a private build. Changed <time datetime="2026-11-25T01:28:00Z" data-t="clock">01:28 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -372,7 +400,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README now reports the open world at 3.5 to 6&nbsp;frames a second on an RTX 5060 Ti with no driver timeouts, up from about 3, after taking victory-fork&#x27;s frame-rate work and community fixes, with water, vehicles, the HUD and subtitles working and shadowed areas still dark. PortWatch reports its live stream reaching the game&#x27;s second mission at up to 4&nbsp;frames a second, with poor rendering and few crashes.</p>
-            <p class="small muted">Source: project README, and PortWatch&#x27;s report of its live stream. Changed <time datetime="2026-11-25T10:16:00Z">10:16 UTC</time>.</p>
+            <p class="small muted">Source: project README, and PortWatch&#x27;s report of its live stream. Changed <time datetime="2026-11-25T10:16:00Z" data-t="clock">10:16 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -384,7 +412,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the opening mission&#x27;s interiors under player control at 9 to 14&nbsp;frames a second on an RTX 4070 SUPER at reduced resolution, and 4.5 to 6.5 in heavy scenes, with shadowed areas lit by stand-ins in place of the game&#x27;s ray tracing. The figures come from one machine, state no run length, and are the highest in play that any listed project reports.</p>
-            <p class="small muted">Source: project README: the maintainer&#x27;s own figures from one machine, not confirmed by anyone else. Changed <time datetime="2026-11-25T07:54:00Z">07:54 UTC</time>.</p>
+            <p class="small muted">Source: project README: the maintainer&#x27;s own figures from one machine, not confirmed by anyone else. Changed <time datetime="2026-11-25T07:54:00Z" data-t="clock">07:54 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -396,7 +424,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports an open-world title it does not name starting gameplay at about 4&nbsp;frames a second in the opening mission on an RTX 3060 at reduced resolution, up from 2.6, with a frozen overlay over the picture. It says speed is far from playable, nobody has played the mission end to end, and it is not yet verified playable.</p>
-            <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-25T10:36:00Z">10:36 UTC</time>.</p>
+            <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-25T10:36:00Z" data-t="clock">10:36 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -408,7 +436,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">PortWatch reports this build running at about 5&nbsp;frames a second in the opening prison scene, where a player can walk around slowly. It is built on victory-fork, and nobody outside can test it.</p>
-            <p class="small muted">Source: portWatch, which reports watching the work on live streams. Not the developer&#x27;s own statement. Changed <time datetime="2026-11-24T20:31:00Z">20:31 UTC</time>.</p>
+            <p class="small muted">Source: portWatch, which reports watching the work on live streams. Not the developer&#x27;s own statement. Changed <time datetime="2026-11-24T20:31:00Z" data-t="clock">20:31 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -420,7 +448,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">PortWatch reports this build at about 3&nbsp;frames a second in the first gameplay scene, with a picture it describes as close to the retail game and ahead of the other builds on the same code. Nobody outside can test it.</p>
-            <p class="small muted">Source: portWatch, which says it confirmed a player moving around. Not the developer&#x27;s own statement. Changed <time datetime="2026-11-24T22:43:00Z">22:43 UTC</time>.</p>
+            <p class="small muted">Source: portWatch, which says it confirmed a player moving around. Not the developer&#x27;s own statement. Changed <time datetime="2026-11-24T22:43:00Z" data-t="clock">22:43 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -432,7 +460,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Press reports put this build in the game world, where a player can walk, talk to characters and open the menu. It is unlit and very slow, the run with walking had a black screen, and nobody outside the group can test it.</p>
-            <p class="small muted">Source: portWatch, which says it checked that the build gets in game, and DSOGaming. Not the group&#x27;s own statement. Changed <time datetime="2026-11-24T13:10:00Z">13:10 UTC</time>.</p>
+            <p class="small muted">Source: portWatch, which says it checked that the build gets in game, and DSOGaming. Not the group&#x27;s own statement. Changed <time datetime="2026-11-24T13:10:00Z" data-t="clock">13:10 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -444,7 +472,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README, updated on 24 November, says the first mission&#x27;s world is drawn and shown with streets, buildings, vehicles and characters, at 1 to 2&nbsp;seconds a frame. Surfaces are unlit and a band of distant geometry is missing, and open pull requests report the world staying up for 6 to 8&nbsp;minutes.</p>
-            <p class="small muted">Source: project README, and open pull requests by contributors, each measured on one machine. Changed <time datetime="2026-11-24T21:58:00Z">21:58 UTC</time>.</p>
+            <p class="small muted">Source: project README, and open pull requests by contributors, each measured on one machine. Changed <time datetime="2026-11-24T21:58:00Z" data-t="clock">21:58 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -456,7 +484,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its v1.0, whose runtime is now built on VIctory, victory-fork and ScarlettPort, reaches the opening scene of a title it does not name, lit and textured, at about 2 to 3&nbsp;frames a second on an RTX 2060 SUPER at reduced resolution. It says speed is far from playable and shaded areas are too dark, and it reports nothing about control in the scene.</p>
-            <p class="small muted">Source: project README and its guide, measured on one machine. Changed <time datetime="2026-11-25T10:16:00Z">10:16 UTC</time>.</p>
+            <p class="small muted">Source: project README and its guide, measured on one machine. Changed <time datetime="2026-11-25T10:16:00Z" data-t="clock">10:16 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -468,7 +496,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README now calls it a port for Linux on AMD RX 9000 cards first, and says a candidate build on victory-fork&#x27;s code renders the opening mission&#x27;s world lit at 2 to 3&nbsp;frames a second at best on an RX 9070 XT, with menus, controller and sound working and shadowed areas dark. That build is not merged into its main branch, where the world is still mostly black at under 1&nbsp;frame a second, and the README says it is not playable.</p>
-            <p class="small muted">Source: project README, measured on one machine. The lit picture comes from a candidate build that is not yet merged into its main branch. Changed <time datetime="2026-11-25T03:10:00Z">03:10 UTC</time>.</p>
+            <p class="small muted">Source: project README, measured on one machine. The lit picture comes from a candidate build that is not yet merged into its main branch. Changed <time datetime="2026-11-25T03:10:00Z" data-t="clock">03:10 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -480,7 +508,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README says that with a branch not yet merged, the newer retail game it does not name goes on from its menus into its 3D world at about 5&nbsp;frames a second on an RTX 5090, and it has withdrawn an earlier figure of 14 that averaged in the menus and loading. It says the game is not playable: the picture of the world is incomplete and it does not keep running there for long, and it does not say whether the player has control.</p>
-            <p class="small muted">Source: project README and its commit notes. The run into the world is on a branch that is not merged. Changed <time datetime="2026-11-25T06:42:00Z">06:42 UTC</time>.</p>
+            <p class="small muted">Source: project README and its commit notes. The run into the world is on a branch that is not merged. Changed <time datetime="2026-11-25T06:42:00Z" data-t="clock">06:42 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -492,7 +520,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README says the game world has now appeared on screen on one tester&#x27;s M3 Max, in a run that the game&#x27;s own watchdog then stopped, with frames taking up to 28&nbsp;seconds while shaders compiled. It reports nothing about control there and says the game is not playable on the Mac.</p>
-            <p class="small muted">Source: project README, from testers&#x27; reports on five Macs. Changed <time datetime="2026-11-25T08:38:00Z">08:38 UTC</time>.</p>
+            <p class="small muted">Source: project README, from testers&#x27; reports on five Macs. Changed <time datetime="2026-11-25T08:38:00Z" data-t="clock">08:38 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -504,7 +532,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Shows every first-run screen, loads story mode and plays the opening cutscene&#x27;s art, credit cards, dialogue and sound at a steady 30&nbsp;frames a second. Its status page says the opening shot&#x27;s 3D world now reaches the screen through the final composite, in red only, while it tests the rest of the lighting data.</p>
-            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-25T10:59:00Z">10:59 UTC</time>.</p>
+            <p class="small muted">Source: project status page. Changed <time datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -516,7 +544,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README says the game boots on Windows and on Linux through Proton, shows the launch movie, the first-run pages and the landing prompt, which respond to a controller, then runs the story load to its end and enters what it calls the world phase. It says no frame of the world has been verified on any test machine and that nothing is playable.</p>
-            <p class="small muted">Source: project README and its test report, from about 80 starts on a Linux machine and runs on a Windows machine. Changed <time datetime="2026-11-25T07:27:00Z">07:27 UTC</time>.</p>
+            <p class="small muted">Source: project README and its test report, from about 80 starts on a Linux machine and runs on a Windows machine. Changed <time datetime="2026-11-25T07:27:00Z" data-t="clock">07:27 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -528,7 +556,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Runs a newer retail game it does not name through its first-boot settings and legal screens, start screen and 4K intro video with sound, at a steady 30&nbsp;frames a second. It stops while the scene behind the menus streams in.</p>
-            <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-24T06:54:00Z">06:54 UTC</time>.</p>
+            <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-24T06:54:00Z" data-t="clock">06:54 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -540,7 +568,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">With a modified diagnostic copy of the executable and a debugger set to continue past assertions, a run on an RTX 4060 laptop played the intro video, got through setup and reached loading. The project says start-up of the original executable is unverified, and it does not name the title.</p>
-            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T07:33:00Z">07:33 UTC</time>.</p>
+            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T07:33:00Z" data-t="clock">07:33 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -552,7 +580,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its commits report the game passing all of its start-up tasks, drawing its interface and playing its video in full colour at 4K on a 4&nbsp;GB GTX 1650 Ti. Nothing past the video is reported.</p>
-            <p class="small muted">Source: commit messages, tested on one machine. Changed <time datetime="2026-11-24T06:03:00Z">06:03 UTC</time>.</p>
+            <p class="small muted">Source: commit messages, tested on one machine. Changed <time datetime="2026-11-24T06:03:00Z" data-t="clock">06:03 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -564,7 +592,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">On Linux under Proton, recorded runs on two machines got into the game by its own state, the longer for 12&nbsp;minutes 45&nbsp;seconds with only loading artwork on screen, and both crashed. It says the game is not playable: many shaders are unsupported, and the picture, input and frame times there are not yet checked.</p>
-            <p class="small muted">Source: project README, progress page and run records from two machines. Changed <time datetime="2026-11-25T07:54:00Z">07:54 UTC</time>.</p>
+            <p class="small muted">Source: project README, progress page and run records from two machines. Changed <time datetime="2026-11-25T07:54:00Z" data-t="clock">07:54 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -576,7 +604,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the press-start screen, the first-time setup pages and loading-screen artwork drawing on Linux under Proton on a Radeon RX 9070 XT, with a button press starting the boot flow. It says the world load runs without a crash but the world draws black.</p>
-            <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-25T10:59:00Z">10:59 UTC</time>.</p>
+            <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -588,7 +616,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Boots the game, runs its frame loop and draws its first interface screen, the start-screen prompt bar, through translated shaders. Compute shaders, tiled textures and blending are unfinished.</p>
-            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T01:09:00Z">01:09 UTC</time>.</p>
+            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T01:09:00Z" data-t="clock">01:09 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -600,7 +628,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Renders at about 12&nbsp;frames a second up to the account picker of a Series title it identifies only by number. Its next goals are an offline user and the main menu.</p>
-            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T18:34:00Z">18:34 UTC</time>.</p>
+            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T18:34:00Z" data-t="clock">18:34 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -612,7 +640,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Halted since 23 November, when its creator stepped away, saying Rockstar had the project&#x27;s Discord server taken down and, PC Gamer reports, sharing the notice Discord sent. On 24 November GitHub published a Take-Two takedown notice against its repository and applied it to all 3,007 repositories in its fork network.</p>
-            <p class="small muted">Source: gitHub&#x27;s published takedown notices, press reports of the creator&#x27;s public posts, and git checks from this page. Changed <time datetime="2026-11-24T18:34:00Z">18:34 UTC</time>.</p>
+            <p class="small muted">Source: gitHub&#x27;s published takedown notices, press reports of the creator&#x27;s public posts, and git checks from this page. Changed <time datetime="2026-11-24T18:34:00Z" data-t="clock">18:34 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -624,7 +652,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Presents its first frames about half a minute after starting a retail title it does not name. Its graphics device is sometimes lost during those frames, and nothing it draws has been seen.</p>
-            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T03:20:00Z">03:20 UTC</time>.</p>
+            <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T03:20:00Z" data-t="clock">03:20 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -636,7 +664,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">Its README reports the title booting, executing its draws and presenting frames in its own window, with the picture still black. Its commit notes say the repository descends from the project network that received Take-Two&#x27;s notice, and that it removed the game&#x27;s and that project&#x27;s names in response.</p>
-            <p class="small muted">Source: project README and commit notes, and git checks from this page. Changed <time datetime="2026-11-25T01:49:00Z">01:49 UTC</time>.</p>
+            <p class="small muted">Source: project README and commit notes, and git checks from this page. Changed <time datetime="2026-11-25T01:49:00Z" data-t="clock">01:49 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -648,12 +676,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
           <div class="board__where">
             <p class="measure">A contributor&#x27;s notes reportedly reach the game window and graphics device. The repository has had no commits since 11:58&nbsp;UTC.</p>
-            <p class="small muted">Source: second-hand, from a community project list. Changed <time datetime="2026-11-23T16:56:00Z">16:56 UTC</time>.</p>
+            <p class="small muted">Source: second-hand, from a community project list. Changed <time datetime="2026-11-23T16:56:00Z" data-t="clock">16:56 UTC</time>.</p>
           </div>
         </li>
       </ol>
       <h3 class="sub">Also watched</h3>
-      <ul class="pairs"><li><span class="rows__name">Palmwave</span><p>Was a fork of XCL, then from 21:12&nbsp;UTC on 24 November a renamed copy of victory-fork with a few commits of its own. Its repository stopped answering at about 22:15&nbsp;UTC, with no published takedown notice naming it and the reason not known.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/JMAN730/project-flamingo" rel="noopener">project-flamingo</a></span><p>A fork of VIctory with its own pull-request queue, which Scarlight&#x27;s README points NVIDIA and Windows users to. Its README still carries VIctory&#x27;s status from 23 November and reports no results of its own.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span><p>Now creates the game&#x27;s window, graphics device, command queues and lists, with memory code ported from Leonida. No frame yet.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span><p>Runs other Xbox Series games and has published work on a later title&#x27;s first frames, without naming it. It bundled a copy of the VIctory engine for about 20&nbsp;minutes on 24 November, removed it, and now ports parts of VIctory&#x27;s texture code with credit.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span><p>The PlayStation route. Blocked: no PS5 build of the game is public.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/daeken/XSXEmu" rel="noopener">XSXEmu</a></span><p>A Rust emulator for Xbox Series titles on Apple Silicon that does not use Wine. Its README now says the game&#x27;s own code starts under Rosetta and opens its archives, and that it has not yet created a graphics device, run a shader or produced a frame.</p></li></ul>
+      <ul class="pairs"><li><span class="rows__name">Palmwave</span><p>Was a fork of XCL, then from 21:12&nbsp;UTC on 24 November a renamed copy of victory-fork with a few commits of its own. Its repository stopped answering at about 22:15&nbsp;UTC, with no published takedown notice naming it and the reason not known.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/JMAN730/project-flamingo" rel="noopener">project-flamingo</a></span><p>A fork of VIctory with its own pull-request queue, which Scarlight&#x27;s README points NVIDIA and Windows users to. Its README still carries VIctory&#x27;s status from 23 November and reports no results of its own.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span><p>Now creates the game&#x27;s window, graphics device, command queues and lists, with memory code ported from Leonida. No frame yet.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span><p>Runs other Xbox Series games and has published work on a later title&#x27;s first frames, without naming it. It bundled a copy of the VIctory engine for about 20&nbsp;minutes on 24 November, removed it, and now ports parts of VIctory&#x27;s texture code with credit.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span><p>The PlayStation route. Blocked: no PS5 build of the game is public.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/daeken/XSXEmu" rel="noopener">XSXEmu</a></span><p>A Rust emulator for Xbox Series titles on Apple Silicon that does not use Wine. Its README now says the game&#x27;s own code starts under Rosetta and opens its archives, and that it has not yet created a graphics device, run a shader or produced a frame.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/mkr2tl/xenstride-public" rel="noopener">Xenstride</a></span><p>A derivative of XCL that changes how graphics pipelines are scheduled and built ahead of time. Its status page says gameplay is not demonstrated: its tests run on a software renderer or synthetic inputs, and a newer retail title&#x27;s world load still ends in the game&#x27;s own watchdog.</p></li></ul>
       <p class="small muted measure idle">Also checked, with no GTA VI work published: <a class="name" href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a> and <a class="name" href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a>.</p>
     </div>
   </section>
@@ -674,7 +702,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           <ul class="rows"><li><span class="rows__name">By Thu 26 Nov</span><span class="rows__value">about 5 in 10</span></li><li><span class="rows__name">By Mon 30 Nov</span><span class="rows__value">over 7 in 10</span></li><li><span class="rows__name">By Christmas</span><span class="rows__value">over 8 in 10</span></li><li><span class="rows__name">It stalls until an official PC version</span><span class="rows__value">under 2 in 10</span></li></ul>
           <h3 class="t-card">Milestones</h3>
           <ul class="rows"><li><span class="rows__name">Recognisable picture</span><span class="rows__value">reached, Mon 23 Nov</span></li><li><span class="rows__name">In-game with control</span><span class="rows__value">reached, Tue 24 Nov</span></li><li><span class="rows__name">Playable</span><span class="rows__value">about a day and a half, Thu 26 Nov</span></li></ul>
-          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="2026-11-25T10:36:00Z">10:36 UTC on 25 Nov</time>: Pulled in by a quarter of a day, to about a day and a half. victory-fork merged its second batch of frame-rate work at 10:20&nbsp;UTC with a measured gain: on its RTX 4070 the first room went from about 3.5 to 4&nbsp;frames a second to 4.5 to 5 by default and 6 to 7 with every new switch on, with no device loss in five runs. A measured gain merged into victory-fork is a condition this page published at 09:17&nbsp;UTC. The gain is on a mid-range card, far short of 20, and frame-rate dips remain, which is why the change is small.</p>
+          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="2026-11-25T10:36:00Z" data-t="clock-day">10:36 UTC on 25 Nov</time>: Pulled in by a quarter of a day, to about a day and a half. victory-fork merged its second batch of frame-rate work at 10:20&nbsp;UTC with a measured gain: on its RTX 4070 the first room went from about 3.5 to 4&nbsp;frames a second to 4.5 to 5 by default and 6 to 7 with every new switch on, with no device loss in five runs. A measured gain merged into victory-fork is a condition this page published at 09:17&nbsp;UTC. The gain is on a mid-range card, far short of 20, and frame-rate dips remain, which is why the change is small.</p>
         </div>
       </div>
     </div>
@@ -685,28 +713,28 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T10:59:00Z">10:59</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T10:59:00Z" data-t="log" data-pre="">10:59</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three more public projects join the table, two of them in-game</h3>
             <ul class="points measure"><li>klbf-lab, a build of VIctory and victory-fork, reports the player in control from the opening mission to the start of the second on a Radeon RX 9070 XT at reduced resolution: 5.7&nbsp;frames a second while playing, 7.3 standing still over 72&nbsp;minutes, and 74&nbsp;minutes in one session without a crash. Its README calls the figures self-reported from one machine. It enters at stage 6 in third place.</li><li>VIctory-Belobug-AMD, a fork of VIctory for AMD Radeon cards published at 09:41&nbsp;UTC, reports the world lit and textured at 3 to 5&nbsp;frames a second on a Radeon RX 9070 XT, with moving vehicles broken and a flat stand-in for ray-traced light. PortWatch, whose owner reports having seen it, ranks it first on its own scale and says it looks close to the retail game. Its README says it is not playable yet. It enters at stage 6 in fourth place.</li><li>Port of the Americas, a Linux layer, joins at stage 5: its press-start screen, setup pages and loading screens draw, and its world is still black. five-star-recomp&#x27;s status page says the opening shot&#x27;s 3D world now reaches the screen through the final composite, in red only. XCL merged 35 pull requests into its main branch between 10:40 and 10:51&nbsp;UTC with no change to its stated status.</li><li>The estimate does not move. None of the new figures reaches 10&nbsp;frames a second in play, and they sit in the same 3 to 7 range as the rest of the field. They add to the evidence that the picture and stability are no longer what holds a playable build back.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T10:36:00Z">10:36</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T10:36:00Z" data-t="log" data-pre="">10:36</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">victory-fork merges a measured frame-rate gain, and the estimate moves a quarter of a day earlier</h3>
             <ul class="points measure"><li>victory-fork&#x27;s maintainer merged a second batch of frame-rate work at 10:20&nbsp;UTC. On the maintainer&#x27;s RTX 4070 the first room went from about 3.5 to 4&nbsp;frames a second to 4.5 to 5 by default, and to 6 to 7 with every new switch on. The change that lost the graphics device earlier is now in, off by default, with five runs since its fix and no loss.</li><li>The notes say frame-rate dips remain with no known cause, and that the merged tree&#x27;s whole test suite was not run. The figures come from one machine and one room.</li><li>The estimate moves a quarter of a day earlier, to late on Thu 26 Nov, about a day and a half away. A measured gain merged into victory-fork is one of the conditions published at 09:17&nbsp;UTC. The gain is on a mid-range card and far short of 20, so the move is small. It moves earlier again on 10 or more in play from a long run or a second machine, and later if the gain is withdrawn as unstable or a takedown notice names one of these projects.</li><li>Builds that take victory-fork&#x27;s code are picking the work up. ScarlettPort now reports about 4&nbsp;frames a second in the opening mission on an RTX 3060, up from 2.6, with a frozen overlay over the picture, and VItoriaBr reported up to 6 on an RTX 5060 Ti at 10:10&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T10:16:00Z">10:16</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T10:16:00Z" data-t="log" data-pre="">10:16</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VItoriaBr reports up to 6 frames a second, and PercyScarlett reaches the opening scene</h3>
             <ul class="points measure"><li>VItoriaBr&#x27;s README, changed at 10:10&nbsp;UTC, reports the open world at 3.5 to 6&nbsp;frames a second on an RTX 5060 Ti with no driver timeouts, where it gave about 3 before. It had merged victory-fork&#x27;s 07:30&nbsp;frame-rate work and several community fixes from 09:31&nbsp;UTC. It is the first tracked build to publish a gain since that work landed, on a mid-range card, and it is still below the 7.6 measured in a long run on an RTX 4090.</li><li>PercyScarlett released a v1.0 whose runtime is now built on VIctory, victory-fork and ScarlettPort. Its README says it reaches the opening scene of a title it does not name, lit and textured, at about 2 to 3&nbsp;frames a second on an RTX 2060 SUPER at reduced resolution, and that speed is far from playable. It says nothing about control there, so it stays at stage 5 and moves to the top of that group, 11th.</li><li>The estimate does not move. Neither figure reaches 10&nbsp;frames a second, nobody has confirmed victory-perf&#x27;s, and victory-fork&#x27;s own main branch has not moved since 07:30&nbsp;UTC. The conditions published at 09:17&nbsp;UTC stand.</li><li>News check: no statement from Rockstar or Take-Two since the build leaked, and no notice naming another project. VideoCardz has picked up the story, reporting gameplay at 2 to 5&nbsp;frames a second in unofficial builds and saying projects are moving into private development after the takedown. Of the public repositories this page tests, all but Palmwave still answer.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T09:17:00Z">09:17</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T09:17:00Z" data-t="log" data-pre="">09:17</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Estimate held at its mid-morning review</h3>
             <ul class="points measure"><li>The mid-morning review leaves the estimate at early on Fri 27 Nov. This was the check for moving it a quarter of a day later if speed had not moved. It has started to: victory-fork merged its first frame-rate work at 07:30&nbsp;UTC, and its notes name the cost that remains and a change that more than halves it but is not yet stable.</li><li>It does not move earlier either. Nothing measured in a long run has beaten about 7.6&nbsp;frames a second since 22:15&nbsp;UTC on 24 November. victory-perf&#x27;s 9 to 14 in interiors is still one unconfirmed report, the only other reduced-resolution measurement is 6.1 to 6.4 on an RTX 3090 Ti, and XCL has reported neither control nor a longer run.</li><li>What moves it next. Earlier by a quarter of a day: a second report of 10 or more in play, a confirmation of victory-perf&#x27;s figures by someone else, or a measured gain in frame time merged into victory-fork. Later by a quarter of a day: those figures withdrawn or contradicted, or none of the three by the review at about 13:30&nbsp;UTC.</li><li>News check: nothing new. Neither Rockstar nor Take-Two has commented since the build leaked. Today&#x27;s coverage, heise&#x27;s included, reports the Leonida takedown from the notice GitHub published. No notice names another project, and no outlet has covered or tested victory-perf.</li></ul>
@@ -717,763 +745,763 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         <summary><span class="link">See 109 earlier updates</span></summary>
         <ol class="log">
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T08:38:00Z">08:38</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T08:38:00Z" data-t="log" data-pre="">08:38</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory-macOS reports the game world on screen on a Mac</h3>
             <ul class="points measure"><li>VIctory-macOS&#x27;s README, changed at 08:25&nbsp;UTC, says that in a later run on one tester&#x27;s M3 Max the game world appeared on screen before the game&#x27;s own watchdog stopped it, with frames taking up to 28&nbsp;seconds while shaders compiled. It is this project&#x27;s first report of the world on screen on a Mac. It says nothing about control, so it stays at stage 5 and moves up one place to 13th, and the README still says the game is not playable on the Mac.</li><li>Nothing has moved at the front. victory-fork&#x27;s main branch is unchanged since 07:30&nbsp;UTC, VIctory&#x27;s since 01:36&nbsp;UTC and XCL&#x27;s world branch since 07:45&nbsp;UTC. New pull-request measurements on victory-fork stay at about 4&nbsp;frames a second on an RTX 3090 Ti, and victory-perf&#x27;s figures are still unconfirmed.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T08:17:00Z">08:17</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T08:17:00Z" data-t="log" data-pre="">08:17</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">ScarlettPort joins the table, and a second reduced-resolution measurement comes in under 7 frames a second</h3>
             <ul class="points measure"><li>ScarlettPort, a public build of victory-fork&#x27;s code that this page had not listed, reports the lit world at about 3 to 4&nbsp;frames a second on an RTX 3060 at reduced resolution, with the keyboard walking the character. Its README does not name the title and says nobody has played a session end to end. It enters the table at stage 6 in sixth place. victory-perf credits it for some of its code.</li><li>A victory-fork pull request measured the game&#x27;s lower-resolution mode on an RTX 3090 Ti: 6.1 to 6.4&nbsp;frames a second, steady, in the opening mission, against 4.7 to 4.8 at full resolution. That supports the direction of victory-perf&#x27;s report but not its 9 to 14, which nobody else has confirmed. The estimate does not move.</li><li>News check: neither Rockstar nor Take-Two has commented since the build leaked. TweakTown&#x27;s report that the Leonida takedown is confirmed rests on the notice GitHub published, and no notice names another project. GameGPU describes footage, credited to a post on X, of boat gameplay on open water at 3 to 5&nbsp;frames a second, which matches what builds listed here report. No outlet has tested or covered victory-perf.</li><li>XCL&#x27;s unmerged world branch gained 17 commits on memory mapping and device handling, with no new frame rate, run length or word on control. victory-fork&#x27;s main branch has not moved since 07:30&nbsp;UTC and VIctory&#x27;s since 01:36&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T07:54:00Z">07:54</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T07:54:00Z" data-t="log" data-pre="">07:54</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A new fork reports 9 to 14 frames a second in interiors, and victory-fork merges its first frame-rate work</h3>
             <ul class="points measure"><li>victory-perf, a fork of victory-fork published on the morning of 25 November, reports the opening mission&#x27;s interiors under player control at 9 to 14&nbsp;frames a second on an RTX 4070 SUPER, and 4.5 to 6.5 in heavy scenes. The figures are its maintainer&#x27;s own, from one machine at reduced resolution, with no run length given and shadows lit by stand-ins, and its heavy-scene figure matches what AnyXboxX already reports on the same card. It enters the table at stage 6 in fifth place until someone else confirms it. It calls those scenes playable, which they are not by this page&#x27;s bar of 20&nbsp;frames a second held for 30&nbsp;minutes.</li><li>victory-fork&#x27;s maintainer merged the fork&#x27;s first frame-rate work at 07:30&nbsp;UTC. One processor-side pass fell from 70 to 220 ms a frame to about 3, but the frame is still 250 to 380 ms on an RTX 4070 because, in the README&#x27;s words, &quot;the card is the limit now&quot;. A change the maintainer tried cut the card&#x27;s time from 100 to 150 ms a frame to 35 to 80, lost the graphics device twice and was left out.</li><li>The estimate stays at early on Fri 27 Nov. These are the first signs of speed moving since 22:15&nbsp;UTC on 24 November, but the best figure from a long run is still about 7.6&nbsp;frames a second and the new ones are unconfirmed. A second report of 10 or more in play, or a measured gain in frame time merged into victory-fork, would move it earlier. The mid-morning check will weigh these reports before moving it either way.</li><li>Also on 25 November: VIctory-macOS reports the picture showing on one tester&#x27;s M3 Max as far as the opening title card, where the game froze, and enters the table at stage 5. five-star-recomp says the opening shot&#x27;s 3D world now draws into an off-screen buffer and does not reach the screen yet. TuxBox published a second machine&#x27;s run record, in which the game reported itself running for 12&nbsp;minutes 45&nbsp;seconds with loading artwork on screen before a crash.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T07:27:00Z">07:27</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T07:27:00Z" data-t="log" data-pre="">07:27</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida Continued joins the table, and the estimate holds at its review</h3>
             <ul class="points measure"><li>Leonida Continued, a continuation of the halted Leonida that this page has listed under Watching as leonida (ubiquitarianism), changed its README at 07:04&nbsp;UTC. It now says the game boots on Windows and on Linux through Proton, shows the launch movie, the first-run pages and the landing prompt, which respond to a controller, then runs the story load to its end and enters what it calls the world phase.</li><li>By its own account no frame of the world has been verified on any test machine and nothing is playable. Its test report covers about 80 starts on a Linux machine with an RTX 4070 and runs on a Windows machine with an RTX 4070 Ti, and lists a lost graphics device at the start of the world among the things that stop it. It enters the table at stage 5, recognisable picture.</li><li>Forecast review: the estimate stays at early on Fri 27 Nov. No speed gain has been merged in the VIctory family, the best figure measured in play is still about 7.6&nbsp;frames a second, and new measurements in victory-fork pull requests come in at about 4.3 at best on an RTX 3090 Ti and an RTX 4090. The check for moving it a quarter of a day later comes mid-morning in Europe, at the review due at about 09:30&nbsp;UTC.</li><li>News check: nothing new. Neither Rockstar nor Take-Two has commented since the build leaked, no outlet has confirmed the reported notices over footage with Take-Two, and GitHub&#x27;s list shows no notice naming another project. Palmwave&#x27;s repository is still not answering.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T07:02:00Z">07:02</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T07:02:00Z" data-t="log" data-pre="">07:02</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">victory-fork: the first room renders right, and the frame rate is where it was</h3>
             <ul class="points measure"><li>victory-fork&#x27;s maintainer merged another batch at 06:46&nbsp;UTC. The README now says the first room renders right on the test machine, with walls, textures, people and lamps, at 190 to 450 ms a frame, which is 2 to 5&nbsp;frames a second. In its words, the picture work has caught up and the frame rate has not.</li><li>The notes credit two fixes taken from VIctory and from pull requests, and say the processor now compares 25&nbsp;MB a frame for shader writes where it compared 550 to 710&nbsp;MB. A change that saves 3.1&nbsp;GB of the card&#x27;s memory ran on a card for the first time and stays off by default. One five-minute run had no device loss, and the merged tree&#x27;s test suites were not run.</li><li>Its headline status still says 2.5 to 4&nbsp;frames a second with shadowed areas black. The best figure measured in play is unchanged at about 7.6&nbsp;frames a second, so the estimate does not move.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T06:42:00Z">06:42</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T06:42:00Z" data-t="log" data-pre="">06:42</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL corrects its figure: about 5 frames a second in the world, not 14</h3>
             <ul class="points measure"><li>XCL&#x27;s README, changed at 06:23&nbsp;UTC, now gives about 5&nbsp;frames a second in the 3D world on an RTX 5090. Its commit note says the 14 it published at 04:53&nbsp;UTC was the average of a whole 5-minute run with menus and loading included, and that the world ran at 5 to 6. It has lowered its own progress estimate from about 65 to about 60 percent.</li><li>This page reported the 14 at 05:01&nbsp;UTC as a whole-run average and did not count it as a frame rate in play. XCL&#x27;s world figure now sits alongside the VIctory family&#x27;s 3 to 7.6. The rest of its report stands: the picture of the world is incomplete, runs there are short, and it does not say whether the player has control.</li><li>Elsewhere: victory-fork&#x27;s main branch has not moved since 05:44&nbsp;UTC, and VIctory&#x27;s has not moved since 01:36&nbsp;UTC. No new takedown notice has appeared in GitHub&#x27;s list.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T06:22:00Z">06:22</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T06:22:00Z" data-t="log" data-pre="">06:22</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Take-Two is reported to be sending takedown notices over footage of unofficial builds</h3>
             <ul class="points measure"><li>VGTimes and Twisted Voxel report, citing a post on X by the reporter Ben, that Take-Two is sending takedown notices over social media posts that show footage of unofficial PC builds. By VGTimes&#x27; account, one notice says the port is being developed from leaked copies of Rockstar&#x27;s files and that the footage contains Rockstar&#x27;s characters, environments and other material.</li><li>Neither report names a platform, a number of notices or a project, and neither carries a statement from Take-Two. It is the first reported action since the notice against Leonida. No new notice has appeared in GitHub&#x27;s public list.</li><li>Neither company has commented since the build leaked. Before launch, Take-Two&#x27;s chief executive said piracy would be met with legal and technical measures, and called unofficial PC ports made with AI a creative concern more than a financial one.</li><li>Projects: XCL&#x27;s world branch has 12 more commits and no new figures. Two victory-fork pull requests report every ray-traced shadow program now translating, which is not yet ray-traced lighting in the game. Speed is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T06:01:00Z">06:01</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T06:01:00Z" data-t="log" data-pre="">06:01</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">victory-fork&#x27;s main branch gets memory fixes; no change in speed</h3>
             <ul class="points measure"><li>victory-fork&#x27;s maintainer merged memory fixes at 05:44&nbsp;UTC. A write to a memory page that the game shows at several addresses now reaches every copy of it, which the notes say happened 0.8 to 1.0 million times in a five-minute run. The first room now has its walls in the later frames of four runs out of four, against two of five before.</li><li>The notes report five 5-minute runs on an RTX 4070 without a device loss and give no new frame rate. They say the test card&#x27;s memory is full from the first frame of the world, and that a fix for it is written but switched off and not yet run on a card.</li><li>Nothing else moved. VIctory&#x27;s main branch is unchanged since 01:36&nbsp;UTC, XCL&#x27;s world branch is still unmerged, and the best figure measured in play is still about 7.6&nbsp;frames a second.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T05:22:00Z">05:22</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T05:22:00Z" data-t="log" data-pre="">05:22</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Estimate reviewed and held at about 2 days; testers&#x27; reports back XCL&#x27;s route into the world</h3>
             <ul class="points measure"><li>Routine review of the estimate at 05:22&nbsp;UTC: unchanged at about 2&nbsp;days. XCL&#x27;s report adds a second, independent route into the game&#x27;s world, but it gives no frame rate in play, no player control and no long runs. In the VIctory family, the best figure measured in play has been about 7.6&nbsp;frames a second for over seven hours.</li><li>A community-run board that tallies testers&#x27; reports on XCL&#x27;s pull requests, last updated at 00:44&nbsp;UTC, lists five reports of the world on screen and one of a tester playing by hand at about 6.9&nbsp;frames a second in a short run. The board says these counts are not confirmed.</li><li>What would move the estimate: earlier if XCL reports control, a frame rate in the world or a longer run, or if a speed gain is merged in the VIctory family; later if neither has happened by mid-morning in Europe.</li><li>News check: no statement from Rockstar or Take-Two, no takedown notice naming another project, and no press coverage yet of XCL&#x27;s report or of builds past the opening mission.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T05:01:00Z">05:01</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T05:01:00Z" data-t="log" data-pre="">05:01</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL reports its 3D world, at 14 frames a second on average over a short run</h3>
             <ul class="points measure"><li>XCL&#x27;s README, updated at 04:53&nbsp;UTC, says that with a branch not yet merged the newer retail game it does not name goes on from its menus into its 3D world on an RTX 5090. It gives 4,307&nbsp;frames in a 300-second run, which is 14&nbsp;frames a second on average, and about 5 in the heaviest scene.</li><li>The README does not split that run between the menus, which run at 30&nbsp;frames a second, and the world, so 14 is not a frame rate in play. It calls the game not playable: the picture of the world is incomplete, with its minimap and other mesh pipelines refused, and it does not keep running there for long. It does not say whether the player has control.</li><li>XCL is a separate code base from VIctory and its forks, so this is a second route into the game&#x27;s world. It stays at stage 5 here until it reports control, and moves ahead of five-star-recomp.</li><li>The estimate is unchanged for now and is due a routine review at about 05:30&nbsp;UTC. The best figure measured in play is still about 7.6&nbsp;frames a second, from the VIctory family.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T04:20:00Z">04:20</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T04:20:00Z" data-t="log" data-pre="">04:20</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Speed work in the pull-request queues: a large gain on a synthetic test, smaller ones measured in the game</h3>
             <ul class="points measure"><li>An open pull request on victory-fork changes how the layer tracks the memory the game writes, and reports a drop from 390 ms to 9.8 ms a frame on an idle RTX 4090. That figure comes from a test program its author wrote, not from the game: the author says no game files were on the test PC. Its effect on the game has not been measured.</li><li>Measured in the game: an open pull request on VIctory cuts the graphics time of a world frame on an RX 9070 XT under Proton from 600 to 720 ms down to 150 to 310 ms, and one on the fork takes an RTX 3070 laptop card in Series S mode from 353 ms to 305 ms a frame.</li><li>None of these is merged, and none is a new top speed: the best measured figure in play is still about 7.6&nbsp;frames a second. News check at 04:20&nbsp;UTC: no statement from Rockstar or Take-Two, and no new takedown notice.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T04:00:00Z">04:00</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T04:00:00Z" data-t="log" data-pre="">04:00</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XSXEmu starts the game&#x27;s code on a Mac without Wine; correction on TuxBox&#x27;s stage</h3>
             <ul class="points measure"><li>XSXEmu&#x27;s README now says the game&#x27;s own code runs under Rosetta on Apple Silicon, starts its worker threads and opens its archives. It has not created a graphics device, run a shader or produced a frame, and it says no game is playable. It stays on the watch list.</li><li>Correction: the 02:09&nbsp;UTC update said TuxBox stays at stage 4. TuxBox has been at stage 5 on this page since 23 November, when it showed the player-selection prompt, and the standings showed stage 5 throughout. The earlier line is fixed.</li><li>Nothing new on speed. victory-fork&#x27;s main branch has not changed since 03:19&nbsp;UTC, and VIctory&#x27;s has not changed since 01:36&nbsp;UTC. More than 510 pull requests have now been opened against the fork, and a new one reports and fixes a fault that ran parts of the ray-tracing structure builder up to 64 times more than asked.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T03:32:00Z">03:32</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T03:32:00Z" data-t="log" data-pre="">03:32</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">victory-fork&#x27;s main branch moves again; estimate reviewed and held at about 2 days</h3>
             <ul class="points measure"><li>victory-fork&#x27;s maintainer merged texture fixes at 03:19&nbsp;UTC, the first change to its main branch in two hours. The notes say the first room now shows its walls and the characters&#x27; textures on a first launch, and put speed at about 3 to 5&nbsp;frames a second. They add that more than half of the card&#x27;s texture memory is held for detail levels the game has not loaded, which is the next job.</li><li>Routine review of the estimate at 03:30&nbsp;UTC: unchanged at about 2&nbsp;days. Stability has three reports beyond the bar, so speed is the gap. The best measured figure in play has been about 7.6&nbsp;frames a second for over five hours, most of them overnight in Europe, while more than 500 pull requests have now been opened against the fork. That is too short a pause to move the estimate later, and nothing has happened to move it earlier.</li><li>One clue on speed for common cards: an open pull request on the fork measures the graphics time per frame in the first room at about three times higher on an 8&nbsp;GB card once its texture memory runs out.</li><li>Press: no statement from Rockstar or Take-Two has appeared in any coverage found. The Verge reported the Leonida takedown on 24 November, and by Make Tech Easier&#x27;s account it names VIctory and its forks as the projects in front. Notebookcheck relays unverified Reddit claims that more Discord servers have been removed.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T03:10:00Z">03:10</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T03:10:00Z" data-t="log" data-pre="">03:10</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Scarlight narrows to Linux on AMD and restates its speed; a fork joins the watch list</h3>
             <ul class="points measure"><li>Scarlight&#x27;s README now describes it as a port for Linux on AMD RX 9000 cards first, and says it does not support NVIDIA cards or native Windows. Its candidate build, on victory-fork&#x27;s code, shows the opening mission&#x27;s world lit at 2 to 3&nbsp;frames a second at best on an RX 9070 XT, with many runs at 1 to 2. The earlier README said about 1 to 4. The build is not merged into its main branch.</li><li>Added to the watch list: project-flamingo, a fork of VIctory that Scarlight&#x27;s README points NVIDIA and Windows users to. Its README still carries VIctory&#x27;s status from 23 November and reports no results of its own.</li><li>An open pull request against victory-fork reports all 52 programs of the game&#x27;s ray-tracing structure builder translating on an RTX 3060 laptop card, up from 49. Its author says the builder then writes outside its buffers and the game faults, so ray-traced lighting is still missing.</li><li>PortWatch now ranks ztrx first on its board, saying the build has not crashed between the opening mission and the second. Speed is unchanged everywhere: about 7.6&nbsp;frames a second at best in play.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T02:49:00Z">02:49</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T02:49:00Z" data-t="log" data-pre="">02:49</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX&#x27;s maintainer sees 7 to 8 frames a second in cutscenes</h3>
             <ul class="points measure"><li>AnyXboxX&#x27;s README now says its maintainer saw a steady 7 to 8&nbsp;frames a second during cutscenes, with peaks at 9, read from the window caption on an RTX 4070 SUPER. In one scripted run the medians measured from the log were lower, at 2 to 3&nbsp;frames a second depending on the scene.</li><li>These are cutscene figures, and the two methods disagree. Its measured figure for the world under player control is unchanged at 5.3 to 6.9, so the top measured speed in play stays at about 7.6&nbsp;frames a second and the estimate does not move.</li><li>Nothing else changed in status. victory-fork&#x27;s main branch has not moved since 01:22&nbsp;UTC while more than 470 pull requests have been opened against it, VIctory&#x27;s main branch has not moved since 01:36&nbsp;UTC, and Palmwave remains unreachable.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T02:29:00Z">02:29</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T02:29:00Z" data-t="log" data-pre="">02:29</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX relays a report of the first two missions completed</h3>
             <ul class="points measure"><li>AnyXboxX&#x27;s README now says a contributor played for about 45&nbsp;minutes at about 2&nbsp;frames a second and completed the first two missions. The maintainer relays the report and did not measure it from the project&#x27;s own logs.</li><li>The maintainer reports every cutscene playing in full, and measures 5.3 to 6.9&nbsp;frames a second on an RTX 4070 SUPER with its newest mix of victory-fork and fifteen of that project&#x27;s pull requests. The mix no longer needs the Microsoft library it tried earlier. Ray-traced lighting is still off, and some graphics are missing in places.</li><li>It is the furthest into the game that any public project has reported. Speed at the top is unchanged: about 7.6&nbsp;frames a second at best, against the 20 that playable needs, so the estimate stays where it is.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T02:09:00Z">02:09</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T02:09:00Z" data-t="log" data-pre="">02:09</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">TuxBox gets into the story intro on Linux</h3>
             <ul class="points measure"><li>TuxBox, which is not built on VIctory, reports a Linux run under Proton getting into the story intro by the game&#x27;s own state after 9&nbsp;minutes 41&nbsp;seconds, then crashing. Until now it had stopped at the player selection prompt.</li><li>It says the game is not playable: many shaders are unsupported, and the picture, input and frame times in the intro are not yet checked. It stays at stage 5 here, where it has been since it showed the player-selection prompt on 23 November. This line first said stage 4 and was corrected at 04:00&nbsp;UTC on 25 November.</li><li>No new speed figures elsewhere. More than 430 pull requests have now been opened against victory-fork, whose main branch has not changed since 01:22&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T01:49:00Z">01:49</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T01:49:00Z" data-t="log" data-pre="">01:49</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory&#x27;s main branch gets a speed change; correction on palmetto&#x27;s origins</h3>
             <ul class="points measure"><li>VIctory&#x27;s maintainer merged a change at 01:36&nbsp;UTC that stops the runtime re-checking memory the game&#x27;s shaders did not write. Its notes put the old cost at 0.45 to 0.7&nbsp;seconds of a 1.5 to 1.7&nbsp;second frame in the opening cutscene. The README&#x27;s figure of 1 to 2&nbsp;seconds a frame is not yet updated.</li><li>Correction: palmetto&#x27;s commit history, public again since about 01:45&nbsp;UTC, says the repository descends from the project network that received Take-Two&#x27;s notice, and that references to the game and to that project were removed in response. This page said at 22:22&nbsp;UTC that its files did not show that origin.</li><li>five-star-recomp reports most of the opening cutscene&#x27;s 3D passes now running. Its 3D world is still not visible, and long runs end in a GPU hang.</li><li>Open pull requests on victory-fork and VIctory report fixes that let the game&#x27;s ray-tracing structure builder run on NVIDIA cards and that restore material colours that came out black. Neither is merged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T01:28:00Z">01:28</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T01:28:00Z" data-t="log" data-pre="">01:28</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A public build reports the whole opening mission played, in a session of over 90 minutes</h3>
             <ul class="points measure"><li>ztrx, a build of victory-fork&#x27;s code published at 01:11&nbsp;UTC on 25 November, reports in its README the opening mission playable from start to finish on an RTX 3050 with 8&nbsp;GB, in one session of more than 1&nbsp;hour 30&nbsp;minutes without a crash. It runs at 1 to 3&nbsp;frames a second, and anything in shadow is black.</li><li>It is the first public code to make that claim and the longest session reported by anyone. PortWatch, which first listed it as a private build, says it verified the build going on into the next mission.</li><li>A second public build of the same code, VItoriaBr, joins the standings. Its README reports the opening scenes at about 3&nbsp;frames a second on an RTX 5060 Ti and says the world is not yet playable, while PortWatch reports its live stream reaching the second mission at up to 4&nbsp;frames a second.</li><li>victory-fork&#x27;s main branch now runs at about 4.3&nbsp;frames a second on an RTX 4070 by default, up from about 2.5, and lights its first room for the first time. The estimate moves in by a quarter of a day, to about 2&nbsp;days: stability now has two long reports, and speed is the only gap left.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T01:06:00Z">01:06</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T01:06:00Z" data-t="log" data-pre="">01:06</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Estimate reviewed and left at about 2½ days</h3>
             <ul class="points measure"><li>The estimate was reviewed at 01:05&nbsp;UTC on 25 November and is unchanged: about 2½ days, around midday on Fri 27 Nov. The highest reported rate has not moved since 22:15&nbsp;UTC, about 7.6&nbsp;frames a second on an RTX 4090, while mid-range cards have caught up to 6 or 7. Playable needs 20.</li><li>PortWatch now says it has verified one private build playing through the opening mission into the next, at about 2&nbsp;frames a second with poor rendering. That speaks to how well the game runs, not how fast, so it does not move the estimate.</li><li>No takedown notice names a front-runner. Palmwave&#x27;s repository has been unreachable for nearly three hours, for reasons that are not known.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T00:46:00Z">00:46</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T00:46:00Z" data-t="log" data-pre="">00:46</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">PortWatch reports private builds getting past the opening mission</h3>
             <ul class="points measure"><li>PortWatch&#x27;s owner reports that several private builds now play through the opening mission and load the next one, the furthest into the story anyone has reported. The report names no builds and cites no recordings, and says most appear to build on victory-fork.</li><li>By the same report most of them still render the world badly and vehicles mostly do not work, so the next mission cannot be played properly. PortWatch has not changed its scores, and no public project claims this.</li><li>victory-fork&#x27;s main branch gained a fix for characters&#x27; faces and hair that came out black or pale in about three launches of four. The cause was textures uploaded before the game had filled them. Its README is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T00:26:00Z">00:26</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T00:26:00Z" data-t="log" data-pre="">00:26</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory merges about 130 pull requests, and Scarlight shows a lit picture on Linux</h3>
             <ul class="points measure"><li>VIctory&#x27;s maintainer merged about 130 pull requests into its main branch between 00:20 and 00:23&nbsp;UTC on 25 November, the first movement there in nearly three hours. Its status line is unchanged: the world is drawn at 1 to 2&nbsp;seconds a frame, unlit. The lighting and speed changes this page has reported from its open pull requests were not in the batch.</li><li>victory-fork&#x27;s main branch changed for the first time since 20:45&nbsp;UTC, taking two contributors&#x27; branches: a fix for AMD cards and support for more shader instructions. Its README is unchanged.</li><li>New entry: Scarlight, based on VIctory and aimed at AMD cards on Linux. Its README reports the opening scenes lit at about 1 to 4&nbsp;frames a second on an RX 9070 XT under Proton, on a branch built on victory-fork. Its main branch still shows a mostly black world.</li><li>Decrypt reports that Rockstar did not respond to its request for comment on the removal of Discord servers. No outlet carries a statement from Rockstar or Take-Two.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-25T00:04:00Z">00:04</time> <span>25 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-25T00:04:00Z" data-t="log" data-pre="">00:04</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX measures up to 7.1 frames a second with an optional mode</h3>
             <ul class="points measure"><li>AnyXboxX added an optional mode that hands texture layout to Microsoft&#x27;s own library, which the user must supply from a development kit and which is not in its repository. With it the maintainer measures 5.4 to 7.1&nbsp;frames a second on an RTX 4070 SUPER, against 5.1 to 5.6 without, over about 3&nbsp;minutes 40&nbsp;seconds with no device loss.</li><li>The highest rate reported anywhere is still about 7.6&nbsp;frames a second, on an RTX 4090 in an open pull request on victory-fork. More than 280 pull requests have now been opened against the fork, whose own main branch is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T23:46:00Z">23:46</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T23:46:00Z" data-t="log" data-pre="">23:46</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX&#x27;s newest mix gets the indirect-light shaders running</h3>
             <ul class="points measure"><li>AnyXboxX now runs victory-fork with eight of that project&#x27;s open pull requests. The added one makes the two shaders behind the game&#x27;s indirect light translate, the ones without which everything outside direct light stayed black, and its maintainer reports their pipelines created and bound in game. Its notes do not yet claim a picture with lit shadows.</li><li>It measures 4.8 to 5.4&nbsp;frames a second on an RTX 4070 SUPER, over about 4&nbsp;minutes 20&nbsp;seconds without a device loss. Ray-traced lighting is still absent.</li><li>An open pull request on victory-fork cuts a frame with the ray-tracing structure builder switched on from 3.3&nbsp;seconds to 0.55&nbsp;seconds on an RTX 5080. More than 250 pull requests have now been opened against the fork, whose own main branch is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T23:25:00Z">23:25</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T23:25:00Z" data-t="log" data-pre="">23:25</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">An 8 GB card reaches 6 to 7 frames a second in a pull request on the fork</h3>
             <ul class="points measure"><li>An open pull request on victory-fork reports 5-minute runs in the world on an 8&nbsp;GB graphics card at about 155 milliseconds a frame, 6 to 7&nbsp;frames a second, up from 4 to 4.5, with no crash. It is the author&#x27;s own measurement and is not merged.</li><li>That is close to the 7.6&nbsp;frames a second reported on an RTX 4090 an hour earlier. More than 210 pull requests have now been opened against the fork, whose own main branch has not changed in effect since 20:45&nbsp;UTC.</li><li>PC Gamer&#x27;s explainer on the race, published at 21:47&nbsp;UTC, says a recompilation could run within days and warns that many circulating clips look fake. It quotes no statement from Rockstar or Take-Two.</li><li>XValkyrie published a bundled copy of the VIctory engine at about 23:00&nbsp;UTC and had removed it from its history 20&nbsp;minutes later.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T22:43:00Z">22:43</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T22:43:00Z" data-t="log" data-pre="">22:43</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A 30-minute run is reported on the fork, and the estimate moves in to about 2½ days</h3>
             <ul class="points measure"><li>An open pull request on victory-fork reports a 30-minute run in the world without an error or crash on an RTX 4090, at about 132 milliseconds a frame, or about 7.6&nbsp;frames a second. It is the author&#x27;s own measurement, the change is not merged, and it does not say how much of the run was under player control.</li><li>It is the longest session and the highest frame rate reported so far. Playable here needs 20&nbsp;frames a second for 30&nbsp;minutes, so the gap left is speed, and the estimate moves in by a quarter of a day.</li><li>Other open pull requests on the fork report the world drawing lit on an AMD RX 9070 XT, the lower-resolution Series S mode drawing the opening cutscene on an 8&nbsp;GB RTX 3050 at 0.4 to 1.2&nbsp;seconds a frame, and 36 of 40 ray-tracing programs translating on an RTX 5080.</li><li>PortWatch lists a new private build, suri, built on victory-fork: about 3&nbsp;frames a second in the first scene, with a picture PortWatch calls close to the retail game. It joins the standings here as a private build, on PortWatch&#x27;s word.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T22:22:00Z">22:22</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T22:22:00Z" data-t="log" data-pre="">22:22</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Correction: palmetto is back, with a new history</h3>
             <ul class="points measure"><li>palmetto&#x27;s repository answered again by 22:17&nbsp;UTC, after about 25&nbsp;minutes offline. Its history was replaced: five commits starting at 22:07&nbsp;UTC where there had been 37, with folders renamed. Its link here is restored.</li><li>Its reported state is unchanged: the title boots, executes its draws and presents frames in its own window, and the picture is black.</li><li>This page had called it a continuation of Leonida, following a community list. The project&#x27;s own files do not say that, so the label is removed.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T22:22:00Z">22:22</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T22:22:00Z" data-t="log" data-pre="">22:22</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave stops answering; ray-tracing and lighting fixes arrive as pull requests</h3>
             <ul class="points measure"><li>Palmwave&#x27;s repository stopped answering between 21:52 and 22:17&nbsp;UTC. No published takedown notice names it and the reason is not known. palmetto&#x27;s return shows that a repository can go quiet without a takedown.</li><li>An open pull request on victory-fork reports four of the five shadow-ray programs and the ray-tracing structure builder now translating on graphics cards where they had been kept off. It claims no picture yet, and the fork&#x27;s README is unchanged.</li><li>An open pull request on VIctory traces the black, unlit world on NVIDIA cards to buffer reads that return zeros, and proposes a fix. It is not merged.</li><li>Tom&#x27;s Hardware, heise online and Dexerto now cover Leonida&#x27;s shutdown. Tom&#x27;s Hardware and tbreak quote no statement from Rockstar, Take-Two, Discord or GitHub, and tbreak, citing Decrypt, reports a GTA VI modding Discord server removed and others locked down. GitHub published three more takedown notices, none about these projects.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T21:58:00Z">21:58</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T21:58:00Z" data-t="log" data-pre="">21:58</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory&#x27;s own code now shows the world, and the fork is reported on AMD cards</h3>
             <ul class="points measure"><li>VIctory&#x27;s README, updated at 21:36&nbsp;UTC, now says the first mission&#x27;s world is drawn and shown, with streets, buildings, vehicles and characters, at 1 to 2&nbsp;seconds a frame. Surfaces are unlit and some geometry is missing. It lists nearly all of the world&#x27;s shaders as translated.</li><li>AnyXboxX now runs victory-fork with seven of that project&#x27;s open pull requests added. Its maintainer measures about 5.4&nbsp;frames a second on an RTX 4070 SUPER and calls it the best picture so far. An earlier mix reached about 6.6 with a setting since turned off, after a report that it makes characters&#x27; skin disappear.</li><li>Open pull requests on victory-fork report it on AMD cards for the first time: 15&nbsp;minutes in the first scene at 3.4 to 4.3&nbsp;frames a second on an RX 7800 XT, and the world drawn on an RX 7900 XT. These are their authors&#x27; own measurements. One measures 5 to 8&nbsp;seconds a frame under Linux.</li><li>palmetto&#x27;s repository stopped answering at about 21:50&nbsp;UTC. Its last commit, at 21:29&nbsp;UTC, added a content policy and a contact path for rights holders. No published takedown notice names it, and the reason is not known.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T21:33:00Z">21:33</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T21:33:00Z" data-t="log" data-pre="">21:33</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave drops its XCL-based code for a renamed copy of the fork</h3>
             <ul class="points measure"><li>At 21:12&nbsp;UTC Palmwave replaced its main branch with a single commit whose files match victory-fork&#x27;s one for one, with the names changed. Its README now repeats the fork&#x27;s status table and figures, and names neither VIctory nor the fork.</li><li>Its XCL-based work, which an hour earlier had drawn the first mission&#x27;s world into its buffers, is no longer on that branch.</li><li>It gives no measurements of its own on the new code, so it moves from the standings to the watch list.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T21:33:00Z">21:33</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T21:33:00Z" data-t="log" data-pre="">21:33</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">The press reports the Take-Two notice; five-star-recomp&#x27;s cutscene reaches 30 frames a second</h3>
             <ul class="points measure"><li>GameRiv has reported GitHub&#x27;s publication of the Take-Two notice against Leonida and its forks. It quotes no statement from Take-Two, Rockstar or GitHub.</li><li>five-star-recomp now plays the opening cutscene&#x27;s art, credit cards, dialogue and sound at a steady 30&nbsp;frames a second, up from about 1.5, after removing a slow memory query from its busiest code. The cutscene&#x27;s 3D world does not draw yet.</li><li>XCL merged a fix for a freeze about 180&nbsp;seconds into the world. Its status line is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T21:13:00Z">21:13</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T21:13:00Z" data-t="log" data-pre="">21:13</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Correction: the build listed as hyphennn is the fork itself, now named victory-fork</h3>
             <ul class="points measure"><li>PortWatch now says the private build it listed as hyphennn is the fork&#x27;s own, shown on its developer&#x27;s live streams. The separate entry added here at 20:51&nbsp;UTC is withdrawn and merged into the fork&#x27;s.</li><li>The fork has been renamed from victory-gta6 to victory-fork. Its old address redirects.</li><li>PortWatch reports those streams showing the first gameplay scene with ray-traced lighting, detailed textures and hair at about 3&nbsp;frames a second. The fork&#x27;s README still lists shadows as black.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T21:13:00Z">21:13</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T21:13:00Z" data-t="log" data-pre="">21:13</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Longer and faster runs on the fork; Palmwave draws the world</h3>
             <ul class="points measure"><li>AnyXboxX now measures up to 5.4&nbsp;frames a second on the fork, on an RTX 4070 SUPER. Its notes relay a third-party report of 21.5&nbsp;minutes without a fault on an RTX 4060 Ti, which neither AnyXboxX nor this page has checked.</li><li>Palmwave, on XCL&#x27;s code, now draws the first mission&#x27;s world into its internal buffers: street, ground, trees, people and a car, shown through a debug view under a fixed light. The picture the game presents is still almost one dark colour, at 2 to 5&nbsp;seconds a frame, with several passes patched off.</li><li>Palmwave moves ahead of XCL, whose own status line still says gameplay is not reached.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T20:51:00Z">20:51</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T20:51:00Z" data-t="log" data-pre="">20:51</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">The fork drops the game&#x27;s name as more builds pile onto it</h3>
             <ul class="points measure"><li>victory-gta6 removed the game&#x27;s name from its code and documents at 20:45&nbsp;UTC; they now say &quot;the title&quot;. Its address is unchanged. Take-Two&#x27;s notice against Leonida had pointed to that project&#x27;s explicit focus on the game.</li><li>The fork also merged an outside fix that lets the shaders behind its indirect lighting translate. Its README has not yet said whether shadows are now lit.</li><li>PortWatch lists a second private build on the fork, by a developer it calls hyphennn and shown on live streams: under player control in the opening scenes, with better lighting than other builds and no measured frame rate.</li><li>five-star-recomp, which has its own code, now finishes the story load and starts the opening cutscene, at under 2&nbsp;frames a second.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T20:31:00Z">20:31</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T20:31:00Z" data-t="log" data-pre="">20:31</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A third build runs on the fork, at about 5 frames a second</h3>
             <ul class="points measure"><li>PortWatch reports a private build by a developer it calls omonkey, built on victory-gta6 and shown on live streams: about 5&nbsp;frames a second in the opening prison scene, with a player walking around slowly. It has no public code.</li><li>PortWatch now ranks victory-gta6 first among projects with public code, and calls its claim self-reported.</li><li>victory-gta6&#x27;s README now gives 2.5 to 4&nbsp;frames a second, after clean-up passes that removed about 43% of the instructions in its translated shaders.</li><li>five-star-recomp&#x27;s story load now runs a full 300&nbsp;seconds without a fault, though it does not finish. palmetto&#x27;s presented frames are black, which its notes trace to textures not yet filled from the game&#x27;s memory.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T19:51:00Z">19:51</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T19:51:00Z" data-t="log" data-pre="">19:51</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A second developer confirms the fork: 13 minutes of play at about 4 frames a second</h3>
             <ul class="points measure"><li>AnyXboxX has switched to the victory-gta6 fork. Its maintainer reports playing for about 13&nbsp;minutes at about 4&nbsp;frames a second on an RTX 4070 SUPER, with the world on screen, the character under control and the first characters answering.</li><li>The session ended when the graphics device was lost, and an earlier cold start crashed while loading. The fork&#x27;s own README says a device loss in its newest commits has since been traced and fixed.</li><li>That is the first confirmation of the fork&#x27;s claim from a second machine. The fork moves to first place, ahead of the private CGBJ build, and AnyXboxX to second.</li><li>The time-to-playable estimate comes in by a day, to about 3&nbsp;days. The one notice GitHub published since the last check concerns an unrelated project.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T19:31:00Z">19:31</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T19:31:00Z" data-t="log" data-pre="">19:31</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">palmetto presents its first frames</h3>
             <ul class="points measure"><li>palmetto, a solo continuation of Leonida, now executes the game&#x27;s draws without a graphics fault and presents frames in a window, measured over a 150-second run. It moves from the watch list into the standings at stage 4.</li><li>The maintainer&#x27;s notes say the data behind those draws is still a stand-in, so no picture of the game is claimed.</li><li>five-star-recomp now loads the game&#x27;s saved settings, so later boots skip the first-run screens and reach the story load in about 39&nbsp;seconds.</li><li>No new takedown notice has appeared, and all 19 repositories this page tests still answer. victory-gta6&#x27;s claim has no outside confirmation yet.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T19:10:00Z">19:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T19:10:00Z" data-t="log" data-pre="">19:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A public VIctory fork reports the first gameplay scene with textures and sunlight</h3>
             <ul class="points measure"><li>victory-gta6, a fork of VIctory first published at 18:02&nbsp;UTC, says in its README that the game&#x27;s first gameplay scene renders with characters, textures, sky and sunlit surfaces, and that the HUD, pause menu and controller input work.</li><li>It measures 2 to 4&nbsp;frames a second on an RTX 4070, against 3 to 6&nbsp;seconds a frame when the work began. Everything the sun does not hit directly is black, because the game&#x27;s ray-traced lighting does not run yet.</li><li>The claim is unverified: one machine, no pictures, and the README says its newest commits lose the graphics device shortly after start. It enters the standings second, behind CGBJ, whose in-game state a third party has checked.</li><li>It is the first public code to claim a textured view of the world. The community project list found it.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T19:10:00Z">19:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T19:10:00Z" data-t="log" data-pre="">19:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL moves to a new GitHub organisation; the press has yet to report the notice</h3>
             <ul class="points measure"><li>XCL&#x27;s repository now sits under an organisation account, xcl-dev, and its old address redirects there. Nothing in the repository says when or why it moved.</li><li>GameGPU reports a post on X, which it attributes to XCL&#x27;s creator, saying Rockstar and Discord are moving against the project and that a private backup chat server exists. That is a claim, and nothing confirms it.</li><li>PC Gamer reports that at least two of Leonida&#x27;s leads have quit, while others try to carry the work on. No outlet found by 19:10&nbsp;UTC had reported the GitHub notice itself.</li><li>five-star-recomp traced runaway loops in two of its three stuck compute programs to a translator bug and fixed it.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T18:34:00Z">18:34</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T18:34:00Z" data-t="log" data-pre="">18:34</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">GitHub publishes a Take-Two takedown notice against Leonida and its forks</h3>
             <ul class="points measure"><li>GitHub&#x27;s public list of takedown notices now carries one from Take-Two, dated 24 November, against Leonida&#x27;s repository. GitHub says it applied it to the whole fork network, 3,007 repositories.</li><li>It is the first notice to name a GTA VI project. Take-Two calls the leaked build stolen game files and argues that a project made to run it facilitates infringement even when users supply the files themselves.</li><li>The four Leonida forks this page watched all stopped answering between 18:11 and 18:30&nbsp;UTC. Two continuations of its code that are not GitHub forks still answer.</li><li>No notice names VIctory, XCL or any other project in the standings, and all of them still answer.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T18:34:00Z">18:34</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T18:34:00Z" data-t="log" data-pre="">18:34</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">g6shim reaches the account picker; palmetto records its draws</h3>
             <ul class="points measure"><li>g6shim&#x27;s README says its target title now renders at about 12&nbsp;frames a second up to its account picker. It moves from the watch list into the standings at stage 5.</li><li>palmetto now builds all 10,241 of the game&#x27;s graphics pipelines and records about 42,700 draws in a 150-second run. None of the draws executes yet, and no frame is presented.</li><li>XCL has merged the start of a shader path that writes DXIL directly, without the standard compiler. five-star-recomp has an optional one of its own, which it measures at 5 to 20 times faster.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T17:53:00Z">17:53</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T17:53:00Z" data-t="log" data-pre="">17:53</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp fixes its memory corruption</h3>
             <ul class="points measure"><li>five-star-recomp says the memory corruption in its story load is fixed. A translator bug had made a culling pass write its counts to the wrong place, and a boot now runs past 200&nbsp;seconds.</li><li>Its new stop is the game&#x27;s own hang check, at about 200&nbsp;seconds, because graphics frames take too long during the load. Three compute programs still run their loops to the safety cap.</li><li>An open VIctory pull request ports XCL&#x27;s way of running 64-lane compute shaders on cards with 32 lanes. It is a first cut, off by default, and claims no in-game result.</li><li>VIctory&#x27;s main branch has had no commit since 09:53&nbsp;UTC, while more than 1,000 pull requests have been opened against it. Contributors are now bundling groups of them and testing the bundles together.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T17:33:00Z">17:33</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T17:33:00Z" data-t="log" data-pre="">17:33</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX measures 3.2 frames a second and narrows down the black picture</h3>
             <ul class="points measure"><li>AnyXboxX&#x27;s notes for the evening of 24 November give about 3.2&nbsp;frames a second in the world when the game runs in its Series S mode, which renders at 1280x720, against 2.0 to 2.4 in Series X mode. Both are on its local branch, on an RTX 4070 SUPER.</li><li>The same notes say the world&#x27;s geometry and the cutscene&#x27;s characters are present in internal buffers, while the final picture is one flat tint that darkens over time, with subtitles on top.</li><li>The cause it gives: about 379 draw calls start with empty arguments, because the graphics passes that fill them in are not translated yet.</li><li>five-star-recomp has named the pass that writes over game memory during its story load, an instance-culling pass. Its notes say the fault is not fixed yet.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T17:14:00Z">17:14</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T17:14:00Z" data-t="log" data-pre="">17:14</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A VIctory pull request holds the world for six minutes on an NVIDIA card</h3>
             <ul class="points measure"><li>An open VIctory pull request reports more than 6&nbsp;minutes in game without a crash on an NVIDIA RTX 4080 Super, with the settings menu opening. Before it, the same card lost its graphics device within 10&nbsp;seconds of entering the world.</li><li>The change marks the game&#x27;s 64-lane shaders so that a card with 32 lanes refuses them cleanly, where before they ran, looped forever and hung the card. The pull request does not say what the picture shows.</li><li>Another open pull request stops graphics memory filling up on Linux, which had ended runs after a few minutes in the world. Use fell from 15&nbsp;GB to about 4.6&nbsp;GB.</li><li>Late addition: PortWatch reported early on 24 November that XCL told it the game runs at 30&nbsp;frames a second in game, without saying whether that means menus or gameplay. XCL&#x27;s README still says gameplay is not reached, and PortWatch has not moved XCL up.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T16:32:00Z">16:32</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T16:32:00Z" data-t="log" data-pre="">16:32</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave narrows its claim</h3>
             <ul class="points measure"><li>Palmwave&#x27;s rewritten status says only part of the world&#x27;s geometry is drawn: poles, power lines, fences and bike racks, with about 91% of the depth buffer still empty. The entry here at 15:51 said the street was drawn.</li><li>Its world frames now take about 10&nbsp;seconds, lighting shows in about 1.5% of its target, and it has not tested controls in the world.</li><li>AnyXboxX&#x27;s author has sent the change behind its tenfold speed gain to VIctory as a pull request.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T16:13:00Z">16:13</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T16:13:00Z" data-t="log" data-pre="">16:13</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp gets past the game&#x27;s hang check</h3>
             <ul class="points measure"><li>five-star-recomp says the game&#x27;s 30-second hang check no longer ends its story load, and a memory blow-up from the graphics driver&#x27;s shader compiler is contained. Runs now stop about 130&nbsp;seconds in, when graphics work corrupts game memory again.</li><li>XCL&#x27;s main branch is taking merges again after two quiet hours. Its status line has not changed.</li><li>VGC and Eurogamer now cover Leonida&#x27;s shutdown. Rockstar and Take-Two have still said nothing, and no takedown notice names a GTA VI project.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T15:51:00Z">15:51</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T15:51:00Z" data-t="log" data-pre="">15:51</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX reports a controllable character; Palmwave draws the world&#x27;s geometry</h3>
             <ul class="points measure"><li>AnyXboxX says a local branch reaches the world with a controllable character. The game&#x27;s movement tutorial shows over a 3D image that is still black.</li><li>That branch runs at about 2.4&nbsp;frames a second on an RTX 4070 SUPER, up from 0.2 this morning, after it removed several per-frame costs. About 170 shaders are still untranslated in game, down from 456.</li><li>Palmwave now draws the first mission&#x27;s street into its internal buffers and stays in the world for 3&nbsp;minutes. Its screen is still one flat colour, because the lighting passes run out of order, and a frame takes 12 to 19&nbsp;seconds.</li><li>AnyXboxX moves to stage 6. Three builds now report the game world under control or on screen: one private, one in an open pull request, and this one.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T15:08:00Z">15:08</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T15:08:00Z" data-t="log" data-pre="">15:08</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A lit, textured scene on a Mac; public code reports a player walking</h3>
             <ul class="points measure"><li>A Reddit post shows a VIctory build running under CrossOver on an M5 Max Mac: bare grey geometry at 4&nbsp;frames a second, then about six hours later a textured, sunlit prison yard with characters. Its author says matching the console&#x27;s picture is proving hard.</li><li>An open VIctory pull request reports a similar view from public code. Under Proton on Linux the world ran 8&nbsp;minutes without a graphics fault, its geometry showed through a debug view, and a player could walk the first mission&#x27;s street.</li><li>VIctory moves to stage 6 on that report. Its own README has not changed and still calls the scene dark.</li><li>The estimate moves in by half a day, to about the morning of Sat 28 Nov.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T14:14:00Z">14:14</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T14:14:00Z" data-t="log" data-pre="">14:14</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp clears its memory fault; press reports more chat servers gone</h3>
             <ul class="points measure"><li>five-star-recomp says the memory corruption and graphics hangs in its story load are fixed. The game now ends itself late in the load, most likely through its own hang check while shaders are still compiling.</li><li>VGTimes reports that the VIctory team&#x27;s Discord server was blocked, without saying by whom, and that XCL&#x27;s team deleted its own group chat. Rockstar has not commented.</li><li>VIctory&#x27;s public repository has had no commit since 09:53&nbsp;UTC, while the private build based on it moves ahead.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T13:31:00Z">13:31</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T13:31:00Z" data-t="log" data-pre="">13:31</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three more projects on the watch list</h3>
             <ul class="points measure"><li>Two continuations of Leonida are active. One keeps its full history and says the game does not boot yet. The other, palmetto, reports the game reaching its own render code on an RTX 4090 with no frame.</li><li>g6shim, a new set of replacement system libraries, reports the game starting and stopping where graphics begin.</li><li>Nothing changed at the front in the last 20&nbsp;minutes.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T13:10:00Z">13:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T13:10:00Z" data-t="log" data-pre="">13:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A private build is in the game world with a player moving</h3>
             <ul class="points measure"><li>PortWatch reports that CGBJ, a private group building on VIctory with some of XCL&#x27;s work, has the game in its world. A player can walk, talk to characters and open the menu.</li><li>It is far from playable. A 77-second video shows the opening scenes in flat colours without lighting, the run with walking had a black screen, and it runs very slowly.</li><li>PortWatch says it checked that the build gets in game. The code is private, so nobody outside the group can test it, and no public project has shown a player moving.</li><li>The estimate now marks in-game as reached. Playable stays at about the evening of Sat 28 Nov.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T12:28:00Z">12:28</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T12:28:00Z" data-t="log" data-pre="">12:28</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp reaches the story intro&#x27;s title card</h3>
             <ul class="points measure"><li>On one run, five-star-recomp loaded story mode and showed the story intro&#x27;s title card before stopping. Its other runs stop earlier.</li><li>Its notes blame graphics work that writes past its buffers into the game&#x27;s own memory, probably because the console&#x27;s bounds checks are not applied yet.</li><li>Three separate code bases have now shown that card: VIctory&#x27;s, XCL&#x27;s through Palmwave, and five-star-recomp&#x27;s. None of them draws the scene after it in public code.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T12:10:00Z">12:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T12:10:00Z" data-t="log" data-pre="">12:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Press names a private build behind the in-game footage</h3>
             <ul class="points measure"><li>DSOGaming reports that a private build called CGBJ, based on VIctory with some of XCL&#x27;s work, has reached in-game. It has no public code or download.</li><li>That matches the stream footage logged at 11:10&nbsp;UTC, which X accounts had described as the VIctory team&#x27;s. Which description is right is not settled.</li><li>No public repository shows a visible world yet. Palmwave&#x27;s copy of XCL now decodes the game&#x27;s textures, and it is still chasing the bad geometry behind its blank frames.</li><li>GamesRadar now covers Leonida&#x27;s shutdown. No outlet reports a statement from Rockstar or Take-Two, and reports of wider Discord takedowns rest on Reddit posts.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T11:49:00Z">11:49</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T11:49:00Z" data-t="log" data-pre="">11:49</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave shows the first mission&#x27;s opening card</h3>
             <ul class="points measure"><li>Palmwave now presents the first mission&#x27;s opening card, its text over a plain background, before world frames that are still a single flat colour.</li><li>Its notes trace the empty picture to the world&#x27;s geometry. Through XCL&#x27;s mesh path the depth buffer receives thin needle-shaped triangles in place of the scene.</li><li>five-star-recomp now decodes every one of the game&#x27;s texture formats exactly, given decoding tables the user supplies, and its loader hands the game real texture data in place of placeholders.</li><li>VIctory has had no commit for two hours, and the stream footage of a lit scene is still unconfirmed by any repository.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T11:30:00Z">11:30</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T11:30:00Z" data-t="log" data-pre="">11:30</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Palmwave puts world frames on screen, with nothing in them yet</h3>
             <ul class="points measure"><li>Palmwave, the XCL fork, now loads the world in about 84&nbsp;seconds and presents its frames. The picture is a flat background colour, and each frame takes from 18&nbsp;seconds to 2&nbsp;minutes of graphics work.</li><li>It got there on an RTX 5080 with the game&#x27;s hang check and two of its lighting passes patched off, and with shaders cached from earlier runs.</li><li>Its notes blame the slowness on 4.4&nbsp;GB of the game&#x27;s graphics memory sitting in system memory, where one pass took 431 ms against 0.45 ms in video memory.</li><li>No repository has confirmed the footage of a lit scene from the VIctory stream, and VIctory&#x27;s README is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T11:10:00Z">11:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T11:10:00Z" data-t="log" data-pre="">11:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Reports of limits on the projects&#x27; chat servers and streams</h3>
             <ul class="points measure"><li>X accounts following the projects say VIctory&#x27;s Discord server was banned and its stream on Kick was ended, and that the team now streams elsewhere. Neither VIctory nor the press has confirmed this.</li><li>XCL&#x27;s Discord is closed to new members. A moderator&#x27;s message relayed on X says Discord limited the server.</li><li>Every tracked GitHub repository still answers, and GitHub lists no notice against any of them.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T11:10:00Z">11:10</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T11:10:00Z" data-t="log" data-pre="">11:10</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Footage shows a partly lit scene from the game</h3>
             <ul class="points measure"><li>A clip relayed on X from a live stream shows a dim interior with a character in it, at about 3&nbsp;frames a second. Accounts following the projects say the stream is the VIctory team&#x27;s, and VideoCardz also reports first 3D scenes.</li><li>No project&#x27;s repository reports this yet, and VIctory&#x27;s README still calls the scene dark. Treat it as unverified.</li><li>The in-game step of the estimate moves in to about a day. The playable estimate is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T10:48:00Z">10:48</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T10:48:00Z" data-t="log" data-pre="">10:48</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL takes on VIctory&#x27;s texture decoder</h3>
             <ul class="points measure"><li>XCL merged decoding for six of the console&#x27;s compressed texture formats at 10:38&nbsp;UTC. Its notes say the code is a port of VIctory&#x27;s, used with that author&#x27;s permission.</li><li>XCL&#x27;s own status line is unchanged: gameplay not reached, and its fix for the refused mesh pipelines is still an open pull request.</li><li>Kotaku now covers the race. No outlet reports a statement from Rockstar or Take-Two about these projects, and GitHub lists no notice against any of them.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T10:27:00Z">10:27</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T10:27:00Z" data-t="log" data-pre="">10:27</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A VIctory build stays in the world for 5 minutes</h3>
             <ul class="points measure"><li>AnyXboxX now builds on VIctory, with 24 of VIctory&#x27;s open community pull requests added. On an RTX 4070 SUPER it reports the first cutscene&#x27;s opening credits and 5&nbsp;minutes in the world without a graphics hang.</li><li>The picture is still black. AnyXboxX says the 3D scene is drawn internally, but the lighting steps are not translated yet and the world runs at 0.3 to 0.5&nbsp;frames a second.</li><li>five-star-recomp is past its graphics hang. Capping shader loops that never ended let the story load run on, and it now stops on corrupted game memory.</li><li>AnyXboxX joins the standings in second place, behind VIctory, whose code produces the result.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T10:06:00Z">10:06</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T10:06:00Z" data-t="log" data-pre="">10:06</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory&#x27;s results reproduced on a second PC</h3>
             <ul class="points measure"><li>The author of AnyXboxX ran VIctory on an RTX 4070 SUPER and measured the menus, the first-run screens, the first mission&#x27;s title card and the pause menu at 30&nbsp;frames a second.</li><li>In the world that run drew 1 to 2&nbsp;frames a second and the graphics card hung after about 2&nbsp;minutes. It counted 351 shader programs VIctory does not translate yet.</li><li>VIctory&#x27;s maintainer went back to shader work at 09:53&nbsp;UTC. The commit says 108 of the game&#x27;s 26,096 shader programs now get past one console loop pattern and stop on a later one.</li><li>Xbox2Windows merged decoding for two compressed texture formats that it had been filling with blanks. It reports no new run.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T09:44:00Z">09:44</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T09:44:00Z" data-t="log" data-pre="">09:44</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Estimate moves back half a day</h3>
             <ul class="points measure"><li>The best estimate to playable moves to about 4½ days, around the evening of Sat 28 Nov, and the odds for Thursday drop to 2&nbsp;in 10.</li><li>No project has drawn the world in the ten hours since the first one got inside it. Three code bases are stopped at its first frame, each for a reason it has identified.</li><li>Legal pressure is rising: one project&#x27;s creator says Rockstar had its Discord server taken down, and two other projects have started to protect themselves.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T08:49:00Z">08:49</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T08:49:00Z" data-t="log" data-pre="">08:49</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL spells out what its repository does not contain</h3>
             <ul class="points measure"><li>XCL&#x27;s maintainer rewrote the top of its README to say it works only on game files the user already owns, and holds no console SDK code, keys, game data or anything for getting round copy protection.</li><li>No project changed stage. No takedown notice names a GTA VI project.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T08:30:00Z">08:30</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T08:30:00Z" data-t="log" data-pre="">08:30</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">PercyScarlett withdraws its screenshots</h3>
             <ul class="points measure"><li>About 20&nbsp;minutes after publishing them, PercyScarlett removed its screenshots and the game&#x27;s name from its repository. Its description of how far it gets is unchanged.</li><li>VIctory&#x27;s maintainer has merged about 50 fixes from outside contributors since 07:46&nbsp;UTC. Its status is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T08:11:00Z">08:11</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T08:11:00Z" data-t="log" data-pre="">08:11</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">PercyScarlett shows the setup screens, with screenshots</h3>
             <ul class="points measure"><li>PercyScarlett now shows the account picker, the intro video in full colour and the first-time setup screens on an unmodified executable. It published screenshots; the one this page checked shows the brightness screen with some letters missing from its text.</li><li>It moves from stage 4 to stage 5, in sixth place. Nine projects now show a picture from the game.</li><li>VIctory&#x27;s maintainer merged about 30 fixes from outside contributors in half an hour. Its status is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T07:51:00Z">07:51</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T07:51:00Z" data-t="log" data-pre="">07:51</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida&#x27;s creator says Rockstar had its Discord taken down</h3>
             <ul class="points measure"><li>Press reports say Leonida&#x27;s creator wrote that Rockstar had the project&#x27;s Discord server taken down, and that this was only part of why he stepped away. Rockstar has not commented.</li><li>GitHub&#x27;s published complaints still show nothing against Leonida, and reports suggest its owners removed the repository themselves.</li><li>Claims on Reddit that other GTA VI Discord servers are being targeted are unconfirmed.</li><li>VIctory&#x27;s maintainer is active again after about seven hours, merging fixes from outside contributors.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T07:33:00Z">07:33</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T07:33:00Z" data-t="log" data-pre="">07:33</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Xbox2Windows qualifies its result</h3>
             <ul class="points measure"><li>Xbox2Windows now says its run to the loading screen used a modified diagnostic copy of the executable and a debugger set to continue past assertions. Start-up of the original executable is unverified.</li><li>It moves down one place, behind OpenScarlett (Community Edition), which reports its result on an unmodified executable.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T07:14:00Z">07:14</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T07:14:00Z" data-t="log" data-pre="">07:14</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three code bases are at the first frame of the world</h3>
             <ul class="points measure"><li>Palmwave now loads the world and keeps running for up to an hour with sound, with the game&#x27;s hang check switched off. It shows nothing after loading while the world&#x27;s compute shaders compile, a few of which take up to 30&nbsp;minutes each.</li><li>five-star-recomp has traced its hang to the first frame after loading, at the game&#x27;s meshlet culling step.</li><li>A second project called OpenScarlett, from OpenCommunityEdition, joins the standings in sixth. It runs a retail game it does not name through its first screens and intro video, then stops as the scene behind the menus streams in.</li><li>VIctory, the only project to have shown a picture inside the world, has had no commit since 00:57&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T06:55:00Z">06:55</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T06:55:00Z" data-t="log" data-pre="">06:55</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">OpenScarlett plays the game&#x27;s video</h3>
             <ul class="points measure"><li>OpenScarlett&#x27;s newest commit reports the game&#x27;s video playing in full colour at 4K, after its interface. It moves to sixth on its own.</li><li>G6Recomp, which could not start the game before, now gets as far as creating its window. It reuses memory code from Leonida, with credit.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T05:39:00Z">05:39</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T05:39:00Z" data-t="log" data-pre="">05:39</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Xbox2Windows gets through setup and into loading</h3>
             <ul class="points measure"><li>Xbox2Windows now plays the intro video, accepts the first-run setup pages and enters loading on an RTX 4060 laptop. Navigating the menus by hand is still unverified.</li><li>Four code bases have now reached loading or beyond: VIctory, XCL with its fork Palmwave, five-star-recomp and Xbox2Windows. Only VIctory is inside the world, and nobody has drawn it.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T05:03:00Z">05:03</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T05:03:00Z" data-t="log" data-pre="">05:03</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp starts loading story mode</h3>
             <ul class="points measure"><li>five-star-recomp now shows the game&#x27;s logo, intro art and every first-run screen, saves its settings and starts loading story mode. About six minutes into that load the graphics card hangs. It moves back up to fourth.</li><li>Odds of a playable build by Christmas go from 8&nbsp;in 10 to 7&nbsp;in 10, and the chance of a stall rises to 2&nbsp;in 10. The estimated date is unchanged.</li><li>The reason is a precedent: on 18 November GitHub published four Take-Two takedown notices against unofficial GTA V ports and their forks, including ports that needed the user&#x27;s own game files.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T04:43:00Z">04:43</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T04:43:00Z" data-t="log" data-pre="">04:43</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Xbox2Windows reaches the first setup pages</h3>
             <ul class="points measure"><li>Xbox2Windows now presents the intro video and reaches the game&#x27;s first setup pages, for narration and text size, on an RTX 4060 laptop. It moves up to fourth.</li><li>A change to how it runs one kind of loop took its intro video from about 14 to 30&nbsp;frames a second.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T04:07:00Z">04:07</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T04:07:00Z" data-t="log" data-pre="">04:07</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">OpenScarlett reports the game&#x27;s interface on screen</h3>
             <ul class="points measure"><li>OpenScarlett&#x27;s newest commits report the game passing all of its start-up tasks and drawing its interface at 4K and 30&nbsp;frames a second on a 4&nbsp;GB GTX 1650 Ti. It moves to stage 5.</li><li>Eight projects now show a picture from the game. One of them, VIctory, is inside the world, and none has drawn it.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T03:49:00Z">03:49</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T03:49:00Z" data-t="log" data-pre="">03:49</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Xbox2Windows documents its start-up run</h3>
             <ul class="points measure"><li>Xbox2Windows now carries the earlier contributor report in its own documentation as a measured result: about 29&nbsp;frames a second, the interface drawn, the first-run prompt answered and the intro video playing with wrong colours. It stops in texture streaming and moves up to fifth.</li><li>XCL merged six more changes, among them building pipelines an earlier run used before they are needed. Its status line is unchanged.</li><li>VIctory has had no commit since 00:57&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T03:13:00Z">03:13</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T03:13:00Z" data-t="log" data-pre="">03:13</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">GTA6-BootTest joins the standings</h3>
             <ul class="points measure"><li>GTA6-BootTest, a project this page had missed, boots the game and draws its first interface screen through translated shaders. It joins at stage 5, in sixth place.</li><li>five-star-recomp now runs for three minutes without a crash, with real images on screen, while the game is still loading.</li><li>A community project list reports that a second, smaller project, americas-recomp, went offline on 23 November shortly before Leonida. No cause is given for either.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T02:35:00Z">02:35</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T02:35:00Z" data-t="log" data-pre="">02:35</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Xbox2Windows reports a visible intro</h3>
             <ul class="points measure"><li>Xbox2Windows: a contributor reports a visible intro video on an RX 9070 XT, with wrong colours and black frames after it. The project moves from stage 3 to stage 5, in sixth place, and has not yet checked a frame against a reference.</li><li>five-star-recomp is past the assert that stopped it and now streams the game&#x27;s next stage, compressed textures included. It stops at one texture layout method it has not implemented yet.</li><li>Six projects now show a picture from the game. None has drawn the world.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T01:58:00Z">01:58</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T01:58:00Z" data-t="log" data-pre="">01:58</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Estimate moves back a day</h3>
             <ul class="points measure"><li>The best estimate to playable moves from about 3&nbsp;days to about 4, around Sat 28 Nov. Nobody has drawn the world in the three and a half hours since the first project got inside it, and frame times there are ten times or more too slow.</li><li>Palmwave now loads the world at 5 to 30&nbsp;frames a second with memory levelling off. It stops as the world starts to draw, when the game&#x27;s watchdog ends a wait for pipelines still compiling.</li><li>five-star-recomp added a disk pipeline cache. VIctory and XCL&#x27;s main branch have had no substantive change for about two hours.</li><li>Press coverage has started: outlets report the game reaching its settings and legal screens on PC, with nothing playable.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T01:38:00Z">01:38</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T01:38:00Z" data-t="log" data-pre="">01:38</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Two of Leonida&#x27;s forks are gone</h3>
             <ul class="points measure"><li>Two of the four contributor forks of Leonida that this page watches stopped answering between 00:19 and 01:37&nbsp;UTC. The cause is not known, and no takedown notice naming the project has been published.</li><li>five-star-recomp&#x27;s first image now shows in the right colours after a fix to 61 pipelines.</li><li>No project changed stage.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T01:19:00Z">01:19</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T01:19:00Z" data-t="log" data-pre="">01:19</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp draws its first picture</h3>
             <ul class="points measure"><li>five-star-recomp: the game&#x27;s interface layer and intro video now draw, its first image after hours of black frames. It moves to stage 5 and fourth place.</li><li>An assert inside the game still stops it shortly after, and one drawing fix is being merged.</li><li>XCL merged a change that skips uploading textures whose memory has not changed. Its status line is unchanged.</li><li>Five projects now show a picture from the game. None has drawn the world.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T01:00:00Z">01:00</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T01:00:00Z" data-t="log" data-pre="">01:00</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three more projects report start-up progress</h3>
             <ul class="points measure"><li>Palmwave, a fork of XCL, measures a retail game it does not name into world loading on an RTX 5080: 0 to 2&nbsp;frames a second, with memory growing until the run is stopped at 140&nbsp;seconds. It joins the standings in third.</li><li>Its own fix lifts the intro video from 3.5 to about 19&nbsp;frames a second. It reports that compressed world textures are not decoded yet in this code.</li><li>Xbox2Windows says local runs of the main executable now reach graphics pipeline creation, its first report of running the title&#x27;s own code. No rendered frame is verified.</li><li>Holy-Interoperability presents its first frame of a retail title it does not name, then stops in start-up.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T00:39:00Z">00:39</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T00:39:00Z" data-t="log" data-pre="">00:39</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL&#x27;s code is measured on a second PC</h3>
             <ul class="points measure"><li>Palmwave, now built on XCL&#x27;s code, measured a retail game it does not name on an RTX 5080. It shows first screens at up to 30&nbsp;frames a second, slows to about 3&nbsp;frames a second, then crashes as memory grows while the world loads.</li><li>Its list of what separates that code from playable: memory growth in world loading, which XCL has since fixed, texture decoding failures, refused mesh pipelines and a slow phase with no known cause.</li><li>TuxBox: shader preparation now compiles 2,755 of 11,429 requests captured from its runs. Its picture is unchanged at the player-selection prompt.</li><li>VIctory merged 11 fixes from outside contributors in half an hour. Its status is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-24T00:19:00Z">00:19</time> <span>24 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-24T00:19:00Z" data-t="log" data-pre="">00:19</time> <span>24 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory draws the first mission&#x27;s title card</h3>
             <ul class="points measure"><li>VIctory: after the world loads, the first mission&#x27;s title card now renders. It is the first picture past the loading screen that any project on this page has reported.</li><li>The scene after the card is still dark, at 0.5 to 1.8&nbsp;seconds a frame, and runs end on a graphics fault within about 55&nbsp;seconds.</li><li>five-star-recomp: the game now reads input, starts its save system and pairs a gamepad after a scripted button press. Frames are still black, and an assert inside the game stops it there.</li><li>Palmwave has switched to XCL&#x27;s code. XCL&#x27;s own status line is unchanged, and Leonida is still unreachable.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T23:56:00Z">23:56</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T23:56:00Z" data-t="log" data-pre="">23:56</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida halts: its lead steps away and its repository is gone</h3>
             <ul class="points measure"><li>Leonida&#x27;s lead posted that he is stepping away. Its GitHub repository no longer exists at either address, its own mirror server is down, and its chat is reported gone.</li><li>Whether a takedown was involved is not known. GitHub shows a notice page for repositories removed on a copyright complaint and has published none; contributors&#x27; forks and the lead&#x27;s other repository are still up.</li><li>The projects ahead of it are unaffected: VIctory, XCL, TuxBox and five-star-recomp were all reachable at 23:56&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T23:54:00Z">23:54</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T23:54:00Z" data-t="log" data-pre="">23:54</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida&#x27;s GitHub repository is unreachable again</h3>
             <ul class="points measure"><li>Leonida: its GitHub repository stopped answering between 23:31 and 23:48&nbsp;UTC, at both its new address and its old one. The cause is not known. The earlier gap tonight was a move, and contributors&#x27; forks, the owner&#x27;s other repository and the project&#x27;s own mirror are all still up. No takedown notice is published.</li><li>VIctory: two more outside fixes merged. The world is still black at 1.5 to 3&nbsp;seconds a frame.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T23:31:00Z">23:31</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T23:31:00Z" data-t="log" data-pre="">23:31</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory keeps the game world running, still black</h3>
             <ul class="points measure"><li>VIctory: a 23:13&nbsp;UTC commit fixes the graphics-device failure. The world ran to a four-minute limit. The picture is black, at 1.5 to 3&nbsp;seconds a frame.</li><li>By its notes, most of the world&#x27;s geometry is drawn through a path that is switched off for now, and hundreds of draws a frame have no translated shader.</li><li>XCL: merged another batch, including the intro-video fix. Its status is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T23:14:00Z">23:14</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T23:14:00Z" data-t="log" data-pre="">23:14</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL merges its world-loading fix</h3>
             <ul class="points measure"><li>XCL: the fix for storage requests that failed while the world loads is on the main branch since 22:54&nbsp;UTC. No picture of the world is reported yet.</li><li>VIctory: a contributor&#x27;s change gets the game past start-up on Intel processors, tested on a second machine. Its status is unchanged: the world loads and the picture is black.</li><li>Leonida: a pull request reports a repeating render loop that tries to present frames, and says visible frames are not verified.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T22:37:00Z">22:37</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T22:37:00Z" data-t="log" data-pre="">22:37</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">TuxBox shows the first menu on Linux</h3>
             <ul class="points measure"><li>TuxBox: a 22:25&nbsp;UTC commit shows the game&#x27;s player-selection prompt at 4K on Linux. It moves to stage 5, the third project with a picture.</li><li>XCL: a contributor&#x27;s pull request fixes most of the storage requests that failed while the world loads. In his 170-second run 16,384 requests now land and 2,227 still fail. Another pull request fixes the green screen where the intro video plays. Neither is merged.</li><li>VIctory: no commits since 22:15&nbsp;UTC. Leonida: merging pull requests again at its new address.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T22:34:00Z">22:34</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T22:34:00Z" data-t="log" data-pre="">22:34</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A new leader: VIctory loads the game world, with a black picture</h3>
             <ul class="points measure"><li>VIctory, a one-person project published today, reports the game running through its first-boot screens, intro video and menus at 30&nbsp;frames a second, then loading the world in about 50&nbsp;seconds. In the world the picture is black and the graphics device fails within seconds. Tested on one machine.</li><li>It stays at stage 5: stage 6 needs a picture of the world and player control.</li><li>Correction on Leonida: its repository was not taken down. The maintainer moved it to a GitHub organisation at about 22:10&nbsp;UTC, and the old address stopped answering for a few minutes. Pull requests are being merged again.</li><li>This page was redesigned at 22:33&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T22:17:00Z">22:17</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T22:17:00Z" data-t="log" data-pre="">22:17</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida&#x27;s GitHub repository goes dark; XCL reaches the settings screens</h3>
             <ul class="points measure"><li>Leonida: the GitHub repository answered at 22:08&nbsp;UTC and no longer did at 22:12. It now responds like a repository that is missing or private. The cause is not known. Several contributors&#x27; forks, the owner&#x27;s other repository and every other project on this page were still reachable at 22:16&nbsp;UTC, and GitHub has published no notice.</li><li>Leonida&#x27;s own mirror is still up with the same history, last commit 21:01&nbsp;UTC. This page now reads Leonida from there.</li><li>XCL: the main branch goes past the first menu into the settings screens at a steady 30&nbsp;frames per second, with memory use down to about 15&nbsp;GB. Its status line says gameplay has not been reached.</li><li>Forecast unchanged for now. A confirmed takedown would push it out.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T21:50:00Z">21:50</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T21:50:00Z" data-t="log" data-pre="">21:50</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">No change at the front</h3>
             <ul class="points measure"><li>XCL: main branch unchanged since 21:30&nbsp;UTC. In chat, the contributor who reached the menus says world loading stalls because most storage requests fail. No pull request for that yet.</li><li>PercyScarlett fixed an early device removal. five-star-recomp ruled out network access as the reason the game idles. TuxBox and OpenScarlett edged forward. None reports a picture.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T21:37:00Z">21:37</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T21:37:00Z" data-t="log" data-pre="">21:37</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Chat report: an XCL build gets through the menus and starts loading the game</h3>
             <ul class="points measure"><li>XCL: the contributor behind the first-menus pull request said in the project&#x27;s chat at 21:36&nbsp;UTC that his build now saves preferences, selects a player and begins loading into the main game. His earlier menu report was confirmed on the main branch within about half an hour.</li><li>This is a chat message, not a commit or pull request, and it does not claim a frame of the game world or player control. XCL stays at stage 5.</li><li>Forecast: the in-game step is brought forward to about a day. The playable date is unchanged.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T21:31:00Z">21:31</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T21:31:00Z" data-t="log" data-pre="">21:31</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A sixth project presents frames; no new milestone at the front</h3>
             <ul class="points measure"><li>PercyScarlett: reaches the game&#x27;s frame loop and first present with black frames, then a GPU hang about 5&nbsp;seconds in. Added to the standings at stage 4.</li><li>XCL: about 35 more commits merged, including a fix for the menus&#x27; missing body text. Its status is unchanged: first menu at 30&nbsp;frames per second, nothing checked past it. A pull request for the mesh pipelines its minimap needs is open.</li><li>five-star-recomp: now reads its black frames as the game&#x27;s own fade from black while it waits on something.</li><li>OpenScarlett: two more boot obstacles cleared and more than 360&nbsp;frames at 4K without a crash on a 4&nbsp;GB graphics card. No picture described.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T21:11:00Z">21:11</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T21:11:00Z" data-t="log" data-pre="">21:11</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">No new milestone; XCL merges fast behind its first menu</h3>
             <ul class="points measure"><li>XCL: eleven pull requests merged at 20:49 to 20:50&nbsp;UTC and review fixes at 20:56. Two new pull requests go at the known gaps: one for the missing menu text, one for the mesh-shader slot that the main branch refuses. Neither is merged.</li><li>Leonida: a correction. Its README now lists the project&#x27;s own server as a mirror of the repository, so this is a mirror for now, not a move. Both copies match.</li><li>five-star-recomp, OpenScarlett and TuxBox: no change. Palmwave no longer names the game in its README.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T20:50:00Z">20:50</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T20:50:00Z" data-t="log" data-pre="">20:50</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL&#x27;s main branch shows the first menu at 30 frames per second</h3>
             <ul class="points measure"><li>XCL: a 20:47&nbsp;UTC commit by the maintainer puts the first menu on the main branch. The account prompt is visible at a steady 30&nbsp;frames per second with no crash, on a 16&nbsp;GB graphics card. It uses parts of the earlier pull request and its own memory handling. Nothing past that menu has been checked on main.</li><li>five-star-recomp: start-up loading completes and the game then idles on an early screen, still black.</li><li>OpenScarlett: reports the first frame&#x27;s three draws executing and boot moving on into render-graph set-up. No picture described.</li><li>Leonida: its main branch on GitHub moved again at 20:34&nbsp;UTC with two commits from the maintainer. The copy on its new server followed within a minute.</li><li>Forecast unchanged at about 3&nbsp;days. The low frame rate seen in the earlier pull request does not appear on the main branch.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T20:32:00Z">20:32</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T20:32:00Z" data-t="log" data-pre="">20:32</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida&#x27;s official repository appears on its new server</h3>
             <ul class="points measure"><li>Leonida: the official repository is now on the project&#x27;s own server. For now it is a copy of the GitHub repository with the same main branch, still the 18:54&nbsp;UTC commit. This page watches both.</li><li>XCL: the first-menus pull request is still open and unmerged. A second contributor&#x27;s rectangle-list fix already tests against what that build reported. Main branch unchanged since 18:11&nbsp;UTC.</li><li>Palmwave reaches its first console command list. five-star-recomp, TuxBox and OpenScarlett: no change.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T20:25:00Z">20:25</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T20:25:00Z" data-t="log" data-pre="">20:25</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL: a pull request reports the game&#x27;s first menus on screen</h3>
             <ul class="points measure"><li>XCL: a contributor&#x27;s pull request, opened at 20:15&nbsp;UTC on top of the main branch, reports the account prompt and the legal menus on screen after about 45&nbsp;seconds of black frames, navigable with a gamepad. A four-minute run did not crash. XCL moves to stage 5.</li><li>Its limits, by its own description: one machine with a top-end graphics card, most letters missing from the menu body text, 7 to 28&nbsp;frames per second in the menus, tests not run, and nothing seen past the menus. It is not merged or reviewed.</li><li>The video noted in the last update matches it. The pull request says one later screen came out as a single solid colour, and that colour is the exact green seen in the video.</li><li>Forecast pulled in to about 3&nbsp;days.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T20:11:00Z">20:11</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T20:11:00Z" data-t="log" data-pre="">20:11</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida is further on than its main branch shows</h3>
             <ul class="points measure"><li>Leonida: pull requests that are still waiting to be merged show one contributor&#x27;s build reaching the game&#x27;s frame loop, with black frames and stand-in pipelines, and another working out why the first interface draw shows nothing. Leonida moves to stage 4. This page now reads Leonida&#x27;s open pull requests as well as its main branch.</li><li>Leonida: a pull request adds a notice that the project is moving its git hosting to its own server. The official repository was not there yet at 20:10&nbsp;UTC. The main branch on GitHub has merged nothing since 18:54&nbsp;UTC.</li><li>five-star-recomp: rectangle lists fixed and the frame loop is now stable at 30&nbsp;frames per second in two-minute runs. Frames are still black, and the project says the game is waiting in an early splash or loading state.</li><li>Unverified sighting: a screen-share video shows a near-empty first screen with controller prompts, a plain green screen for a few seconds, then the game&#x27;s legal notices menu. The details fit a real early boot, including Xbox prompts and the green of a movie playing with empty frames. No repository has claimed it, so no project is credited and no stage moves.</li><li>XCL: no commits on its main branch since 18:11&nbsp;UTC.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T19:57:00Z">19:57</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T19:57:00Z" data-t="log" data-pre="">19:57</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida&#x27;s main branch has stopped merging; a menu clip is unconfirmed</h3>
             <ul class="points measure"><li>Leonida: no merges into the main branch since 18:54&nbsp;UTC, after an earlier gap from 17:23 to 18:20. New pull requests keep arriving at several hundred an hour, and their numbers have passed 8,900 while the last one merged is near 6,530. This page reads the main branch, so Leonida may be further on than shown.</li><li>People in the project chats say GitHub is rate limiting Leonida and that it may move its git hosting. Nothing in its repository or on its website confirms a move yet.</li><li>Unconfirmed: a clip said to show the game&#x27;s legal notices screen running on a PC is being passed around project chats. No repository reports a visible picture yet, and a clip with the same screens posted on 19 November was shown to be fake. It is not counted here.</li><li>XCL and five-star-recomp: no change. Both still run the frame loop on a black screen.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T19:45:00Z">19:45</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T19:45:00Z" data-t="log" data-pre="">19:45</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Five projects added to the watch list</h3>
             <ul class="points measure"><li>Added after a wider search: AnyXboxX, Palmwave, PercyScarlett, G6Recomp and Holy-Interoperability. None has shown the game running.</li><li>XCL: a user in its issue tracker reports reproducing the 30&nbsp;frames per second run on the latest commit, 6,557&nbsp;frames over 231&nbsp;seconds, ending in an assert. Nobody there reports a visible picture.</li><li>No project has published a menu, a logo or any visible picture from the game.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T19:30:00Z">19:30</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T19:30:00Z" data-t="log" data-pre="">19:30</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp draws level with XCL</h3>
             <ul class="points measure"><li>five-star-recomp: the game now presents frames continuously, about 27,000 in a two-minute run. Every frame is black. The project lists the causes it knows: rectangle lists drawn as one triangle, render-target states and many views.</li><li>XCL: no commits since 18:11. It runs the same loop at a steady 30&nbsp;frames per second, also black.</li><li>XValkyrie: a commit adds what a newer-kit title needs on the way to its first frame. It names no game and states no result.</li><li>Forecast pulled in by a day, to about 4&nbsp;days.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T18:56:00Z">18:56</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T18:56:00Z" data-t="log" data-pre="">18:56</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">OpenScarlett presents too, making four</h3>
             <ul class="points measure"><li>OpenScarlett: a commit reports 34 boot obstacles cleared, up from 17, and the game presenting to a 4K window. It does not describe the picture.</li><li>five-star-recomp: the first frame now records its work with real pipelines and bound descriptors. The graphics card then hangs before a second frame.</li><li>XCL: no commits since 18:11. Leonida: active, with no change to its boot notes.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T18:40:00Z">18:40</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T18:40:00Z" data-t="log" data-pre="">18:40</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Three projects now present frames</h3>
             <ul class="points measure"><li>five-star-recomp: the game&#x27;s first present now appears in its own window through a swap chain. Nothing is drawn, and the game then stops in the graphics driver. The project also has a first version of placing textures at the game&#x27;s own GPU addresses.</li><li>XCL: no commits since 18:11.</li><li>Leonida: merging to its main branch has resumed, with no change to its boot notes.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T18:21:00Z">18:21</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T18:21:00Z" data-t="log" data-pre="">18:21</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL holds 30 fps on a black screen</h3>
             <ul class="points measure"><li>XCL: the game now runs at a steady 30&nbsp;frames per second, 1,449&nbsp;frames in a 60-second test with no crash. The picture is black. Its command lists now really execute; until this change they went through a placeholder.</li><li>TuxBox: on Linux, the game opens its window, starts audio, opens its archives and presents at 3840 by 2160. The window stays black.</li><li>Leonida: no commits to its main branch for an hour.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T18:04:00Z">18:04</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T18:04:00Z" data-t="log" data-pre="">18:04</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">five-star-recomp reaches its first present</h3>
             <ul class="points measure"><li>five-star-recomp: the game now gets through render targets and pipelines to its first present call and into its frame loop. Nothing is drawn or shown yet. It stops in the graphics driver because descriptor heaps are not bound on command lists and resources at the game&#x27;s own GPU addresses are not real yet.</li><li>XCL: no commits since 17:03. It still stops at about three minutes.</li><li>Leonida: no commits to its main branch since 17:23.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T17:13:00Z">17:13</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T17:13:00Z" data-t="log" data-pre="">17:13</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL runs for about three minutes</h3>
             <ul class="points measure"><li>XCL: the game runs about 3&nbsp;minutes without a crash, up from 45&nbsp;seconds. It shows two frames after about 4&nbsp;seconds, loads roughly 3,500 shaders, then stops at about 183&nbsp;seconds when five mesh-shader pipelines fail. The frames have not been checked.</li><li>five-star-recomp: now gets past the game&#x27;s GPU-memory buffers and descriptor heaps, then stops when an invalid call removes the graphics device.</li><li>xbox-emulator: a community project list reports a contributor reaching the game window, graphics device and archives with local patches. This is second-hand; the repository has no new commits.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T16:55:00Z">16:55</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T16:55:00Z" data-t="log" data-pre="">16:55</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A fourth project starts the game</h3>
             <ul class="points measure"><li>five-star-recomp: the executable starts under its loader and gets through memory setup, archive opening and graphics device setup, then stops before a first frame.</li><li>OpenScarlett: its README now documents 17 cleared boot obstacles. The 587 imports it cites match the count five-star-recomp gives for GTA VI&#x27;s executable.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T16:37:00Z">16:37</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T16:37:00Z" data-t="log" data-pre="">16:37</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL stops crashing</h3>
             <ul class="points measure"><li>XCL: the game runs 45&nbsp;seconds without a crash. Memory use falls from 28.7&nbsp;GB to 16 or 17&nbsp;GB and the first frame arrives at 3.6&nbsp;seconds.</li><li>OpenScarlett: reports clearing 17 early boot obstacles on a retail title, as far as a 4K render target and ray-tracing setup.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T16:17:00Z">16:17</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T16:17:00Z" data-t="log" data-pre="">16:17</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">Leonida reaches the graphics device</h3>
             <ul class="points measure"><li>Leonida: a contributor&#x27;s local build runs the executable as far as creating the graphics device and its first descriptor heap, then halts on an assert. The main branch has mapped and initialised the file.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T15:44:00Z">15:44</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T15:44:00Z" data-t="log" data-pre="">15:44</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">First frame on a PC</h3>
             <ul class="points measure"><li>XCL: the game starts and presents a first frame after 8.3&nbsp;seconds at 3840 by 2160, then runs out of memory at about 20&nbsp;seconds while compiling pipelines. Nobody looked at the frame.</li></ul>
           </div>
         </li>
         <li class="log__row">
-          <p class="log__when"><time datetime="2026-11-23T14:00:00Z">about 14:00</time> <span>23 Nov</span></p>
+          <p class="log__when"><time datetime="2026-11-23T14:00:00Z" data-t="log" data-pre="about ">about 14:00</time> <span>23 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">The executable appears</h3>
             <ul class="points measure"><li>The leaker known as CyberLeek publishes the game&#x27;s main executable, the one file missing from the Xbox build it released on 19 November. Press reports put this about three hours before its own 17:00&nbsp;UTC deadline.</li></ul>
@@ -1487,7 +1515,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
   <section id="method">
     <div class="wrap">
       <h2>Method and limits</h2>
-      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim unless its source line says otherwise, and most are unverified. CGBJ&#x27;s comes from press reports, because its code is private.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>An equals sign means level.</p></li></ul>
+      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim unless its source line says otherwise, and most are unverified. CGBJ&#x27;s comes from press reports, because its code is private.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>An equals sign means level.</p></li><li><span class="rows__name">Requests</span><p>To ask for a project to be added, corrected or taken off this page, <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues" rel="noopener">open an issue on its repository</a>.</p></li></ul>
     </div>
   </section>
 </main>
@@ -1497,11 +1525,14 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
     <div class="close close--word">
       <div class="close__head">
         <h2>Standings checked every 15 minutes</h2>
-        <a class="btn btn--primary" href="#standings">See the standings</a>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#standings">See the standings</a>
+          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (17 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">17</span></a>
+        </div>
       </div>
       <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
     </div>
-    <p class="legal small muted">GTA VI PC Race, 2026. Not affiliated with Rockstar Games or Take-Two Interactive. Times are UTC.</p>
+    <p class="legal small muted">GTA VI PC Race, 2026. Not affiliated with Rockstar Games or Take-Two Interactive. <span id="tz-note">Times are UTC.</span> <button class="textbtn" type="button" data-tz aria-pressed="false" hidden>Show local time</button></p>
   </div>
 </footer>
 <script>
@@ -1525,6 +1556,74 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
     if (isFinite(mins) && mins >= 0) {
       var text = mins < 1 ? "just now" : mins < 90 ? mins + " min ago" : Math.round(mins / 60) + " h ago";
       document.getElementById("ago").textContent = ", " + text;
+    }
+  } catch (e) {}
+  // Times: UTC as written, or the reader's own zone when asked. The choice is kept for the next visit.
+  // (Asked for in issue 5; the zone-name lookup follows pull request 7 by opsasa.)
+  try {
+    var times = document.querySelectorAll("time[data-t]");
+    var buttons = document.querySelectorAll("[data-tz]");
+    var note = document.getElementById("tz-note");
+    var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var two = function (n) { return (n < 10 ? "0" : "") + n; };
+    var zoneOf = function (d) {
+      try {
+        var parts = new Intl.DateTimeFormat("en-GB", { timeZoneName: "short" }).formatToParts(d);
+        for (var p = 0; p < parts.length; p++) { if (parts[p].type === "timeZoneName") { return parts[p].value; } }
+      } catch (e) {}
+      var off = -d.getTimezoneOffset(), abs = Math.abs(off);
+      return "UTC" + (off < 0 ? "-" : "+") + Math.floor(abs / 60) + (abs % 60 ? ":" + two(abs % 60) : "");
+    };
+    var differs = false;
+    for (var i = 0; i < times.length; i++) {
+      var el = times[i], next = el.nextElementSibling;
+      el.setAttribute("data-utc", el.textContent);
+      if (el.getAttribute("data-t") === "log" && next) { next.setAttribute("data-utc", next.textContent); }
+      if (new Date(el.getAttribute("datetime")).getTimezoneOffset() !== 0) { differs = true; }
+    }
+    var show = function (local) {
+      var zone = "";
+      for (var i = 0; i < times.length; i++) {
+        var el = times[i], kind = el.getAttribute("data-t"), next = el.nextElementSibling;
+        var d = new Date(el.getAttribute("datetime"));
+        if (!local || !isFinite(d.getTime())) {
+          el.textContent = el.getAttribute("data-utc");
+          if (kind === "log" && next) { next.textContent = next.getAttribute("data-utc"); }
+          continue;
+        }
+        zone = zoneOf(d);
+        var clock = two(d.getHours()) + ":" + two(d.getMinutes());
+        var day = d.getDate() + " " + MONTHS[d.getMonth()];
+        if (kind === "log") {
+          el.textContent = (el.getAttribute("data-pre") || "") + clock;
+          if (next) { next.textContent = day; }
+        } else {
+          el.textContent = clock + " " + zone + (kind === "clock-day" ? " on " + day : "");
+        }
+      }
+      for (var b = 0; b < buttons.length; b++) {
+        buttons[b].textContent = local ? "Show UTC" : "Show local time";
+        buttons[b].setAttribute("aria-pressed", local ? "true" : "false");
+      }
+      if (note) {
+        note.textContent = local && zone
+          ? "Times are in your time zone (" + zone + "), except where a sentence says UTC."
+          : "Times are UTC.";
+      }
+    };
+    // Where the reader's clock is UTC there is nothing to choose, and the buttons stay hidden.
+    if (differs && buttons.length) {
+      var KEY = "gta6race.times", local = false;
+      try { local = window.localStorage.getItem(KEY) === "local"; } catch (e) {}
+      for (var k = 0; k < buttons.length; k++) {
+        buttons[k].hidden = false;
+        buttons[k].addEventListener("click", function () {
+          local = !local;
+          try { window.localStorage.setItem(KEY, local ? "local" : "utc"); } catch (e) {}
+          show(local);
+        });
+      }
+      if (local) { show(true); }
     }
   } catch (e) {}
   // The estimate counts down between checks.
