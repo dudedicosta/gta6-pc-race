@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. victory-fork, a public fork of VIctory, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Nineteen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T02:29:00Z">02:29 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Nineteen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T02:49:00Z">02:49 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">02:29 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">02:49 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">victory-fork, AnyXboxX, ztrx, VItoriaBr, omonkey, suri, CGBJ, VIctory</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">Scarlight, five-star-recomp, XCL, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest, g6shim</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability, palmetto</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T06:00:00Z">about 2 days</span></p>
         </div>
@@ -323,8 +323,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
           </div>
           <div class="board__where">
-            <p class="measure">Runs victory-fork with fifteen of that project&#x27;s pull requests and changes of its own, at 5.3 to 6.9&nbsp;frames a second on an RTX 4070 SUPER, and its maintainer reports every cutscene playing in full. It relays a contributor&#x27;s report of the first two missions completed in about 45&nbsp;minutes at about 2&nbsp;frames a second, and ray-traced lighting is still off.</p>
-            <p class="small muted">Source: project README and run notes: the maintainer&#x27;s own measurements on one machine, and one contributor&#x27;s report that the maintainer relays. Changed <time datetime="2026-11-25T02:29:00Z">02:29 UTC</time>.</p>
+            <p class="measure">Runs victory-fork with fifteen of that project&#x27;s pull requests at 5.3 to 6.9&nbsp;frames a second in the world on an RTX 4070 SUPER, with ray-traced lighting still off. Its maintainer reports every cutscene playing in full, at 7 to 8&nbsp;frames a second by the window caption against logged medians of 2 to 3 in one scripted run, and relays a contributor&#x27;s report of the first two missions completed in about 45&nbsp;minutes at about 2&nbsp;frames a second.</p>
+            <p class="small muted">Source: project README and run notes: the maintainer&#x27;s own measurements on one machine, and one contributor&#x27;s report that the maintainer relays. Changed <time datetime="2026-11-25T02:49:00Z">02:49 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -601,6 +601,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-25T02:49:00Z">02:49</time> <span>25 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">AnyXboxX&#x27;s maintainer sees 7 to 8 frames a second in cutscenes</h3>
+            <ul class="points measure"><li>AnyXboxX&#x27;s README now says its maintainer saw a steady 7 to 8&nbsp;frames a second during cutscenes, with peaks at 9, read from the window caption on an RTX 4070 SUPER. In one scripted run the medians measured from the log were lower, at 2 to 3&nbsp;frames a second depending on the scene.</li><li>These are cutscene figures, and the two methods disagree. Its measured figure for the world under player control is unchanged at 5.3 to 6.9, so the top measured speed in play stays at about 7.6&nbsp;frames a second and the estimate does not move.</li><li>Nothing else changed in status. victory-fork&#x27;s main branch has not moved since 01:22&nbsp;UTC while more than 470 pull requests have been opened against it, VIctory&#x27;s main branch has not moved since 01:36&nbsp;UTC, and Palmwave remains unreachable.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T02:29:00Z">02:29</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">AnyXboxX relays a report of the first two missions completed</h3>
@@ -621,6 +628,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>VIctory&#x27;s maintainer merged a change at 01:36&nbsp;UTC that stops the runtime re-checking memory the game&#x27;s shaders did not write. Its notes put the old cost at 0.45 to 0.7&nbsp;seconds of a 1.5 to 1.7&nbsp;second frame in the opening cutscene. The README&#x27;s figure of 1 to 2&nbsp;seconds a frame is not yet updated.</li><li>Correction: palmetto&#x27;s commit history, public again since about 01:45&nbsp;UTC, says the repository descends from the project network that received Take-Two&#x27;s notice, and that references to the game and to that project were removed in response. This page said at 22:22&nbsp;UTC that its files did not show that origin.</li><li>five-star-recomp reports most of the opening cutscene&#x27;s 3D passes now running. Its 3D world is still not visible, and long runs end in a GPU hang.</li><li>Open pull requests on victory-fork and VIctory report fixes that let the game&#x27;s ray-tracing structure builder run on NVIDIA cards and that restore material colours that came out black. Neither is merged.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 91 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T01:28:00Z">01:28</time> <span>25 Nov</span></p>
           <div class="log__what">
@@ -628,10 +639,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>ztrx, a build of victory-fork&#x27;s code published at 01:11&nbsp;UTC on 25 November, reports in its README the opening mission playable from start to finish on an RTX 3050 with 8&nbsp;GB, in one session of more than 1&nbsp;hour 30&nbsp;minutes without a crash. It runs at 1 to 3&nbsp;frames a second, and anything in shadow is black.</li><li>It is the first public code to make that claim and the longest session reported by anyone. PortWatch, which first listed it as a private build, says it verified the build going on into the next mission.</li><li>A second public build of the same code, VItoriaBr, joins the standings. Its README reports the opening scenes at about 3&nbsp;frames a second on an RTX 5060 Ti and says the world is not yet playable, while PortWatch reports its live stream reaching the second mission at up to 4&nbsp;frames a second.</li><li>victory-fork&#x27;s main branch now runs at about 4.3&nbsp;frames a second on an RTX 4070 by default, up from about 2.5, and lights its first room for the first time. The estimate moves in by a quarter of a day, to about 2&nbsp;days: stability now has two long reports, and speed is the only gap left.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 90 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T01:06:00Z">01:06</time> <span>25 Nov</span></p>
           <div class="log__what">
