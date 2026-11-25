@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-25T23:28:00Z",
+  "checked": "2026-11-25T23:48:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -548,8 +548,8 @@
       "kind": "Runs the game's Xbox code natively on Windows",
       "stage": 6,
       "basis": "Project README, and open pull requests by contributors, each measured on one machine",
-      "status": "Its README, rewritten at 16:51 UTC on 25 November, says you can now get into the game: the intro cutscene plays and the opening mission is reached with the graphics fully displayed at about 1 frame a second on a Radeon RX 6700 XT, lit and textured but without ray-traced shadows or indirect light. It still calls the game not playable, says its latest runs lasted several minutes each in the world, and open pull requests report 6 to 8 minutes.",
-      "changed": "2026-11-25T17:01:00Z",
+      "status": "Its README (23:27 UTC) now says the frame rate is the only thing that keeps the game from working: the intro cutscene plays and the opening mission is reached with the graphics fully displayed at about 1 frame a second on a Radeon RX 6700 XT, lit and textured but without ray-traced shadows or indirect light. It still calls the game not playable, says its latest runs lasted several minutes each in the world, and open pull requests report 6 to 8 minutes.",
+      "changed": "2026-11-25T23:48:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -1447,9 +1447,22 @@
       "name": "Victory-United",
       "repo": "Fayberr/Victory-United",
       "note": "A tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in. Its README calls it early: menus, and the open world at a few frames a second, with no measured figures or test machine yet."
+    },
+    {
+      "name": "Sixth Star",
+      "repo": "ihaterockstargames/sixth-star",
+      "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file gives its user's approximate observations: gameplay reached at about 5 frames a second, about 22 in the intro cutscene over some 15 seconds before the picture froze, and stability not measured."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-25T23:48:00Z",
+      "title": "VIctory says only the frame rate keeps the game from working; Sixth Star joins the watch list",
+      "points": [
+        "VIctory's README (23:27 UTC) now heads its status with the frame rate as the one thing left: about 1 frame a second in the world on a Radeon RX 6700 XT, with the intro cutscene playing and the opening mission reached with the graphics fully displayed. Its figures and its place are unchanged; the faster figures on this page come from forks of its code.",
+        "Sixth Star, a compatibility layer built from VIctory's code, joins the watch list at its maintainer's request. Its status file reports gameplay at about 5 frames a second on an RTX 3070 as its user's approximate observation, with stability not measured."
+      ]
+    },
     {
       "t": "2026-11-25T23:28:00Z",
       "title": "victory-fork now plays at 9 to 12 frames a second in light scenes, for half an hour at a time; VItoriaBr reports a process up for over two hours",
