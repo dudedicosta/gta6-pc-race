@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-25T21:48:00Z",
+  "checked": "2026-11-25T22:10:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -678,17 +678,17 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-25T18:36:00Z",
-      "status": "Its README says the opening cutscenes and the first room play at 4 to 8 frames a second on an RTX 5080, with faces and rooms lit, every shader translating and a constant standing in for ray-traced light. It says a few orange marks from shadows remain, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-25T22:10:00Z",
+      "status": "Its README says the opening cutscenes and the first room play at 4 to 8 frames a second on an RTX 5080, with faces and rooms lit, window light and shadows on heads, every shader translating and a constant standing in for ray-traced light, though its latest test run (21:46 UTC) shows a median frame of 339 milliseconds, about 3 frames a second. It says the last orange marks are gone and a dark patch on some shirts remains, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "lit, stand-in light, a few marks in shadows"
+          "text": "lit, stand-in light, a dark patch on some shirts"
         },
         "speed": {
-          "low": 4,
+          "low": 2.9,
           "high": 8,
-          "text": "4 to 8 fps"
+          "text": "4 to 8 fps, 2.9 median in its latest run"
         },
         "stability": {
           "minutes": 7,
@@ -845,8 +845,8 @@
       "kind": "Fork of victory-fork aimed at NVIDIA cards",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-25T19:05:00Z",
-      "status": "Its README (18:46 UTC) reports the player in control of the character in the world of a title it does not name on an RTX 4060 Ti, at about 3 to 5 frames a second by scene with 3.2 measured under control, and one session of 15 minutes that ran to its time limit without a crash. It says control was reported by the person running it and not instrumented, the picture is dark with wrong textures and black shadows, it is not playable, and it claims no speed gain for its own changes.",
+      "changed": "2026-11-25T22:10:00Z",
+      "status": "Its README (21:48 UTC) reports the player in control of the character in the world of a title it does not name on an RTX 4060 Ti, at about 3 to 5 frames a second by scene with 3.2 measured under control, and one session of 15 minutes that ran to its time limit without a crash. It says control was confirmed that evening with scripted input and nobody at the keyboard, with the camera turned, the character moved and the pause menu opened, that the picture is very dark with wrong textures and black shadows, and that it is not playable and claims no speed gain for its own changes.",
       "tested": {
         "os": [
           "Windows"
@@ -1373,6 +1373,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-25T22:10:00Z",
+      "title": "VIctory merges about 70 pull requests into its main branch, vilocity clears its last orange marks and VIniVIdiVIci confirms control",
+      "points": [
+        "VIctory's main branch took 74 commits between 21:35 and 21:57 UTC, its first since 16:51 UTC, among them the drawing of the interface planes the game uses on the smaller console's profile. Its README's status is unchanged at about 1 frame a second.",
+        "vilocity's README (21:46 UTC) says the last orange marks are gone, with window light and shadows now falling on heads. Its latest test run shows a median frame of 339 milliseconds, about 3 frames a second, where earlier runs showed about 130.",
+        "VIniVIdiVIci's README (21:48 UTC) says player control is confirmed with scripted input and nobody at the keyboard: the camera turned, the character moved and the pause menu opened.",
+        "AnyXboxX has not yet given a session length for its figure of about 12 frames a second."
+      ]
+    },
     {
       "t": "2026-11-25T21:48:00Z",
       "title": "Vice-Tay reports a 30-minute session at a median of 7 frames a second and moves up to 6th",
