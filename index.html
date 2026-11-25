@@ -145,6 +145,9 @@ h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
   text-decoration: underline; text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color var(--dur) var(--ease); }
 .textbtn:hover { text-decoration-color: currentColor; }
 .textbtn[hidden] { display: none; }
+/* The time-zone switch reads as a control, not as part of the sentence (a reader's note on issue 5). */
+.textbtn[data-tz] { margin: -4px 0 -4px var(--s-1); padding: 3px var(--s-3); border: 1px solid var(--line-strong); border-radius: var(--r-btn); background: color-mix(in oklab, var(--ink) 8%, var(--bg)); color: var(--ink); font-size: var(--t-label); line-height: 1.4; text-decoration: none; vertical-align: baseline; }
+.textbtn[data-tz]:hover { background: color-mix(in oklab, var(--ink) 14%, var(--bg)); }
 
 /* ---------------------------------------------------------------- nav: fixed, opaque, one hairline */
 .nav { position: fixed; inset: 0 0 auto 0; height: var(--nav); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
@@ -364,7 +367,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <a href="#method">Method</a>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (108 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">108</span></a>
+      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (109 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">109</span></a>
       <a class="btn btn--primary" href="#standings">See the standings</a>
       <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
     </div>
@@ -1785,7 +1788,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         <h2>Standings checked every 15 minutes</h2>
         <div class="btn-row">
           <a class="btn btn--primary" href="#standings">See the standings</a>
-          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (108 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">108</span></a>
+          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (109 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">109</span></a>
         </div>
       </div>
       <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
