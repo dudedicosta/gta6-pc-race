@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. victory-fork, a public fork of VIctory, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Seventeen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T00:26:00Z">00:26 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Seventeen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T00:46:00Z">00:46 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">00:26 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">00:46 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">victory-fork, AnyXboxX, omonkey, suri, CGBJ, VIctory</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">Scarlight, five-star-recomp, XCL, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest, g6shim</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability, palmetto</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T12:00:00Z">about 2½ days</span></p>
         </div>
@@ -577,6 +577,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-25T00:46:00Z">00:46</time> <span>25 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">PortWatch reports private builds getting past the opening mission</h3>
+            <ul class="points measure"><li>PortWatch&#x27;s owner reports that several private builds now play through the opening mission and load the next one, the furthest into the story anyone has reported. The report names no builds and cites no recordings, and says most appear to build on victory-fork.</li><li>By the same report most of them still render the world badly and vehicles mostly do not work, so the next mission cannot be played properly. PortWatch has not changed its scores, and no public project claims this.</li><li>victory-fork&#x27;s main branch gained a fix for characters&#x27; faces and hair that came out black or pale in about three launches of four. The cause was textures uploaded before the game had filled them. Its README is unchanged.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T00:26:00Z">00:26</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">VIctory merges about 130 pull requests, and Scarlight shows a lit picture on Linux</h3>
@@ -597,6 +604,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>AnyXboxX now runs victory-fork with eight of that project&#x27;s open pull requests. The added one makes the two shaders behind the game&#x27;s indirect light translate, the ones without which everything outside direct light stayed black, and its maintainer reports their pipelines created and bound in game. Its notes do not yet claim a picture with lit shadows.</li><li>It measures 4.8 to 5.4&nbsp;frames a second on an RTX 4070 SUPER, over about 4&nbsp;minutes 20&nbsp;seconds without a device loss. Ray-traced lighting is still absent.</li><li>An open pull request on victory-fork cuts a frame with the ray-tracing structure builder switched on from 3.3&nbsp;seconds to 0.55&nbsp;seconds on an RTX 5080. More than 250 pull requests have now been opened against the fork, whose own main branch is unchanged.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 85 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T23:25:00Z">23:25</time> <span>24 Nov</span></p>
           <div class="log__what">
@@ -604,10 +615,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>An open pull request on victory-fork reports 5-minute runs in the world on an 8&nbsp;GB graphics card at about 155 milliseconds a frame, 6 to 7&nbsp;frames a second, up from 4 to 4.5, with no crash. It is the author&#x27;s own measurement and is not merged.</li><li>That is close to the 7.6&nbsp;frames a second reported on an RTX 4090 an hour earlier. More than 210 pull requests have now been opened against the fork, whose own main branch has not changed in effect since 20:45&nbsp;UTC.</li><li>PC Gamer&#x27;s explainer on the race, published at 21:47&nbsp;UTC, says a recompilation could run within days and warns that many circulating clips look fake. It quotes no statement from Rockstar or Take-Two.</li><li>XValkyrie published a bundled copy of the VIctory engine at about 23:00&nbsp;UTC and had removed it from its history 20&nbsp;minutes later.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 84 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-24T22:43:00Z">22:43</time> <span>24 Nov</span></p>
           <div class="log__what">
