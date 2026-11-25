@@ -38,3 +38,4 @@ The page does not link to the leaked build, to downloads, streams or chats, or t
 - Local-time display: asked for in issue 5 and first written by opsasa in pull request 7.
 - Lanes for projects that are in-game (picture, speed, stability): suggested by I-I-IT in issue 8.
 - Filters over the standings (system, card maker and a minimum on each lane) and the "tested on" line on each row: suggested by I-I-IT in issues 12 and 13.
+- Dark and high-contrast looks, and the theme switch in the footer (auto, light, dark): asked for in issues 11 and 15.
