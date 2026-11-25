@@ -146,8 +146,8 @@ h3 a.name, .rows__name a.name { padding-block: 10px; margin-block: -10px; }
 .textbtn:hover { text-decoration-color: currentColor; }
 .textbtn[hidden] { display: none; }
 /* The time-zone switch reads as a control, not as part of the sentence (a reader's note on issue 5). */
-.textbtn[data-tz] { margin: -4px 0 -4px var(--s-1); padding: 3px var(--s-3); border: 1px solid var(--line-strong); border-radius: var(--r-btn); background: color-mix(in oklab, var(--ink) 8%, var(--bg)); color: var(--ink); font-size: var(--t-label); line-height: 1.4; text-decoration: none; vertical-align: baseline; }
-.textbtn[data-tz]:hover { background: color-mix(in oklab, var(--ink) 14%, var(--bg)); }
+.textbtn[data-tz], .textbtn--chip { margin: -4px 0 -4px var(--s-1); padding: 3px var(--s-3); border: 1px solid var(--line-strong); border-radius: var(--r-btn); background: color-mix(in oklab, var(--ink) 8%, var(--bg)); color: var(--ink); font-size: var(--t-label); line-height: 1.4; text-decoration: none; vertical-align: baseline; }
+.textbtn[data-tz]:hover, .textbtn--chip:hover { background: color-mix(in oklab, var(--ink) 14%, var(--bg)); }
 
 /* ---------------------------------------------------------------- nav: fixed, opaque, one hairline */
 .nav { position: fixed; inset: 0 0 auto 0; height: var(--nav); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
@@ -201,6 +201,23 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
 .head > .more { margin-top: 0; }
 .head > .more[open] > summary { margin-bottom: var(--s-3); }
 .head > .more > p + p { margin-top: var(--s-3); }
+/* Filters over the standings (issues 12 and 13): closed until asked for, one row of choices when open. */
+.head > .filter[open] > summary { margin-bottom: var(--s-2); }
+#filter-count:not(:empty) { margin-left: var(--s-3); }
+.filter__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-5); }
+.pick { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--t-small); font-weight: 500; }
+.pick > select { min-height: 32px; max-width: 100%; padding: 4px var(--s-2); border: 1px solid var(--line-strong); border-radius: var(--r-btn); background: color-mix(in oklab, var(--ink) 8%, var(--bg)); color: var(--ink); font: inherit; font-weight: 400; }
+.filter__row > .textbtn--chip { margin: 0; }
+.head > .filter > .filter__note { margin-top: var(--s-3); max-width: 78ch; }
+.board__row[hidden] { display: none; }
+.board > .board__row[hidden]:first-child + .board__row { padding-top: 0; }
+#filter-none { padding-block: var(--s-5); }
+@media (max-width: 639px) {
+  .filter__row { display: grid; grid-template-columns: 1fr; gap: var(--s-2); }
+  .pick { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); }
+  .pick > select { width: 100%; min-height: 40px; }
+  .filter__row > .textbtn--chip { justify-self: start; margin-left: calc(5.5em + var(--s-2)); min-height: 32px; }
+}
 .key { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-6); margin-top: var(--s-6); }
 .key__lane { grid-column: span 4; display: flex; flex-direction: column; gap: var(--s-2); min-width: 0; }
 .steps { margin-top: var(--s-2); border-bottom: 1px solid var(--line); }
@@ -367,7 +384,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <a href="#method">Method</a>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (113 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">113</span></a>
+      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (117 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">117</span></a>
       <a class="btn btn--primary" href="#standings">See the standings</a>
       <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
     </div>
@@ -406,13 +423,19 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           <p class="measure">Rows at that stage are ordered by their lanes and nothing else: fewest steps short of the bar on speed and stability together, then the better picture, the higher frame rate and the longer session. The lanes were suggested in <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues/8" rel="noopener">issue&nbsp;8</a> on this page&rsquo;s repository.</p>
           <div class="key"><div class="key__lane"><h3 class="t-card">Picture</h3><p class="small muted">What the project says is on screen in the game&#x27;s world.</p><ol class="steps"><li><span class="steps__n">1</span><span>Mostly dark or unlit</span></li><li><span class="steps__n">2</span><span>Lit where the sun falls, shadows black or dark</span></li><li><span class="steps__n">3</span><span>Lit in light and shade, with visible faults</span></li><li><span class="steps__n">4</span><span>Lit and whole, small faults only</span></li><li><span class="steps__n">5</span><span>The console&#x27;s picture, ray tracing included</span></li></ol></div><div class="key__lane"><h3 class="t-card">Speed</h3><p class="small muted">The middle of the frame rates it reports in play, in rendered frames a second (fps).</p><ol class="steps"><li><span class="steps__n">1</span><span>Under 2&nbsp;fps</span></li><li><span class="steps__n">2</span><span>2&nbsp;fps or more</span></li><li><span class="steps__n">3</span><span>5&nbsp;fps or more</span></li><li><span class="steps__n">4</span><span>10&nbsp;fps or more</span></li><li class="is-bar"><span class="steps__n">5</span><span>20&nbsp;fps or more</span></li><li class="is-bar"><span class="steps__n">6</span><span>30&nbsp;fps or more, the console&#x27;s rate</span></li></ol></div><div class="key__lane"><h3 class="t-card">Stability</h3><p class="small muted">The longest session it reports without a crash.</p><ol class="steps"><li><span class="steps__n">1</span><span>Under 10&nbsp;minutes</span></li><li><span class="steps__n">2</span><span>10&nbsp;minutes or more</span></li><li class="is-bar"><span class="steps__n">3</span><span>30&nbsp;minutes or more</span></li><li class="is-bar"><span class="steps__n">4</span><span>An hour or more</span></li></ol></div></div>
         </details>
+        <details class="more filter" id="filter" hidden>
+          <summary><span class="link">Filter the table</span><span class="label muted" id="filter-count" aria-live="polite"></span></summary>
+          <div class="filter__row"><label class="pick"><span class="pick__name">System</span><select data-f="os"><option value="">any</option><option value="windows">Windows</option><option value="linux">Linux</option><option value="mac">Mac</option></select></label><label class="pick"><span class="pick__name">Card</span><select data-f="gpu"><option value="">any</option><option value="nvidia">NVIDIA</option><option value="amd">AMD</option></select></label><label class="pick"><span class="pick__name">Picture</span><select data-f="picture"><option value="">any</option><option value="2">2 of 5 or better</option><option value="3">3 of 5 or better</option><option value="4">4 of 5 or better</option><option value="5">5 of 5</option></select></label><label class="pick"><span class="pick__name">Speed</span><select data-f="speed"><option value="">any</option><option value="2">2 fps or more</option><option value="3">5 fps or more</option><option value="4">10 fps or more</option><option value="5">20 fps or more</option><option value="6">30 fps or more</option></select></label><label class="pick"><span class="pick__name">Stability</span><select data-f="stability"><option value="">any</option><option value="2">10 minutes or more</option><option value="3">30 minutes or more</option><option value="4">an hour or more</option></select></label><button class="textbtn textbtn--chip" type="button" id="filter-clear" hidden>Clear</button></div>
+          <p class="small muted filter__note">Systems and cards are the ones a project or its testers report running it on, and it may run on others. A choice on a lane leaves only projects that are in-game. Filters were suggested in issues <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues/12" rel="noopener">12</a> and <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues/13" rel="noopener">13</a> on this page&rsquo;s repository.</p>
+        </details>
       </div>
       <ol class="board">
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="amd" data-picture="3" data-speed="3" data-stability="4">
           <p class="board__pos" aria-label="Position 1">1</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/PastiiJay/klbf-lab" rel="noopener">klbf-lab</a></h3>
             <p class="small muted">Build of VIctory and victory-fork, tested on an AMD Radeon card</p>
+            <p class="small muted">Tested on Windows · AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 3 of 5:</span> lit, with tints and faint lines</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 3 of 6:</span> 5 to 9&nbsp;fps by scene</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on is-bar"></span><span class="meter__seg is-on is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 4 of 4:</span> 77&nbsp;minutes of play</p></div><p class="label lane__short">2 steps short of the playable bar</p></div>
           </div>
@@ -421,11 +444,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and its test-build branch: the maintainer&#x27;s own figures from one machine, with other users&#x27; reports from other cards. Changed <time datetime="2026-11-25T15:13:00Z" data-t="clock">15:13 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="2" data-speed="4" data-stability="2">
           <p class="board__pos" aria-label="Position 2">2</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/realblastex/flamingo" rel="noopener">Flamingo</a></h3>
             <p class="small muted">Fork of victory-fork tuned on one RTX 4070, published on 25 November</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> shadows missing, rooms dark</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 4 of 6:</span> 7.8 to 14&nbsp;fps by scene, unconfirmed</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 2 of 4:</span> a 24&nbsp;minute play session</p></div><p class="label lane__short">2 steps short of the playable bar</p></div>
           </div>
@@ -434,11 +458,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and its run log: the maintainer&#x27;s own figures from one machine, not confirmed by anyone else. Changed <time datetime="2026-11-25T15:36:00Z" data-t="clock">15:36 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="2" data-speed="3" data-stability="3">
           <p class="board__pos" aria-label="Position 3">3</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/fxceless/victory-fork" rel="noopener">victory-fork</a></h3>
             <p class="small muted">Fork of VIctory, formerly named victory-gta6</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> shadows black</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 3 of 6:</span> 7 to 12&nbsp;fps by view</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 3 of 4:</span> 30&nbsp;minutes, in a pull request</p></div><p class="label lane__short">2 steps short of the playable bar</p></div>
           </div>
@@ -447,11 +472,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and commit notes, open pull requests measured by their authors, and builds that use its code. Changed <time datetime="2026-11-25T13:04:00Z" data-t="clock">13:04 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows linux" data-gpu="nvidia amd" data-picture="2" data-speed="2" data-stability="3">
           <p class="board__pos" aria-label="Position 4">4</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/LooperSalty/AnyXboxX" rel="noopener">AnyXboxX</a></h3>
             <p class="small muted">Builds on VIctory and victory-fork, whose code it now keeps in its own repository</p>
+            <p class="small muted">Tested on Windows, Linux · NVIDIA, AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> ray-traced light off</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 3 to 6.9&nbsp;fps by machine</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 3 of 4:</span> 45&nbsp;minutes, relayed</p></div><p class="label lane__short">3 steps short of the playable bar</p></div>
           </div>
@@ -460,11 +486,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and run notes: the maintainer&#x27;s own measurements on two machines, and one contributor&#x27;s report that the maintainer relays. Changed <time datetime="2026-11-25T15:13:00Z" data-t="clock">15:13 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="2" data-speed="2" data-stability="4">
           <p class="board__pos" aria-label="Position 5">5</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/Zettrox/ztrx" rel="noopener">ztrx</a></h3>
             <p class="small muted">Build of victory-fork for NVIDIA cards</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> shadows black</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 1 to 3&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on is-bar"></span><span class="meter__seg is-on is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 4 of 4:</span> over 90&nbsp;minutes</p></div><p class="label lane__short">3 steps short of the playable bar</p></div>
           </div>
@@ -473,11 +500,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, and PortWatch, which first listed it as a private build. Changed <time datetime="2026-11-25T01:28:00Z" data-t="clock">01:28 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="amd" data-picture="4" data-speed="2" data-stability="2">
           <p class="board__pos" aria-label="Position 6">6</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/Belobug/VIctory-Belobug-AMD" rel="noopener">VIctory-Belobug-AMD</a></h3>
             <p class="small muted">Fork of VIctory for AMD Radeon cards, built on VIctory&#x27;s main branch and its pull requests</p>
+            <p class="small muted">Tested on Windows · AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 4 of 5:</span> lit and whole, stand-in light shaded</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 3 to 4.9&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 2 of 4:</span> a 15&nbsp;minute drive</p></div><p class="label lane__short">4 steps short of the playable bar</p></div>
           </div>
@@ -486,11 +514,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, tested on one machine, and PortWatch, whose owner reports having seen the build. Changed <time datetime="2026-11-25T14:26:00Z" data-t="clock">14:26 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="amd" data-picture="3" data-speed="2" data-stability="2">
           <p class="board__pos" aria-label="Position 7">7</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ka1qux/BRVIctory-ka1qux" rel="noopener">BRVIctory-ka1qux</a></h3>
             <p class="small muted">Fork of victory-fork, developed and measured on an AMD Radeon card</p>
+            <p class="small muted">Tested on Windows · AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 3 of 5:</span> shade lit but flat, some textures coarse</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 2.4 to 6.9&nbsp;fps by settings</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 2 of 4:</span> 25&nbsp;minute session</p></div><p class="label lane__short">4 steps short of the playable bar</p></div>
           </div>
@@ -499,11 +528,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-25T15:36:00Z" data-t="clock">15:36 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="3" data-speed="3" data-stability="0">
           <p class="board__pos" aria-label="Position 8">8</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/vitutu1/victory-perf" rel="noopener">victory-perf</a></h3>
             <p class="small muted">Fork of victory-fork aimed at frame rate, published on 25 November</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 3 of 5:</span> shade lit by stand-ins</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 3 of 6:</span> 4.5 to 14&nbsp;fps by scene, unconfirmed</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">5 steps short of the playable bar</p></div>
           </div>
@@ -512,11 +542,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README: the maintainer&#x27;s own figures from one machine, not confirmed by anyone else. Changed <time datetime="2026-11-25T07:54:00Z" data-t="clock">07:54 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="3" data-speed="2" data-stability="1">
           <p class="board__pos" aria-label="Position 9">9</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/voidopcode/vilocity" rel="noopener">vilocity</a></h3>
             <p class="small muted">Xbox Series compatibility layer for Windows, published on 25 November</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 3 of 5:</span> lit, stand-in light, sparkles</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 2 to 5&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 1 of 4:</span> about 7&nbsp;minutes</p></div><p class="label lane__short">5 steps short of the playable bar</p></div>
           </div>
@@ -525,11 +556,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-25T15:13:00Z" data-t="clock">15:13 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="" data-picture="2" data-speed="3" data-stability="0">
           <p class="board__pos" aria-label="Position 10">10</p>
           <div class="board__who">
             <h3 class="t-card">omonkey</h3>
             <p class="small muted">Private build based on victory-fork. No public code</p>
+            
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> lit, major effects missing</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 3 of 6:</span> about 5&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">5 steps short of the playable bar</p></div>
           </div>
@@ -538,11 +570,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: PortWatch, which reported watching the work on live streams, and VGTimes, which reports the developer&#x27;s statement about a letter from Rockstar. Changed <time datetime="2026-11-25T15:36:00Z" data-t="clock">15:36 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="amd" data-picture="2" data-speed="2" data-stability="1">
           <p class="board__pos" aria-label="Position 11">11</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/myokex/victory-amd" rel="noopener">victory-amd</a></h3>
             <p class="small muted">Fork of victory-fork with fixes for AMD Radeon cards</p>
+            <p class="small muted">Tested on Windows · AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> walls or lamps missing at times</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 2 to 3&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 1 of 4:</span> 8&nbsp;minute runs</p></div><p class="label lane__short">5 steps short of the playable bar</p></div>
           </div>
@@ -551,11 +584,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-25T11:32:00Z" data-t="clock">11:32 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="" data-picture="4" data-speed="2" data-stability="0">
           <p class="board__pos" aria-label="Position 12">12</p>
           <div class="board__who">
             <h3 class="t-card">suri</h3>
             <p class="small muted">Private build based on victory-fork. No public code</p>
+            
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 4 of 5:</span> close to the retail game</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> about 3&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -564,11 +598,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: PortWatch, which says it confirmed a player moving around. Not the developer&#x27;s own statement. Changed <time datetime="2026-11-24T22:43:00Z" data-t="clock">22:43 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="amd" data-picture="3" data-speed="2" data-stability="0">
           <p class="board__pos" aria-label="Position 13">13</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/DexNom/VIctory" rel="noopener">DexNom Runtime</a></h3>
             <p class="small muted">Fork of VIctory for AMD Radeon cards, built on victory-world-runtime</p>
+            <p class="small muted">Tested on Windows · AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 3 of 5:</span> lit; ray tracing runs as an experiment</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 1&nbsp;fps with ray tracing, 3.5 to 4 without</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -577,11 +612,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project test report, measured on one machine, and PortWatch, which reports having seen the build running. Changed <time datetime="2026-11-25T15:13:00Z" data-t="clock">15:13 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="2" data-speed="2" data-stability="0">
           <p class="board__pos" aria-label="Position 14">14</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/uiliannn/VItoriaBr" rel="noopener">VItoriaBr</a></h3>
             <p class="small muted">Build of VIctory and victory-fork, tested on NVIDIA cards</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> shadows dark</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> 3.5 to 6&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -590,11 +626,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, and PortWatch&#x27;s report of its live stream. Changed <time datetime="2026-11-25T10:16:00Z" data-t="clock">10:16 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia" data-picture="2" data-speed="2" data-stability="0">
           <p class="board__pos" aria-label="Position 15">15</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ZigZagBoi1/ScarlettPort" rel="noopener">ScarlettPort</a></h3>
             <p class="small muted">Build of victory-fork with its own changes</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 2 of 5:</span> shadows dark</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> about 4&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -603,11 +640,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-25T13:04:00Z" data-t="clock">13:04 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="" data-picture="1" data-speed="2" data-stability="0">
           <p class="board__pos" aria-label="Position 16">16</p>
           <div class="board__who">
             <h3 class="t-card">CGBJ</h3>
             <p class="small muted">Private build based on VIctory, with some of XCL&#x27;s work. No public code</p>
+            
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 1 of 5:</span> unlit</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 2 of 6:</span> about 4&nbsp;fps</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability:</span> no run length reported</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -616,11 +654,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: PortWatch, which says it checked that the build gets in game, and DSOGaming. Not the group&#x27;s own statement. Changed <time datetime="2026-11-24T13:10:00Z" data-t="clock">13:10 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia amd" data-picture="1" data-speed="1" data-stability="1">
           <p class="board__pos" aria-label="Position 17">17</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/marvisak/VIctory" rel="noopener">VIctory</a></h3>
             <p class="small muted">Runs the game&#x27;s Xbox code natively on Windows</p>
+            <p class="small muted">Tested on Windows · NVIDIA, AMD</p>
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
             <div class="lanes"><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label lane__label"><span class="lane__name">Picture 1 of 5:</span> unlit, parts missing</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Speed 1 of 6:</span> 1 to 2&nbsp;seconds a frame</p></div><div class="lane"><div class="meter meter--lane" aria-hidden="true"><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg is-bar"></span><span class="meter__seg is-bar"></span></div><p class="label lane__label"><span class="lane__name">Stability 1 of 4:</span> 6 to 8&nbsp;minutes</p></div><p class="label lane__short">6 steps short of the playable bar</p></div>
           </div>
@@ -629,11 +668,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, and open pull requests by contributors, each measured on one machine. Changed <time datetime="2026-11-24T21:58:00Z" data-t="clock">21:58 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia">
           <p class="board__pos" aria-label="Position 18">18</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/rpatty-dev/PercyScarlett" rel="noopener">PercyScarlett</a></h3>
             <p class="small muted">Xbox Series compatibility layer, with a runtime now built on VIctory and victory-fork</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -642,11 +682,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and its guide, measured on one machine. Changed <time datetime="2026-11-25T10:16:00Z" data-t="clock">10:16 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia">
           <p class="board__pos" aria-label="Position 19">19</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/KomanderDG88/VIniVIdiVIci" rel="noopener">VIniVIdiVIci</a></h3>
             <p class="small muted">Fork of victory-fork aimed at NVIDIA cards</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -655,11 +696,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, measured on one machine. Changed <time datetime="2026-11-25T15:36:00Z" data-t="clock">15:36 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="linux" data-gpu="amd">
           <p class="board__pos" aria-label="Position 20">20</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/pablogonz12/Scarlight" rel="noopener">Scarlight</a></h3>
             <p class="small muted">Based on VIctory and victory-fork, for Linux through Mesa&#x27;s open-source drivers, AMD cards first</p>
+            <p class="small muted">Tested on Linux · AMD</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -668,11 +710,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, measured on a fixed test scene. Changed <time datetime="2026-11-25T13:04:00Z" data-t="clock">13:04 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia">
           <p class="board__pos" aria-label="Position 21">21</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/xcl-dev/xcl" rel="noopener">XCL</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -681,11 +724,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and its commit notes. The run into the world is on a branch that is not merged. Changed <time datetime="2026-11-25T06:42:00Z" data-t="clock">06:42 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="mac" data-gpu="">
           <p class="board__pos" aria-label="Position 22">22</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/pragyaangaur/VIctory-macOS" rel="noopener">VIctory-macOS</a></h3>
             <p class="small muted">Runs VIctory on Apple Silicon Macs through CrossOver Wine and Apple&#x27;s D3DMetal</p>
+            <p class="small muted">Tested on Mac</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -694,11 +738,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, from testers&#x27; reports on several Macs. Changed <time datetime="2026-11-25T14:49:00Z" data-t="clock">14:49 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="">
           <p class="board__pos" aria-label="Position 23">23</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ThatRecompDev/five-star-recomp" rel="noopener">five-star-recomp</a></h3>
             <p class="small muted">GTA VI recompilation toolchain</p>
+            <p class="small muted">Tested on Windows</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -707,11 +752,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project status page. Changed <time datetime="2026-11-25T14:49:00Z" data-t="clock">14:49 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows linux" data-gpu="">
           <p class="board__pos" aria-label="Position 24">24</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ubiquitarianism/leonida" rel="noopener">Leonida Continued</a></h3>
             <p class="small muted">Continuation of Leonida, the halted GTA VI recompilation</p>
+            <p class="small muted">Tested on Windows, Linux</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -720,11 +766,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and its test report, from about 80 starts on a Linux machine and runs on a Windows machine. Changed <time datetime="2026-11-25T07:27:00Z" data-t="clock">07:27 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows linux" data-gpu="">
           <p class="board__pos" aria-label="Position 25">25</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/OpenCommunityEdition/OpenScarlett" rel="noopener">OpenScarlett (Community Edition)</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games, separate from the other OpenScarlett</p>
+            <p class="small muted">Tested on Windows, Linux</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -733,11 +780,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-24T06:54:00Z" data-t="clock">06:54 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia amd">
           <p class="board__pos" aria-label="Position 26">26</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/R0Y00/Xbox2Windows" rel="noopener">Xbox2Windows</a></h3>
             <p class="small muted">Translation toolchain for Xbox Series games</p>
+            <p class="small muted">Tested on Windows · NVIDIA, AMD</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -746,11 +794,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T07:33:00Z" data-t="clock">07:33 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="nvidia">
           <p class="board__pos" aria-label="Position 27">27</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/californiaAlmonds/OpenScarlett" rel="noopener">OpenScarlett</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games</p>
+            <p class="small muted">Tested on Windows · NVIDIA</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -759,11 +808,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: commit messages, tested on one machine. Changed <time datetime="2026-11-24T06:03:00Z" data-t="clock">06:03 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="linux" data-gpu="">
           <p class="board__pos" aria-label="Position 28">28</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/brcly/TuxBox" rel="noopener">TuxBox</a></h3>
             <p class="small muted">Compatibility layer for Linux (Proton)</p>
+            <p class="small muted">Tested on Linux</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -772,11 +822,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, progress page and run records from two machines. Changed <time datetime="2026-11-25T12:20:00Z" data-t="clock">12:20 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="linux" data-gpu="amd">
           <p class="board__pos" aria-label="Position 29">29</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/Steinkoloss/port-of-the-americas" rel="noopener">Port of the Americas</a></h3>
             <p class="small muted">Compatibility layer for Linux (Proton), for GTA VI only</p>
+            <p class="small muted">Tested on Linux · AMD</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -785,11 +836,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README, tested on one machine. Changed <time datetime="2026-11-25T10:59:00Z" data-t="clock">10:59 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="">
           <p class="board__pos" aria-label="Position 30">30</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/ethan00013/keylime" rel="noopener">keylime</a></h3>
             <p class="small muted">Runtime written from scratch in C++, drawing through Vulkan</p>
+            <p class="small muted">Tested on Windows</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -798,11 +850,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README: the maintainer&#x27;s own claims, with no test machine named and no outside report. Changed <time datetime="2026-11-25T11:56:00Z" data-t="clock">11:56 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="">
           <p class="board__pos" aria-label="Position 31=">31=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/OnlyMoisties/GTA6-BootTest" rel="noopener">GTA6-BootTest</a></h3>
             <p class="small muted">GTA VI boot harness with its own shader translator</p>
+            
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -811,11 +864,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T01:09:00Z" data-t="clock">01:09 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="windows" data-gpu="">
           <p class="board__pos" aria-label="Position 31=">31=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/gookie-dev/g6shim" rel="noopener">g6shim</a></h3>
             <p class="small muted">Replacement system libraries for Xbox console games</p>
+            <p class="small muted">Tested on Windows</p>
             <div class="meter" role="img" aria-label="Stage 5 of 7: Recognisable picture"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 5 of 7: Recognisable picture</p>
             
           </div>
@@ -824,11 +878,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T18:34:00Z" data-t="clock">18:34 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="">
           <p class="board__pos" aria-label="Position 33=">33=</p>
           <div class="board__who">
             <h3 class="t-card">Leonida</h3>
             <p class="small muted">GTA VI recompilation, halted</p>
+            
             <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
             
           </div>
@@ -837,11 +892,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: GitHub&#x27;s published takedown notices, press reports of the creator&#x27;s public posts, and git checks from this page. Changed <time datetime="2026-11-24T18:34:00Z" data-t="clock">18:34 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="">
           <p class="board__pos" aria-label="Position 33=">33=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/mewiof/Holy-Interoperability" rel="noopener">Holy-Interoperability</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games</p>
+            
             <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
             
           </div>
@@ -850,11 +906,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README. Changed <time datetime="2026-11-24T03:20:00Z" data-t="clock">03:20 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="">
           <p class="board__pos" aria-label="Position 33=">33=</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/luizwidmer/palmetto" rel="noopener">palmetto</a></h3>
             <p class="small muted">Compatibility runtime for a console build, by one maintainer</p>
+            
             <div class="meter" role="img" aria-label="Stage 4 of 7: First frames"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 4 of 7: First frames</p>
             
           </div>
@@ -863,11 +920,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <p class="small muted">Source: project README and commit notes, and git checks from this page. Changed <time datetime="2026-11-25T01:49:00Z" data-t="clock">01:49 UTC</time>.</p>
           </div>
         </li>
-        <li class="board__row">
+        <li class="board__row" data-os="" data-gpu="">
           <p class="board__pos" aria-label="Position 36">36</p>
           <div class="board__who">
             <h3 class="t-card"><a class="name" href="https://github.com/omonkeyz/xbox-emulator" rel="noopener">xbox-emulator</a></h3>
             <p class="small muted">Compatibility layer for Xbox Series games</p>
+            
             <div class="meter" role="img" aria-label="Stage 3 of 7: Graphics device"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span><span class="meter__seg"></span></div><p class="label">Stage 3 of 7: Graphics device</p>
             
           </div>
@@ -877,6 +935,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
           </div>
         </li>
       </ol>
+      <p class="small muted" id="filter-none" hidden>No project matches these choices.</p>
       <h3 class="sub">Also watched</h3>
       <ul class="pairs"><li><span class="rows__name">Palmwave</span><p>Was a fork of XCL, then from <time datetime="2026-11-24T21:12:00Z" data-t="clock-day">21:12&nbsp;UTC on 24 November</time> a renamed copy of victory-fork with a few commits of its own. Its repository stopped answering at about <time datetime="2026-11-25T22:15:00Z" data-t="clock">22:15&nbsp;UTC</time>, with no published takedown notice naming it and the reason not known.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/JMAN730/project-flamingo" rel="noopener">project-flamingo</a></span><p>A fork of VIctory with its own pull-request queue, which Scarlight&#x27;s README points NVIDIA and Windows users to. Its README still carries VIctory&#x27;s status from 23 November and reports no results of its own.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/Kajcsi/G6Recomp" rel="noopener">G6Recomp</a></span><p>Now creates the game&#x27;s window, graphics device, command queues and lists, with memory code ported from Leonida. No frame yet.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/sammwyy/xvalkyrie" rel="noopener">XValkyrie</a></span><p>Runs other Xbox Series games and has published work on a later title&#x27;s first frames, without naming it. It bundled a copy of the VIctory engine for about 20&nbsp;minutes on 24 November, removed it, and now ports parts of VIctory&#x27;s texture code with credit.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/boykopovar/AnyPS5" rel="noopener">AnyPS5</a></span><p>The PlayStation route. Blocked: no PS5 build of the game is public.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/daeken/XSXEmu" rel="noopener">XSXEmu</a></span><p>A Rust emulator for Xbox Series titles on Apple Silicon that does not use Wine. Its README now says the game&#x27;s own code starts under Rosetta and opens its archives, and that it has not yet created a graphics device, run a shader or produced a frame.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/mkr2tl/xenstride-public" rel="noopener">Xenstride</a></span><p>A derivative of XCL that changes how graphics pipelines are scheduled and built ahead of time. Its status page says gameplay is not demonstrated: its tests run on a software renderer or synthetic inputs, and a newer retail title&#x27;s world load still ends in the game&#x27;s own watchdog.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/Archivist-Atlas/gta-vi-astral" rel="noopener">gta-vi-astral</a></span><p>A system written in Go and documented in French. Its README now says the intro screens&#x27; interface draws on a graphics card at 30&nbsp;frames a second in runs of 65&nbsp;seconds without a crash, with navigable menus in progress and no 3D picture or sound yet, and calls it not playable.</p></li><li><span class="rows__name"><a class="name" href="https://github.com/ZSlayerHQ/victory-world-runtime" rel="noopener">victory-world-runtime</a></span><p>A fork of VIctory that gathers fixes from the public forks, and the base DexNom Runtime builds on. Its README still carries victory-fork&#x27;s earlier status and reports no results of its own.</p></li></ul>
       <p class="small muted measure idle">Also checked, with no GTA VI work published: <a class="name" href="https://github.com/Freminet/ScarlettX" rel="noopener">ScarlettX</a> and <a class="name" href="https://github.com/jadeowaowa/scarlett-layer" rel="noopener">scarlett-layer</a>.</p>
@@ -910,6 +969,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-25T15:53:00Z" data-t="log" data-pre="">15:53</time> <span>25 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">The standings can be filtered by system, card maker and lane</h3>
+            <ul class="points measure"><li>Each row now says which systems and graphics card makers the project or its testers report running it on. It may run on others.</li><li>A &quot;Filter the table&quot; link above the standings narrows the rows by system, by card maker and by a minimum on each lane, for example a session of 30&nbsp;minutes or more. Positions keep their numbers when rows are hidden. A reader suggested both in issues 12 and 13 on this page&#x27;s repository.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T15:36:00Z" data-t="log" data-pre="">15:36</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">A private build&#x27;s developer says Rockstar wrote to him, and Flamingo logs a 24-minute session at 8.6 frames a second</h3>
@@ -930,6 +996,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>PortWatch added DexNom Runtime, a fork of VIctory for AMD Radeon cards, to its board in second place at <time datetime="2026-11-25T14:34:00Z" data-t="clock">14:34&nbsp;UTC</time>. It says it has seen the build running level with Belobug&#x27;s: the open world close to the retail game, played through missions at about 3 to 4&nbsp;frames a second.</li><li>The fork&#x27;s own test report gives 3.5 to 4&nbsp;frames a second indoors on a Radeon RX 7900 XTX from a saved game, with interior lighting still wrong and no session length. On this page&#x27;s rule it enters at stage 6, 6 steps short of the playable bar.</li><li>five-star-recomp&#x27;s status page says a boot ran 18&nbsp;minutes in the world without losing the graphics device, once it held back the game&#x27;s ray-tracing passes. Its picture of the world is still in red only.</li><li>VIctory-macOS reports frames in the world on an M5 Pro down from 4.5&nbsp;seconds to about 2.4 to 2.9. victory-fork&#x27;s main code has not moved since <time datetime="2026-11-25T12:43:00Z" data-t="clock">12:43&nbsp;UTC</time>, and the estimate is unchanged.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 122 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T14:26:00Z" data-t="log" data-pre="">14:26</time> <span>25 Nov</span></p>
           <div class="log__what">
@@ -937,10 +1007,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>VIctory-Belobug-AMD&#x27;s README (<time datetime="2026-11-25T14:00:00Z" data-t="clock">14:00&nbsp;UTC</time>) says its stand-in for ray-traced light is now weaker in creases and under objects, and that the game&#x27;s own sun and lamp shadows work. It still reports 3 to 5&nbsp;frames a second on a Radeon RX 9070 XT, says about 380 draws a frame are dropped, and says the frame is bound by the processor&#x27;s work.</li><li>VIctory-macOS reports its current code staying in the world for over 20&nbsp;minutes without freezing on an M3 Max, at 0.1 to 0.2&nbsp;frames a second. Nobody has reached gameplay on a Mac.</li><li>News check: IGN has reported on the takedown and says it has asked Take-Two for comment. No statement from Rockstar or Take-Two has appeared since the build leaked, and GitHub&#x27;s list shows no notice naming another project.</li><li>VIniVIdiVIci, a fork of victory-fork checked on an RTX 4060 Ti, joins the watch list at a reader&#x27;s request. Its README says it has not yet published results of its own in play. The estimate is unchanged at the evening of Thu 26 Nov.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 121 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T14:01:00Z" data-t="log" data-pre="">14:01</time> <span>25 Nov</span></p>
           <div class="log__what">
@@ -1796,7 +1862,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
   <section id="method">
     <div class="wrap">
       <h2>Method and limits</h2>
-      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim unless its source line says otherwise, and most are unverified. CGBJ&#x27;s comes from press reports, because its code is private.</p></li><li><span class="rows__name">Frame rates</span><p>Rendered frames. Frames added by frame generation are reported as such and do not count toward the playable bar.</p></li><li><span class="rows__name">Lanes</span><p>A project at stage 6 is also read on three lanes: picture, speed and stability. Each step is this page&#x27;s reading of what the project reports about itself, speed is the middle of the frame rates it reports, and the key under the standings title lists the steps.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>Rows at stage 6 are ordered by their lanes alone: fewest steps short of the playable bar on speed and stability together, then the better picture, the higher frame rate and the longer session. Lower stages are ordered by this page&#x27;s reading of what remains before the next stage. An equals sign means level.</p></li><li><span class="rows__name">Requests</span><p>To ask for a project to be added, corrected or taken off this page, <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues" rel="noopener">open an issue on its repository</a>.</p></li></ul>
+      <ul class="rows rows--spec"><li><span class="rows__name">Playable builds</span><p>None exist. Any download that claims to be GTA VI for PC is fake, and fake builds carrying malware have circulated since August.</p></li><li><span class="rows__name">The build</span><p>These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it.</p></li><li><span class="rows__name">Sources</span><p>Each project&#x27;s public repository and open pull requests and, where marked, its chat. Project names link to those repositories to credit the work.</p></li><li><span class="rows__name">Stage claims</span><p>Every stage is the project&#x27;s own claim unless its source line says otherwise, and most are unverified. CGBJ&#x27;s comes from press reports, because its code is private.</p></li><li><span class="rows__name">Frame rates</span><p>Rendered frames. Frames added by frame generation are reported as such and do not count toward the playable bar.</p></li><li><span class="rows__name">Lanes</span><p>A project at stage 6 is also read on three lanes: picture, speed and stability. Each step is this page&#x27;s reading of what the project reports about itself, speed is the middle of the frame rates it reports, and the key under the standings title lists the steps.</p></li><li><span class="rows__name">Tested on</span><p>The systems and graphics card makers a project or its testers report running it on. It may run on others, and a row with none listed has reported none.</p></li><li><span class="rows__name">Crash reports</span><p>By one project&#x27;s notes, the game&#x27;s crash reporter sends data to an outside server each time it crashes.</p></li><li><span class="rows__name">Who compiles it</span><p>An AI assistant (Claude), automatically, about every 15&nbsp;minutes. It can be wrong.</p></li><li><span class="rows__name">Affiliation</span><p>None with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.</p></li><li><span class="rows__name">Positions</span><p>Rows at stage 6 are ordered by their lanes alone: fewest steps short of the playable bar on speed and stability together, then the better picture, the higher frame rate and the longer session. Lower stages are ordered by this page&#x27;s reading of what remains before the next stage. An equals sign means level.</p></li><li><span class="rows__name">Requests</span><p>To ask for a project to be added, corrected or taken off this page, <a class="link" href="https://github.com/vuyp/gta6-pc-race/issues" rel="noopener">open an issue on its repository</a>.</p></li></ul>
     </div>
   </section>
 </main>
@@ -1808,7 +1874,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         <h2>Standings checked every 15 minutes</h2>
         <div class="btn-row">
           <a class="btn btn--primary" href="#standings">See the standings</a>
-          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (113 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">113</span></a>
+          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (117 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">117</span></a>
         </div>
       </div>
       <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
@@ -1905,6 +1971,47 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         });
       }
       if (local) { show(true); }
+    }
+  } catch (e) {}
+  // Filters over the standings (asked for in issues 12 and 13): a row stays when it meets every choice made.
+  // The panel is hidden until this script runs, so there are no dead controls without it.
+  try {
+    var panel = document.getElementById("filter");
+    var boardRows = document.querySelectorAll(".board > .board__row");
+    if (panel && boardRows.length) {
+      var picks = panel.querySelectorAll("select[data-f]");
+      var shownNote = document.getElementById("filter-count");
+      var clearBtn = document.getElementById("filter-clear");
+      var noneNote = document.getElementById("filter-none");
+      var applyFilters = function () {
+        var shown = 0, active = false;
+        for (var r = 0; r < boardRows.length; r++) {
+          var keep = true;
+          for (var s = 0; s < picks.length; s++) {
+            var field = picks[s].getAttribute("data-f"), want = picks[s].value;
+            if (!want) { continue; }
+            active = true;
+            var has = boardRows[r].getAttribute("data-" + field) || "";
+            if (field === "os" || field === "gpu") {
+              if ((" " + has + " ").indexOf(" " + want + " ") < 0) { keep = false; }
+            } else if (!(parseInt(has, 10) >= parseInt(want, 10))) { keep = false; }
+          }
+          boardRows[r].hidden = !keep;
+          if (keep) { shown++; }
+        }
+        if (shownNote) { shownNote.textContent = active ? "showing " + shown + " of " + boardRows.length : ""; }
+        if (clearBtn) { clearBtn.hidden = !active; }
+        if (noneNote) { noneNote.hidden = !(active && shown === 0); }
+      };
+      for (var q = 0; q < picks.length; q++) { picks[q].addEventListener("change", applyFilters); }
+      if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+          for (var q = 0; q < picks.length; q++) { picks[q].value = ""; }
+          applyFilters();
+        });
+      }
+      panel.hidden = false;
+      applyFilters();
     }
   } catch (e) {}
   // The estimate counts down between checks.
