@@ -19,7 +19,7 @@ Each project is placed on a ladder of seven stages, from loading the game's file
 
 Each step is the page's reading of what the project reports about itself. The key under the page's "Standings" title lists the steps, and the ones that meet its playable bar (20 frames a second and 30 minutes without a crash) are marked in blue.
 
-Rows at stage 6 are ordered by their lanes alone: fewest steps short of that bar on speed and stability together, then the better picture, the higher frame rate and the longer session. Nothing in that order is set by hand. Lower stages have no lanes and are ordered by the page's reading of what remains before the next stage.
+Rows at stage 6 are ordered by their lanes alone: fewest steps short of that bar on speed and stability together, then the better picture, the higher frame rate and the longer session. Nothing in that order is set by hand, and a place is not a verification or an endorsement: it is computed from what each project reports about itself. Lower stages have no lanes and are ordered by the page's reading of what remains before the next stage.
 
 ## Requests and corrections
 
@@ -29,7 +29,7 @@ The page does not link to the leaked build, to downloads, streams or chats, or t
 
 ## Changing the page itself
 
-`index.html` is generated. It is rebuilt from the tracker's data at every check, so a direct edit to it is overwritten within minutes. Ideas for the page are welcome as issues, or as a pull request that shows the change. Accepted ones are rebuilt into the page's source and credited in the commit.
+`index.html` is generated. Its source is in [`src/`](src): `data.json` holds everything the page says, `build.py` renders it (the order of the in-game rows is computed there, in `rank_key`), and `page.css` and `page.js` are its styles and script. The folder is copied here at every check. It is rebuilt from the tracker's data at every check, so a direct edit to it is overwritten within minutes. Ideas for the page are welcome as issues, or as a pull request that shows the change. Accepted ones are rebuilt into the page's source and credited in the commit.
 
 ## Credits
 
