@@ -9,6 +9,16 @@ Live page: https://vuyp.github.io/gta6-pc-race/
 - Compiled automatically by an AI assistant (Claude) and checked about every 15 minutes. It can be wrong.
 - Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.
 
+## Stages and lanes
+
+Each project is placed on a ladder of seven stages, from loading the game's files to playable. A project that is in-game (stage 6) is also read on three lanes:
+
+- **Picture**: what the project says is on screen in the game's world, in five written steps.
+- **Speed**: the best average it reports in play, in rendered frames a second.
+- **Stability**: the longest session it reports without a crash.
+
+Each step is the page's reading of what the project reports about itself. The key under the page's "Standings" title lists the steps, and the ones that meet its playable bar (20 frames a second and 30 minutes without a crash) are marked in blue.
+
 ## Requests and corrections
 
 Open an [issue](https://github.com/vuyp/gta6-pc-race/issues) to ask for a project to be added, corrected or taken off the page. For a new project, give its public repository and the file where it states its own progress. The page reports what a project's repository says, so a claim needs to be written there first.
@@ -24,3 +34,4 @@ The page does not link to the leaked build, to downloads, streams or chats, or t
 - Typefaces: Onest and JetBrains Mono, served from `fonts/` under the SIL Open Font License 1.1 (licence texts beside the files).
 - Design: laid out by hand to the written rules of the tasteskill "design-taste-frontend" skill (palette "stone-blueprint", type pairing "onest", both drawn at random from its libraries). None of the skill's own files are used.
 - Local-time display: asked for in issue 5 and first written by opsasa in pull request 7.
+- Lanes for projects that are in-game (picture, speed, stability): suggested by I-I-IT in issue 8.
