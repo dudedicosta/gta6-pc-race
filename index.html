@@ -7,7 +7,9 @@
 <meta name="description" content="How far each open-source project has got in running the Xbox build of GTA VI on a PC, checked every 15 minutes, with a best estimate of when it becomes playable.">
 <meta name="page-type" content="software">
 <meta name="site-kind" content="software">
-<meta name="theme-color" content="#dfdedb">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#dfdedb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1b16" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="GTA VI PC Race: live tracker of unofficial PC ports">
 <meta property="og:description" content="How far each open-source project has got in running the Xbox build of GTA VI on a PC, checked every 15 minutes, with a best estimate of when it becomes playable.">
 <meta property="og:type" content="website">
@@ -22,6 +24,7 @@
 @font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 
 :root {
+  color-scheme: light dark;
   --p-bg: #dfdedb; --p-surface: #d3d2ce; --p-ink: #26251e; --p-muted: #5a5951;
   --p-accent: #2456d6; --p-accent-ink: #ffffff;
   --p-inv-bg: #26251e; --p-inv-surface: #33322b; --p-inv-ink: #dfdedb; --p-inv-muted: #9f9e99;
@@ -56,6 +59,37 @@
   --line: color-mix(in oklab, var(--ink) 14%, transparent);
   --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
   background: var(--bg); color: var(--ink);
+}
+
+/* The same system in the dark, and with more contrast, when the reader's device asks for either. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p-bg: #1c1b16; --p-surface: #27261f; --p-ink: #e3e2de; --p-muted: #a3a29b;
+    --p-accent: #8eabff; --p-accent-ink: #10131c;
+    --p-inv-bg: #2e2d26; --p-inv-surface: #3a3931; --p-inv-ink: #e9e8e4; --p-inv-muted: #b3b2ab;
+    --line: color-mix(in oklab, var(--ink) 14%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --p-bg: #f2f1ee; --p-surface: #e6e5e1; --p-ink: #000000; --p-muted: #33322b;
+    --p-accent: #0f3aa8;
+    --p-inv-bg: #000000; --p-inv-surface: #1c1b16; --p-inv-ink: #ffffff; --p-inv-muted: #d6d5cf;
+    --line: color-mix(in oklab, var(--ink) 45%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 75%, transparent);
+  }
+  .ground-inverse {
+    --line: color-mix(in oklab, var(--ink) 45%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 75%, transparent);
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --p-bg: #000000; --p-surface: #161510; --p-ink: #ffffff; --p-muted: #d2d1cb;
+    --p-accent: #aec3ff; --p-accent-ink: #000000;
+    --p-inv-bg: #1f1e19; --p-inv-surface: #2b2a23; --p-inv-ink: #ffffff; --p-inv-muted: #dddcd6;
+  }
 }
 
 /* ---------------------------------------------------------------- base */
@@ -226,6 +260,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
 .meter--lane .meter__seg.is-on { background: var(--ink); }
 .meter--lane .meter__seg.is-bar { background: color-mix(in oklab, var(--action) 30%, transparent); }
 .meter--lane .meter__seg.is-bar.is-on { background: var(--action); }
+@media (forced-colors: active) {
+  .meter__seg { forced-color-adjust: none; background: transparent; outline: 1px solid GrayText; outline-offset: -1px; }
+  .meter__seg.is-on, .meter--lane .meter__seg.is-on { background: CanvasText; outline-color: CanvasText; }
+  .meter--lane .meter__seg.is-bar { background: transparent; outline-color: Highlight; }
+  .meter--lane .meter__seg.is-bar.is-on { background: Highlight; outline-color: Highlight; }
+}
 .lane__label { font-weight: 400; }
 .lane__name { font-weight: 500; }
 .lane__short { font-weight: 400; color: var(--muted); }
@@ -324,7 +364,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <a href="#method">Method</a>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (83 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">83</span></a>
+      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (84 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">84</span></a>
       <a class="btn btn--primary" href="#standings">See the standings</a>
       <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
     </div>
@@ -1705,7 +1745,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         <h2>Standings checked every 15 minutes</h2>
         <div class="btn-row">
           <a class="btn btn--primary" href="#standings">See the standings</a>
-          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (83 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">83</span></a>
+          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (84 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">84</span></a>
         </div>
       </div>
       <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
