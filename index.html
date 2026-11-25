@@ -8,6 +8,7 @@
 <meta name="page-type" content="software">
 <meta name="site-kind" content="software">
 <meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem("gta6race.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <meta name="theme-color" content="#dfdedb" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1c1b16" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="GTA VI PC Race: live tracker of unofficial PC ports">
@@ -61,9 +62,11 @@
   background: var(--bg); color: var(--ink);
 }
 
-/* The same system in the dark, and with more contrast, when the reader's device asks for either. */
+/* The same system in the dark, and with more contrast, when the reader's device asks for either. The footer's
+   theme switch sets data-theme on the root, and a look picked there wins over the device's: the dark tokens are
+   written twice (device, switch) because a media query and an attribute cannot share one rule. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --p-bg: #1c1b16; --p-surface: #27261f; --p-ink: #e3e2de; --p-muted: #a3a29b;
     --p-accent: #8eabff; --p-accent-ink: #10131c;
     --p-inv-bg: #2e2d26; --p-inv-surface: #3a3931; --p-inv-ink: #e9e8e4; --p-inv-muted: #b3b2ab;
@@ -71,6 +74,15 @@
     --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
   }
 }
+:root[data-theme="dark"] {
+    --p-bg: #1c1b16; --p-surface: #27261f; --p-ink: #e3e2de; --p-muted: #a3a29b;
+    --p-accent: #8eabff; --p-accent-ink: #10131c;
+    --p-inv-bg: #2e2d26; --p-inv-surface: #3a3931; --p-inv-ink: #e9e8e4; --p-inv-muted: #b3b2ab;
+    --line: color-mix(in oklab, var(--ink) 14%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+    color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
 @media (prefers-contrast: more) {
   :root {
     --p-bg: #f2f1ee; --p-surface: #e6e5e1; --p-ink: #000000; --p-muted: #33322b;
@@ -85,10 +97,21 @@
   }
 }
 @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --p-bg: #000000; --p-surface: #161510; --p-ink: #ffffff; --p-muted: #d2d1cb;
     --p-accent: #aec3ff; --p-accent-ink: #000000;
     --p-inv-bg: #1f1e19; --p-inv-surface: #2b2a23; --p-inv-ink: #ffffff; --p-inv-muted: #dddcd6;
+    --line: color-mix(in oklab, var(--ink) 45%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 75%, transparent);
+  }
+}
+@media (prefers-contrast: more) {
+  :root[data-theme="dark"] {
+    --p-bg: #000000; --p-surface: #161510; --p-ink: #ffffff; --p-muted: #d2d1cb;
+    --p-accent: #aec3ff; --p-accent-ink: #000000;
+    --p-inv-bg: #1f1e19; --p-inv-surface: #2b2a23; --p-inv-ink: #ffffff; --p-inv-muted: #dddcd6;
+    --line: color-mix(in oklab, var(--ink) 45%, transparent);
+    --line-strong: color-mix(in oklab, var(--ink) 75%, transparent);
   }
 }
 
@@ -384,7 +407,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <a href="#method">Method</a>
     </nav>
     <div class="nav__actions">
-      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (151 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">151</span></a>
+      <a class="btn btn--secondary nav__star" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (152 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span class="btn__word">Star</span><span class="btn__count">152</span></a>
       <a class="btn btn--primary" href="#standings">See the standings</a>
       <button class="btn btn--secondary nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"></span></button>
     </div>
@@ -2007,12 +2030,12 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
         <h2>Standings checked every 15 minutes</h2>
         <div class="btn-row">
           <a class="btn btn--primary" href="#standings">See the standings</a>
-          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (151 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">151</span></a>
+          <a class="btn btn--secondary" href="https://github.com/vuyp/gta6-pc-race" rel="noopener" aria-label="Star this tracker on GitHub (152 so far)"><svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.6l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.88l-5.2 2.74.99-5.8-4.21-4.1 5.82-.85z"/></svg><span>Star on GitHub</span><span class="btn__count">152</span></a>
         </div>
       </div>
       <p class="close__name" aria-hidden="true">GTA VI PC Race</p>
     </div>
-    <p class="legal small muted">GTA VI PC Race, 2026. Not affiliated with Rockstar Games or Take-Two Interactive. <span id="tz-note">Times are UTC.</span> <button class="textbtn" type="button" data-tz aria-pressed="false" hidden>Show local time</button></p>
+    <p class="legal small muted">GTA VI PC Race, 2026. Not affiliated with Rockstar Games or Take-Two Interactive. <span id="tz-note">Times are UTC.</span> <button class="textbtn" type="button" data-tz aria-pressed="false" hidden>Show local time</button> <button class="textbtn textbtn--chip" type="button" data-theme-btn hidden>Theme: auto</button></p>
   </div>
 </footer>
 <script>
@@ -2106,6 +2129,35 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       if (local) { show(true); }
     }
   } catch (e) {}
+  // The look: the device decides unless the reader picks light or dark with the footer's button (issues 11
+  // and 15). The choice lives in localStorage and is applied before first paint by a small script in the head.
+  try {
+    var themeBtn = document.querySelector("[data-theme-btn]");
+    if (themeBtn) {
+      var rootEl = document.documentElement, looks = ["auto", "light", "dark"];
+      var schemeMeta = document.querySelector('meta[name="color-scheme"]');
+      var tints = document.querySelectorAll('meta[name="theme-color"]');
+      var readLook = function () { var v = rootEl.getAttribute("data-theme"); return v === "light" || v === "dark" ? v : "auto"; };
+      var showLook = function (v) {
+        if (v === "auto") { rootEl.removeAttribute("data-theme"); } else { rootEl.setAttribute("data-theme", v); }
+        themeBtn.textContent = "Theme: " + v;
+        if (schemeMeta) { schemeMeta.setAttribute("content", v === "auto" ? "light dark" : v); }
+        for (var m = 0; m < tints.length; m++) {
+          var own = tints[m].getAttribute("data-own") || tints[m].getAttribute("content");
+          tints[m].setAttribute("data-own", own);
+          tints[m].setAttribute("content", v === "auto" ? own : (v === "dark" ? "#1c1b16" : "#dfdedb"));
+        }
+      };
+      themeBtn.addEventListener("click", function () {
+        var next = looks[(looks.indexOf(readLook()) + 1) % looks.length];
+        showLook(next);
+        try { if (next === "auto") { localStorage.removeItem("gta6race.theme"); } else { localStorage.setItem("gta6race.theme", next); } } catch (e) {}
+      });
+      showLook(readLook());
+      themeBtn.hidden = false;
+    }
+  } catch (e) {}
+
   // Filters over the standings (asked for in issues 12 and 13): a row stays when it meets every choice made.
   // The panel is hidden until this script runs, so there are no dead controls without it.
   try {
