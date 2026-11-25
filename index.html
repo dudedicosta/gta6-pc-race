@@ -283,7 +283,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">Playable: no. victory-fork, a public fork of VIctory, is furthest, at stage&nbsp;6&nbsp;of&nbsp;7.</p>
-        <p class="hero__how enter">Nineteen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T06:42:00Z">06:42 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
+        <p class="hero__how enter">Nineteen open-source projects and three private builds are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every 15 minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="2026-11-25T07:02:00Z">07:02 UTC on 25 Nov</time><span id="ago"></span>.</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -291,7 +291,7 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       </div>
       <div class="hero__visual enter">
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
-          <p class="frame__head"><span>Stages reached</span><span class="mono">06:42 UTC</span></p>
+          <p class="frame__head"><span>Stages reached</span><span class="mono">07:02 UTC</span></p>
           <ol class="lad" reversed><li class="lad__row lad__row--ahead" style="--i:0"><span class="lad__n">7</span><span class="lad__stage">Playable</span><span class="lad__who"></span></li><li class="lad__row lad__row--lead" style="--i:1"><span class="lad__n">6</span><span class="lad__stage">In-game</span><span class="lad__who">victory-fork, AnyXboxX, ztrx, VItoriaBr, omonkey, suri, CGBJ, VIctory</span></li><li class="lad__row lad__row--has" style="--i:2"><span class="lad__n">5</span><span class="lad__stage">Recognisable picture</span><span class="lad__who">Scarlight, XCL, five-star-recomp, OpenScarlett (Community Edition), PercyScarlett, Xbox2Windows, OpenScarlett, TuxBox, GTA6-BootTest, g6shim</span></li><li class="lad__row lad__row--has" style="--i:3"><span class="lad__n">4</span><span class="lad__stage">First frames</span><span class="lad__who">Leonida, Holy-Interoperability, palmetto</span></li><li class="lad__row lad__row--has" style="--i:4"><span class="lad__n">3</span><span class="lad__stage">Graphics device</span><span class="lad__who">xbox-emulator</span></li><li class="lad__row lad__row--past" style="--i:5"><span class="lad__n">2</span><span class="lad__stage">Starts up</span><span class="lad__who"></span></li><li class="lad__row lad__row--past" style="--i:6"><span class="lad__n">1</span><span class="lad__stage">Loads</span><span class="lad__who"></span></li></ol>
           <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="2026-11-27T06:00:00Z">about 2 days</span></p>
         </div>
@@ -311,8 +311,8 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <div class="meter" role="img" aria-label="Stage 6 of 7: In-game"><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg is-on"></span><span class="meter__seg"></span></div><p class="label">Stage 6 of 7: In-game</p>
           </div>
           <div class="board__where">
-            <p class="measure">Its main branch moved again at 05:44&nbsp;UTC on 25 November with memory fixes that give the first room its walls in the later frames of four test runs out of four, and its notes report five 5-minute runs on an RTX 4070 without a device loss, with speed last put at about 3 to 5&nbsp;frames a second. Reports built on its code go further: an open pull request describes a 30-minute run at about 7.6&nbsp;frames a second on an RTX 4090, and ztrx reports the whole opening mission played in one session of more than 90&nbsp;minutes.</p>
-            <p class="small muted">Source: project README and commit notes, open pull requests measured by their authors, and builds that use its code. Changed <time datetime="2026-11-25T06:01:00Z">06:01 UTC</time>.</p>
+            <p class="measure">Its README says the first room now renders right on its test machine, with walls, textures, people and lamps, at 190 to 450 ms a frame, which is 2 to 5&nbsp;frames a second, and that the picture work has caught up while the frame rate has not. Reports built on its code go further: an open pull request describes a 30-minute run at about 7.6&nbsp;frames a second on an RTX 4090, and ztrx reports the whole opening mission played in one session of more than 90&nbsp;minutes.</p>
+            <p class="small muted">Source: project README and commit notes, open pull requests measured by their authors, and builds that use its code. Changed <time datetime="2026-11-25T07:02:00Z">07:02 UTC</time>.</p>
           </div>
         </li>
         <li class="board__row">
@@ -601,6 +601,13 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
       <h2>Updates</h2>
       <ol class="log">
         <li class="log__row">
+          <p class="log__when"><time datetime="2026-11-25T07:02:00Z">07:02</time> <span>25 Nov</span></p>
+          <div class="log__what">
+            <h3 class="t-card">victory-fork: the first room renders right, and the frame rate is where it was</h3>
+            <ul class="points measure"><li>victory-fork&#x27;s maintainer merged another batch at 06:46&nbsp;UTC. The README now says the first room renders right on the test machine, with walls, textures, people and lamps, at 190 to 450 ms a frame, which is 2 to 5&nbsp;frames a second. In its words, the picture work has caught up and the frame rate has not.</li><li>The notes credit two fixes taken from VIctory and from pull requests, and say the processor now compares 25&nbsp;MB a frame for shader writes where it compared 550 to 710&nbsp;MB. A change that saves 3.1&nbsp;GB of the card&#x27;s memory ran on a card for the first time and stays off by default. One five-minute run had no device loss, and the merged tree&#x27;s test suites were not run.</li><li>Its headline status still says 2.5 to 4&nbsp;frames a second with shadowed areas black. The best figure measured in play is unchanged at about 7.6&nbsp;frames a second, so the estimate does not move.</li></ul>
+          </div>
+        </li>
+        <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T06:42:00Z">06:42</time> <span>25 Nov</span></p>
           <div class="log__what">
             <h3 class="t-card">XCL corrects its figure: about 5 frames a second in the world, not 14</h3>
@@ -621,6 +628,10 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>victory-fork&#x27;s maintainer merged memory fixes at 05:44&nbsp;UTC. A write to a memory page that the game shows at several addresses now reaches every copy of it, which the notes say happened 0.8 to 1.0 million times in a five-minute run. The first room now has its walls in the later frames of four runs out of four, against two of five before.</li><li>The notes report five 5-minute runs on an RTX 4070 without a device loss and give no new frame rate. They say the test card&#x27;s memory is full from the first frame of the world, and that a fix for it is written but switched off and not yet run on a card.</li><li>Nothing else moved. VIctory&#x27;s main branch is unchanged since 01:36&nbsp;UTC, XCL&#x27;s world branch is still unmerged, and the best figure measured in play is still about 7.6&nbsp;frames a second.</li></ul>
           </div>
         </li>
+      </ol>
+      <details class="more">
+        <summary><span class="link">See 101 earlier updates</span></summary>
+        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T05:22:00Z">05:22</time> <span>25 Nov</span></p>
           <div class="log__what">
@@ -628,10 +639,6 @@ section > .wrap > h2 { margin-bottom: var(--head-gap); }
             <ul class="points measure"><li>Routine review of the estimate at 05:22&nbsp;UTC: unchanged at about 2&nbsp;days. XCL&#x27;s report adds a second, independent route into the game&#x27;s world, but it gives no frame rate in play, no player control and no long runs. In the VIctory family, the best figure measured in play has been about 7.6&nbsp;frames a second for over seven hours.</li><li>A community-run board that tallies testers&#x27; reports on XCL&#x27;s pull requests, last updated at 00:44&nbsp;UTC, lists five reports of the world on screen and one of a tester playing by hand at about 6.9&nbsp;frames a second in a short run. The board says these counts are not confirmed.</li><li>What would move the estimate: earlier if XCL reports control, a frame rate in the world or a longer run, or if a speed gain is merged in the VIctory family; later if neither has happened by mid-morning in Europe.</li><li>News check: no statement from Rockstar or Take-Two, no takedown notice naming another project, and no press coverage yet of XCL&#x27;s report or of builds past the opening mission.</li></ul>
           </div>
         </li>
-      </ol>
-      <details class="more">
-        <summary><span class="link">See 100 earlier updates</span></summary>
-        <ol class="log">
         <li class="log__row">
           <p class="log__when"><time datetime="2026-11-25T05:01:00Z">05:01</time> <span>25 Nov</span></p>
           <div class="log__what">
