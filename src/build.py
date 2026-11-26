@@ -112,7 +112,11 @@ fc = data["forecast"]
 # data["paused"]: ISO time at which automatic checks were paused; absent while they run. While paused the
 # estimate does not count down (page.js leaves a target it cannot read alone) and the copy says so.
 PAUSED = data.get("paused")
-fc_count = "paused" if PAUSED else fc["target"]
+# fc["met"]: set when a report meets the playable bar: {"t": ISO time of the check that counted it, "line": a sentence
+# or two on whose report it is and what nobody has checked}. The estimate then stops counting down (page.js leaves a
+# target it cannot read alone), its headings change and the chances are left out. Absent until then.
+MET = fc.get("met")
+fc_count = "paused" if (PAUSED or MET) else fc["target"]
 last_rev = fc["revisions"][0]
 
 # ---------------------------------------------------------------- lanes, and the order they give
@@ -392,6 +396,19 @@ fc_steps = "".join(
     for s in fc["steps"]
 )
 fc_basis = "".join(f"<li>{txt(b, last_rev['t'])}</li>" for b in fc["basis"][:6])
+foot_name = "Playable bar" if MET else "Best estimate to playable"
+fc_head = "Playable, by one project's own report" if MET else "Time to playable"
+fc_lead = (
+    f'<p class="lead">{txt(MET["line"], MET["t"])}</p>' if MET else
+    f'<p class="lead">Around <time datetime="{esc(fc["target"])}">{esc(fc["date_label"])}</time>.</p>'
+)
+basis_head = "What the report says and what nobody has checked" if MET else "What the estimate rests on"
+fc_odds_block = f'<h3 class="t-card">Chances</h3>\n          <ul class="rows">{fc_odds}</ul>' if fc["odds"] else ""
+fc_small = (
+    "This page's reading of one project's report, made by the AI that compiles the page. It can be wrong, and nobody outside the project has verified the report."
+    if MET else
+    "A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does."
+)
 
 # ---------------------------------------------------------------- updates
 
@@ -487,7 +504,7 @@ TITLE = "GTA VI PC Race: live tracker of unofficial PC ports"
 DESC = (
     "How far each open-source project has got in running the Xbox build of GTA VI on a PC, "
     + ("as of the last check before automatic checks were paused, " if PAUSED else "checked every 15 minutes, ")
-    + "with a best estimate of when it becomes playable."
+    + ("and the first report of a playable session, by the project's own account." if MET else "with a best estimate of when it becomes playable.")
 )
 SITE = "https://vuyp.github.io/gta6-pc-race/"
 
@@ -551,7 +568,7 @@ page = f"""<!DOCTYPE html>
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
           <p class="frame__head"><span>Stages reached</span><time class="mono" datetime="{esc(data['checked'])}" data-t="clock">{clock(data['checked'])} UTC</time></p>
           <ol class="lad" reversed>{''.join(ladder)}</ol>
-          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="{esc(fc_count)}">{esc(fc['label'])}</span></p>
+          <p class="frame__foot"><span>{foot_name}</span><span id="fc-short" data-target="{esc(fc_count)}">{esc(fc['label'])}</span></p>
         </div>
       </div>
     </div>
@@ -579,21 +596,20 @@ page = f"""<!DOCTYPE html>
 
   <section id="forecast" class="ground-inverse">
     <div class="wrap">
-      <h2>Time to playable</h2>
+      <h2>{esc(fc_head)}</h2>
       <div class="grid fc">
         <div class="fc__main">
           <p class="stat" id="fc-rel" data-target="{esc(fc_count)}">{esc(fc['label'])}</p>
-          <p class="lead">Around <time datetime="{esc(fc['target'])}">{esc(fc['date_label'])}</time>.</p>
+          {fc_lead}
           <p class="measure">{txt(fc['definition'])}</p>
-          <h3 class="t-card">What the estimate rests on</h3>
+          <h3 class="t-card">{basis_head}</h3>
           <ul class="points measure">{fc_basis}</ul>
         </div>
         <div class="fc__side">
-          <h3 class="t-card">Chances</h3>
-          <ul class="rows">{fc_odds}</ul>
+          {fc_odds_block}
           <h3 class="t-card">Milestones</h3>
           <ul class="rows">{fc_steps}</ul>
-          <p class="small muted">A forecast by the AI that compiles this page. It can be badly wrong, and it moves when the evidence does. Last revised <time datetime="{esc(last_rev['t'])}" data-t="clock-day">{clock(last_rev['t'])} UTC on {esc(day(last_rev['t']))}</time>: {txt(last_rev['note'], last_rev['t'])}</p>
+          <p class="small muted">{esc(fc_small)} Last revised <time datetime="{esc(last_rev['t'])}" data-t="clock-day">{clock(last_rev['t'])} UTC on {esc(day(last_rev['t']))}</time>: {txt(last_rev['note'], last_rev['t'])}</p>
         </div>
       </div>
     </div>
