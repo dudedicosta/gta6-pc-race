@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T12:48:00Z",
+  "checked": "2026-11-26T12:52:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1504,7 +1504,7 @@
     {
       "name": "AnyPS5",
       "repo": "boykopovar/AnyPS5",
-      "note": "The PlayStation route. Blocked: no PS5 build of the game is public."
+      "note": "The PlayStation route: it relinks PS5 executables to run on Linux and Windows. Press reports of 25 and 26 November say a PS5 build of the game has leaked and was shown running on a jailbroken console, unverified; nothing in its repository names this title so far."
     },
     {
       "name": "XSXEmu",
@@ -1594,6 +1594,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T12:52:00Z",
+      "title": "A PlayStation 5 build is reported leaked; nobody has reported running it on a PC",
+      "points": [
+        "Press reports say a PlayStation 5 build of the game has leaked. VGTimes reported a leaker's claim on 25 November, unverified at the time, of a full dump with a decrypted executable. Notebookcheck reported the same day that videos showed a dump of about 540 GB running on a jailbroken console, and calls the footage alleged. This page's earlier news checks did not look for it; a reader pointed it out.",
+        "Nobody has reported running that build on a PC. Notebookcheck names the emulator KytyPS5 as a candidate and says considerable work would remain. AnyPS5, the PlayStation route on this page's watch list, has nothing in its repository that names this title, and neither has AnyKyty, a runtime built on AnyPS5 and KytyPS5 that the reader pointed to. Both are read each round.",
+        "The reports carry no statement from Rockstar, Take-Two or Sony. The standings and the estimate are unchanged: every listed project works from the Xbox build. This page links to neither leak."
+      ]
+    },
     {
       "t": "2026-11-26T12:48:00Z",
       "title": "VI-BR-PORT, re-read on its new base, reports about 12 frames a second on an 8 GB card; Vice-Tay merges a fix for its memory growth",
@@ -3245,7 +3254,7 @@
     },
     {
       "label": "The build",
-      "text": "These projects work from a leaked Xbox build. Rockstar has not released or announced a PC version. This page does not link to the leak or explain how to get or run it."
+      "text": "These projects work from a leaked Xbox build. Press reports of 25 and 26 November say a PlayStation 5 build has leaked too; no listed project reports running it on a PC. Rockstar has not released or announced a PC version. This page does not link to either leak or explain how to get or run it."
     },
     {
       "label": "Sources",
