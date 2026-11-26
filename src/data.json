@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T00:11:00Z",
+  "checked": "2026-11-26T00:32:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -151,8 +151,8 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README (23:18 UTC) now heads its status with play for half an hour at a time, slowly: about 9 to 12 frames a second in rooms and light outdoor views and 5 to 6 in heavy ones, with its tester having played from the opening past the first boat mission before the graphics device was lost, in sessions of 6, 49 and 31 minutes, cause not known. That is in-game by this page's bar, which asks for 20; the README says shadowed areas are still black, the thread that prepares submissions is the limit, video memory is not the cause of the lost device, and its newest changes, one of them ported by hand from VIctory-7900XTX, are written but not yet measured in a game.",
-      "changed": "2026-11-26T00:11:00Z",
+      "status": "Its README (00:09 UTC) heads its status with play for half an hour at a time, slowly: about 7 to 12 frames a second, 9 to 12 in rooms and light outdoor views and 5 to 6 in heavy ones, with its tester having played from the opening past the first boat mission before the graphics device was lost, four times now, in sessions of 6, 49, 31 and 38 minutes, the last three on the way to the same place in the story. That is in-game by this page's bar, which asks for 20; the README says shadowed areas are still black, the thread that prepares submissions is the limit, video memory is not the cause of the lost device, and its newest changes, one of them ported by hand from VIctory-7900XTX, are written but not yet measured in a game.",
+      "changed": "2026-11-26T00:32:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -682,17 +682,17 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-26T00:11:00Z",
-      "status": "Its README says the opening cutscenes and the first room play at 4 to 8 frames a second on an RTX 5080, with faces and rooms lit, window light and shadows on heads, every shader translating and a constant standing in for ray-traced light, and its latest test run (00:03 UTC) shows a median frame of 325 milliseconds, about 3 frames a second. It says faces in the opening cutscenes are now lit and the jumpsuits come out orange in some runs and red in others, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-26T00:32:00Z",
+      "status": "Its README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second that way on an RTX 5080, against about 3 on the larger console's profile, because the game then draws fewer pixels and leaves out the ray-traced and hair passes this layer cannot run; its latest test run shows a median frame of 127 milliseconds, about 8 frames a second. It says rooms are lit and a print on one character's clothing is missing on that profile, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "lit, stand-in light, jumpsuit colour varies by run"
+          "text": "lit, stand-in light, fewer passes on the smaller profile"
         },
         "speed": {
-          "low": 3.1,
-          "high": 8,
-          "text": "4 to 8 fps, 3.1 median in its latest run"
+          "low": 3,
+          "high": 11,
+          "text": "about 11 fps on the smaller console's profile, 3 on the larger"
         },
         "stability": {
           "minutes": 7,
@@ -849,8 +849,8 @@
       "kind": "Fork of victory-fork aimed at NVIDIA cards",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-25T22:10:00Z",
-      "status": "Its README (21:48 UTC) reports the player in control of the character in the world of a title it does not name on an RTX 4060 Ti, at about 3 to 5 frames a second by scene with 3.2 measured under control, and one session of 15 minutes that ran to its time limit without a crash. It says control was confirmed that evening with scripted input and nobody at the keyboard, with the camera turned, the character moved and the pause menu opened, that the picture is very dark with wrong textures and black shadows, and that it is not playable and claims no speed gain for its own changes.",
+      "changed": "2026-11-26T00:32:00Z",
+      "status": "Its README (00:24 UTC) reports a 46-minute session without a crash on an RTX 4060 Ti on the smaller console's profile, 38 minutes 44 seconds of it from the first sight of the world of a title it does not name, at 3.75 frames a second overall and 1.8 to 4.6 by five-minute window, with scripted presses read throughout and a person playing part of it. It says the picture was checked only at points, so the world is not shown to have been on screen or under control throughout, that the frame rate falls to 2 to 3 while the player moves, that the picture is very dark with wrong textures and black shadows, and that it is not playable.",
       "tested": {
         "os": [
           "Windows"
@@ -865,13 +865,13 @@
           "text": "dark, wrong textures, shadows black"
         },
         "speed": {
-          "low": 3,
+          "low": 1.8,
           "high": 5,
-          "text": "about 3 to 5 fps by scene"
+          "text": "3.75 fps over 38 minutes, 1.8 to 4.6 by window"
         },
         "stability": {
-          "minutes": 15,
-          "text": "15 minutes, to its time limit"
+          "minutes": 38,
+          "text": "38 minutes in the world, not shown continuous"
         }
       }
     },
@@ -1451,7 +1451,7 @@
     {
       "name": "Sixth Star",
       "repo": "ihaterockstargames/sixth-star",
-      "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file reports gameplay at about 4.6 frames a second and about 22 in the intro cutscene before the picture froze, measured by its maintainer from one run's frame line, with stability not measured."
+      "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file reports gameplay at about 4.6 frames a second and about 22 in the intro cutscene before the picture froze, measured by its maintainer from one run's frame line, with no session length recorded."
     },
     {
       "name": "ScarlettCompat",
@@ -1460,6 +1460,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T00:32:00Z",
+      "title": "vilocity reaches about 11 frames a second on the smaller console's profile; victory-fork loses its graphics device a fourth time at the same place",
+      "points": [
+        "vilocity's README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second on an RTX 5080, against about 3 on the larger profile: the game then draws fewer pixels and leaves out the ray-traced and hair passes the layer cannot run. Its runs still end at about 7 minutes, so its place is unchanged.",
+        "victory-fork's README (00:09 UTC) records a fourth loss of the graphics device, 38 minutes in. Three of its four long sessions ended on the way to the same place in the story, so it now ties the fault to what is drawn there and not to the time played. Its headline range is now 7 to 12 frames a second.",
+        "VIniVIdiVIci's README (00:24 UTC) reports 46 minutes without a crash on an RTX 4060 Ti, 38 of them in the world at 3.75 frames a second overall, and says the world is not shown to have been on screen throughout. It moves from 19th to 16th.",
+        "The estimate was reviewed and holds at about a day. News check: no statement from Rockstar or Take-Two beyond the Leonida notice, and no new notice names a project on this page."
+      ]
+    },
     {
       "t": "2026-11-26T00:11:00Z",
       "title": "AnyXboxX reports dips to 1 to 6 frames a second while the world streams, and VIctory-7900XTX is first again",
