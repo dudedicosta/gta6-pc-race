@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T14:33:00Z",
+  "checked": "2026-11-26T14:58:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1296,15 +1296,17 @@
       "repo": "ubiquitarianism/leonida",
       "kind": "Continuation of Leonida, the halted GTA VI recompilation",
       "stage": 5,
-      "basis": "Project README and its test report, from about 80 starts on a Linux machine and runs on a Windows machine",
-      "status": "Its README says the game boots on Windows and on Linux through Proton, shows the launch movie, the first-run pages and the landing prompt, which respond to a controller, then runs the story load to its end and enters what it calls the world phase. It says no frame of the world has been verified on any test machine and that nothing is playable.",
-      "changed": "2026-11-25T07:27:00Z",
+      "basis": "Project README and its Linux test report: the world frames are from one Linux machine with a Radeon RX 7900 XTX, and the earlier results from about 80 starts on a Linux machine and runs on a Windows machine",
+      "status": "Its Linux report of 26 November says one machine with a Radeon RX 7900 XTX drew the project's first frames of the world, a street at night and one at sunset with palm trees, cars and a character, during eight minutes in the world with no GPU hang, at roughly one frame every six seconds. Its README, last changed at 02:49 UTC, still says no frame of the world has been verified on any test machine and that nothing is playable, and nothing reports control in the world.",
+      "changed": "2026-11-26T14:58:00Z",
       "tested": {
         "os": [
           "Windows",
           "Linux"
         ],
-        "gpu": []
+        "gpu": [
+          "AMD"
+        ]
       }
     },
     {
@@ -1626,6 +1628,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T14:58:00Z",
+      "title": "Leonida Continued reports its first frames of the world",
+      "points": [
+        "Its Linux report says one machine with a Radeon RX 7900 XTX drew a street at night and one at sunset with palm trees, cars and a character, during eight minutes in the world with no GPU hang, at roughly one frame every six seconds. It is the first report of the world on screen from the recompilation that continues Leonida.",
+        "Its README has not caught up and still says no frame of the world is verified. Nothing reports control, so it stays at stage 5.",
+        "The standings and the estimate are unchanged."
+      ]
+    },
     {
       "t": "2026-11-26T14:08:00Z",
       "title": "Vice-Tay is first: a 30-minute test at a median of 21.6 frames a second sets its speed lane; not yet counted as playable",
