@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T04:31:00Z",
+  "checked": "2026-11-26T04:54:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -259,8 +259,8 @@
       "kind": "Fork of VIctory for AMD Radeon cards, built on VIctory's main branch and its pull requests",
       "stage": 6,
       "basis": "Project README, tested on one machine, and PortWatch, whose owner reports having seen the build",
-      "status": "Its README now reports the world at 5 to 8 frames a second on a Radeon RX 9070 XT: 7.2 to 7.7 standing still in a scene of 8,800 draws and less while driving, lit with textures, people, vehicles, vegetation, water and sky, the game's own sun and lamp shadows, and a stand-in for ray-traced light that now follows the game's sky by day and by night. PortWatch, whose owner reports having seen the build, says it looks close to the retail game, plays through missions at about 4 frames a second and rarely crashes.",
-      "changed": "2026-11-25T21:02:00Z",
+      "status": "Its README now reports the world at 5 to 8 frames a second on a Radeon RX 9070 XT: 7.2 to 7.7 standing still in a scene of 8,800 draws and less while driving, lit with textures, people, vehicles, vegetation, water and sky, the game's own sun and lamp shadows, and a stand-in for ray-traced light that now follows the game's sky by day and by night. PortWatch, whose owner reports having seen the build, says it looks close to the retail game, plays through missions at about 8 frames a second and rarely crashes, and relays a report of ray tracing working on AMD that this README does not yet bear out.",
+      "changed": "2026-11-26T04:54:00Z",
       "lanes": {
         "picture": {
           "step": 4,
@@ -490,8 +490,8 @@
       "kind": "Private build based on VIctory, with some of XCL's work. No public code",
       "stage": 6,
       "basis": "PortWatch, whose update of 26 November says it has now seen the build, and earlier press reports. Not the group's own statement",
-      "status": "PortWatch's update of 03:58 UTC on 26 November, made by a stand-in editor, says PortWatch has now seen this private build and reports an average of 25 frames a second in gameplay on an NVIDIA card, with interiors and cutscenes near 30 and a picture close to the console with minor glitches. It gives no session length and does not say whether every frame is rendered, its notes say graphics degraded as speed improved before the rating was raised, and the code is not public, so nobody outside the group can test any of it.",
-      "changed": "2026-11-26T04:04:00Z",
+      "status": "PortWatch's update of 03:58 UTC on 26 November, made by a stand-in editor, says PortWatch has now seen this private build and reports an average of 25 frames a second in gameplay on an NVIDIA card with 16 GB of video memory in a PC with 8 GB of system memory, figures it has since called \"not a typo\", with interiors and cutscenes near 30 and a picture close to the console with minor glitches. It gives no session length and does not say whether every frame is rendered, its notes say graphics degraded as speed improved before the rating was raised, and the code is not public, so nobody outside the group can test any of it.",
+      "changed": "2026-11-26T04:54:00Z",
       "lanes": {
         "picture": {
           "step": 4,
@@ -1121,8 +1121,8 @@
       "repo": "Fayberr/Victory-United",
       "kind": "Tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in",
       "stage": 5,
-      "changed": "2026-11-26T03:41:00Z",
-      "status": "Its README (03:30 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile, and a paired 6-minute run in which 14 performance changes taken from other projects raised that room from 4.0 to 5.0. It now says moving the character is not confirmed, since a run that held the move keys for about two minutes did not move it, so its figures are for standing in the room and not for play; the room is lit by daylight with shadows missing some light.",
+      "changed": "2026-11-26T04:54:00Z",
+      "status": "Its README (04:41 UTC) reports one 15-minute run without a crash on an RTX 3080 Ti at a median of 9.3 frames a second in the first room after it merged VIctory-7900XTX's speed work, up from 5.0 in a 6-minute run before the merge, at half render scale on the smaller console's profile; an earlier 35-minute run held 4.8. It says moving the character is not confirmed, so its figures are for standing in the room and not for play, and that the newest figure is one run on one machine.",
       "basis": "Project README and its measurement notes: one scripted run on one machine, not confirmed by anyone else",
       "tested": {
         "os": [
@@ -1529,6 +1529,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T04:54:00Z",
+      "title": "PortWatch stands by its CGBJ figures; Victory-United nearly doubles in its test room after merging VIctory-7900XTX's speed work",
+      "points": [
+        "PortWatch's stand-in editor has added that the private build CGBJ averaged 25 frames a second on an NVIDIA card with 16 GB of video memory in a PC with 8 GB of system memory, and calls those figures \"not a typo\". No session length has been added, so its lanes and its place are unchanged.",
+        "Victory-United's README (04:41 UTC) reports a 15-minute run at a median of 9.3 frames a second in its test room after merging VIctory-7900XTX's speed work, against 5.0 before. The character still only stands in the room, so it stays at stage 5.",
+        "PortWatch now gives about 8 frames a second for the gameplay it saw on Belobug's fork, where it said about 4; that fork's README says 5 to 8. VIctory-NVIDIA and VIctory-7900XTX have published nothing new since the last check."
+      ]
+    },
     {
       "t": "2026-11-26T04:31:00Z",
       "title": "A public fork, VIctory-NVIDIA, reports 20 to 22 frames a second indoors and joins the table; VItoriaBr moves to 3rd",
