@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T00:32:00Z",
+  "checked": "2026-11-26T00:54:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -644,13 +644,13 @@
     },
     {
       "pos": 16,
-      "name": "DexNom Runtime",
+      "name": "DexNom RayTime",
       "repo": "DexNom/VIctory",
-      "kind": "Fork of VIctory for AMD Radeon cards, built on victory-world-runtime",
+      "kind": "Fork of VIctory for AMD Radeon cards, built on victory-world-runtime and published as DexNom Runtime until 26 November",
       "stage": 6,
       "basis": "Project test report, measured on one machine, and PortWatch, which reports having seen the build running",
-      "changed": "2026-11-25T15:13:00Z",
-      "status": "Its test report gives 3.5 to 4 frames a second indoors in the city of a title it does not name on a Radeon RX 7900 XTX, and an experimental mode in which the game's ray-tracing structures are built and walked outdoors at about 1 frame a second, with the lighting on individual objects not yet verified and no session length stated. PortWatch, which reports having seen the build running with ray-traced lighting working, now ranks it first on its own board and says the open world looks close to the retail game, with missions played at about 3 to 4 frames a second.",
+      "changed": "2026-11-26T00:54:00Z",
+      "status": "Its README (00:48 UTC) renames it DexNom RayTime and calls this its most complete tested build, with a profile that renders at 1440p with ray tracing on and upscales to 4K on a Radeon RX 7900 XTX; its test report, unchanged since 25 November, gives 3.5 to 4 frames a second indoors in the city of a title it does not name and about 1 with the experimental ray tracing, with no session length stated. PortWatch, which reports having seen the build running with ray-traced lighting working, says the open world looks close to the retail game, with missions played at about 3 to 4 frames a second.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -750,7 +750,7 @@
       "stage": 6,
       "pos": 19,
       "changed": "2026-11-25T16:07:00Z",
-      "status": "PortWatch says it verified this private group's build running with ray-traced lighting at about 3 to 5 frames a second, almost never crashing and reaching as far into the story as the leading public builds, with a picture slightly behind DexNom Runtime's. It is built mostly for AMD cards and runs slower on NVIDIA, and nobody outside can test it.",
+      "status": "PortWatch says it verified this private group's build running with ray-traced lighting at about 3 to 5 frames a second, almost never crashing and reaching as far into the story as the leading public builds, with a picture slightly behind DexNom RayTime's. It is built mostly for AMD cards and runs slower on NVIDIA, and nobody outside can test it.",
       "basis": "PortWatch, which says it verified the build. Not the group's own statement",
       "lanes": {
         "picture": {
@@ -812,7 +812,7 @@
     {
       "name": "victory-unified",
       "repo": "Itsbatt/victory-unified",
-      "kind": "Fork of VIctory that combines the work of victory-fork, Belobug's fork, DexNom Runtime and ztrx",
+      "kind": "Fork of VIctory that combines the work of victory-fork, Belobug's fork, DexNom RayTime and ztrx",
       "stage": 6,
       "pos": 21,
       "changed": "2026-11-25T20:40:00Z",
@@ -1431,7 +1431,7 @@
     {
       "name": "victory-world-runtime",
       "repo": "ZSlayerHQ/victory-world-runtime",
-      "note": "A fork of VIctory that gathers fixes from the public forks, and the base DexNom Runtime builds on. Its README still carries victory-fork's earlier status and reports no results of its own."
+      "note": "A fork of VIctory that gathers fixes from the public forks, and the base DexNom RayTime builds on. Its README still carries victory-fork's earlier status and reports no results of its own."
     },
     {
       "name": "VIctory-forkAMD",
