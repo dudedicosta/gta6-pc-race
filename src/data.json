@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T01:37:00Z",
+  "checked": "2026-11-26T01:58:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -682,8 +682,8 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-26T00:32:00Z",
-      "status": "Its README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second that way on an RTX 5080, against about 3 on the larger console's profile, because the game then draws fewer pixels and leaves out the ray-traced and hair passes this layer cannot run; its latest test run shows a median frame of 127 milliseconds, about 8 frames a second. It says rooms are lit and a print on one character's clothing is missing on that profile, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-26T01:58:00Z",
+      "status": "Its README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second that way on an RTX 5080, against about 3 on the larger console's profile, because the game then draws fewer pixels and leaves out the ray-traced and hair passes this layer cannot run; its latest test run (01:46 UTC) shows a median frame of 86 milliseconds, about 11.6 frames a second, after it cleared a slow mode that about half its launches fell into. It says rooms are lit and a print on one character's clothing is missing on that profile, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -691,7 +691,7 @@
         },
         "speed": {
           "low": 3,
-          "high": 11,
+          "high": 11.6,
           "text": "about 11 fps on the smaller console's profile, 3 on the larger"
         },
         "stability": {
@@ -1076,6 +1076,24 @@
     },
     {
       "pos": 29,
+      "name": "Victory-United",
+      "repo": "Fayberr/Victory-United",
+      "kind": "Tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in",
+      "stage": 5,
+      "changed": "2026-11-26T01:58:00Z",
+      "status": "Its README (01:37 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile. A script pressed the keys to reach that room and the character stood at a window, so it does not report the player in control; the room is lit by daylight with shadows missing some light.",
+      "basis": "Project README and its measurement notes: one scripted run on one machine, not confirmed by anyone else",
+      "tested": {
+        "os": [
+          "Windows"
+        ],
+        "gpu": [
+          "NVIDIA"
+        ]
+      }
+    },
+    {
+      "pos": 30,
       "name": "PercyScarlett",
       "repo": "rpatty-dev/PercyScarlett",
       "kind": "Xbox Series compatibility layer, with a runtime now built on VIctory and victory-fork",
@@ -1093,7 +1111,7 @@
       }
     },
     {
-      "pos": 30,
+      "pos": 31,
       "name": "Scarlight",
       "repo": "pablogonz12/Scarlight",
       "kind": "Steam compatibility tool for Linux based on VIctory and victory-fork, through Mesa's open-source drivers",
@@ -1111,7 +1129,7 @@
       }
     },
     {
-      "pos": 31,
+      "pos": 32,
       "name": "XCL",
       "repo": "xcl-dev/xcl",
       "kind": "Compatibility layer for Xbox Series games",
@@ -1129,7 +1147,7 @@
       }
     },
     {
-      "pos": 32,
+      "pos": 33,
       "name": "VIctory-macOS",
       "repo": "pragyaangaur/VIctory-macOS",
       "kind": "Runs VIctory on Apple Silicon Macs through CrossOver Wine and Apple's D3DMetal",
@@ -1145,7 +1163,7 @@
       }
     },
     {
-      "pos": 33,
+      "pos": 34,
       "name": "five-star-recomp",
       "repo": "ThatRecompDev/five-star-recomp",
       "kind": "GTA VI recompilation toolchain",
@@ -1161,7 +1179,7 @@
       }
     },
     {
-      "pos": 34,
+      "pos": 35,
       "name": "Leonida Continued",
       "repo": "ubiquitarianism/leonida",
       "kind": "Continuation of Leonida, the halted GTA VI recompilation",
@@ -1178,7 +1196,7 @@
       }
     },
     {
-      "pos": 35,
+      "pos": 36,
       "name": "OpenScarlett (Community Edition)",
       "repo": "OpenCommunityEdition/OpenScarlett",
       "kind": "Compatibility layer for Xbox Series games, separate from the other OpenScarlett",
@@ -1198,7 +1216,7 @@
       }
     },
     {
-      "pos": 36,
+      "pos": 37,
       "name": "Xbox2Windows",
       "repo": "R0Y00/Xbox2Windows",
       "kind": "Translation toolchain for Xbox Series games",
@@ -1218,7 +1236,7 @@
       }
     },
     {
-      "pos": 37,
+      "pos": 38,
       "name": "OpenScarlett",
       "repo": "californiaAlmonds/OpenScarlett",
       "kind": "Compatibility layer for Xbox Series games",
@@ -1238,7 +1256,7 @@
       }
     },
     {
-      "pos": 38,
+      "pos": 39,
       "name": "TuxBox",
       "repo": "brcly/TuxBox",
       "kind": "Compatibility layer for Linux (Proton)",
@@ -1254,7 +1272,7 @@
       }
     },
     {
-      "pos": 39,
+      "pos": 40,
       "name": "Port of the Americas",
       "repo": "Steinkoloss/port-of-the-americas",
       "kind": "Compatibility layer for Linux (Proton), for GTA VI only",
@@ -1272,7 +1290,7 @@
       }
     },
     {
-      "pos": 40,
+      "pos": 41,
       "name": "keylime",
       "repo": "ethan00013/keylime",
       "kind": "Runtime written from scratch in C++, drawing through Vulkan",
@@ -1289,7 +1307,7 @@
       "nolink": true
     },
     {
-      "pos": "41=",
+      "pos": "42=",
       "name": "GTA6-BootTest",
       "repo": "OnlyMoisties/GTA6-BootTest",
       "kind": "GTA VI boot harness with its own shader translator",
@@ -1303,7 +1321,7 @@
       }
     },
     {
-      "pos": "41=",
+      "pos": "42=",
       "name": "g6shim",
       "repo": "gookie-dev/g6shim",
       "kind": "Replacement system libraries for Xbox console games",
@@ -1319,7 +1337,7 @@
       }
     },
     {
-      "pos": "43=",
+      "pos": "44=",
       "name": "Leonida",
       "repo": "ProjectLeonida/Leonida",
       "kind": "GTA VI recompilation, halted",
@@ -1334,7 +1352,7 @@
       }
     },
     {
-      "pos": "43=",
+      "pos": "44=",
       "name": "Holy-Interoperability",
       "repo": "mewiof/Holy-Interoperability",
       "kind": "Compatibility layer for Xbox Series games",
@@ -1348,7 +1366,7 @@
       }
     },
     {
-      "pos": "43=",
+      "pos": "44=",
       "name": "palmetto",
       "repo": "luizwidmer/palmetto",
       "kind": "Compatibility runtime for a console build, by one maintainer",
@@ -1362,7 +1380,7 @@
       }
     },
     {
-      "pos": 46,
+      "pos": 47,
       "name": "xbox-emulator",
       "repo": "omonkeyz/xbox-emulator",
       "kind": "Compatibility layer for Xbox Series games",
@@ -1444,11 +1462,6 @@
       "note": "Engineering work that runs inside victory-fork, tested on an RTX 4070 Ti. Its README calls it not playable: from a save the world renders at a median of 5.8 frames a second, and the mission it loads into fails as it starts."
     },
     {
-      "name": "Victory-United",
-      "repo": "Fayberr/Victory-United",
-      "note": "A tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in. Its README now reports 4.9 to 5.2 frames a second in the first room on an RTX 3080 Ti, measured in two runs of 6 minutes, and a longest run of 8 minutes without a crash."
-    },
-    {
       "name": "Sixth Star",
       "repo": "ihaterockstargames/sixth-star",
       "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file reports gameplay at about 4.6 frames a second and about 22 in the intro cutscene before the picture froze, measured by its maintainer from one run's frame line, with no session length recorded."
@@ -1470,6 +1483,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T01:58:00Z",
+      "title": "Victory-United joins the table with a 35-minute scripted run; vilocity clears its slow launches",
+      "points": [
+        "Victory-United's README (01:37 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile. A script reached the room and the character stood still, so it leaves the watch list for the table at stage 5, first in that group.",
+        "vilocity's README (01:46 UTC) says about half its launches fell into a slow mode of 3 to 5 frames a second, caused by the game's own memory defragmenter on the card and now cleared: four launches in a row ran fast, and its latest run shows a median frame of 86 milliseconds, about 11.6 frames a second. Its runs still end at about 7 minutes.",
+        "VIctory-7900XTX had its first commit since 22:14 UTC on 25 November, a credit line, and its figures are unchanged. An open pull request on victory-fork describes a 30-minute session on an RTX 5060 Ti at a median of 3.2 frames a second with no loss of the graphics device."
+      ]
+    },
     {
       "t": "2026-11-26T01:37:00Z",
       "title": "A launcher project that reuses this page's top ten reports its own test runs; CCS03 joins the watch list",
