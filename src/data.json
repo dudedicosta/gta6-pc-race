@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T21:26:00Z",
+  "checked": "2026-11-26T21:52:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -32,7 +32,7 @@
     "basis": [
       "What was reported: one session on Vice-Tay's own test PC, an RTX 4090 with a Ryzen 9 9950X3D, on the smaller console's profile: 30 minutes in the world, played by hand from the prison through a boat section to an island on foot, at a median of 21.1 frames a second, with 19.1 to 23.2 for the middle 80 percent and a 1% low of 17.0.",
       "Where it comes from: the project's README, test page and measurements page, read by this page at 20:47 UTC and 21:22 UTC on 26 November. The frame rate is taken from the game's own frame lines, so the frames are rendered and none are generated.",
-      "What nobody has checked: all of it. No outside tester and no second machine has reproduced the session, and this page reads documents and runs nothing.",
+      "What nobody has checked: all of it. No outside tester and no second machine has reproduced the session, and this page reads documents and runs nothing. A contributor's notes in its repository give eight exploratory samples on an RTX 4070 on the larger console's profile, at a mean frame time of 76.6 milliseconds, about 13 frames a second, which is not a second run of the session.",
       "What the report itself qualifies: by hand means pad inputs sent through a script while watching a capture after every move, the first 4 of the 30 minutes are cutscenes, three failed attempts were picked up at checkpoints, and the current documents give the session's length and timeline without saying in words how it ended, which an earlier README did by saying the test runner ended it.",
       "What it is not: the console's experience. The README lists flat colour bands, glowing objects and blocky clouds and reflections, calls the build not fast enough yet against its own goal of 30 frames a second, and reports only the opening stretch of the game on a top graphics card.",
       "What could undo it: the project withdrawing or correcting the report, an outside run that contradicts it, or the repository going away. GitHub's published notice of 24 November against Leonida is still the only one that names a listed project."
@@ -255,8 +255,8 @@
       "kind": "Build of VIctory tested on an AMD Radeon card; its newest test build is based on the Neptune edition of VIctory",
       "stage": 6,
       "basis": "Project README, its test-build branch and its measuring tool: the maintainer's own figures from one machine in one session. The tool reads the layer's own frame lines and the measured settings use upscaling and no frame generation; not confirmed by anyone else",
-      "status": "Its README reports a test build, Lab 61, based on the Neptune edition of VIctory, in a session played with a controller on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far on foot and driving in the open world of a title it does not name, without a crash, at 14.0 frames a second on average and a median of 14.5, with freezes that take its lowest 1 percent of samples to about 0.4. It lists water surfaces and car glass that are not drawn, black mirrors and flickering shadows near trees, its earlier record is 77 minutes at about 5.2 on its previous build, and since 15:24 UTC it names a newer test build, Lab 63, that it says fixes dark faces in shade; its own five-minute hands-off run on the same PC averaged 14.3 with a median of 17.0, which is not play and changes no lane.",
-      "changed": "2026-11-26T16:15:00Z",
+      "status": "Its README reports a test build, Lab 61, based on the Neptune edition of VIctory, in a session played with a controller on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far on foot and driving in the open world of a title it does not name, without a crash, at 14.0 frames a second on average and a median of 14.5, with freezes that take its lowest 1 percent of samples to about 0.4. It lists water surfaces and car glass that are not drawn, black mirrors and flickering shadows near trees, its earlier record is 77 minutes at about 5.2 on its previous build, and since 15:24 UTC it names a newer test build, Lab 63, that it says fixes dark faces in shade; its README now also points to a newer AMD test branch built on another fork, Scarlett fork, with a bench run at 16.3 on average on the larger profile, and neither that nor its earlier hands-off run at 14.3 is play or changes a lane.",
+      "changed": "2026-11-26T21:52:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1257,8 +1257,8 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (18:14 UTC) says the city at night is on screen with sane exposure but shows only its light sources, at about 390 milliseconds a world frame, and that every boot that stays in the world a few minutes loses the graphics device.",
-      "changed": "2026-11-26T20:56:00Z",
+      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (21:32 UTC) says the city at night is on screen with sane exposure but shows only its light sources, at about 390 milliseconds a world frame, and that the loss of the graphics device a few minutes into the world is likely fixed, with two boots since running 8 and 11 minutes without one.",
+      "changed": "2026-11-26T21:52:00Z",
       "tested": {
         "os": [
           "Windows"
@@ -1549,7 +1549,7 @@
     {
       "name": "HybridGt",
       "repo": "LowBacon/HybridGt",
-      "note": "Engineering work that runs inside victory-fork, tested on an RTX 4070 Ti. Its README says it is not yet playable at a good frame rate: on a new game the intro, menus and opening render with whole characters at a median of 7.7 frames a second in the world. On 26 November it reports building the code PortWatch lists as CGBJ as published and measuring a median of 2.7 on the same PC on the smaller console's profile, the same for a combined build of the two, and says its own tree stays its build to play."
+      "note": "Engineering work that runs inside victory-fork, tested on an RTX 4070 Ti. Its README says it is not yet playable at a good frame rate: on a new game the intro, menus and opening render with whole characters at medians of 5.9 to 6.9 frames a second in the world with interiors lit. On 26 November it reports building the code PortWatch lists as CGBJ as published and measuring a median of 2.7 on the same PC on the smaller console's profile, the same for a combined build of the two, and says its own tree stays its build to play."
     },
     {
       "name": "Sixth Star",
@@ -1616,9 +1616,34 @@
       "name": "DanziLoader-Cpp",
       "repo": "Veria70/DanziLoader-Cpp",
       "note": "A C++20 port of a runtime in the VIctory line, published on 26 November and added at its maintainer's request in this page's issues. Its documents report a session on an RTX 5080 on the smaller console's profile at half render scale that reached the prison and a boat section of a title it does not name, with the process up for more than 16 minutes, 8.74 frames a second across a mixed stretch of about 12 minutes that may include menus, and water and frame-pacing faults."
+    },
+    {
+      "name": "Scarlett fork",
+      "repo": "Op-lite/victory-scarlett",
+      "note": "A fork of the code PortWatch lists as CGBJ, credited by klbf-lab, tested on an RTX 4080 SUPER at 1440p on the larger console's profile with ray tracing off. Its README of 26 November counts 8,385 frames in a six-minute opening route, about 23 a second by this page's arithmetic, and 16 to 21 frames a second in heavier hand-played scenes of a title it does not name, with no session length; it says its goal of a stable 30 is not reached."
+    },
+    {
+      "name": "VIcky",
+      "repo": "xeltax/vicky",
+      "note": "A research fork that builds on victory-fork for NVIDIA cards, credited by ScarlettPort. Its README reports about 6.2 frames a second on an RTX 4080 on the larger console's profile with the title's own ray tracing on, from three runs, with a dark quarter of the picture in some rooms."
+    },
+    {
+      "name": "VIctory Polaris build",
+      "repo": "kalinizer/victory-polaris",
+      "note": "A build of VIctory for older Radeon cards without mesh shaders, tested on an RX 500-series card with 8 GB. Its README says it is not playable: menus, map, sound and 2D screens work, and the 3D world is still black at about 1 frame a second or worse."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T21:52:00Z",
+      "title": "A fork on the larger console's profile reports 16 to 21 frames a second in hand-played scenes",
+      "points": [
+        "Scarlett fork, built on the code PortWatch lists as CGBJ and credited by klbf-lab, joins the watch list. On an RTX 4080 SUPER at 1440p on the larger console's profile with ray tracing off, its README counts 8,385 frames in a six-minute opening route, about 23 a second by this page's arithmetic, and reports 16 to 21 in heavier hand-played scenes, with no session length and its goal of a stable 30 not reached.",
+        "klbf-lab's README points to a new AMD test branch built on that fork, with a bench run on a Radeon RX 9070 XT at 16.3 frames a second on average on the larger profile. A bench run is not play, so klbf-lab's lanes still read its played session at 14.0 over 37 minutes.",
+        "Vice-Tay's report stands at this check. A contributor's notes in its repository give eight exploratory samples on an RTX 4070 at about 13 frames a second on the larger profile, which is not a second run of the 30-minute session.",
+        "Also on the watch list now: VIcky, at about 6 frames a second on an RTX 4080 with the title's own ray tracing on, and a build for older Radeon cards whose 3D world is still black. five-star-recomp says its loss of the graphics device is likely fixed, with boots of 8 and 11 minutes."
+      ]
+    },
     {
       "t": "2026-11-26T21:22:00Z",
       "title": "Vice-Tay is the first project this page counts as playable, by its own report",
