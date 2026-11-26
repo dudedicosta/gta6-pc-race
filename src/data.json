@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T03:19:00Z",
+  "checked": "2026-11-26T03:41:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -185,7 +185,7 @@
       "kind": "Builds on VIctory's code, kept in its own repository and moved on 25 November to a packaged edition it calls Neptune",
       "stage": 6,
       "basis": "Project README, run notes and third-party notices: the maintainer's own measurements on two machines, and one contributor's report that the maintainer relays; two outside runs, a reader's and a launcher project's, are noted in the status and are not verified",
-      "status": "Its README (23:53 UTC) reports about 14 to 17 frames a second in the world on an RTX 4070 SUPER with its default settings, a median of 13.7 over 7 minutes and 13.8 over automated 13-minute runs without a crash, on a base it calls Neptune, a packaged edition of VIctory whose author it says has no public contact; it now adds that a 32 GB machine is short of memory and a 12 GB card runs out of texture room, with dips to 1 to 6 while the world streams, and that a mode that favours the picture runs at about 7 to 9. Two outside runs are on record and neither is verified: a reader's 12-minute run on an RTX 4090 with earlier settings, posted to this page's issues, measured a median of 2 that rose to about 7 in its last two minutes, and a launcher project's 10-minute run of an earlier build on an RTX 4060 with 8 GB reported about 14; the README's older figures stand for its previous base, among them a contributor's relayed 45 minutes through the first two missions at about 2.",
+      "status": "Its README (23:53 UTC on 25 November) reports about 14 to 17 frames a second in the world on an RTX 4070 SUPER with its default settings, a median of 13.7 over 7 minutes and 13.8 over automated 13-minute runs without a crash, on a base it calls Neptune, a packaged edition of VIctory whose author it says has no public contact; it now adds that a 32 GB machine is short of memory and a 12 GB card runs out of texture room, with dips to 1 to 6 while the world streams, and that a mode that favours the picture runs at about 7 to 9. Two outside runs are on record and neither is verified: a reader's 12-minute run on an RTX 4090 with earlier settings, posted to this page's issues, measured a median of 2 that rose to about 7 in its last two minutes, and a launcher project's 10-minute run of an earlier build on an RTX 4060 with 8 GB reported about 14; the README's older figures stand for its previous base, among them a contributor's relayed 45 minutes through the first two missions at about 2.",
       "changed": "2026-11-26T01:37:00Z",
       "lanes": {
         "picture": {
@@ -782,7 +782,7 @@
       "stage": 6,
       "pos": 20,
       "changed": "2026-11-26T01:15:00Z",
-      "status": "Its README (20:53 UTC) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 00:55 UTC on 26 November that a new memory layer, still in testing, cut the memory copied each frame from over 100 MB to under 8 MB in its first scenes, with no frame rate given and no release until it is validated across the whole game; nobody else has confirmed any of it.",
+      "status": "Its README (20:53 UTC on 25 November) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 00:55 UTC on 26 November that a new memory layer, still in testing, cut the memory copied each frame from over 100 MB to under 8 MB in its first scenes, with no frame rate given and no release until it is validated across the whole game; nobody else has confirmed any of it.",
       "basis": "Project README and its measurement notes: its own figures from one machine, and one session on another that the README attributes to an unnamed external tester; not confirmed by anyone else",
       "lanes": {
         "picture": {
@@ -849,8 +849,8 @@
       "kind": "Fork of victory-fork aimed at NVIDIA cards",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-26T00:32:00Z",
-      "status": "Its README (00:24 UTC) reports a 46-minute session without a crash on an RTX 4060 Ti on the smaller console's profile, 38 minutes 44 seconds of it from the first sight of the world of a title it does not name, at 3.75 frames a second overall and 1.8 to 4.6 by five-minute window, with scripted presses read throughout and a person playing part of it. It says the picture was checked only at points, so the world is not shown to have been on screen or under control throughout, that the frame rate falls to 2 to 3 while the player moves, that the picture is very dark with wrong textures and black shadows, and that it is not playable.",
+      "changed": "2026-11-26T03:41:00Z",
+      "status": "Its README (03:22 UTC) reports the player in control of a title it does not name on an RTX 4060 Ti at up to about 6 frames a second in the first room, measured over a scripted 280-second walk after two changes to its pass over the descriptor heap, against 4.9 before them, and under 2 at times while a zone loads; its longest session is 46 minutes without a crash, on an earlier build at 3.75 overall. It says every session so far ran with a switch that is off by default, that the picture is very dark with wrong textures and black shadows, and that it is not playable.",
       "tested": {
         "os": [
           "Windows"
@@ -866,8 +866,8 @@
         },
         "speed": {
           "low": 1.8,
-          "high": 5,
-          "text": "3.75 fps over 38 minutes, 1.8 to 4.6 by window"
+          "high": 5.95,
+          "text": "up to about 6 fps in the first room, under 2 while a zone loads"
         },
         "stability": {
           "minutes": 38,
@@ -1013,8 +1013,8 @@
       "kind": "Fork of VIctory that brings victory-fork's, DexNom's and Belobug's work together, tuned on a Radeon RX 7900 XTX and published on 25 November",
       "stage": 6,
       "pos": 27,
-      "changed": "2026-11-26T00:11:00Z",
-      "status": "Its README (22:14 UTC) reports 13 to 20 frames a second indoors in the opening of a title it does not name, 19 to 22 on the first boat mission and 6 to 10 in a busy street chase on a Radeon RX 7900 XTX at 1440p, with a longest session of 41 minutes without a crash and 40 to 46 GB of memory in use. It gives no average for a whole session and lists flicker on trees and far buildings, dim rooms that are too dark, textures that arrive late and stretches of frames longer than 200 milliseconds while new pipelines are made; PortWatch's owner says it verified the build at about 16 on average, and nobody else has reproduced it.",
+      "changed": "2026-11-26T03:41:00Z",
+      "status": "Its README (22:14 UTC on 25 November) reports 13 to 20 frames a second indoors in the opening of a title it does not name, 19 to 22 on the first boat mission and 6 to 10 in a busy street chase on a Radeon RX 7900 XTX at 1440p, with a longest session of 41 minutes without a crash and 40 to 46 GB of memory in use. It gives no average for a whole session and lists flicker on trees and far buildings, dim rooms that are too dark, textures that arrive late and stretches of frames longer than 200 milliseconds while new pipelines are made; PortWatch's owner says it verified the build at about 16 on average, nobody else has reproduced it, and the speed work it pushed at 03:36 UTC on 26 November has not changed the README's figures.",
       "basis": "Project README and findings notes: its own measurements on one machine. PortWatch says its owner verified the average; not reproduced by anyone else",
       "lanes": {
         "picture": {
@@ -1080,8 +1080,8 @@
       "repo": "Fayberr/Victory-United",
       "kind": "Tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in",
       "stage": 5,
-      "changed": "2026-11-26T03:19:00Z",
-      "status": "Its README (02:55 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile, and a paired 6-minute run in which 14 performance changes taken from other projects raised that room from 4.0 to 5.0. A script pressed the keys to reach that room and the character stood at a window, so it does not report the player in control; the room is lit by daylight with shadows missing some light.",
+      "changed": "2026-11-26T03:41:00Z",
+      "status": "Its README (03:30 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile, and a paired 6-minute run in which 14 performance changes taken from other projects raised that room from 4.0 to 5.0. It now says moving the character is not confirmed, since a run that held the move keys for about two minutes did not move it, so its figures are for standing in the room and not for play; the room is lit by daylight with shadows missing some light.",
       "basis": "Project README and its measurement notes: one scripted run on one machine, not confirmed by anyone else",
       "tested": {
         "os": [
@@ -1483,6 +1483,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T03:41:00Z",
+      "title": "VIctory-7900XTX pushes a night of speed work, with its README's figures unchanged",
+      "points": [
+        "VIctory-7900XTX pushed code for the first time since it was published: merges of speed work made between 00:16 and 01:48 UTC, one of which its notes measure, standing in a street, at a mean of 88.8 milliseconds a frame against 100.5. Its README still gives 13 to 22 frames a second in most scenes and a longest session of 41 minutes, so its lanes are unchanged and it stays first.",
+        "Kelvaroq's README and its new release notes (03:24 UTC) restate its measurements without change: heavy frames at a mean of 7.6 frames a second in a 300-second run on an RTX 5080, and the outside tester's 36-minute session at 10 on average. Its lanes and its place are unchanged.",
+        "VIniVIdiVIci's README (03:22 UTC) measures about 6 frames a second in its first room over a scripted 280-second walk, against 4.9 before two changes to its pass over the descriptor heap, and says every session so far ran with a switch that is off by default. It stays on the second speed step, in 16th place.",
+        "Victory-United's README (03:30 UTC) now says moving the character is not confirmed: a run that held the move keys for about two minutes did not move it, so its figures are for standing in a room. It stays at stage 5."
+      ]
+    },
     {
       "t": "2026-11-26T03:19:00Z",
       "title": "Two claims of faster private builds are not counted; BRVIctory-ka1qux reports its ray-traced street at about 3 frames a second",
