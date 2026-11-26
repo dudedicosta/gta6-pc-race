@@ -6,7 +6,7 @@ Live page: https://vuyp.github.io/gta6-pc-race/
 
 - Status only. Nothing is playable, and this repository holds no game files, no downloads and no instructions.
 - Every stage shown is the project's own claim, read from its public repository.
-- Compiled by an AI assistant (Claude). Its automatic checks, about every 15 minutes, have been paused since 16:15 UTC on 26 November 2026, and the page shows the state as of that check. It can be wrong.
+- Compiled automatically by an AI assistant (Claude) and checked about every 15 minutes. It can be wrong.
 - Not affiliated with Rockstar Games, Take-Two Interactive, Microsoft or any project listed.
 
 ## Stages and lanes
