@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T02:55:00Z",
+  "checked": "2026-11-26T03:19:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -616,21 +616,21 @@
       "kind": "Fork of victory-fork, developed and measured on an AMD Radeon card",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-25T22:39:00Z",
-      "status": "Its README says the game's own ray-traced light is now on by default on its Radeon RX 7800 XT, giving shaded buildings, trees and characters bounced light at a cost of 0.05 to 0.1 seconds a frame, checked so far on one open-world street of a title it does not name in four runs of 5 to 11 minutes without a crash. It also reports a 25-minute play session on an earlier build, 3.2 to 3.6 frames a second on that street with victory-fork's speed settings and the picture right, and no crash in its last 50 runs.",
+      "changed": "2026-11-26T03:19:00Z",
+      "status": "Its README (02:56 UTC) reports an open-world street of a title it does not name at a median of 3.1 to 3.3 frames a second on a Radeon RX 7800 XT, drawn from a save with the game's own ray-traced light on by default, with the cost of each draw cut by about a tenth since its last build and AMD's upscaler rendering at 1080p for a 4K picture. It reports a 25-minute play session on an earlier build, a 17-minute session in the open world, and no crash or lost device in its last 50 runs of 4 to 25 minutes.",
       "lanes": {
         "picture": {
           "step": 3,
           "text": "ray-traced light on by default, one street checked"
         },
         "speed": {
-          "low": 1.8,
-          "high": 4.2,
-          "text": "3.2 to 3.6 fps with ray-traced light"
+          "low": 3.1,
+          "high": 3.3,
+          "text": "3.1 to 3.3 fps median on a street, ray-traced light on"
         },
         "stability": {
           "minutes": 25,
-          "text": "25 minute session"
+          "text": "25 minutes, no crash in its last 50 runs"
         }
       },
       "tested": {
@@ -1080,8 +1080,8 @@
       "repo": "Fayberr/Victory-United",
       "kind": "Tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's work brought in",
       "stage": 5,
-      "changed": "2026-11-26T01:58:00Z",
-      "status": "Its README (01:37 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile. A script pressed the keys to reach that room and the character stood at a window, so it does not report the player in control; the room is lit by daylight with shadows missing some light.",
+      "changed": "2026-11-26T03:19:00Z",
+      "status": "Its README (02:55 UTC) reports one 35-minute run without a crash on an RTX 3080 Ti, stopped as planned, with 31 minutes in the first room at a median of 4.8 frames a second, at half render scale on the smaller console's profile, and a paired 6-minute run in which 14 performance changes taken from other projects raised that room from 4.0 to 5.0. A script pressed the keys to reach that room and the character stood at a window, so it does not report the player in control; the room is lit by daylight with shadows missing some light.",
       "basis": "Project README and its measurement notes: one scripted run on one machine, not confirmed by anyone else",
       "tested": {
         "os": [
@@ -1483,6 +1483,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T03:19:00Z",
+      "title": "Two claims of faster private builds are not counted; BRVIctory-ka1qux reports its ray-traced street at about 3 frames a second",
+      "points": [
+        "A reader reported on this page's issues that the private build PortWatch lists as NotNozy reached 20 frames a second in some sections of a live stream. PortWatch's own entry gives it no measured frame rate, crash record or test machine and marks it self-reported, so it is not on this page.",
+        "GameGPU relays a statement, posted on social media by a project it calls Portheon, that a closed build runs at 30 frames a second. The report gives no hardware, session length, footage, code or outside tester, and PortWatch does not list the build, so nothing is counted for it. This page still counts no build as playable, and its warning stands: any download offered as GTA VI for PC is fake.",
+        "BRVIctory-ka1qux's README (02:56 UTC) reports an open-world street at a median of 3.1 to 3.3 frames a second on a Radeon RX 7800 XT with the game's own ray-traced light on by default, the cost of each draw about a tenth lower than in its last build, and no crash in its last 50 runs of 4 to 25 minutes. Its place is unchanged.",
+        "Victory-United's README (02:55 UTC) records a paired 6-minute run in which 14 performance changes taken from other projects raised its first room from 4.0 to 5.0 frames a second. The hourly news check found no new notice and no statement from Rockstar or Take-Two beyond the Leonida notice."
+      ]
+    },
     {
       "t": "2026-11-26T02:55:00Z",
       "title": "The speed lane now reads a session of play first; Kelvaroq passes AnyXboxX for 2nd",
