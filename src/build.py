@@ -134,15 +134,28 @@ LANES = [
     {"key": "speed", "name": "Speed",
      "what": "The average it reports over a session of play of 10 minutes or more, or with no such session the "
              "middle of the frame rates it reports in play, in rendered frames a second (fps).",
-     "edges": [0, 2, 5, 10, 20, 30], "bar": 5,
+     "edges": [0, 2, 5, 10, 20, 30], "bar": 5, "goal": 6,
      "steps": ["Under 2 fps", "2 fps or more", "5 fps or more", "10 fps or more", "20 fps or more",
                "30 fps or more, the console's rate"]},
     {"key": "stability", "name": "Stability", "what": "The longest session it reports without a crash.",
-     "field": "minutes", "edges": [0, 10, 30, 60], "bar": 3,
+     "field": "minutes", "edges": [0, 10, 30, 60], "bar": 3, "goal": 4,
      "steps": ["Under 10 minutes", "10 minutes or more", "30 minutes or more", "An hour or more"]},
 ]
 BY_KEY = {lane["key"]: lane for lane in LANES}
 INGAME = stages.index("In-game") if "In-game" in stages else top - 1
+# A project counted as playable (the top stage) keeps its lanes and is read against the next goal instead of the
+# bar: the top step of the speed lane (30 frames a second or more) and of the stability lane (an hour or more).
+PLAYABLE = top
+LANE_STAGES = (INGAME, PLAYABLE)
+
+
+def has_lanes(p):
+    return p["stage"] in LANE_STAGES
+
+
+def target_key(p):
+    """The lane field that holds the step a row is measured against: the bar in-game, the next goal when playable."""
+    return "goal" if p["stage"] == PLAYABLE else "bar"
 
 
 def lane_value(lane, reading):
@@ -168,22 +181,25 @@ def lane_steps(p):
 
 
 def short_of_bar(p):
-    """How many lane steps a project is short of the playable bar, on the lanes the bar asks something of."""
+    """How many lane steps a project is short of what its row is measured against (the playable bar in-game, the
+    next goal when playable), on the lanes that ask something of it."""
     steps = lane_steps(p)
-    return sum(max(0, lane["bar"] - steps[lane["key"]]) for lane in LANES if lane.get("bar"))
+    key = target_key(p)
+    return sum(max(0, lane[key] - steps[lane["key"]]) for lane in LANES if lane.get(key))
 
 
 def rank_key(p):
-    """Order inside the in-game stage, from the lanes alone: fewest steps short of the bar, then the better
-    picture, the higher frame rate and the longer session. Nothing here is set by hand."""
+    """Order inside the in-game stage and inside the playable stage, from the lanes alone: fewest steps short of the
+    bar (or of the next goal), then the better picture, the higher frame rate and the longer session. Nothing here
+    is set by hand."""
     read = p.get("lanes") or {}
     speed = lane_value(BY_KEY["speed"], read.get("speed") or {}) or 0
     minutes = (read.get("stability") or {}).get("minutes") or 0
     return (short_of_bar(p), -lane_steps(p)["picture"], -speed, -minutes)
 
 
-# Display order: by stage, as listed in data.json, except inside the in-game stage, which follows rank_key.
-projects = sorted(data["projects"], key=lambda p: (-p["stage"], rank_key(p) if p["stage"] == INGAME else ()))
+# Display order: by stage, as listed in data.json, except inside the in-game and playable stages, which follow rank_key.
+projects = sorted(data["projects"], key=lambda p: (-p["stage"], rank_key(p) if has_lanes(p) else ()))
 
 
 def positions(ordered):
@@ -192,8 +208,8 @@ def positions(ordered):
     labels, i = [], 0
     while i < len(ordered):
         p, j = ordered[i], i + 1
-        if p["stage"] == INGAME:
-            while j < len(ordered) and ordered[j]["stage"] == INGAME and rank_key(ordered[j]) == rank_key(p):
+        if has_lanes(p):
+            while j < len(ordered) and ordered[j]["stage"] == p["stage"] and rank_key(ordered[j]) == rank_key(p):
                 j += 1
         elif isinstance(p.get("pos"), str) and p["pos"].endswith("="):
             while j < len(ordered) and ordered[j].get("pos") == p["pos"]:
@@ -260,7 +276,7 @@ def lanes(p):
         reading = read.get(lane["key"]) or {}
         n = len(lane["steps"])
         step = min(lane_step(lane, reading), n)
-        bar = lane.get("bar")
+        bar = lane.get(target_key(p))
         cells = "".join(
             f'<span class="meter__seg{" is-on" if i <= step else ""}{" is-bar" if bar and i >= bar else ""}"></span>'
             for i in range(1, n + 1)
@@ -272,7 +288,10 @@ def lanes(p):
             f'{txt(reading.get("text") or "nothing reported")}</p></div>'
         )
     n = short_of_bar(p)
-    short = f"{n} step{'' if n == 1 else 's'} short of the playable bar" if n else "At the playable bar on speed and stability"
+    if p["stage"] == PLAYABLE:
+        short = f"{n} step{'' if n == 1 else 's'} short of the next goal" if n else "At the next goal on speed and stability"
+    else:
+        short = f"{n} step{'' if n == 1 else 's'} short of the playable bar" if n else "At the playable bar on speed and stability"
     return f'<div class="lanes">{"".join(out)}<p class="label lane__short">{esc(short)}</p></div>'
 
 
@@ -319,7 +338,7 @@ def row_attrs(p):
     """What the filters read: the systems and cards a row reports and, for a row that is in-game, its lane steps."""
     systems, cards = tested_of(p)
     attrs = f' data-os="{esc(" ".join(x.lower() for x in systems))}" data-gpu="{esc(" ".join(x.lower() for x in cards))}"'
-    if p["stage"] == INGAME:
+    if has_lanes(p):
         steps = lane_steps(p)
         attrs += "".join(f' data-{lane["key"]}="{steps[lane["key"]]}"' for lane in LANES)
     return attrs
@@ -349,7 +368,7 @@ def filter_panel():
         <details class="more filter" id="filter" hidden>
           <summary><span class="link">Filter the table</span><span class="label muted" id="filter-count" aria-live="polite"></span></summary>
           <div class="filter__row">{selects}<button class="textbtn textbtn--chip" type="button" id="filter-clear" hidden>Clear</button></div>
-          <p class="small muted filter__note">Systems and cards are the ones a project or its testers report running it on, and it may run on others. A choice on a lane leaves only projects that are in-game. Filters were suggested in issues <a class="link" href="{REPO}/issues/12" rel="noopener">12</a> and <a class="link" href="{REPO}/issues/13" rel="noopener">13</a> on this page&rsquo;s repository.</p>
+          <p class="small muted filter__note">Systems and cards are the ones a project or its testers report running it on, and it may run on others. A choice on a lane leaves only projects that are in-game or counted as playable. Filters were suggested in issues <a class="link" href="{REPO}/issues/12" rel="noopener">12</a> and <a class="link" href="{REPO}/issues/13" rel="noopener">13</a> on this page&rsquo;s repository.</p>
         </details>"""
 
 
@@ -403,6 +422,8 @@ fc_lead = (
     f'<p class="lead">Around <time datetime="{esc(fc["target"])}">{esc(fc["date_label"])}</time>.</p>'
 )
 basis_head = "What the report says and what nobody has checked" if MET else "What the estimate rests on"
+# fc["next_goal"]: what a playable row is read against next, in a sentence or two (absent: nothing is printed).
+fc_next = f'\n          <p class="measure">{txt(fc["next_goal"])}</p>' if fc.get("next_goal") else ""
 fc_odds_block = f'<h3 class="t-card">Chances</h3>\n          <ul class="rows">{fc_odds}</ul>' if fc["odds"] else ""
 fc_small = (
     "This page's reading of one project's report, made by the AI that compiles the page. It can be wrong, and nobody outside the project has verified the report."
@@ -580,8 +601,8 @@ page = f"""<!DOCTYPE html>
         <h2>Standings</h2>
         <details class="more">
           <summary><span class="link">How the lanes and the order are read</span></summary>
-          <p class="measure">A project that is in-game, at stage&nbsp;{INGAME}, is also read on three lanes. Each step is this page&rsquo;s reading of what the project reports about itself, or of the source its row names, and an empty meter means no figure is reported. Blue marks the steps that meet the playable bar: 20&nbsp;frames a second and 30&nbsp;minutes without a crash.</p>
-          <p class="measure">Rows at that stage are ordered by their lanes and nothing else: fewest steps short of the bar on speed and stability together, then the better picture, the higher frame rate and the longer session. The lanes were suggested in <a class="link" href="{REPO}/issues/8" rel="noopener">issue&nbsp;8</a> on this page&rsquo;s repository.</p>
+          <p class="measure">A project that is in-game, at stage&nbsp;{INGAME}, is also read on three lanes. Each step is this page&rsquo;s reading of what the project reports about itself, or of the source its row names, and an empty meter means no figure is reported. Blue marks the steps that meet the playable bar: 20&nbsp;frames a second and 30&nbsp;minutes without a crash. A project counted as playable, at stage&nbsp;{PLAYABLE}, keeps its lanes and is read against the next goal instead, which blue then marks: 30&nbsp;frames a second or more and an hour or more without a crash.</p>
+          <p class="measure">Rows at those stages are ordered by their lanes and nothing else, each stage on its own: fewest steps short of the bar, or of the next goal, on speed and stability together, then the better picture, the higher frame rate and the longer session. The lanes were suggested in <a class="link" href="{REPO}/issues/8" rel="noopener">issue&nbsp;8</a> on this page&rsquo;s repository.</p>
           <div class="key">{lane_key()}</div>
         </details>{filter_panel()}
       </div>
@@ -601,7 +622,7 @@ page = f"""<!DOCTYPE html>
         <div class="fc__main">
           <p class="stat" id="fc-rel" data-target="{esc(fc_count)}">{esc(fc['label'])}</p>
           {fc_lead}
-          <p class="measure">{txt(fc['definition'])}</p>
+          <p class="measure">{txt(fc['definition'])}</p>{fc_next}
           <h3 class="t-card">{basis_head}</h3>
           <ul class="points measure">{fc_basis}</ul>
         </div>
@@ -657,11 +678,11 @@ OUT.write_text(page, encoding="utf-8")
 # The in-game order as computed, for whoever edits data.json next (not published).
 (HERE / "order.txt").write_text(
     "".join(
-        f"{place[p['name']]} {p['name']} | {short_of_bar(p)} short | speed "
+        f"{place[p['name']]} {p['name']} | {short_of_bar(p)} short of the {'next goal' if p['stage'] == PLAYABLE else 'bar'} | speed "
         f"{lane_value(BY_KEY['speed'], (p.get('lanes') or {}).get('speed') or {})} step {lane_steps(p)['speed']} | "
         f"stability {((p.get('lanes') or {}).get('stability') or {}).get('minutes')} step {lane_steps(p)['stability']} | "
         f"picture {lane_steps(p)['picture']}\n"
-        for p in projects if p["stage"] == INGAME
+        for p in projects if has_lanes(p)
     ),
     encoding="utf-8",
 )
