@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T23:27:00Z",
+  "checked": "2026-11-26T23:53:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -235,17 +235,17 @@
       "kind": "Kept in its own repository and built on Vice-Tay's code since 26 November, after VIctory's code and a packaged edition it calls Neptune",
       "stage": 6,
       "basis": "Project README, run notes and third-party notices: the maintainer's own measurements on two machines, and one contributor's report that the maintainer relays; two outside runs, a reader's and a launcher project's, are noted in the status and are not verified",
-      "status": "Its README (22:52 UTC) now reports 25 to 29 frames a second in the world at Full HD output and about 20 at 4K on an RTX 4070 SUPER on the larger console's profile with a warm shader cache, up from 14.2 on its previous base, now that it builds on Vice-Tay's code; it gives no session length and this page has not counted it yet, so the lanes still show its 20:28 UTC reading of a median of about 16 to 17 with default settings and ray tracing off. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
-      "changed": "2026-11-26T23:27:00Z",
+      "status": "Its README (22:52 UTC) reports about 20 frames a second in the world at 4K output, and 25 to 29 at Full HD output, on an RTX 4070 SUPER on the larger console's profile with a warm shader cache, up from 14.2 on its previous base, now that it builds on Vice-Tay's code; it gives no session length, still has ray tracing off so that indoor and shadowed areas are dark, some graphics missing and 28 to 30 GB of memory in use, and this page reads its 4K figure, on the edge of a step, in the speed lane. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
+      "changed": "2026-11-26T23:53:00Z",
       "lanes": {
         "picture": {
           "step": 2,
           "text": "indoor and shadowed areas dark, some graphics missing"
         },
         "speed": {
-          "low": 16,
-          "high": 17,
-          "text": "16 to 17 fps median in the world, no session length given"
+          "low": 20,
+          "high": 20,
+          "text": "about 20 fps in the world at 4K, the default; no session length"
         },
         "stability": {
           "minutes": 45,
@@ -1683,6 +1683,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T23:53:00Z",
+      "title": "AnyXboxX reads at the bar on speed and stability, in separate reports",
+      "points": [
+        "Its README (22:52 UTC) gives about 20 frames a second in the world at 4K output on an RTX 4070 SUPER, now that it builds on Vice-Tay's code, up from 14.2, and 25 to 29 at Full HD output. It was unchanged at a second reading, so the speed lane now reads the 20, which sits on the edge of a step.",
+        "Its stability lane is still the 45 minutes relayed on an earlier base, so the row reads 0 steps short, as VIctory-RDNA's does. That is a reading of two lanes and not the playable bar: no session of play of 30 minutes at 20 or more is documented for this build, and the README gives no session length.",
+        "It moves from 7th to 3rd in the standings, behind Vice-Tay and VIctory-RDNA, and the four rows it passes each slip one place."
+      ]
+    },
     {
       "t": "2026-11-26T23:27:00Z",
       "title": "AnyXboxX reports 25 to 29 frames a second on Vice-Tay's code, not counted yet",
