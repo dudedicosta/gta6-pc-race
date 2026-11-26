@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T10:40:00Z",
+  "checked": "2026-11-26T11:02:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -935,8 +935,8 @@
       "kind": "Fork of VIctory tuned on an RTX 4090, rebuilt on 26 November on the code PortWatch lists as CGBJ, itself VIctory-7900XTX with NVIDIA work on top. Published as victory-windows until 25 November",
       "stage": 6,
       "pos": 24,
-      "changed": "2026-11-26T10:40:00Z",
-      "status": "Its README (10:35 UTC) says a 70-minute session on an RTX 4090 on the smaller console's profile, played by hand through a scripted gamepad by its play log's account, went from the opening through a boat mission, a camp and several fights of a title it does not name and never crashed or hung, at a median of 12.9 frames a second with the middle four fifths of its samples between 8.3 and 20.1. It says the frame rate fell from about 20 to under 10 as the game's memory grew from 33 to 52 GB, past the 43 GB the PC has, and that fresh automated 10-minute runs give medians of 14.3 to 15.4 on the larger profile, its default, and 20.8 on the smaller one.",
+      "changed": "2026-11-26T11:02:00Z",
+      "status": "Its README (10:48 UTC) says a 70-minute session on an RTX 4090 on the smaller console's profile, played by hand through a scripted gamepad by its play log's account, went from the opening through a boat mission, a camp and several fights of a title it does not name and never crashed or hung, at a median of 12.9 frames a second with the middle four fifths of its samples between 8.3 and 20.1. It says the frame rate fell from about 20 to under 10 as the game's memory grew from 33 to 52 GB, past the 43 GB the PC has, and that fresh automated 10-minute runs give medians of 14.3 to 15.4 on the larger profile, its default, 8.9 there with the game's ray-traced light turned on, and 20.8 on the smaller one.",
       "basis": "Project README, its measurements page and its play log: the maintainer's own figures from one machine in one session, not confirmed by anyone else",
       "lanes": {
         "picture": {
@@ -1515,7 +1515,7 @@
     {
       "name": "HybridGt",
       "repo": "LowBacon/HybridGt",
-      "note": "Engineering work that runs inside victory-fork, tested on an RTX 4070 Ti. Its README calls it not playable: from a save the world renders at a median of 5.8 frames a second, and the mission it loads into fails as it starts. On 26 November it reports building the code PortWatch lists as CGBJ as published and measuring a median of 2.7 frames a second on the same PC on the smaller console's profile, against 5.6 for its own build on the larger one, and that a combined build of the two measured the same 2.7; it says its own tree stays its build to play."
+      "note": "Engineering work that runs inside victory-fork, tested on an RTX 4070 Ti. Its README calls it not playable: from a save the world renders at a median of 5.8 frames a second, and the mission it loads into fails as it starts. On 26 November it reports building the code PortWatch lists as CGBJ as published and measuring a median of 2.7 frames a second on the same PC on the smaller console's profile, against 5.6 for its own build on the larger one, and that a combined build of the two measured the same 2.7; it says its own tree stays its build to play. Its notes then put its own tree at a median of 7.7 after merging victory-fork's newest work, with whole characters in the opening."
     },
     {
       "name": "Sixth Star",
