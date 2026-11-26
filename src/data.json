@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T05:41:00Z",
+  "checked": "2026-11-26T06:03:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -860,8 +860,8 @@
       "kind": "Fork of victory-fork aimed at NVIDIA cards",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-26T05:41:00Z",
-      "status": "Its README (05:35 UTC) reports the player in control of a title it does not name on an RTX 4060 Ti at a median of 7.3 frames a second in the first room, measured over a scripted 280-second walk with eleven switches on that are off by default, against 6.0 without them, with dips while a zone loads; its longest session is 46 minutes without a crash, on an earlier build at 3.75 overall. It corrects its earlier figures, which were measured with a diagnostic switch on that slowed them, and says the picture is very dark with wrong textures and black shadows and that it is not playable.",
+      "changed": "2026-11-26T06:03:00Z",
+      "status": "Its README (05:52 UTC) reports the player in control of a title it does not name on an RTX 4060 Ti at a median of 6.5 frames a second in the first room, measured over a scripted 280-second walk with ten switches on that are off by default, against 6.0 without them, and says a figure of 7.3 with one more switch is not the one to go by, because a fault was then found in that switch; its longest session is 46 minutes without a crash, on an earlier build at 3.75 overall. It corrects its earlier figures, which were measured with a diagnostic switch on that slowed them, and says the picture is very dark with wrong textures and black shadows and that it is not playable.",
       "tested": {
         "os": [
           "Windows"
