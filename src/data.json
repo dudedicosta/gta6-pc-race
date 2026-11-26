@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T01:58:00Z",
+  "checked": "2026-11-26T02:27:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -151,8 +151,8 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README (00:09 UTC) heads its status with play for half an hour at a time, slowly: about 7 to 12 frames a second, 9 to 12 in rooms and light outdoor views and 5 to 6 in heavy ones, with its tester having played from the opening past the first boat mission before the graphics device was lost, five times by its run notes of 01:11 UTC, in sessions of 6, 49, 31, 38 and 41 minutes, the last four on the way to the same place in the story. That is in-game by this page's bar, which asks for 20; the README says shadowed areas are still black, the thread that prepares submissions is the limit, video memory is not the cause of the lost device, and its newest changes, one of them ported by hand from VIctory-7900XTX, are written but not yet measured in a game.",
-      "changed": "2026-11-26T01:15:00Z",
+      "status": "Its README (02:15 UTC) still heads its status with play for half an hour at a time, slowly: about 7 to 12 frames a second, 9 to 12 in rooms and light outdoor views and 5 to 6 in heavy ones, with its tester having played from the opening past the first boat mission before the graphics device was lost, five times by its run notes, in sessions of 6, 49, 31, 38 and 41 minutes. That is in-game by this page's bar, which asks for 20; it now measures one new change as saving about 14 milliseconds a frame on its test machine and another as saving nothing, and says shadowed areas are still black and the device is still lost 30 to 50 minutes into a session, with the PC's memory nearly full at two of the losses and no cause shown.",
+      "changed": "2026-11-26T02:27:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -582,18 +582,18 @@
       "kind": "Fork of victory-fork tuned on one RTX 4070, published on 25 November",
       "stage": 6,
       "basis": "Project README and its run log: the maintainer's own figures from one machine, not confirmed by anyone else",
-      "changed": "2026-11-25T15:36:00Z",
+      "changed": "2026-11-26T02:27:00Z",
       "lead": "Flamingo, a fork of victory-fork tuned on one RTX 4070,",
-      "status": "Its README reports the first gameplay scene of an open-world title it does not name under player control at 9 to 12 frames a second on an RTX 4070 at reduced resolution, about 14 in its lightest view, and its run log reports a 24-minute play session through the whole opening at 8.6 on average in the world, with the city driven in daylight. It says shadows are missing, some rooms are dark and black rectangles appear in places, and the figures come from one machine and are not confirmed by anyone else.",
+      "status": "Its README reports the first gameplay scene of an open-world title it does not name under player control at 9 to 12 frames a second on an RTX 4070 at reduced resolution, about 14 in its lightest view and about 4 for a few seconds while turning as textures stream in, and its run log reports a 24-minute play session through the whole opening at 8.6 on average in the world. It says shadowed areas are dark, some geometry is missing in the first area and some character assets load wrong, and the figures come from one machine and are not confirmed by anyone else.",
       "lanes": {
         "picture": {
           "step": 2,
           "text": "shadows missing, rooms dark"
         },
         "speed": {
-          "low": 7.8,
+          "low": 4,
           "high": 14,
-          "text": "7.8 to 14 fps by scene, unconfirmed"
+          "text": "9 to 14 fps, dips to 4 while textures stream, unconfirmed"
         },
         "stability": {
           "minutes": 24,
@@ -682,8 +682,8 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-26T01:58:00Z",
-      "status": "Its README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second that way on an RTX 5080, against about 3 on the larger console's profile, because the game then draws fewer pixels and leaves out the ray-traced and hair passes this layer cannot run; its latest test run (01:46 UTC) shows a median frame of 86 milliseconds, about 11.6 frames a second, after it cleared a slow mode that about half its launches fell into. It says rooms are lit and a print on one character's clothing is missing on that profile, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-26T02:27:00Z",
+      "status": "Its README (00:19 UTC) says it now shows the game the smaller console's profile by default and runs at about 11 frames a second that way on an RTX 5080, against about 3 on the larger console's profile, because the game then draws fewer pixels and leaves out the ray-traced and hair passes this layer cannot run; its latest test run (02:01 UTC) shows a median frame of 87 milliseconds, about 11.5 frames a second, after a change to the card memory it keeps for buffer copies let waiting textures load, among them a print on one character's clothing and faces in the opening cutscenes. It says rooms are lit, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -691,7 +691,7 @@
         },
         "speed": {
           "low": 3,
-          "high": 11.6,
+          "high": 11.5,
           "text": "about 11 fps on the smaller console's profile, 3 on the larger"
         },
         "stability": {
@@ -1483,6 +1483,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T02:27:00Z",
+      "title": "Flamingo's low figure is read like the leaders' and it falls to 13th; victory-fork measures a small gain",
+      "points": [
+        "Flamingo's README has said since 25 November that its first scene falls to about 4 frames a second for a few seconds while turning, as textures stream in. That now counts as the low end of its speed lane, by the rule stated here at 00:11 UTC for AnyXboxX and VIctory-7900XTX: a rate a project gives for a stretch or a condition of play counts. The middle of its range goes from 10.9 to 9, which leaves it 3 steps short of the playable bar and takes it from 5th to 13th. Its own figures have not changed, and how every row's low figures and session averages are read is being reviewed.",
+        "victory-fork's README (02:15 UTC) measures one new change, a cache for buffer lookups, as saving about 14 milliseconds a frame on its test machine and another change as saving nothing. It says shadowed areas are still black and the graphics device is still lost 30 to 50 minutes into a session, with the PC's memory nearly full at two of the losses and no cause shown.",
+        "vilocity's README (02:01 UTC) says textures that were waiting for card memory now load, among them a print on one character's clothing and faces in the opening cutscenes, at the same 11 frames a second. Its runs still end at about 7 minutes.",
+        "Take-Two's notice against Leonida is now widely reported: TweakTown, Decrypt and heise are among those covering the 3,007 repositories GitHub removed, and KitGuru reports notices against repositories and chat servers without naming any. None of the reports read names another project as a target, GitHub has published no new notice, and neither Rockstar nor Take-Two has commented since the build leaked beyond that notice."
+      ]
+    },
     {
       "t": "2026-11-26T01:58:00Z",
       "title": "Victory-United joins the table with a 35-minute scripted run; vilocity clears its slow launches",
