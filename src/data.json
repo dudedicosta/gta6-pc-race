@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T12:22:00Z",
+  "checked": "2026-11-26T12:48:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -903,25 +903,25 @@
     {
       "name": "VI-BR-PORT",
       "repo": "edsuuu/VI-BR-PORT",
-      "kind": "Fork of victory-fork for NVIDIA cards with 8 GB, documented in Portuguese",
+      "kind": "Fork of VIctory's code line for NVIDIA cards with 8 GB, documented in Portuguese; on 26 November it moved to a new base that its README does not name",
       "stage": 6,
       "pos": 23,
-      "changed": "2026-11-25T18:13:00Z",
-      "status": "Its README, in Portuguese, reports a title it does not name in-game on an RTX 4060 Ti with 8 GB, with control, the HUD and the pause menu working at 4 to 7 frames a second at 1080p, full-resolution textures and sessions of an hour without losing the graphics device. It says the opening cutscene runs at 1 to 5 frames a second, the skin of some characters is still black, and everything in shadow is black because ray-traced light does not run.",
-      "basis": "Project README: its own figures and estimates from one machine, not confirmed by anyone else",
+      "changed": "2026-11-26T12:48:00Z",
+      "status": "Its README, in Portuguese (12:36 UTC), says its base was changed for one that shows faces, skin, hair and light much better on the same RTX 4060 Ti with 8 GB, and reports about 12 frames a second in the playable prison section of a title it does not name on the smaller console's profile at 1080p, about 10 to 11 in the opening cutscene and about 5.6 on the larger profile. It says it is not playable yet and aims at 15 or more with a sharp picture, and it no longer gives the hour-long sessions without losing the graphics device that it reported on its earlier base.",
+      "basis": "Project README: its own figures from one machine on its new base, not confirmed by anyone else; its stability reading is from its earlier base",
       "lanes": {
         "picture": {
-          "step": 2,
-          "text": "shadows black, some skin black"
+          "step": 3,
+          "text": "coherent light, textured faces and skin; not yet sharp"
         },
         "speed": {
-          "low": 4,
-          "high": 7,
-          "text": "4 to 7 fps at 1080p"
+          "low": 12,
+          "high": 12,
+          "text": "about 12 fps in the playable prison, smaller profile, 1080p"
         },
         "stability": {
           "minutes": 60,
-          "text": "sessions of an hour"
+          "text": "sessions of an hour on its earlier base, reported on 25 Nov"
         }
       },
       "tested": {
@@ -939,8 +939,8 @@
       "kind": "Fork of VIctory tuned on an RTX 4090, rebuilt on 26 November on the code PortWatch lists as CGBJ, itself VIctory-7900XTX with NVIDIA work on top. Published as victory-windows until 25 November",
       "stage": 6,
       "pos": 24,
-      "changed": "2026-11-26T11:02:00Z",
-      "status": "Its README (10:48 UTC) says a 70-minute session on an RTX 4090 on the smaller console's profile, played by hand through a scripted gamepad by its play log's account, went from the opening through a boat mission, a camp and several fights of a title it does not name and never crashed or hung, at a median of 12.9 frames a second with the middle four fifths of its samples between 8.3 and 20.1. It says the frame rate fell from about 20 to under 10 as the game's memory grew from 33 to 52 GB, past the 43 GB the PC has, and that fresh automated 10-minute runs give medians of 14.3 to 15.4 on the larger profile, its default, 8.9 there with the game's ray-traced light turned on, and 20.8 on the smaller one.",
+      "changed": "2026-11-26T12:48:00Z",
+      "status": "Its README (10:48 UTC) says a 70-minute session on an RTX 4090 on the smaller console's profile, played by hand through a scripted gamepad by its play log's account, went from the opening through a boat mission, a camp and several fights of a title it does not name and never crashed or hung, at a median of 12.9 frames a second with the middle four fifths of its samples between 8.3 and 20.1. It says the frame rate fell from about 20 to under 10 as the game's memory grew from 33 to 52 GB, past the 43 GB the PC has, and at 12:32 UTC its code took a fix for that growth, which its notes put down to view records kept for the whole run, with no measured session since; fresh automated 10-minute runs gave medians of 14.3 to 15.4 on the larger profile, its default, 8.9 there with the game's ray-traced light turned on, and 20.8 on the smaller one.",
       "basis": "Project README, its measurements page and its play log: the maintainer's own figures from one machine in one session, not confirmed by anyone else",
       "lanes": {
         "picture": {
@@ -1590,10 +1590,20 @@
     {
       "name": "VIctory-RDNA",
       "repo": "XaviFortes/VIctory-RDNA",
-      "note": "A fork of VIctory-7900XTX tuned for AMD's Radeon RX 7000 cards. Its README reports 13.6 to 18.5 frames a second in steady gameplay on a Radeon RX 7900 XT on the larger console's profile with ray tracing off, and gives no session length."
+      "note": "A fork of VIctory-7900XTX tuned for AMD's Radeon RX 7000 cards. Its README (12:27 UTC on 26 November) reports a capture on a Radeon RX 7900 XT at 4K output on the larger console's profile with a median of 15.75 frames a second across 134 samples of heavy rendering, in a run of 13 minutes 37 seconds that closed normally, and an earlier run of 48 minutes at a median of 12.1 that ended when the graphics device was removed. It says a full-session average and continuous time under player control are unverified for those runs."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T12:48:00Z",
+      "title": "VI-BR-PORT, re-read on its new base, reports about 12 frames a second on an 8 GB card; Vice-Tay merges a fix for its memory growth",
+      "points": [
+        "VI-BR-PORT's row is corrected. Its main branch took a new tree at 11:57 UTC whose README replaces its base and its figures, and this page's check of 12:22 UTC missed the change. The README (12:36 UTC) now reports about 12 frames a second in the playable prison section on an RTX 4060 Ti with 8 GB, on the smaller console's profile at 1080p, and about 5.6 on the larger profile. It says it is not playable yet and aims at 15 or more with a sharp picture.",
+        "By the rule that moves it from 10th to 3rd, 1 step short of the playable bar, behind klbf-lab and Vice-Tay; VIctory-7900XTX and Kelvaroq move down a place. The place rests on one figure for one scene on its new base and on the hour-long sessions it reported on its earlier base, which its README no longer gives and which stay in its stability lane, marked as such, until it reports a session on the new base. Nobody else has confirmed either.",
+        "Vice-Tay merged a fix at 12:32 UTC for the memory growth it blames for its slowdown: its notes say records of views were being kept for the whole run, 16.7 GB of them after 70 minutes. It has published no measured session since, so its lanes are unchanged and it stays 2nd.",
+        "VIctory-RDNA, on the watch list, now reports a median of 15.75 frames a second across the heavy-rendering samples of a capture of 13 minutes 37 seconds on a Radeon RX 7900 XT at 4K output, and says a full-session average and continuous time under player control are unverified. The estimate is unchanged."
+      ]
+    },
     {
       "t": "2026-11-26T12:22:00Z",
       "title": "Estimate put back to early on Friday at a routine review; press relays claims of 25 to 30 frames a second, none with a session length",
