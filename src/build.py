@@ -109,6 +109,10 @@ def day(iso):
 stages = data["stages"]
 top = len(stages) - 1
 fc = data["forecast"]
+# data["paused"]: ISO time at which automatic checks were paused; absent while they run. While paused the
+# estimate does not count down (page.js leaves a target it cannot read alone) and the copy says so.
+PAUSED = data.get("paused")
+fc_count = "paused" if PAUSED else fc["target"]
 last_rev = fc["revisions"][0]
 
 # ---------------------------------------------------------------- lanes, and the order they give
@@ -472,10 +476,18 @@ FAVICON = (
     "font-weight='600' fill='%23dfdedb'%3EG%3C/text%3E%3C/svg%3E"
 )
 
+hero_reads = (
+    f"This page read their public repositories every {esc(data['cadence_minutes'])} minutes and says how far each had got when its automatic checks were paused."
+    if PAUSED else
+    f"This page reads their public repositories every {esc(data['cadence_minutes'])} minutes and says how far each has got."
+)
+checked_word = "Last checked" if PAUSED else "Checked"
+close_head = "Automatic checks are paused" if PAUSED else f"Standings checked every {esc(data['cadence_minutes'])} minutes"
 TITLE = "GTA VI PC Race: live tracker of unofficial PC ports"
 DESC = (
     "How far each open-source project has got in running the Xbox build of GTA VI on a PC, "
-    "checked every 15 minutes, with a best estimate of when it becomes playable."
+    + ("as of the last check before automatic checks were paused, " if PAUSED else "checked every 15 minutes, ")
+    + "with a best estimate of when it becomes playable."
 )
 SITE = "https://vuyp.github.io/gta6-pc-race/"
 
@@ -529,7 +541,7 @@ page = f"""<!DOCTYPE html>
       <div class="hero__words">
         <h1 class="enter">GTA VI PC port tracker</h1>
         <p class="lead hero__fact enter">{hero_fact}</p>
-        <p class="hero__how enter">{count} open-source projects{extra} are trying to run the game&rsquo;s Xbox build on a PC. This page reads their public repositories every {esc(data['cadence_minutes'])} minutes and says how far each has got. <span class="muted">Checked <time id="checked" datetime="{esc(data['checked'])}" data-t="clock-day">{clock(data['checked'])} UTC on {esc(day(data['checked']))}</time><span id="ago"></span>. {TZ_BTN}</span></p>
+        <p class="hero__how enter">{count} open-source projects{extra} are trying to run the game&rsquo;s Xbox build on a PC. {hero_reads} <span class="muted">{checked_word} <time id="checked" datetime="{esc(data['checked'])}" data-t="clock-day">{clock(data['checked'])} UTC on {esc(day(data['checked']))}</time><span id="ago"></span>. {TZ_BTN}</span></p>
         <div class="btn-row enter">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           <a class="btn btn--secondary" href="#updates">Read the latest update</a>
@@ -539,7 +551,7 @@ page = f"""<!DOCTYPE html>
         <div class="frame" role="group" aria-label="The seven stages and which projects have reached each">
           <p class="frame__head"><span>Stages reached</span><time class="mono" datetime="{esc(data['checked'])}" data-t="clock">{clock(data['checked'])} UTC</time></p>
           <ol class="lad" reversed>{''.join(ladder)}</ol>
-          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="{esc(fc['target'])}">{esc(fc['label'])}</span></p>
+          <p class="frame__foot"><span>Best estimate to playable</span><span id="fc-short" data-target="{esc(fc_count)}">{esc(fc['label'])}</span></p>
         </div>
       </div>
     </div>
@@ -570,7 +582,7 @@ page = f"""<!DOCTYPE html>
       <h2>Time to playable</h2>
       <div class="grid fc">
         <div class="fc__main">
-          <p class="stat" id="fc-rel" data-target="{esc(fc['target'])}">{esc(fc['label'])}</p>
+          <p class="stat" id="fc-rel" data-target="{esc(fc_count)}">{esc(fc['label'])}</p>
           <p class="lead">Around <time datetime="{esc(fc['target'])}">{esc(fc['date_label'])}</time>.</p>
           <p class="measure">{txt(fc['definition'])}</p>
           <h3 class="t-card">What the estimate rests on</h3>
@@ -607,7 +619,7 @@ page = f"""<!DOCTYPE html>
   <div class="wrap slab">
     <div class="close close--word">
       <div class="close__head">
-        <h2>Standings checked every {esc(data['cadence_minutes'])} minutes</h2>
+        <h2>{close_head}</h2>
         <div class="btn-row">
           <a class="btn btn--primary" href="#standings">See the standings</a>
           {star_foot}

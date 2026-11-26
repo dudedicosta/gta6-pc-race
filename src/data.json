@@ -1,14 +1,15 @@
 {
-  "checked": "2026-11-26T15:49:00Z",
+  "checked": "2026-11-26T16:15:00Z",
   "cadence_minutes": 15,
+  "paused": "2026-11-26T16:15:00Z",
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
   "headline": "victory-fork shows the first gameplay scene under player control at a few frames a second",
-  "summary": "Nothing is counted as playable yet by this page's bar, and one report is close. Vice-Tay's README says that a 30-minute boat test on the smaller console's profile ran at a median of 21.6 frames a second on an RTX 4090, and calls it a playtest. The sentence stood at two readings, so its speed lane now reads it and Vice-Tay is first, with both of its lanes at the bar's steps; the playable flag waits for its documents to say that the test was played under control throughout and ran without a crash. Its fully documented session is longer and slower: 70 minutes played by hand through a scripted gamepad at a median of 12.9, slowing as the game's memory outgrew the PC's, for which a fix went in afterwards. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
+  "summary": "Automatic checks paused at 16:15 UTC on 26 November. Nothing is counted as playable yet by this page's bar, and one report is close. Vice-Tay's README says that a 30-minute boat test on the smaller console's profile ran at a median of 21.6 frames a second on an RTX 4090, and calls it a playtest. The sentence stood at two readings, so its speed lane now reads it and Vice-Tay is first, with both of its lanes at the bar's steps; the playable flag waits for its documents to say that the test was played under control throughout and ran without a crash. Its fully documented session is longer and slower: 70 minutes played by hand through a scripted gamepad at a median of 12.9, slowing as the game's memory outgrew the PC's, for which a fix went in afterwards. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
   "forecast": {
     "made": "2026-11-23T17:40:00Z",
     "target": "2026-11-27T00:00:00Z",
-    "label": "about half a day",
+    "label": "about 8 hours after the last check",
     "date_label": "midnight UTC going into Fri 27 Nov",
     "definition": "At least one project reports the game in-game and under player control for 30 minutes or more without a crash, at 20 frames per second or better on some PC, counting rendered frames only.",
     "odds": [
@@ -42,7 +43,7 @@
       },
       {
         "name": "Playable",
-        "when": "about half a day",
+        "when": "about 8 hours after the last check",
         "date": "Fri 27 Nov"
       }
     ],
@@ -245,8 +246,8 @@
       "kind": "Build of VIctory tested on an AMD Radeon card; its newest test build is based on the Neptune edition of VIctory",
       "stage": 6,
       "basis": "Project README, its test-build branch and its measuring tool: the maintainer's own figures from one machine in one session. The tool reads the layer's own frame lines and the measured settings use upscaling and no frame generation; not confirmed by anyone else",
-      "status": "Its README reports a test build, Lab 61, based on the Neptune edition of VIctory, in a session played with a controller on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far on foot and driving in the open world of a title it does not name, without a crash, at 14.0 frames a second on average and a median of 14.5, with freezes that take its lowest 1 percent of samples to about 0.4. It lists water surfaces and car glass that are not drawn, black mirrors and flickering shadows near trees, its earlier record is 77 minutes at about 5.2 on its previous build, and since 15:24 UTC it names a newer test build, Lab 63, that it says fixes dark faces in shade, with no new figures.",
-      "changed": "2026-11-26T15:49:00Z",
+      "status": "Its README reports a test build, Lab 61, based on the Neptune edition of VIctory, in a session played with a controller on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far on foot and driving in the open world of a title it does not name, without a crash, at 14.0 frames a second on average and a median of 14.5, with freezes that take its lowest 1 percent of samples to about 0.4. It lists water surfaces and car glass that are not drawn, black mirrors and flickering shadows near trees, its earlier record is 77 minutes at about 5.2 on its previous build, and since 15:24 UTC it names a newer test build, Lab 63, that it says fixes dark faces in shade; its own five-minute hands-off run on the same PC averaged 14.3 with a median of 17.0, which is not play and changes no lane.",
+      "changed": "2026-11-26T16:15:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -611,9 +612,9 @@
       "kind": "Fork of victory-fork tuned on one RTX 4070, published on 25 November",
       "stage": 6,
       "basis": "Project README and its run log: the maintainer's own figures from one machine, not confirmed by anyone else",
-      "changed": "2026-11-26T10:40:00Z",
+      "changed": "2026-11-26T16:15:00Z",
       "lead": "Flamingo, a fork of victory-fork tuned on one RTX 4070,",
-      "status": "Its README (10:18 UTC) now reports the first mission's boat cutscene of an open-world title it does not name at about 9 to 10 frames a second on an RTX 4070 on the smaller console's profile, with faces moving, shade lit by a constant floor of light that stands in for ray-traced light, distant trees and buildings left out and one character's body missing in some shots. Its run log still records a 24-minute play session through the whole opening on 25 November at 8.6 on average in the world, and the figures come from one machine and are not confirmed by anyone else.",
+      "status": "Its README (15:57 UTC) reports the first mission's boat cutscene of an open-world title it does not name at about 10 frames a second on an RTX 4070 on the smaller console's profile, with faces moving, shade lit by a constant floor of light that stands in for ray-traced light, distant trees and buildings left out and one character's body missing in some shots. Its run log still records a 24-minute play session through the whole opening on 25 November at 8.6 on average in the world, and the figures come from one machine and are not confirmed by anyone else.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1142,11 +1143,11 @@
       "pos": 30,
       "name": "Victory-United",
       "repo": "Fayberr/Victory-United",
-      "kind": "Tree that starts from victory-fork and merges pull requests from it and from VIctory, with victory-perf's and VIctory-7900XTX's work brought in",
+      "kind": "Tree that folds work from VIctory forks into one, rebuilt on 26 November on Vice-Tay's code",
       "stage": 6,
-      "changed": "2026-11-26T11:54:00Z",
-      "status": "Its README (11:36 UTC) now reports the player in control: one session played by hand for 34.7 minutes in the first playable room of a build that merges VIctory-7900XTX's work, on an RTX 3080 Ti at half render scale on the smaller console's profile, at a median of 8.5 frames a second by its own log and closed normally with no crash. It calls control the player's own observation, says the first seven minutes were slow while the game settled, and claims nothing for this build's picture or for anywhere beyond that room.",
-      "basis": "Project README and its measurement notes: one session played by hand on one machine, with control given as the player's own observation; not confirmed by anyone else",
+      "changed": "2026-11-26T16:15:00Z",
+      "status": "Its README (16:06 UTC) says it rebuilt its tree on Vice-Tay's code on 26 November and measured about 11 frames a second standing at a window in the first playable room on an RTX 3080 Ti, at half render scale on the smaller console's profile, over a 7-minute run started by its test script without a crash, with a lit picture free of the blocks its earlier tree showed. It says it is not playable yet and aims at 20, and it reports no play on the new tree, so the lanes still read the 34.7 minutes played by hand at a median of 8.5 on its earlier one.",
+      "basis": "Project README: its own figures from one machine, not confirmed by anyone else. The lanes read one session played by hand on its earlier tree, with control given as the player's own observation; the new tree's figures are from a run standing still, which is not play",
       "tested": {
         "os": [
           "Windows"
@@ -1158,16 +1159,16 @@
       "lanes": {
         "picture": {
           "step": 2,
-          "text": "daylit room on an earlier build, shadows short of light"
+          "text": "blocky on its earlier tree; cleaner on the new one, not yet played"
         },
         "speed": {
           "low": 8.5,
           "high": 8.5,
-          "text": "8.5 fps median over a 34.7-minute session in the first room"
+          "text": "8.5 fps median over 34.7 minutes played on its earlier tree"
         },
         "stability": {
           "minutes": 34,
-          "text": "34.7 minutes played by hand, closed normally"
+          "text": "34.7 minutes played by hand on its earlier tree"
         }
       }
     },
@@ -1265,8 +1266,8 @@
       "kind": "Runs VIctory on Apple Silicon Macs through CrossOver Wine and Apple's D3DMetal",
       "stage": 5,
       "basis": "Project README, from testers' reports on several Macs",
-      "status": "Its README says the game world appeared on two Macs on 25 November, staying on screen for over 20 minutes on an M3 Max at 0.1 to 0.2 frames a second and at about 2.4 to 2.9 seconds a frame on an M5 Pro, and that on 25 and 26 November a tester's M2 Max reached the opening cinematics in the world and the opening credits at about 2 to 10 seconds a heavy frame, with the gameplay display seen once and control not verified. It says nobody has reached gameplay on a Mac and that the game is not playable there or anywhere else.",
-      "changed": "2026-11-26T15:26:00Z",
+      "status": "Tester reports in its README (15:55 UTC) say an M2 Pro reached the prologue's first gameplay prompt on 25 and 26 November, where the camera followed input at about 2 seconds a world frame, with one run lasting almost 35 minutes before the game's own watchdog stopped it and lighting still broken, and that a change now on by default took a world frame from 2.9 seconds to 0.88 on an M4 and from 5.29 to 0.71 on an M4 Pro. Its summary still says nobody has reached gameplay on a Mac and that the game is not playable there or anywhere else.",
+      "changed": "2026-11-26T16:15:00Z",
       "tested": {
         "os": [
           "Mac"
@@ -1281,8 +1282,8 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (10:18 UTC) says the city at night is now on screen, lit and correctly exposed, with blocky shadows and banding still to fix, material textures filled and a world frame at about 390 milliseconds, down from 1,100.",
-      "changed": "2026-11-26T10:40:00Z",
+      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (15:47 UTC) says the city at night is on screen with sane exposure but shows only its light sources, with the ground and buildings they should light still black, and that boots since a change of 26 November lose the graphics device before the world, which it is bisecting.",
+      "changed": "2026-11-26T16:15:00Z",
       "tested": {
         "os": [
           "Windows"
@@ -1628,6 +1629,25 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T16:15:00Z",
+      "title": "Automatic checks are paused",
+      "points": [
+        "The last automatic check ran at 16:15 UTC on 26 November. The standings and the estimate on this page are as of that time.",
+        "Until updates resume nothing here is re-read: the conditions published with the estimate will not be checked, and Vice-Tay's 30-minute test will not get another reading.",
+        "As of that check nothing is counted as playable. Vice-Tay is first with both of its lanes at the bar's steps, on one README sentence about a 30-minute test that its other documents do not yet carry."
+      ]
+    },
+    {
+      "t": "2026-11-26T16:15:00Z",
+      "title": "Victory-United rebuilds on Vice-Tay's code; a tester's Mac reaches the first gameplay prompt",
+      "points": [
+        "Victory-United says it rebuilt its tree on Vice-Tay's code and measured about 11 frames a second standing at a window in the first playable room on an RTX 3080 Ti, at half render scale on the smaller console's profile, in a 7-minute run. That is not play, so its lanes still read the session played by hand on its earlier tree and it stays 10th.",
+        "VIctory-macOS: a tester's M2 Pro reached the prologue's first gameplay prompt, where the camera followed input at about 2 seconds a world frame, and one run lasted almost 35 minutes before the game's own watchdog stopped it. The README's summary still says nobody has reached gameplay on a Mac, so it stays at stage 5.",
+        "five-star-recomp's status page says its night city now shows only its light sources and that boots since a change of 26 November lose the graphics device before the world. klbf-lab's own five-minute hands-off run on its Radeon RX 9070 XT averaged 14.3 frames a second, which is not play and changes no lane.",
+        "Vice-Tay's documents are unchanged at an eighth reading. The estimate was reviewed and held, and the news sweep found no new statement and no new takedown notice."
+      ]
+    },
     {
       "t": "2026-11-26T15:49:00Z",
       "title": "An outside build of CGBJ's code reports a median of 22.4 frames a second on the boat",
@@ -3373,7 +3393,7 @@
     },
     {
       "label": "Who compiles it",
-      "text": "An AI assistant (Claude), automatically, about every 15 minutes. It can be wrong."
+      "text": "An AI assistant (Claude). Its automatic checks, about every 15 minutes, have been paused since 16:15 UTC on 26 November. It can be wrong."
     },
     {
       "label": "Affiliation",
