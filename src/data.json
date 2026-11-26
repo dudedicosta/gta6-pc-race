@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T23:08:00Z",
+  "checked": "2026-11-26T23:27:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -201,8 +201,8 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README heads its status with play that is slow: about 8 to 9.5 frames a second at the first boat mission on an RTX 4070 and 10 to 14 in lighter views, measured with a texture pass on a thread of its own that is still off by default, against 6.2 to 6.7 without it, with the graphics device still lost now and then 30 to 50 minutes into a session and shadowed areas still black. Since 11:18 UTC it adds that the graphics card is now the limit at the boat mission, at 84 to 128 milliseconds a frame against about 60 for the layer's own preparing work, because its translated shader programs run to about 2.4 times the console's instruction count; that is in-game by this page's bar, which asks for 20.",
-      "changed": "2026-11-26T11:25:00Z",
+      "status": "Its README (23:15 UTC) heads its status with play that is slow: about 7.5 to 8.5 frames a second at the first boat mission at 3,300 to 4,100 draws on an RTX 4070 and 10 to 14 in lighter views, with the graphics card the limit at about 80 milliseconds of card time a frame. Its frame-rate table still gives 6.2 to 6.7 at the boat without a texture pass on a thread of its own that is off by default, a heavy outdoor scene at 157 to 195 milliseconds a frame, the graphics device lost now and then 30 to 50 minutes into a session and shadowed areas black; this page counts it as in-game, short of the 20 its playable bar asks for.",
+      "changed": "2026-11-26T23:27:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -211,7 +211,7 @@
         "speed": {
           "low": 5,
           "high": 14,
-          "text": "8 to 9.5 fps at the boat mission, 10 to 14 in lighter views, 5 to 6 in heavy ones"
+          "text": "7.5 to 8.5 fps at the boat mission, 10 to 14 in lighter views, 5 to 6 in heavy ones"
         },
         "stability": {
           "minutes": 49,
@@ -232,11 +232,11 @@
       "pos": 2,
       "name": "AnyXboxX",
       "repo": "LooperSalty/AnyXboxX",
-      "kind": "Builds on VIctory's code, kept in its own repository and moved on 25 November to a packaged edition it calls Neptune",
+      "kind": "Kept in its own repository and built on Vice-Tay's code since 26 November, after VIctory's code and a packaged edition it calls Neptune",
       "stage": 6,
       "basis": "Project README, run notes and third-party notices: the maintainer's own measurements on two machines, and one contributor's report that the maintainer relays; two outside runs, a reader's and a launcher project's, are noted in the status and are not verified",
-      "status": "Its README (20:28 UTC) reports a median of about 16 to 17 frames a second in the world on an RTX 4070 SUPER on the larger console's profile with its default settings, up from 13.4 that morning, with ray tracing off so that indoor and shadowed areas are dark, some graphics missing and 28 to 30 GB of memory in use; it gives no session length and no longer gives the dips while the world streams that it reported on 25 November. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
-      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README (22:52 UTC) now reports 25 to 29 frames a second in the world at Full HD output and about 20 at 4K on an RTX 4070 SUPER on the larger console's profile with a warm shader cache, up from 14.2 on its previous base, now that it builds on Vice-Tay's code; it gives no session length and this page has not counted it yet, so the lanes still show its 20:28 UTC reading of a median of about 16 to 17 with default settings and ray tracing off. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
+      "changed": "2026-11-26T23:27:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -737,8 +737,8 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-26T10:40:00Z",
-      "status": "Its README's latest test run (10:10 UTC) shows a median frame of 89 milliseconds, about 11 frames a second, on an RTX 5080 on the smaller console's profile, its default, after it took back a change to a lighting program that had blacked out faces and walls in one cutscene; its status table gives about 11 on that profile and 4 to 8 for the first room. It says rooms are lit, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-26T23:27:00Z",
+      "status": "Its README's latest test run (23:03 UTC) shows a median frame of 156 milliseconds, with the last frame at 6.5 frames a second and 5,157 draws, while its status table still gives about 11 frames a second on the smaller console's profile, its default, and 4 to 8 for the first room. It says outdoor frames that came out white on some cards now show sea, sky and trees after a fix to an exposure program, rooms are lit, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1644,7 +1644,7 @@
     {
       "name": "Neptune + GDeflate",
       "repo": "dudegio/Neptune-GDeflate",
-      "note": "A source-only tree of the Neptune edition of VIctory, the edition AnyXboxX and klbf-lab's newest test build are based on, with a faster loading path for the game's packed files and upscaling through a third-party tool. Its README gives build notes and no measurements of its own. It offers frame generation as an option, and generated frames never count here."
+      "note": "A source-only tree of the Neptune edition of VIctory, the edition klbf-lab's newest test build is based on and AnyXboxX used until 26 November, with a faster loading path for the game's packed files and upscaling through a third-party tool. Its README gives build notes and no measurements of its own. It offers frame generation as an option, and generated frames never count here."
     },
     {
       "name": "VIctory-reloaded",
@@ -1683,6 +1683,14 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T23:27:00Z",
+      "title": "AnyXboxX reports 25 to 29 frames a second on Vice-Tay's code, not counted yet",
+      "points": [
+        "Its README (22:52 UTC) now gives 25 to 29 frames a second in the world at Full HD output and about 20 at 4K, on an RTX 4070 SUPER with a warm shader cache, up from 14.2 on its previous base, now that it builds on Vice-Tay's code. It gives no session length, and the Full HD figure is a range, not a median.",
+        "This is a first reading. The row keeps its 16 to 17 median of 20:28 UTC and its place until this page has read the README again at a later check."
+      ]
+    },
     {
       "t": "2026-11-26T23:08:00Z",
       "title": "Playable rows are now read against a next goal",
