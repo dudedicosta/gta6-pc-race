@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T07:38:00Z",
+  "checked": "2026-11-26T07:40:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1484,7 +1484,7 @@
     {
       "name": "Xenstride",
       "repo": "mkr2tl/xenstride-public",
-      "note": "A derivative of XCL that changes how graphics pipelines are scheduled and built ahead of time. Its status page says gameplay is not demonstrated: its tests run on a software renderer or synthetic inputs, and a newer retail title's world load still ends in the game's own watchdog."
+      "note": "Its v0.3.0 runtime is now based on VIctory, where earlier versions derived from XCL, with its own changes to texture staging, readback, descriptor views and shader rounding. Its status page says commercial titles, gameplay and in-game performance remain unverified: its measurements are of a synthetic scene of its own."
     },
     {
       "name": "gta-vi-astral",
