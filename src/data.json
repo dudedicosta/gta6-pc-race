@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T06:03:00Z",
+  "checked": "2026-11-26T06:26:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1499,7 +1499,7 @@
     {
       "name": "VIctory-forkAMD",
       "repo": "AntoninMichelq/VIctory-forkAMD",
-      "note": "A fork of VIctory that carries victory-fork's work, measured on a Radeon RX 7600 with 8 GB. Its README reports about 6.2 to 6.4 frames a second in the first scene with upscaling from 1080p and a 10-minute run without a crash, and does not say for its own machine whether the player is in control."
+      "note": "A fork of VIctory that carries victory-fork's work, measured on a Radeon RX 7600 with 8 GB. Its notes of 26 November report about 8.9 frames a second over a 15-minute run without a crash, with upscaling, up from the 6.2 to 6.4 in its README, and it does not say for its own machine whether the player is in control."
     },
     {
       "name": "HybridGt",
@@ -1535,9 +1535,24 @@
       "name": "XTP",
       "repo": "MiamiGame/XTP",
       "note": "A compatibility layer for Xbox Series titles on Windows, tested on a Radeon RX 6700 XT. Its README says no title is usable yet: menus draw, and in the world most of the scene is missing and frames take seconds. klbf-lab credits it for a fix."
+    },
+    {
+      "name": "ShakiraRED(dt)",
+      "repo": "reddxd-byte/ShakiraRED-dt",
+      "note": "A performance fork of VIctory's code, credited by AnyXboxX and tested on an RTX 4090 on the larger console's profile. Its README gives single samples from gameplay scenes, not averages: 18 to 20 frames a second in a lighter scene, 13.7 to 15 in a heavier one and 1.8 in a spike, with some draws dropped for missing pipelines and no session length. It does not name its title and has had no commits since 25 November."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T06:26:00Z",
+      "title": "Hourly check: no session lengths yet and no release of the private build; one more fork on the watch list",
+      "points": [
+        "Neither PortWatch's entry for the private build CGBJ (20 frames a second, relayed) nor VIctory-NVIDIA's README (20 to 22 on average indoors) has added a session length, and the private build has not been released. Playable stays at no and the estimate is held.",
+        "Added to the watch list: ShakiraRED(dt), a performance fork of VIctory's code that AnyXboxX credits. On an RTX 4090 its README gives single samples from gameplay scenes, 18 to 20 frames a second in a lighter scene and 13.7 to 15 in a heavier one, with some draws dropped for missing pipelines and no session length. It has had no commits since 25 November.",
+        "VIctory-forkAMD's notes now report about 8.9 frames a second over a 15-minute run without a crash on a Radeon RX 7600, up from 6.2 to 6.4. VIniVIdiVIci withdrew the 7.3 it published at 05:35 UTC after finding a fault in one switch and gives 6.5 again, with switches that are off by default.",
+        "News check: the press has not picked up either report of 20 or more and still cites VIctory-7900XTX's 13 to 22 or older figures of 2 to 5. GitHub has published no new notice, and there is no statement from Rockstar or Take-Two since the build leaked beyond the notice against Leonida."
+      ]
+    },
     {
       "t": "2026-11-26T05:41:00Z",
       "title": "PortWatch lowers its figure for the private build CGBJ to 20 fps; the estimate moves a quarter of a day later",
