@@ -113,8 +113,9 @@ last_rev = fc["revisions"][0]
 
 # ---------------------------------------------------------------- lanes, and the order they give
 # Lanes: three finer readings of a project that is in-game (issue 8 on the page's repository). A lane's step comes
-# from a figure the project reports (speed: the middle of the frame rates it reports in play, "low" to "high", in
-# rendered frames a second; stability: "minutes", its longest session without a crash) or, for the picture, from
+# from a figure the project reports (speed: the average over the newest session of play of 10 minutes or more that
+# it reports, entered as "low" = "high", or with no such session the middle of the frame rates it reports in play,
+# "low" to "high", in rendered frames a second; stability: "minutes", its longest session without a crash) or, for the picture, from
 # the written steps below. "bar" is the first step that meets the page's playable bar on that lane; the picture has
 # none, because the bar asks nothing of it.
 LANES = [
@@ -123,7 +124,8 @@ LANES = [
                "Lit in light and shade, with visible faults", "Lit and whole, small faults only",
                "The console's picture, ray tracing included"]},
     {"key": "speed", "name": "Speed",
-     "what": "The middle of the frame rates it reports in play, in rendered frames a second (fps).",
+     "what": "The average it reports over a session of play of 10 minutes or more, or with no such session the "
+             "middle of the frame rates it reports in play, in rendered frames a second (fps).",
      "edges": [0, 2, 5, 10, 20, 30], "bar": 5,
      "steps": ["Under 2 fps", "2 fps or more", "5 fps or more", "10 fps or more", "20 fps or more",
                "30 fps or more, the console's rate"]},
@@ -136,7 +138,8 @@ INGAME = stages.index("In-game") if "In-game" in stages else top - 1
 
 
 def lane_value(lane, reading):
-    """The figure a lane steps on: the middle of the reported range for speed, the minutes for stability."""
+    """The figure a lane steps on: the middle of the entered range for speed (a session average is entered as
+    one figure, low and high the same), the minutes for stability."""
     if lane["key"] == "speed":
         low, high = reading.get("low"), reading.get("high")
         return None if low is None or high is None else (low + high) / 2

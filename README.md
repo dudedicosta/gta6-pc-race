@@ -14,7 +14,7 @@ Live page: https://vuyp.github.io/gta6-pc-race/
 Each project is placed on a ladder of seven stages, from loading the game's files to playable. A project that is in-game (stage 6) is also read on three lanes:
 
 - **Picture**: what the project says is on screen in the game's world, in five written steps.
-- **Speed**: the middle of the frame rates it reports in play, in rendered frames a second.
+- **Speed**: the average it reports over its newest session of play of 10 minutes or more (its median where it gives no average), or with no such session the middle of the frame rates it reports in play, in rendered frames a second. Scripted or automated runs and scenes standing still do not count as play.
 - **Stability**: the longest session it reports without a crash.
 
 Each step is the page's reading of what the project reports about itself. The key under the page's "Standings" title lists the steps, and the ones that meet its playable bar (20 frames a second and 30 minutes without a crash) are marked in blue.

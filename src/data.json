@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T02:27:00Z",
+  "checked": "2026-11-26T02:55:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -221,7 +221,7 @@
       "kind": "Build of VIctory and victory-fork, tested on an AMD Radeon card",
       "stage": 6,
       "basis": "Project README and its test-build branch: the maintainer's own figures from one machine, with other users' reports from other cards",
-      "status": "Its README, which no longer names the title, reports play from a new game to the open world on its own saves, in one 77-minute session that ended by choice, without a crash, on its newest test build on a Radeon RX 9070 XT: the opening mission, all of the second, then free roam at about 5 to 8 frames a second while driving and walking, averaging about 5.2 over the session. It says vegetation and thin translucent materials turn magenta and the ground stays very dark at night, and that another user has confirmed its water fix on an RTX 5070 Ti.",
+      "status": "Its README, which no longer names the title, reports play from a new game to the open world on its own saves, in one 77-minute session that ended by choice, without a crash, on its newest test build on a Radeon RX 9070 XT: the opening mission, all of the second, then free roam at about 5 to 8 frames a second while driving and walking, averaging about 5.2 over the session, with dips to about 0.5 to 1 while a new area loads. It says vegetation and thin translucent materials turn magenta and the ground stays very dark at night, and that another user has confirmed its water fix on an RTX 5070 Ti.",
       "changed": "2026-11-25T23:05:00Z",
       "lanes": {
         "picture": {
@@ -229,9 +229,9 @@
           "text": "lit, with tints and faint lines"
         },
         "speed": {
-          "low": 5,
-          "high": 9,
-          "text": "5 to 9 fps by scene"
+          "low": 5.2,
+          "high": 5.2,
+          "text": "5.2 fps average over 77 minutes of play"
         },
         "stability": {
           "minutes": 77,
@@ -591,9 +591,9 @@
           "text": "shadows missing, rooms dark"
         },
         "speed": {
-          "low": 4,
-          "high": 14,
-          "text": "9 to 14 fps, dips to 4 while textures stream, unconfirmed"
+          "low": 8.6,
+          "high": 8.6,
+          "text": "8.6 fps average over a 24-minute session, unconfirmed"
         },
         "stability": {
           "minutes": 24,
@@ -790,9 +790,9 @@
           "text": "whole in its captures, 7% of draws dropped"
         },
         "speed": {
-          "low": 7,
-          "high": 11,
-          "text": "7 to 11 fps on two machines"
+          "low": 10,
+          "high": 10,
+          "text": "10 fps average, an unnamed tester's 36 minutes"
         },
         "stability": {
           "minutes": 36,
@@ -923,9 +923,9 @@
           "text": "uneven light, dark patches outdoors"
         },
         "speed": {
-          "low": 1.9,
-          "high": 9.5,
-          "text": "7.0 fps median, 1.9 to 9.5 by stretch"
+          "low": 7.0,
+          "high": 7.0,
+          "text": "7.0 fps median over a 30-minute session"
         },
         "stability": {
           "minutes": 30,
@@ -965,7 +965,7 @@
         },
         "speed": {
           "low": 3.62,
-          "high": 3.7,
+          "high": 3.62,
           "text": "3.6 fps average, 39-minute session"
         },
         "stability": {
@@ -1056,9 +1056,9 @@
           "text": "stand-in light, black boxes on water, late textures"
         },
         "speed": {
-          "low": 6.4,
-          "high": 9.9,
-          "text": "6.4 to 9.9 fps median by run"
+          "low": 6.9,
+          "high": 6.9,
+          "text": "6.9 fps median in its 25-minute run"
         },
         "stability": {
           "minutes": 25,
@@ -1483,6 +1483,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T02:55:00Z",
+      "title": "The speed lane now reads a session of play first; Kelvaroq passes AnyXboxX for 2nd",
+      "points": [
+        "From this check a project's speed is read first from the average it reports over its newest session of play of 10 minutes or more, or its median where it gives no average. A project that reports no such session is still read from the middle of the frame rates it reports in play. Scripted or automated runs and scenes standing still do not count as play.",
+        "The reason is that low figures were not being read evenly. Since 00:11 UTC a rate given for a condition of play has counted as a row's low end, which was applied to AnyXboxX, VIctory-7900XTX and Flamingo but not to klbf-lab, whose README mentions dips to about 0.5 to 1 frames a second while a new area loads. A session average already includes such dips, and a sustained session is what the playable bar asks about.",
+        "Kelvaroq is now read from its unnamed tester's 36-minute session, 10 frames a second on average. That is the fourth speed step, so it is 1 step short of the bar and passes AnyXboxX for 2nd. klbf-lab reads 5.2 over its 77 minutes, Vice-Tay 7.0, Flamingo 8.6, Vertex 6.9 and ruff-lab 3.6, each on the same step and in the same place as before.",
+        "VIctory-7900XTX stays first. It gives no average for its 41-minute session and AnyXboxX's 13-minute runs are automated, so both are still read from their ranges, 5 to 23.8 and 1 to 17. No project's own figures changed in this check and the estimate is unchanged; victory-fork's run notes (02:17 to 02:30 UTC) record two more changes that cut copying or its submission thread's work without shortening the frame, and trace black surfaces in one area to textures the card had no room for."
+      ]
+    },
     {
       "t": "2026-11-26T02:27:00Z",
       "title": "Flamingo's low figure is read like the leaders' and it falls to 13th; victory-fork measures a small gain",
@@ -2942,7 +2952,7 @@
     },
     {
       "label": "Lanes",
-      "text": "A project at stage 6 is also read on three lanes: picture, speed and stability. Each step is this page's reading of what the project reports about itself, speed is the middle of the frame rates it reports, and the key under the standings title lists the steps."
+      "text": "A project at stage 6 is also read on three lanes: picture, speed and stability. Each step is this page's reading of what the project reports about itself, and the key under the standings title lists the steps. Speed is the average a project reports over its newest session of play of 10 minutes or more, or its median where it gives no average. A project that reports no such session is read from the middle of the frame rates it reports in play, where a low figure counts if it is given for a stretch or a condition of play and single frames do not. Scripted or automated runs and scenes standing still do not count as play."
     },
     {
       "label": "Tested on",
