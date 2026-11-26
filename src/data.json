@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T14:08:00Z",
+  "checked": "2026-11-26T14:33:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -509,8 +509,8 @@
       "kind": "Public for a time on 26 November as a fork of VIctory-7900XTX with NVIDIA work on top; its repository no longer answers. PortWatch lists it as the build of a group it calls CGBJ",
       "stage": 6,
       "basis": "Its repository as this page read it at 07:34 UTC on 26 November, before it stopped answering: a development journal with its own measurements and a README that gave none. PortWatch, which says it has seen the build, relays the higher figure; two outside runs of the published code on smaller cards, by a fork on the watch list and by a VIctory contributor, measured far less on its own settings and about 20 to 25 with settings changed; nobody has verified either",
-      "status": "Its repository, made public on the morning of 26 November as a fork of VIctory-7900XTX with NVIDIA work on top, stopped answering between 07:34 and 08:01 UTC: missing, private or removed, with no published takedown notice naming it; PortWatch's pinned note says it has been taken down temporarily, and the README of Vice-Tay, which builds on its code, says its author took it down. While it was public its own journal recorded medians of about 17 to 18 frames a second in the opening street of a title it does not name on an RTX 5090, with a sustained 20 listed as still open; PortWatch, which says it has seen the build, relays an average of 25 in gameplay, and two outside runs of the published code on smaller cards, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti, by HybridGt, and 2.7 rising to 19.6 with one setting changed and then to about 22 to 25 on the smaller console's profile with that contributor's own build and settings, on an RTX 3080 with 10 GB, by a VIctory contributor's notes, which give no scene or run length.",
-      "changed": "2026-11-26T13:18:00Z",
+      "status": "Its repository, made public on the morning of 26 November as a fork of VIctory-7900XTX with NVIDIA work on top, stopped answering between 07:34 and 08:01 UTC: missing, private or removed, with no published takedown notice naming it; PortWatch's pinned note of that morning, since replaced, said it had been taken down temporarily, and the README of Vice-Tay, which builds on its code, says its author took it down. While it was public its own journal recorded medians of about 17 to 18 frames a second in the opening street of a title it does not name on an RTX 5090, with a sustained 20 listed as still open; PortWatch, which says it has seen the build, relays an average of 25 in gameplay, and two outside runs of the published code on smaller cards, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti, by HybridGt, and 2.7 rising to 19.6 with one setting changed and then to about 22 to 25 on the smaller console's profile with that contributor's own build and settings, on an RTX 3080 with 10 GB, by a VIctory contributor's notes, which give no scene or run length.",
+      "changed": "2026-11-26T14:33:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -810,8 +810,8 @@
       "kind": "Xbox Series runtime for Windows built on VIctory and victory-fork, published on 25 November",
       "stage": 6,
       "pos": 20,
-      "changed": "2026-11-26T13:18:00Z",
-      "status": "Its README (20:53 UTC on 25 November) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 12:55 UTC on 26 November that a new memory layer, still in testing and not public, now runs in the open world, with the work it adds to each frame down from about 6 seconds to between 0.17 and 0.35 seconds against a target of 5 milliseconds and no frame rate given; nobody else has confirmed any of it.",
+      "changed": "2026-11-26T14:33:00Z",
+      "status": "Its README (20:53 UTC on 25 November) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 12:55 UTC on 26 November that a new memory layer, still in testing and not public, now runs in the open world, with the work it adds to each heavy frame down from about 18 seconds to about 60 milliseconds against a target of 5 milliseconds and no frame rate given; nobody else has confirmed any of it.",
       "basis": "Project README and its measurement notes: its own figures from one machine, and one session on another that the README attributes to an unnamed external tester; not confirmed by anyone else",
       "lanes": {
         "picture": {
@@ -1177,8 +1177,8 @@
       "stage": 6,
       "kind": "Fork of VIctory-7900XTX tuned for AMD's Radeon RX 7000 cards",
       "basis": "Project README: its own figures from one machine in one session, with the time played given as its maintainer's estimate. Until 12:54 UTC on 26 November the same README said time under player control was unverified for this run. Not confirmed by anyone else",
-      "status": "Its README (12:54 UTC) says its maintainer played by hand for about 40 minutes on a Radeon RX 7900 XT at 4K output on the larger console's profile, at a median of 12.1 frames a second across the heavy-rendering samples, until the graphics device was removed 48 minutes after start-up. A later capture of 13 minutes 37 seconds closed normally at a median of 15.75, which the README does not describe as play, and it says missing pipelines can drop draws and that neither capture shows enough to score the picture.",
-      "changed": "2026-11-26T13:43:00Z",
+      "status": "Its README (14:16 UTC) says its maintainer played by hand for about 40 minutes on a Radeon RX 7900 XT at 4K output on the larger console's profile, at a median of 12.1 frames a second across the heavy-rendering samples, until the graphics device was removed 48 minutes after start-up. Newer captures, which the README does not describe as play, reached a median of 17.8 across their heaviest samples and a best sample of 20.7 in a run that ended in a GPU hang 4 minutes 28 seconds after start-up, and it says a sustained 20 is still a target and that missing pipelines can drop draws.",
+      "changed": "2026-11-26T14:33:00Z",
       "pos": 0,
       "tested": {
         "os": [
