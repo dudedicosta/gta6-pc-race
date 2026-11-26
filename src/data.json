@@ -1,15 +1,14 @@
 {
-  "checked": "2026-11-26T16:15:00Z",
+  "checked": "2026-11-26T20:56:00Z",
   "cadence_minutes": 15,
-  "paused": "2026-11-26T16:15:00Z",
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
   "headline": "victory-fork shows the first gameplay scene under player control at a few frames a second",
-  "summary": "Automatic checks paused at 16:15 UTC on 26 November. Nothing is counted as playable yet by this page's bar, and one report is close. Vice-Tay's README says that a 30-minute boat test on the smaller console's profile ran at a median of 21.6 frames a second on an RTX 4090, and calls it a playtest. The sentence stood at two readings, so its speed lane now reads it and Vice-Tay is first, with both of its lanes at the bar's steps; the playable flag waits for its documents to say that the test was played under control throughout and ran without a crash. Its fully documented session is longer and slower: 70 minutes played by hand through a scripted gamepad at a median of 12.9, slowing as the game's memory outgrew the PC's, for which a fix went in afterwards. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
+  "summary": "Nothing is counted as playable yet by this page's bar, and one report now reads as the bar. Vice-Tay's documents describe one session of 30 minutes played by hand, through a scripted gamepad, at a median of 21.1 frames a second on an RTX 4090 on the smaller console's profile. This page has read it once and counts it at the next check if it stands. PortWatch now calls Belobug's build very playable at about 22 on average with no crashes, with no session length, and VIctory-RDNA reports a capture of under ten minutes at a median of 23.1 at 4K output. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
   "forecast": {
     "made": "2026-11-23T17:40:00Z",
     "target": "2026-11-27T00:00:00Z",
-    "label": "about 8 hours after the last check",
+    "label": "a few hours",
     "date_label": "midnight UTC going into Fri 27 Nov",
     "definition": "At least one project reports the game in-game and under player control for 30 minutes or more without a crash, at 20 frames per second or better on some PC, counting rendered frames only.",
     "odds": [
@@ -43,7 +42,7 @@
       },
       {
         "name": "Playable",
-        "when": "about 8 hours after the last check",
+        "when": "a few hours",
         "date": "Fri 27 Nov"
       }
     ],
@@ -51,7 +50,7 @@
       "One project went from nothing public to loading the game world in a day, and XCL took lighter retail games from first boot to playable in a day or two. No project has done that with a game of this size.",
       "The in-game gate fell on 24 November, a day after the executable appeared. By that evening a public fork, now named victory-fork, had the first gameplay scene on screen under player control, and others have since run it on their own machines, on NVIDIA and AMD cards.",
       "Most of the picture is there, and the game itself holds up. The fork lights its first room and shows characters, textures, sky and sunlit surfaces with shaded areas still too dark, AnyXboxX reports every cutscene playing in full, builds of the fork's code report the first two missions played through, PortWatch rates one AMD fork's picture as close to the console's and no other, and the game's own ray-traced light now runs in three public code bases, in one of them by default.",
-      "Stability now has more than ten reports beyond the length the bar asks for, among them 30 minutes on an RTX 4090 in an open pull request, 36 minutes on an RTX 4090 in an unnamed tester's session recorded by Kelvaroq, 39 minutes on a Radeon RX 6600 XT with a hard disk in ruff-lab's README, 41 minutes on a Radeon RX 7900 XTX in VIctory-7900XTX's README, about 45 minutes through two missions relayed by AnyXboxX, 49 minutes of play in victory-fork's README before the graphics device was lost, 58 minutes on an RTX 3070 in victory-unified's README, sessions of an hour on an RTX 4060 Ti in VI-BR-PORT's README, 77 minutes through the first two missions on a Radeon RX 9070 XT in klbf-lab's README, and more than 90 minutes on an RTX 3050 in the last README of ztrx, whose repository has since stopped answering. Speed is the remaining job, and on 25 November it moved. victory-fork's first rooms went from about 3.5 to 4 frames a second to 7 to 8 on an RTX 4070 and then to 10.3 with three changes that are off by default, Kelvaroq claims about 10 in typical views of the opening mission at 4K output on an RTX 5080, and victory-perf and Flamingo each report 9 or more in the first interiors at reduced resolution, all on one machine each. These are best cases. victory-fork's maintainer says those figures are for a scene standing still and measured a play session at 4.5 on average, with half the time in frames of about 490 milliseconds while the game streams assets and waits on its own page mapping; two attempts to cut that were taken back out. The same README reckoned the scene would run at only about 20 on its test card with all of the layer's own work removed, and both victory-fork and Kelvaroq name the single thread that sends work to the card as the limit on fast cards. That evening victory-fork claimed no further gain and said a review of the open pull requests found no single large one, though its new frame capture suggests the card's ceiling may be higher than 20. On the evening of 25 November AnyXboxX's maintainer measured a median of 12.5 in the world on an RTX 4070 SUPER after moving to a packaged edition of VIctory it calls Neptune, with no session length stated, and later 13.8 from automated 13-minute runs with a new set of defaults. An unverified reader's run of it on an RTX 4090, made before those defaults, measured less. Its README has since named a 32 GB machine and a 12 GB card as its limits, with dips to 1 to 6 while the world streams. A launcher project's unverified test table from one PC with an RTX 4060 and 8 GB reports about 14 over 10 minutes from an earlier AnyXboxX build, and about 20 on average from Flamingo's newest build with a broken picture and no session length. Later that evening VIctory-7900XTX, a fork tuned on a Radeon RX 7900 XTX, published 13 to 22 through the opening and the first boat mission and 6 to 10 in a busy street chase, against 280 milliseconds a frame in the same scenes two days earlier by its own account, and PortWatch's owner says it verified the build at about 16 on average. By late evening victory-fork's own README read 9 to 12 in rooms and light outdoor views and 5 to 6 in heavy ones while playing, in sessions that ended with the graphics device lost after 30 to 50 minutes. Ordinary play has been slower: klbf-lab averaged 5.2 over its 77 minutes, Belobug's fork reports 5 to 7 standing still in a heavy scene, VItoriaBr up to 6 on an RTX 5060 Ti, and until the morning of 26 November the best averages from long sessions were about 10 over 36 minutes on an RTX 4090 in the unnamed tester's session Kelvaroq records, 8.6 over 24 minutes in Flamingo's log and about 7.6 over 30 minutes on an RTX 4090. XCL, a separate code base, reports about 5 in its own 3D world on an RTX 5090, with no long runs. PortWatch reported on the evening of 25 November that a private build's live stream showed free roam at 5 to 24, about 12 to 15 by its owner's reading: self-reported, with the code not public and nothing to say whether those are rendered frames. Kelvaroq says a memory layer still in testing cuts the memory it copies each frame by more than nine tenths in its first scenes, with no frame rate for it yet. Early on 26 November PortWatch, in updates made by a stand-in editor, said it had now seen the private build CGBJ and reported an average of 25 in gameplay on an NVIDIA card, then lowered that to a stable 20, and on the morning of 26 November put it back to 25 as the build's code became public as a fork of VIctory-7900XTX: no session length and no word on whether every frame is rendered, and the repository's own journal records medians of about 17 to 18 in the opening street on an RTX 5090 around midnight UTC, with a sustained 20 still open then. That repository stopped answering within the hour. Vice-Tay, rebuilt on that code the same morning, measures a median of 14.3 over a 10-minute session on an RTX 4090 at 4K on the larger console's profile with nothing else running on the PC; a 31-minute session at an observed 20 to 25 that its README carried for a few minutes is no longer reported. A public fork, VIctory-NVIDIA, has reported since late on 25 November about 20 to 22 on average indoors in the opening on an RTX 5070 with a Ryzen 7 9800X3D, on the smaller console's profile with the world drawn at half scale, again with no session length; the same code measured 7 to 12 on an RTX 4060 Ti with a slower processor. On 26 November VIctory-7900XTX set itself the goal of a stable 30 without ray tracing and reported a city street at 13 to 17, or about 19 with two renderer patches that are off by default. Later that morning klbf-lab reported a session played with a controller on a new test build based on Neptune, on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far in the open world without a crash at 14.0 on average, counting the layer's own frames. Vice-Tay added a second automated 10-minute run on its RTX 4090, at a median of 20.8 in the opening rooms on the smaller profile, which is not its default, and then measured a session played by hand on that profile through a scripted gamepad: 70 minutes, ended by its test runner, at a median of 12.9, with a tenth of its samples over 20.1 and a tenth under 8.3. Its play log puts the opening rooms at about 20, the water at 16 to 19, a camp at 12 to 16 and the stretch after it at 8 to 13, as the game's memory grew from 33 GB past the 43.4 GB the PC has, and names that growth as the likely cause of the slowdown. So the length the bar asks for is now there at about 13 on an RTX 4090 and about 14 on a mid-range Radeon, 20 has been measured only in the lightest scenes, and the fastest build slows as a session goes on. Two outside runs of the code PortWatch lists as CGBJ, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti with 12 GB and on an RTX 3080 with 10 GB, and the second reached a median of 19.6 with one setting changed and later about 22 to 25 on the smaller console's profile with its own build and settings, most recently a median of 22.4 on the boat with several picture faults fixed, with no run length given. victory-fork reported the same morning that the graphics card, not its own preparing work, is now its limit at the first boat mission on an RTX 4070, at 84 to 128 milliseconds a frame, with its translated shader programs at about 2.4 times the console's instruction count. By midday VIctory-7900XTX reported that city street at about 22 on the smaller console's profile with four renderer patches that are off by default while they are tested, and CBL VIctory reported a session of 65 minutes on an RTX 5080 at 4K output whose measured stretches ran from 4.3 on foot to 11.4 on the water. Press reports of 26 November, in TechRadar, Wccftech, GameGPU and VGTimes, relay posts and videos that claim 25 to 30 in the first boat mission for builds of the code PortWatch lists as CGBJ, among them a group's demonstration at an average of 27 on an RTX 5070 Ti, read from an on-screen counter on open water, and VGTimes reports that a packaged build is circulating. None gives a session length, the outlets call the claims unverified, and no project's own documents yet hold a session of half an hour above 14. At 13:22 UTC Vice-Tay's README reported a median of 21.6, up from 20.5, in a 30-minute boat test on the smaller profile that it calls a playtest, in one sentence that stood at two readings and that does not say the test was played under control throughout or ran without a crash. Playable needs 20 for 30 minutes in one session of play.",
+      "Stability now has more than ten reports beyond the length the bar asks for, among them 30 minutes on an RTX 4090 in an open pull request, 36 minutes on an RTX 4090 in an unnamed tester's session recorded by Kelvaroq, 39 minutes on a Radeon RX 6600 XT with a hard disk in ruff-lab's README, 41 minutes on a Radeon RX 7900 XTX in VIctory-7900XTX's README, about 45 minutes through two missions relayed by AnyXboxX, 49 minutes of play in victory-fork's README before the graphics device was lost, 58 minutes on an RTX 3070 in victory-unified's README, sessions of an hour on an RTX 4060 Ti in VI-BR-PORT's README, 77 minutes through the first two missions on a Radeon RX 9070 XT in klbf-lab's README, and more than 90 minutes on an RTX 3050 in the last README of ztrx, whose repository has since stopped answering. Speed is the remaining job, and on 25 November it moved. victory-fork's first rooms went from about 3.5 to 4 frames a second to 7 to 8 on an RTX 4070 and then to 10.3 with three changes that are off by default, Kelvaroq claims about 10 in typical views of the opening mission at 4K output on an RTX 5080, and victory-perf and Flamingo each report 9 or more in the first interiors at reduced resolution, all on one machine each. These are best cases. victory-fork's maintainer says those figures are for a scene standing still and measured a play session at 4.5 on average, with half the time in frames of about 490 milliseconds while the game streams assets and waits on its own page mapping; two attempts to cut that were taken back out. The same README reckoned the scene would run at only about 20 on its test card with all of the layer's own work removed, and both victory-fork and Kelvaroq name the single thread that sends work to the card as the limit on fast cards. That evening victory-fork claimed no further gain and said a review of the open pull requests found no single large one, though its new frame capture suggests the card's ceiling may be higher than 20. On the evening of 25 November AnyXboxX's maintainer measured a median of 12.5 in the world on an RTX 4070 SUPER after moving to a packaged edition of VIctory it calls Neptune, with no session length stated, and later 13.8 from automated 13-minute runs with a new set of defaults. An unverified reader's run of it on an RTX 4090, made before those defaults, measured less. Its README has since named a 32 GB machine and a 12 GB card as its limits, with dips to 1 to 6 while the world streams. A launcher project's unverified test table from one PC with an RTX 4060 and 8 GB reports about 14 over 10 minutes from an earlier AnyXboxX build, and about 20 on average from Flamingo's newest build with a broken picture and no session length. Later that evening VIctory-7900XTX, a fork tuned on a Radeon RX 7900 XTX, published 13 to 22 through the opening and the first boat mission and 6 to 10 in a busy street chase, against 280 milliseconds a frame in the same scenes two days earlier by its own account, and PortWatch's owner says it verified the build at about 16 on average. By late evening victory-fork's own README read 9 to 12 in rooms and light outdoor views and 5 to 6 in heavy ones while playing, in sessions that ended with the graphics device lost after 30 to 50 minutes. Ordinary play has been slower: klbf-lab averaged 5.2 over its 77 minutes, Belobug's fork reports 5 to 7 standing still in a heavy scene, VItoriaBr up to 6 on an RTX 5060 Ti, and until the morning of 26 November the best averages from long sessions were about 10 over 36 minutes on an RTX 4090 in the unnamed tester's session Kelvaroq records, 8.6 over 24 minutes in Flamingo's log and about 7.6 over 30 minutes on an RTX 4090. XCL, a separate code base, reports about 5 in its own 3D world on an RTX 5090, with no long runs. PortWatch reported on the evening of 25 November that a private build's live stream showed free roam at 5 to 24, about 12 to 15 by its owner's reading: self-reported, with the code not public and nothing to say whether those are rendered frames. Kelvaroq says a memory layer still in testing cuts the memory it copies each frame by more than nine tenths in its first scenes, with no frame rate for it yet. Early on 26 November PortWatch, in updates made by a stand-in editor, said it had now seen the private build CGBJ and reported an average of 25 in gameplay on an NVIDIA card, then lowered that to a stable 20, and on the morning of 26 November put it back to 25 as the build's code became public as a fork of VIctory-7900XTX: no session length and no word on whether every frame is rendered, and the repository's own journal records medians of about 17 to 18 in the opening street on an RTX 5090 around midnight UTC, with a sustained 20 still open then. That repository stopped answering within the hour. Vice-Tay, rebuilt on that code the same morning, measures a median of 14.3 over a 10-minute session on an RTX 4090 at 4K on the larger console's profile with nothing else running on the PC; a 31-minute session at an observed 20 to 25 that its README carried for a few minutes is no longer reported. A public fork, VIctory-NVIDIA, has reported since late on 25 November about 20 to 22 on average indoors in the opening on an RTX 5070 with a Ryzen 7 9800X3D, on the smaller console's profile with the world drawn at half scale, again with no session length; the same code measured 7 to 12 on an RTX 4060 Ti with a slower processor. On 26 November VIctory-7900XTX set itself the goal of a stable 30 without ray tracing and reported a city street at 13 to 17, or about 19 with two renderer patches that are off by default. Later that morning klbf-lab reported a session played with a controller on a new test build based on Neptune, on a Radeon RX 9070 XT on the smaller console's profile with upscaling: 37 minutes so far in the open world without a crash at 14.0 on average, counting the layer's own frames. Vice-Tay added a second automated 10-minute run on its RTX 4090, at a median of 20.8 in the opening rooms on the smaller profile, which is not its default, and then measured a session played by hand on that profile through a scripted gamepad: 70 minutes, ended by its test runner, at a median of 12.9, with a tenth of its samples over 20.1 and a tenth under 8.3. Its play log puts the opening rooms at about 20, the water at 16 to 19, a camp at 12 to 16 and the stretch after it at 8 to 13, as the game's memory grew from 33 GB past the 43.4 GB the PC has, and names that growth as the likely cause of the slowdown. So the length the bar asks for is now there at about 13 on an RTX 4090 and about 14 on a mid-range Radeon, 20 has been measured only in the lightest scenes, and the fastest build slows as a session goes on. Two outside runs of the code PortWatch lists as CGBJ, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti with 12 GB and on an RTX 3080 with 10 GB, and the second reached a median of 19.6 with one setting changed and later about 22 to 25 on the smaller console's profile with its own build and settings, most recently a median of 22.4 on the boat with several picture faults fixed, with no run length given. victory-fork reported the same morning that the graphics card, not its own preparing work, is now its limit at the first boat mission on an RTX 4070, at 84 to 128 milliseconds a frame, with its translated shader programs at about 2.4 times the console's instruction count. By midday VIctory-7900XTX reported that city street at about 22 on the smaller console's profile with four renderer patches that are off by default while they are tested, and CBL VIctory reported a session of 65 minutes on an RTX 5080 at 4K output whose measured stretches ran from 4.3 on foot to 11.4 on the water. Press reports of 26 November, in TechRadar, Wccftech, GameGPU and VGTimes, relay posts and videos that claim 25 to 30 in the first boat mission for builds of the code PortWatch lists as CGBJ, among them a group's demonstration at an average of 27 on an RTX 5070 Ti, read from an on-screen counter on open water, and VGTimes reports that a packaged build is circulating. None gives a session length, the outlets call the claims unverified. On the evening of 26 November Vice-Tay's documents describe one session of 30 minutes played by hand, through a scripted gamepad, at a median of 21.1 on its RTX 4090 on the smaller console's profile, which reads as the bar and which this page has read once. PortWatch now calls Belobug's build very playable at about 22 on average with no crashes, with no session length, and VIctory-RDNA reports a capture of under ten minutes at a median of 23.1 at 4K output. Playable needs 20 for 30 minutes in one session of play.",
       "Takedowns are now on the record. On 24 November GitHub published a Take-Two notice against Leonida and applied it to its 3,007 forks. Its argument is not specific to Leonida, and no other listed project has been named so far, though one has since removed the game's name from its code and another has republished with a new history. On 25 November two outlets reported, from a reporter's post, that Take-Two is also sending notices over social media posts that show footage of unofficial builds. VGTimes also reported that day, and TalkEsport on 26 November, that the developer of the private build omonkey reports receiving a message from Rockstar and has stopped streaming the work; the message is not public and Rockstar has not commented. On 25 November the repositories of ztrx and victory-perf, two public builds of victory-fork's code, stopped answering, and PortWatch reported the first one's account gone, with no notice published and the reason not known in either case. Late that evening the repository of keylime, a separate runtime, stopped answering too, again with no notice published. PortWatch also reported that evening, on its owner's word, that the private build omonkey had been taken down. On the morning of 26 November the repository PortWatch had just named as the public code of CGBJ stopped answering within the hour, again with no notice published and the reason not known. Later that morning the repository of VKarameloVI, a second machine's set-up of VIctory-NVIDIA's code, stopped answering too, while VIctory-NVIDIA's own still answers. A notice cannot reach private builds, but it can end the open collaboration the public ones rely on.",
       "Outside check: small play-money markets on Manifold. One asking whether the game is recompiled into a PC build before 30 November stood at about 6 in 10 on 24 November, before the notice, and at 57% on the evening of 25 November. Another, with four traders, gave about 1 in 5 that GitHub publishes a Take-Two notice naming VIctory by the end of the year."
     ],
@@ -210,17 +209,17 @@
       "kind": "Builds on VIctory's code, kept in its own repository and moved on 25 November to a packaged edition it calls Neptune",
       "stage": 6,
       "basis": "Project README, run notes and third-party notices: the maintainer's own measurements on two machines, and one contributor's report that the maintainer relays; two outside runs, a reader's and a launcher project's, are noted in the status and are not verified",
-      "status": "Its README (23:53 UTC on 25 November) reports about 14 to 17 frames a second in the world on an RTX 4070 SUPER with its default settings, a median of 13.7 over 7 minutes and 13.8 over automated 13-minute runs without a crash, on a base it calls Neptune, a packaged edition of VIctory whose author it says has no public contact; it now adds that a 32 GB machine is short of memory and a 12 GB card runs out of texture room, with dips to 1 to 6 while the world streams, and that a mode that favours the picture runs at about 7 to 9. Two outside runs are on record and neither is verified: a reader's 12-minute run on an RTX 4090 with earlier settings, posted to this page's issues, measured a median of 2 that rose to about 7 in its last two minutes, and a launcher project's 10-minute run of an earlier build on an RTX 4060 with 8 GB reported about 14; the README's older figures stand for its previous base, among them a contributor's relayed 45 minutes through the first two missions at about 2.",
-      "changed": "2026-11-26T01:37:00Z",
+      "status": "Its README (20:28 UTC) reports a median of about 16 to 17 frames a second in the world on an RTX 4070 SUPER on the larger console's profile with its default settings, up from 13.4 that morning, with ray tracing off so that indoor and shadowed areas are dark, some graphics missing and 28 to 30 GB of memory in use; it gives no session length and no longer gives the dips while the world streams that it reported on 25 November. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
+      "changed": "2026-11-26T20:56:00Z",
       "lanes": {
         "picture": {
-          "step": 3,
-          "text": "even stand-in light indoors, some parts missing"
+          "step": 2,
+          "text": "indoor and shadowed areas dark, some graphics missing"
         },
         "speed": {
-          "low": 1,
+          "low": 16,
           "high": 17,
-          "text": "14 to 17 fps, dips to 1 to 6 while the world streams"
+          "text": "16 to 17 fps median in the world, no session length given"
         },
         "stability": {
           "minutes": 45,
@@ -281,8 +280,8 @@
       "kind": "Fork of VIctory for AMD Radeon cards, built on VIctory's main branch and its pull requests",
       "stage": 6,
       "basis": "Project README, tested on one machine, and PortWatch, whose owner reports having seen the build",
-      "status": "Its README now reports the world at 5 to 8 frames a second on a Radeon RX 9070 XT: 7.2 to 7.7 standing still in a scene of 8,800 draws and less while driving, lit with textures, people, vehicles, vegetation, water and sky, the game's own sun and lamp shadows, and a stand-in for ray-traced light that now follows the game's sky by day and by night. PortWatch, whose owner reports having seen the build, says its open world is lit and that it plays through missions at about 8 frames a second and rarely crashes, and relays a report of ray tracing working on AMD that this README does not yet bear out.",
-      "changed": "2026-11-26T15:26:00Z",
+      "status": "Its README now reports the world at 5 to 8 frames a second on a Radeon RX 9070 XT: 7.2 to 7.7 standing still in a scene of 8,800 draws and less while driving, lit with textures, people, vehicles, vegetation, water and sky, the game's own sun and lamp shadows, and a stand-in for ray-traced light that now follows the game's sky by day and by night. PortWatch, whose owner reports having seen the build, now calls it very playable at about 22 frames a second on average with no crashes, without a session length, and notes that this README has not caught up; it also relays a report of ray tracing working on AMD that this README does not yet bear out.",
+      "changed": "2026-11-26T20:56:00Z",
       "lanes": {
         "picture": {
           "step": 4,
@@ -415,17 +414,17 @@
       "kind": "Build of victory-fork with its own changes",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "status": "Its README (07:32 UTC) reports an open-world title it does not name at 5.4 frames a second while walking and turning in the world on an RTX 3060 on the smaller console's profile, up from about 4, with steady pacing and with hair and lighting now right in the opening cell. It says shadowed areas are too dark because ray tracing is off, that the waits around the card and not the card itself limit the speed, which is far from 30, and that it is not yet verified playable.",
-      "changed": "2026-11-26T08:05:00Z",
+      "status": "Its README (20:23 UTC) says its rebuilt renderer now shows the full picture of an open-world title it does not name, with lit rooms, ambient and sky light and complete textures, at about 3 frames a second on an RTX 3060 on the smaller console's profile, slower than the 5.4 of its older, darker picture; a hardware report it cites measured 7 to 8 on an RTX 5070. It says first runs still freeze on pipeline compiles, that frame rate is its next focus and that it is not yet verified playable.",
+      "changed": "2026-11-26T20:56:00Z",
       "lanes": {
         "picture": {
-          "step": 2,
-          "text": "shadows dark"
+          "step": 3,
+          "text": "lit rooms, ambient and sky light, complete textures since 0.4.6"
         },
         "speed": {
-          "low": 5.4,
-          "high": 5.4,
-          "text": "5.4 fps while walking and turning"
+          "low": 3,
+          "high": 3,
+          "text": "about 3 fps with its fuller picture; 5.4 with the older one"
         },
         "stability": {
           "minutes": null,
@@ -510,8 +509,8 @@
       "kind": "Public for a time on 26 November as a fork of VIctory-7900XTX with NVIDIA work on top; its repository no longer answers. PortWatch lists it as the build of a group it calls CGBJ",
       "stage": 6,
       "basis": "Its repository as this page read it at 07:34 UTC on 26 November, before it stopped answering: a development journal with its own measurements and a README that gave none. PortWatch, which says it has seen the build, relays the higher figure; two outside runs of the published code on smaller cards, by a fork on the watch list and by a VIctory contributor, measured far less on its own settings and about 20 to 25 with settings changed; nobody has verified either",
-      "status": "Its repository, made public on the morning of 26 November as a fork of VIctory-7900XTX with NVIDIA work on top, stopped answering between 07:34 and 08:01 UTC: missing, private or removed, with no published takedown notice naming it; PortWatch, which said that morning that it had been taken down temporarily, moved it back to its private builds at 15:00 UTC and says its code is offline, and the README of Vice-Tay, which builds on its code, says its author took it down. While it was public its own journal recorded medians of about 17 to 18 frames a second in the opening street of a title it does not name on an RTX 5090, with a sustained 20 listed as still open; PortWatch, which says it has seen the build, relays an average of 25 in gameplay, and two outside runs of the published code on smaller cards, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti, by HybridGt, and 2.7 rising to 19.6 with one setting changed and then to about 22 to 25 on the smaller console's profile with that contributor's own build and settings, most recently a median of 22.4 on the boat with black faces, dark cutscenes and colour bands fixed, on an RTX 3080 with 10 GB, by a VIctory contributor's notes, which give no run length.",
-      "changed": "2026-11-26T15:49:00Z",
+      "status": "Its repository, made public on the morning of 26 November as a fork of VIctory-7900XTX with NVIDIA work on top, stopped answering between 07:34 and 08:01 UTC: missing, private or removed, with no published takedown notice naming it; PortWatch, which said that morning that it had been taken down temporarily, moved it back to its private builds at 15:00 UTC and says its code is offline, and the README of Vice-Tay, which builds on its code, says its author took it down. While it was public its own journal recorded medians of about 17 to 18 frames a second in the opening street of a title it does not name on an RTX 5090, with a sustained 20 listed as still open; PortWatch, which says it has seen the build, relays an average of 25 in gameplay, and two outside runs of the published code on smaller cards, neither verified, measured a median of 2.7 on its own settings on an RTX 4070 Ti, by HybridGt, and 2.7 rising to 19.6 with one setting changed and then to about 22 to 25 on the smaller console's profile with that contributor's own build and settings, most recently medians of 21.5 to 23 in the world and 29 to 30 in cutscenes with no black sun, colour bands or black spots, on an RTX 3080 with 10 GB, by a VIctory contributor's notes, which give no run length.",
+      "changed": "2026-11-26T20:56:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -811,8 +810,8 @@
       "kind": "Xbox Series runtime for Windows built on VIctory and victory-fork, published on 25 November",
       "stage": 6,
       "pos": 20,
-      "changed": "2026-11-26T14:33:00Z",
-      "status": "Its README (20:53 UTC on 25 November) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 12:55 UTC on 26 November that a new memory layer, still in testing and not public, now runs in the open world, with the work it adds to each heavy frame down from about 18 seconds to about 60 milliseconds against a target of 5 milliseconds and no frame rate given; nobody else has confirmed any of it.",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README (20:53 UTC on 25 November) records a session it calls an external playtest, by a tester it does not name: 36 minutes 46 seconds without a crash on an RTX 4090 at 1440p, through the opening mission and the next of a title it does not name, at 10 frames a second on average and about 11 once the first ten minutes of loading were over, alongside its own measurements of about 10 rendered frames a second in typical views and 7 to 8 in its heaviest scenes at 4K output on an RTX 5080. It says about 7 percent of draws are dropped and that the tester's figures come from one session, and since 12:55 UTC on 26 November that a new memory layer, still in testing and not public, now runs in the open world, with the work it adds to each heavy frame down from about 18 seconds to about 60 milliseconds against a target of 5 milliseconds and no frame rate given, and since 17:54 UTC that native DirectX ray tracing works in the build under test; nobody else has confirmed any of it.",
       "basis": "Project README and its measurement notes: its own figures from one machine, and one session on another that the README attributes to an unnamed external tester; not confirmed by anyone else",
       "lanes": {
         "picture": {
@@ -911,8 +910,8 @@
       "kind": "Fork of VIctory's code line for NVIDIA cards with 8 GB, documented in Portuguese; on 26 November it moved to a new base that its README does not name",
       "stage": 6,
       "pos": 23,
-      "changed": "2026-11-26T15:26:00Z",
-      "status": "Its README, in Portuguese (14:59 UTC), says its base was changed for one that shows faces, skin, hair and light much better on the same RTX 4060 Ti with 8 GB, and reports about 12 frames a second in the playable prison section of a title it does not name on the smaller console's profile at 1080p, about 16 in the opening cutscene and about 5.6 on the larger profile. It says it is not playable yet and aims at 15 or more with a sharp picture, and it no longer gives the hour-long sessions without losing the graphics device that it reported on its earlier base.",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README, in Portuguese (17:09 UTC), says its base was changed for one that shows faces, skin, hair and light much better on the same RTX 4060 Ti with 8 GB, and reports about 14 frames a second in the playable prison section of a title it does not name on the smaller console's profile at 1080p, about 18 to 19 in the opening cutscene and about 5.6 on the larger profile. It says it is not playable yet and aims at 15 or more with a sharp picture, and it no longer gives the hour-long sessions without losing the graphics device that it reported on its earlier base.",
       "basis": "Project README: its own figures from one machine on its new base, not confirmed by anyone else; its stability reading is from its earlier base",
       "lanes": {
         "picture": {
@@ -920,9 +919,9 @@
           "text": "coherent light, textured faces and skin; not yet sharp"
         },
         "speed": {
-          "low": 12,
-          "high": 12,
-          "text": "about 12 fps in the playable prison, smaller profile, 1080p"
+          "low": 14,
+          "high": 14,
+          "text": "about 14 fps in the playable prison, smaller profile, 1080p"
         },
         "stability": {
           "minutes": 60,
@@ -944,22 +943,22 @@
       "kind": "Fork of VIctory tuned on an RTX 4090, rebuilt on 26 November on the code PortWatch lists as CGBJ, itself VIctory-7900XTX with NVIDIA work on top. Published as victory-windows until 25 November",
       "stage": 6,
       "pos": 24,
-      "changed": "2026-11-26T14:08:00Z",
-      "status": "Its README (13:22 UTC) says in one sentence that a 30-minute boat test on the smaller console's profile on its RTX 4090 ran at a median of 21.6 frames a second, up from 20.5 before a batch of fixes, and calls it a playtest; the sentence stood at two readings, so its speed lane reads it, which with its 70-minute session puts both lanes at the bar's steps. It is not counted as playable: the bar asks for one session reported as played under control for 30 minutes or more without a crash, and neither its README, which still says it is not fast enough yet, nor its measurements page or play log says that of this test, whose details are in a pull request this page does not read; its documented record is a 70-minute session of a title it does not name, played by hand through a scripted gamepad, at a median of 12.9 while memory outgrew the PC's, for which its code took a fix at 12:32 UTC.",
-      "basis": "Project README, its measurements page and its play log: the maintainer's own figures from one machine, not confirmed by anyone else. The speed lane rests on one README sentence about a 30-minute test whose details this page has not read",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README, test page and measurements page (20:25 UTC) document one session on its RTX 4090 on the smaller console's profile: 30 minutes in the world of a title it does not name, played by hand, which its test page describes as pad inputs sent through a script while watching a capture after every move, from the prison through a boat section with three failed attempts picked up at checkpoints to an island on foot, at a median of 21.1 frames a second, with the first 4 minutes in cutscenes. By its own report that reads as this page's playable bar, which this page has read once and counts at the next check if it stands; the README still calls it not fast enough yet against its own goal of 30, and lists flat colour bands, glowing objects and blocky clouds.",
+      "basis": "Project README, test page and measurements page: the maintainer's own figures from one machine, not confirmed by anyone else. That the test runner ended the session is from an earlier version of its README and from its maintainer's comment on this page's tracker",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "flat colour patches, blown-out whites, bands on skin and hair"
+          "text": "flat colour bands, glowing objects, blocky clouds and reflections"
         },
         "speed": {
-          "low": 21.6,
-          "high": 21.6,
-          "text": "21.6 fps median in a 30-minute boat test, by one README sentence"
+          "low": 21.1,
+          "high": 21.1,
+          "text": "21.1 fps median over 30 minutes played by hand, smaller profile"
         },
         "stability": {
           "minutes": 70,
-          "text": "70 minutes played by hand, ended by its test runner"
+          "text": "70 minutes on an earlier build; 30 on the current one"
         }
       },
       "tested": {
@@ -978,8 +977,8 @@
       "kind": "Fork of klbf-lab tuned for 8 GB cards, 16 GB of memory and hard disks, published on 25 November",
       "stage": 6,
       "pos": 25,
-      "changed": "2026-11-25T19:57:00Z",
-      "status": "Its README now reports a title it does not name under player control with a DualShock 4 on a Radeon RX 6600 XT with 8 GB, 16 GB of memory and a hard disk, in a session of 39 minutes without a crash that went well into the opening mission at 3.6 frames a second on average, at 720p upscaled to 1080p. It says the magenta lighting of its earlier runs is gone, detail loads slowly from the hard disk and faces are sometimes dark in shadow, and the figures are its own from one machine.",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README (20:12 UTC) reports a title it does not name under player control with a DualShock 4 on a Radeon RX 6600 XT with 8 GB, 16 GB of memory and a hard disk, now at 6 to 10 frames a second by scene after several rounds of changes: about 6 in a heavy prison cell, 7 outdoors and 10 in a car and in cutscenes, at 720p upscaled, with runs of 30 to 39 minutes without a crash. It says natural lighting and textures have replaced the magenta light of its earlier runs, and the figures are its own from one machine.",
       "basis": "Project README and its results log: its own figures from one machine, not confirmed by anyone else",
       "tested": {
         "os": [
@@ -992,16 +991,16 @@
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "lit, no magenta, some dark faces"
+          "text": "natural lighting and textures by its README, no magenta"
         },
         "speed": {
-          "low": 3.62,
-          "high": 3.62,
-          "text": "3.6 fps average, 39-minute session"
+          "low": 6.1,
+          "high": 10,
+          "text": "6 to 10 fps by scene, 720p upscaled, on an 8 GB card"
         },
         "stability": {
           "minutes": 39,
-          "text": "39 minutes, ended by choice"
+          "text": "runs of 30 to 39 minutes without a crash"
         }
       }
     },
@@ -1044,18 +1043,18 @@
       "kind": "Fork of VIctory that brings victory-fork's, DexNom's and Belobug's work together, tuned on a Radeon RX 7900 XTX and published on 25 November",
       "stage": 6,
       "pos": 27,
-      "changed": "2026-11-26T12:22:00Z",
-      "status": "Its README (11:48 UTC) reports a city street of a title it does not name at about 22 frames a second on a Radeon RX 7900 XTX on the smaller console's profile with four renderer patches on, and about 19 on the larger profile with two, against 13 to 17 before them; the patches are off by default while they are tested, and it says one submission thread now sets the frame at about 42 milliseconds while the card needs about 36. It no longer lists the scene figures or the 41-minute session without a crash that it reported on 25 November, and it says distant objects flicker, lighting is off for a while after walking indoors and textures arrive late; PortWatch's owner says it verified the earlier build at about 16 on average, and nobody else has reproduced it.",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README (20:29 UTC) now aims first at the larger console's picture at 4K output with ray tracing on, and reports a city street of a title it does not name over runs of 270 seconds on a Radeon RX 7900 XTX with five renderer patches on: about 9 frames a second walking with ray tracing, 16 without it, 23 at 1080p output and 16 on the smaller console's profile; the patches are still off by default while they are tested, against 13 to 17 before them. It says trees dropping out and lighting swinging in lamp-lit rooms were fixed on 26 November and that models and textures stay at low detail for a long time while the title streams, and it no longer lists the 41-minute session without a crash that it reported on 25 November; PortWatch's owner says it verified an earlier build at about 16 on average, and nobody else has reproduced it.",
       "basis": "Project README and findings notes: its own measurements on one machine. PortWatch says its owner verified the average; not reproduced by anyone else",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "distant flicker, lighting off after walking indoors, late textures"
+          "text": "models and textures at low detail for long while streaming"
         },
         "speed": {
           "low": 5,
           "high": 17,
-          "text": "13 to 17 fps in a city street; about 22 with patches off by default"
+          "text": "13 to 17 fps in a city street; 16 to 23 with patches off by default"
         },
         "stability": {
           "minutes": 41,
@@ -1145,8 +1144,8 @@
       "repo": "Fayberr/Victory-United",
       "kind": "Tree that folds work from VIctory forks into one, rebuilt on 26 November on Vice-Tay's code",
       "stage": 6,
-      "changed": "2026-11-26T16:15:00Z",
-      "status": "Its README (16:06 UTC) says it rebuilt its tree on Vice-Tay's code on 26 November and measured about 11 frames a second standing at a window in the first playable room on an RTX 3080 Ti, at half render scale on the smaller console's profile, over a 7-minute run started by its test script without a crash, with a lit picture free of the blocks its earlier tree showed. It says it is not playable yet and aims at 20, and it reports no play on the new tree, so the lanes still read the 34.7 minutes played by hand at a median of 8.5 on its earlier one.",
+      "changed": "2026-11-26T20:56:00Z",
+      "status": "Its README (16:56 UTC) says it rebuilt its tree on Vice-Tay's code on 26 November and measured about 11 frames a second standing at a window in the first playable room on an RTX 3080 Ti, at half render scale on the smaller console's profile, over runs of 7 and 10 minutes without a crash, the longer one slowly losing speed, with a lit picture free of the blocks its earlier tree showed. It says it is not playable yet and aims at 20, and it reports no play on the new tree, so the lanes still read the 34.7 minutes played by hand at a median of 8.5 on its earlier one.",
       "basis": "Project README: its own figures from one machine, not confirmed by anyone else. The lanes read one session played by hand on its earlier tree, with control given as the player's own observation; the new tree's figures are from a run standing still, which is not play",
       "tested": {
         "os": [
@@ -1178,8 +1177,8 @@
       "stage": 6,
       "kind": "Fork of VIctory-7900XTX tuned for AMD's Radeon RX 7000 cards",
       "basis": "Project README: its own figures from one machine in one session, with the time played given as its maintainer's estimate. Until 12:54 UTC on 26 November the same README said time under player control was unverified for this run. Not confirmed by anyone else",
-      "status": "Its README (14:59 UTC) says its maintainer played an earlier build by hand for about 40 minutes on a Radeon RX 7900 XT at 4K output on the larger console's profile, at a median of 12.1 frames a second across samples that can include cutscenes and transitions, until the graphics device was removed 48 minutes after start-up. Two newer captures of about six minutes each, which the README does not describe as play, ended cleanly with medians of 17.2 and 17.9 in their final minute and a peak of 21.9, and it says a sustained 20 in gameplay remains to be demonstrated and that missing pipelines can drop draws.",
-      "changed": "2026-11-26T15:26:00Z",
+      "status": "Its README (17:07 UTC) says its newest capture, 9 minutes 38 seconds from start-up to a clean exit on a Radeon RX 7900 XT at 4K output on the larger console's profile with its default preset, ran at a median of 23.1 frames a second across its gameplay samples and 19.1 in heavy scenes, rendered frames only. It says earlier sessions ran about 40 minutes of hands-on play and that some draws are still dropped; the lanes still read that earlier session at 12.1 and are read again at the next check.",
+      "changed": "2026-11-26T20:56:00Z",
       "pos": 0,
       "tested": {
         "os": [
@@ -1282,8 +1281,8 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (15:47 UTC) says the city at night is on screen with sane exposure but shows only its light sources, with the ground and buildings they should light still black, and that boots since a change of 26 November lose the graphics device before the world, which it is bisecting.",
-      "changed": "2026-11-26T16:15:00Z",
+      "status": "Shows every first-run screen, loads story mode and plays the opening cutscene's art, credit cards, dialogue and sound at a steady 30 frames a second. Its status page (18:14 UTC) says the city at night is on screen with sane exposure but shows only its light sources, at about 390 milliseconds a world frame, and that every boot that stays in the world a few minutes loses the graphics device.",
+      "changed": "2026-11-26T20:56:00Z",
       "tested": {
         "os": [
           "Windows"
@@ -1626,9 +1625,39 @@
       "name": "VIctory-reloaded",
       "repo": "Biskwit/VIctory-reloaded",
       "note": "A fork of VIctory that builds on victory-fork, aimed at NVIDIA cards and tested on an RTX 4090 on the larger console's profile. Its README reports about 6 frames a second in the world, limited by the processor side of its graphics emulation, the first gameplay shot rendering like the console with ray tracing still off, and no crash in its test runs. It says it is not playable yet."
+    },
+    {
+      "name": "Kitty6",
+      "repo": "kitty-core/Kitty6",
+      "note": "A fork of VIctory-7900XTX for an RTX 4070 with 12 GB, added at its maintainer's request in this page's issues. Its README of 26 November reports a median of 20.5 frames a second standing in the opening scene on the smaller console's profile and 24 to 28 in scripted walking with dips to 13, in runs of about 5 minutes, and says that none is a played session yet and that it is not playable yet."
+    },
+    {
+      "name": "ApexIV",
+      "repo": "KevinPratap/ApexIV",
+      "note": "A fork of VIctory tuned for a laptop RTX 4050 with 6 GB, added at its maintainer's request in this page's issues. Its README of 26 November reports a controllable character at 6.35 to 7.5 frames a second by scene and runs of 14 to 15 minutes without a crash."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T20:56:00Z",
+      "title": "Vice-Tay reports a session that reads as the playable bar; read once, counted at the next check if it stands",
+      "points": [
+        "Its README, test page and measurements page describe one session on an RTX 4090 on the smaller console's profile: 30 minutes in the world, played by hand from the prison through a boat section to an island, at a median of 21.1 frames a second, with 19.1 to 23.2 for the middle four fifths of its samples. Its maintainer says the test runner ended it.",
+        "By its own report that is all four parts of this page's bar: in-game, under control, 30 minutes without a crash, and 20 frames a second or better. Nobody else has checked it.",
+        "What to weigh: it is one PC with an RTX 4090; by hand means pad inputs sent through a script while watching a capture after every move; the first 4 of the 30 minutes are cutscenes; the picture still shows flat colour bands, glowing objects and blocky clouds; and its README still calls it not fast enough yet, against its own goal of 30.",
+        "This page reads a claim of the bar twice before counting it, after a claim on 26 November that was gone within minutes. This is the first reading, so Playable stays at no and the estimate is unchanged. If the report stands at the next check, the page counts it and the estimate ends."
+      ]
+    },
+    {
+      "t": "2026-11-26T20:56:00Z",
+      "title": "Automatic checks have resumed",
+      "points": [
+        "The checks were paused from 16:15 to 20:56 UTC on 26 November, about 4 hours 40 minutes. Every row was read again at this check, and the entry above this one has the main change.",
+        "AnyXboxX now reports a median of 16 to 17 frames a second in the world on an RTX 4070 SUPER and moves to 6th, 1 step short. VI-BR-PORT reports about 14 in its playable prison section and is 2nd, ahead of klbf-lab on the last tiebreak, on an approximate figure for one scene and a stability record from its earlier code. ruff-lab reports 6 to 10 by scene on an 8 GB card and moves to 9th, 2 steps short.",
+        "VIctory-RDNA reports a capture of 9 minutes 38 seconds at a median of 23.1 at 4K output, which would put its speed lane at the bar's step; like any such reading it waits for a second look at the next check. PortWatch now calls Belobug's build very playable at about 22 on average with no crashes, with no session length, while that project's README still reports 5 to 8.",
+        "ScarlettPort's rebuilt renderer shows a fuller picture at about 3 frames a second, and it is now 6 steps short. Kitty6 and ApexIV, two projects that asked to be listed, are on the watch list. GitHub has published no new takedown notice, and there is still no statement from Rockstar or Take-Two since the Leonida notice."
+      ]
+    },
     {
       "t": "2026-11-26T16:15:00Z",
       "title": "Automatic checks are paused",
@@ -3393,7 +3422,7 @@
     },
     {
       "label": "Who compiles it",
-      "text": "An AI assistant (Claude). Its automatic checks, about every 15 minutes, have been paused since 16:15 UTC on 26 November. It can be wrong."
+      "text": "An AI assistant (Claude), automatically, about every 15 minutes. It can be wrong."
     },
     {
       "label": "Affiliation",
