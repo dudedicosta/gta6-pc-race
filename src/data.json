@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-26T04:54:00Z",
+  "checked": "2026-11-26T05:17:00Z",
   "cadence_minutes": 15,
   "playable": "No",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -393,8 +393,8 @@
       "kind": "Build of victory-fork with its own changes",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "status": "Its README reports an open-world title it does not name starting gameplay at about 4 frames a second in the opening mission on an RTX 3060 at reduced resolution, with the frozen overlay over the picture now fixed and the frame limited by the graphics card. It says the picture still freezes while world data streams in, shadowed areas are too dark, nobody has played a session end to end, and it is not yet verified playable.",
-      "changed": "2026-11-25T13:04:00Z",
+      "status": "Its README (05:02 UTC) reports an open-world title it does not name at about 4 frames a second while walking and turning in the world on an RTX 3060 on the smaller console's profile, with steady pacing, its screen lighting passes now fixed and the world reached in about 212 seconds from an internal drive. It says hair renders too bright, shadowed areas are too dark because ray tracing is off, the speed is far from 30, and it is not yet verified playable.",
+      "changed": "2026-11-26T05:17:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -403,7 +403,7 @@
         "speed": {
           "low": 4,
           "high": 4,
-          "text": "about 4 fps"
+          "text": "about 4 fps while walking and turning"
         },
         "stability": {
           "minutes": null,
@@ -856,8 +856,8 @@
       "kind": "Fork of victory-fork aimed at NVIDIA cards",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "changed": "2026-11-26T04:31:00Z",
-      "status": "Its README (04:18 UTC) reports the player in control of a title it does not name on an RTX 4060 Ti at a median of 6.0 frames a second in the first room, measured over a scripted 280-second walk, against 5.6 before two changes to its pass over the descriptor heap, with dips while a zone loads; its longest session is 46 minutes without a crash, on an earlier build at 3.75 overall. It corrects its earlier figures, which were measured with a diagnostic switch on that slowed them, and says the picture is very dark with wrong textures and black shadows and that it is not playable.",
+      "changed": "2026-11-26T05:17:00Z",
+      "status": "Its README (05:13 UTC) reports the player in control of a title it does not name on an RTX 4060 Ti at a median of 6.5 frames a second in the first room, measured over a scripted 280-second walk with a set of switches that are off by default, against 6.0 without that set, with dips while a zone loads; its longest session is 46 minutes without a crash, on an earlier build at 3.75 overall. It corrects its earlier figures, which were measured with a diagnostic switch on that slowed them, and says the picture is very dark with wrong textures and black shadows and that it is not playable.",
       "tested": {
         "os": [
           "Windows"
@@ -873,8 +873,8 @@
         },
         "speed": {
           "low": 1.8,
-          "high": 5.99,
-          "text": "6.0 fps median in the first room, dips while a zone loads"
+          "high": 6.52,
+          "text": "6.5 fps median in the first room, dips while a zone loads"
         },
         "stability": {
           "minutes": 38,
@@ -1526,9 +1526,23 @@
       "name": "VKarameloVI",
       "repo": "lucas-TagDev/VKarameloVI",
       "note": "VIctory-NVIDIA as set up and measured on a second machine, an RTX 4060 Ti with a Ryzen 5 5600X. Its README reports about 7 to 12 frames a second in the world on the smaller console's profile at half render scale."
+    },
+    {
+      "name": "XTP",
+      "repo": "MiamiGame/XTP",
+      "note": "A compatibility layer for Xbox Series titles on Windows, tested on a Radeon RX 6700 XT. Its README says no title is usable yet: menus draw, and in the world most of the scene is missing and frames take seconds. klbf-lab credits it for a fix."
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-26T05:17:00Z",
+      "title": "No session lengths yet for the two fastest reports; small changes elsewhere",
+      "points": [
+        "Neither VIctory-NVIDIA nor PortWatch's entry for the private build CGBJ has added a session length in the last hour, so both stay 3 steps short and Playable stays at no. VIctory-NVIDIA has not been updated since 03:41 UTC, and VIctory-7900XTX's README is unchanged.",
+        "VIniVIdiVIci's README (05:13 UTC) now gives a median of 6.5 frames a second in its first room with a set of switches that are off by default, and ScarlettPort's (05:02 UTC) about 4 while walking and turning on an RTX 3060, with its screen lighting passes fixed. Neither changes step or place.",
+        "On the watch list, XTP joins: a compatibility layer tested on a Radeon RX 6700 XT whose README says no title is usable yet. The hourly news check found the newest press pieces still putting builds at 2 to 5 frames a second or citing VIctory-7900XTX's 13 to 22, none reporting the 20 or more claimed since last night, no new notice and no statement from Rockstar or Take-Two."
+      ]
+    },
     {
       "t": "2026-11-26T04:54:00Z",
       "title": "PortWatch stands by its CGBJ figures; Victory-United nearly doubles in its test room after merging VIctory-7900XTX's speed work",
