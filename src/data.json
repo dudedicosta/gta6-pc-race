@@ -1718,6 +1718,11 @@
       "note": "A fork of victory-fork for NVIDIA cards with 8 GB, and the base Vertex builds on. Its README reports 8 to 10 frames a second on a laptop RTX 4060 with 8 GB and states no session length."
     },
     {
+      "name": "vicec-tay",
+      "repo": "dudedicosta/vicec-tay",
+      "note": "A fork of VIctory-NVIDIA for a laptop with 16 GB of RAM and an 8 GB card (RTX 5060 Laptop, Ryzen 9 9955HX). Its README reports a median of 15.0 frames a second over 12.5 minutes in the world with a cap at 15, 1 to 2 in cutscenes, and a 15-minute session without a crash; it adds a ceiling on the game's RAM and a guard that stops the game before memory runs out."
+    },
+    {
       "name": "CCS03",
       "repo": "JozefDeTremmerie/CCS03",
       "note": "A fork of victory-fork for NVIDIA cards with 8 GB, tested on a laptop RTX 4060. Its README reports play under control at 3 to 7.8 frames a second through the opening and onto the water, in runs of up to 31 minutes without a crash."
