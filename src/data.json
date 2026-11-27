@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T00:21:00Z",
+  "checked": "2026-11-27T00:50:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -201,8 +201,8 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README (00:06 UTC) heads its status with play that is slow: about 8.8 frames a second at the first boat mission at 3,300 to 4,100 draws on an RTX 4070, a usual frame of 113 milliseconds with the card taking 71 of them, and 10 to 14 in lighter views, with open water now showing waves and the sun's path without black patches. It says the graphics device is still lost now and then 30 to 50 minutes into a session and shadowed areas are still black; this page counts it as in-game, short of the 20 its playable bar asks for.",
-      "changed": "2026-11-27T00:21:00Z",
+      "status": "Its README (00:36 UTC) heads its status with play that is slow: about 9.7 frames a second at the first boat mission at 3,300 to 4,100 draws on an RTX 4070, a usual frame of 101 to 105 milliseconds with the card taking 58 to 61 of them, and 10 to 14 in lighter views, with open water showing waves and the sun's path without black patches. It says the graphics device is still lost now and then 30 to 50 minutes into a session, three times lately and one of them 16 minutes into play, and shadowed areas are still black; this page counts it as in-game, short of the 20 its playable bar asks for.",
+      "changed": "2026-11-27T00:50:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -211,7 +211,7 @@
         "speed": {
           "low": 5,
           "high": 14,
-          "text": "8.8 fps at the boat mission, 10 to 14 in lighter views, 5 to 6 in heavy ones"
+          "text": "9.7 fps at the boat mission, 10 to 14 in lighter views, 5 to 6 in heavy ones"
         },
         "stability": {
           "minutes": 49,
@@ -235,21 +235,21 @@
       "kind": "Kept in its own repository and built on Vice-Tay's code since 26 November, after VIctory's code and a packaged edition it calls Neptune",
       "stage": 6,
       "basis": "Project README, run notes and third-party notices: the maintainer's own measurements on two machines, and one contributor's report that the maintainer relays; two outside runs, a reader's and a launcher project's, are noted in the status and are not verified",
-      "status": "Its README (22:52 UTC) reports about 20 frames a second in the world at 4K output, and 25 to 29 at Full HD output, on an RTX 4070 SUPER on the larger console's profile with a warm shader cache, up from 14.2 on its previous base, now that it builds on Vice-Tay's code; it gives no session length, still has ray tracing off so that indoor and shadowed areas are dark, some graphics missing and 28 to 30 GB of memory in use, and this page reads its 4K figure, on the edge of a step, in the speed lane. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
-      "changed": "2026-11-26T23:53:00Z",
+      "status": "Its README (00:29 UTC on 27 November) now reports a median of about 24 frames a second in the world at Full HD output over a 14-minute session on an RTX 4070 SUPER on the larger console's profile, with the game's own cap of 30 reached in scenes of up to about 4,000 draws, 10 to 18 in heavy scenes and about 20 at 4K, now that it builds on Vice-Tay's code; it still has ray tracing off so that indoor and shadowed areas are dark and some graphics missing, and this page reads that session in both lanes, 14 minutes being short of the 30 the bar asks for. Two outside runs of earlier builds are on record and neither is verified: a reader's 12-minute run on an RTX 4090 measured a median of 2 that rose to about 7, and a launcher project's 10-minute run on an RTX 4060 with 8 GB reported about 14.",
+      "changed": "2026-11-27T00:50:00Z",
       "lanes": {
         "picture": {
           "step": 2,
           "text": "indoor and shadowed areas dark, some graphics missing"
         },
         "speed": {
-          "low": 20,
-          "high": 20,
-          "text": "about 20 fps in the world at 4K, the default; no session length"
+          "low": 24,
+          "high": 24,
+          "text": "median about 24 fps over 14 minutes at Full HD output"
         },
         "stability": {
-          "minutes": 45,
-          "text": "45 minutes, relayed, on its earlier base"
+          "minutes": 14,
+          "text": "14 minutes on the new base; 45 relayed on its earlier base"
         }
       },
       "lead": "AnyXboxX, a build of VIctory's code on a base it calls Neptune,",
@@ -737,17 +737,17 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-26T23:27:00Z",
-      "status": "Its README's latest test run (23:03 UTC) shows a median frame of 156 milliseconds, with the last frame at 6.5 frames a second and 5,157 draws, while its status table still gives about 11 frames a second on the smaller console's profile, its default, and 4 to 8 for the first room. It says outdoor frames that came out white on some cards now show sea, sky and trees after a fix to an exposure program, rooms are lit, some draws are still dropped, a driver timeout still ends runs about 7 minutes in, and it is not playable yet.",
+      "changed": "2026-11-27T00:50:00Z",
+      "status": "Its README (00:41 UTC on 27 November) now reports 26 to 27 frames a second at 5,000 draws a frame and 17 to 19 at 10,000 to 11,000 on an RTX 5080 with a Ryzen 9 9950X3D on the smaller console's profile, up from 3 to 6 in the same place, after it replaced its own native engine, with the saved game loading into the open world, shade, faces and water drawn right and textures sometimes late. It still lists a driver timeout about 7 minutes in and 26 console programs whose draws are dropped on 32-lane cards, and it says the game is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "lit, stand-in light, fewer passes on the smaller profile"
+          "text": "shade, faces, water, sky right; draws dropped, late textures"
         },
         "speed": {
-          "low": 4,
-          "high": 11.2,
-          "text": "about 11 fps on the smaller profile, 4 to 8 in its first-room row"
+          "low": 17,
+          "high": 27,
+          "text": "26 to 27 fps at 5,000 draws, 17 to 19 at 10,000 to 11,000"
         },
         "stability": {
           "minutes": 7,
@@ -1603,7 +1603,7 @@
     {
       "name": "Sixth Star",
       "repo": "ihaterockstargames/sixth-star",
-      "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file (00:12 UTC on 27 November) now reports gameplay at about 0.7 frames a second, a median over one run of about 5 minutes on a newer build and slower than the 4.6 it measured on 26 November, with the cause not confirmed, and a 33-minute stability run that ended in a crash, user-reported with the time of the crash not recorded."
+      "note": "A compatibility layer built from VIctory's code and tested on an RTX 3070 with 8 GB. Its status file (00:39 UTC on 27 November) reports gameplay at about 0.7 frames a second, a median over one run of about 5 minutes on a newer build, slower than the 4.6 it measured on 26 November on an earlier build, and says a later change is not measured on the title yet; a 33-minute stability run ended by itself after about 6 minutes, which its maintainer saw as a crash."
     },
     {
       "name": "ScarlettCompat",
@@ -1683,6 +1683,24 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T00:50:00Z",
+      "title": "AnyXboxX reports a 14-minute session at about 24 frames a second",
+      "points": [
+        "Its README (00:29 UTC) gives a median of about 24 frames a second in the world at Full HD output over a 14-minute session on an RTX 4070 SUPER, with the game's own cap of 30 reached in scenes of up to about 4,000 draws and 10 to 18 in heavy scenes of 7,000 to 11,000 draws.",
+        "This page now reads that session in both lanes: speed 24, stability 14 minutes, with the 45 minutes relayed on its earlier base named in the lane. The row moves from 0 to 1 step short of the bar and from 3rd place to 7th, because rows tied on steps short are ordered by the better picture first.",
+        "It is the project's own report and is unverified, and 14 minutes is short of the 30 the bar asks for."
+      ]
+    },
+    {
+      "t": "2026-11-27T00:50:00Z",
+      "title": "vilocity reports 26 to 27 frames a second at 5,000 draws",
+      "points": [
+        "Its README (00:41 UTC) gives 26 to 27 frames a second at 5,000 draws a frame and 17 to 19 at 10,000 to 11,000 on an RTX 5080 with a Ryzen 9 9950X3D on the smaller console's profile, up from 3 to 6 in the same place, after it replaced its own native engine.",
+        "It still lists a driver timeout about 7 minutes in and 26 console programs whose draws are dropped on 32-lane cards, and it calls itself not playable. This page reads its speed at the middle of 17 to 27 and its stability at about 7 minutes, which leaves the row 2 steps short of the bar, down from 4.",
+        "It moves from 23rd to 9th in the standings, and the rows it passes each slip one place. The figures are the project's own and are unverified."
+      ]
+    },
     {
       "t": "2026-11-26T23:53:00Z",
       "title": "AnyXboxX reads at the bar on speed and stability, in separate reports",
