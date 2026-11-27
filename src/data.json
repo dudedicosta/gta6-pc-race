@@ -1,10 +1,10 @@
 {
-  "checked": "2026-11-27T04:04:00Z",
+  "checked": "2026-11-27T04:48:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
   "headline": "victory-fork shows the first gameplay scene under player control at a few frames a second",
-  "summary": "One project is counted as playable by its own report, and nobody else has checked it. Vice-Tay's documents describe one session of 30 minutes in the world, played by hand through a scripted gamepad, at a median of 21.1 frames a second on an RTX 4090 on the smaller console's profile; this page read it at 20:47 UTC and 21:22 UTC on 26 November. The first 4 minutes are cutscenes, the picture has faults and the README itself says the build is not fast enough yet against its goal of 30. PortWatch calls Belobug's build very playable at about 22 on average with no crashes, with no session length, and VIctory-RDNA reports a capture of under ten minutes at medians of 19.1 to 23.1 at 4K output. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
+  "summary": "One project is counted as playable by its own report, and nobody else has checked it. Vice-Tay's documents describe one session of 30 minutes in the world, played by hand through a scripted gamepad, at a median of 21.1 frames a second on an RTX 4090 on the smaller console's profile; this page read it at 20:47 UTC and 21:22 UTC on 26 November. The first 4 minutes are cutscenes, the picture has faults and its README sets a goal of 30 and lists the frame time among its known problems. PortWatch calls Belobug's build very playable at about 22 on average with no crashes, with no session length, and VIctory-RDNA reports a capture of under ten minutes at medians of 19.1 to 23.1 at 4K output. klbf-lab's newest test build reports 37 minutes so far of play in the open world on a Radeon RX 9070 XT at 14.0 frames a second on average. VIctory-7900XTX reports a city street at about 22 with renderer patches that are off by default. Press reports of 26 November relay posts and videos that claim 25 to 30 for builds of CGBJ's code, and one says a packaged build is circulating; none gives a session length and none is verified. PortWatch still relays 25 for CGBJ itself, which it lists as a private build again since its repository stopped answering that morning, and outside runs of its published code measured 2.7 on its own settings and, with settings changed on an RTX 3080, 19.6 and later about 22 to 25. Playable needs 20 for 30 minutes in one session of play, reported as such.",
   "forecast": {
     "made": "2026-11-23T17:40:00Z",
     "target": "2026-11-27T00:00:00Z",
@@ -31,10 +31,10 @@
     ],
     "basis": [
       "What was reported: one session on Vice-Tay's own test PC, an RTX 4090 with a Ryzen 9 9950X3D, on the smaller console's profile: 30 minutes in the world, played by hand from the prison through a boat section to an island on foot, at a median of 21.1 frames a second, with 19.1 to 23.2 for the middle 80 percent and a 1% low of 17.0.",
-      "Where it comes from: the project's README, test page and measurements page, read by this page at 20:47 UTC and 21:22 UTC on 26 November. The frame rate is taken from the game's own frame lines, so the frames are rendered and none are generated.",
+      "Where it comes from: the project's README, test page and measurements page, read by this page at 20:47 UTC and 21:22 UTC on 26 November. The frame rate is taken from the game's own frame lines, so the frames are rendered and none are generated. Read again at 04:44 UTC on 27 November, after the README was rewritten, with the test and measurements pages unchanged on the session.",
       "What nobody has checked: all of it. No outside tester and no second machine has reproduced the session, and this page reads documents and runs nothing. A contributor's notes in its repository give eight exploratory samples on an RTX 4070 on the larger console's profile, at a mean frame time of 76.6 milliseconds, about 13 frames a second, and short samples on an RTX 5070 Ti on the smaller one, at 17.6 to 21.6 frames a second over 14 to 56 seconds, which are not a second run of the session.",
       "What the report itself qualifies: by hand means pad inputs sent through a script while watching a capture after every move, the first 4 of the 30 minutes are cutscenes, three failed attempts were picked up at checkpoints, and the current documents give the session's length and timeline without saying in words how it ended, which an earlier README did by saying the test runner ended it.",
-      "What it is not: the console's experience. The README lists flat colour bands, glowing objects and blocky clouds and reflections, calls the build not fast enough yet against its own goal of 30 frames a second, and reports only the opening stretch of the game on a top graphics card.",
+      "What it is not: the console's experience. The README, rewritten on 27 November, lists colour banding, flat-colour surfaces, blocky clouds and reflections and missing or incorrect shading, puts the frame time among its known problems against its own goal of 30 frames a second, and reports only the opening stretch of the game on a top graphics card.",
       "What could undo it: the project withdrawing or correcting the report, an outside run that contradicts it, or the repository going away. GitHub's published notice of 24 November against Leonida is still the only one that names a listed project."
     ],
     "revisions": [
@@ -166,9 +166,9 @@
       "kind": "Fork of VIctory tuned on an RTX 4090, rebuilt on 26 November on the code PortWatch lists as CGBJ, itself VIctory-7900XTX with NVIDIA work on top. Published as victory-windows until 25 November",
       "stage": 7,
       "pos": 1,
-      "changed": "2026-11-26T23:08:00Z",
-      "status": "By its own report this is the first project at this page's playable bar: its README, test page and measurements page document one session on its RTX 4090 on the smaller console's profile, 30 minutes in the world of a title it does not name, played by hand, which its test page describes as pad inputs sent through a script while watching a capture after every move, from the prison through a boat section with three failed attempts picked up at checkpoints to an island on foot, at a median of 21.1 frames a second measured from the game's own frame lines. Nobody outside the project has checked it, the first 4 of the 30 minutes are cutscenes, its documents no longer say in words how the session ended, and its README still calls the build not fast enough yet against its own goal of 30 and lists flat colour bands, glowing objects and blocky clouds and reflections.",
-      "basis": "Project README, test page and measurements page, read at 20:47 UTC and 21:22 UTC on 26 November: the maintainer's own figures from one machine, not confirmed by anyone else, and this page has run nothing itself. That the test runner ended the session is from an earlier version of its README and from its maintainer's comment on this page's tracker",
+      "changed": "2026-11-27T04:48:00Z",
+      "status": "By its own report this is the first project at this page's playable bar: its README, test page and measurements page document one session on its RTX 4090 on the smaller console's profile, 30 minutes in the world of a title it does not name, played by hand, which its test page describes as pad inputs sent through a script while watching a capture after every move, from the prison through a boat section with three failed attempts picked up at checkpoints to an island on foot, at a median of 21.1 frames a second measured from the game's own frame lines. Nobody outside the project has checked it, the first 4 of the 30 minutes are cutscenes, its documents no longer say in words how the session ended, and its README, rewritten on 27 November, sets its goal at 30 and lists the frame time, colour banding, flat-colour surfaces, blocky clouds and reflections and missing or incorrect shading among its known problems.",
+      "basis": "Project README, test page and measurements page, read at 20:47 UTC and 21:22 UTC on 26 November, and again at 04:44 UTC on 27 November after the README was rewritten: the maintainer's own figures from one machine, not confirmed by anyone else, and this page has run nothing itself. That the test runner ended the session is from an earlier version of its README and from its maintainer's comment on this page's tracker",
       "tested": {
         "os": [
           "Windows"
@@ -181,7 +181,7 @@
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "flat colour bands, glowing objects, blocky clouds and reflections"
+          "text": "colour banding, flat surfaces, blocky clouds and reflections"
         },
         "speed": {
           "low": 21.1,
@@ -1230,6 +1230,39 @@
       "basis": "Project README, measured on one machine"
     },
     {
+      "pos": 0,
+      "name": "mavis-9070xt",
+      "repo": "mavis140/mavis-9070xt",
+      "kind": "Fork of VIctory-7900XTX tuned on a Radeon RX 9070 XT with 32 GB of memory, with its own changes from 26 November",
+      "stage": 6,
+      "status": "Its README (19:29 UTC on 26 November) reports a 27-minute play session in the open world of a title it does not name, at a median of 18.9 frames a second on a Radeon RX 9070 XT with 32 GB of memory, on the larger console's profile at 1440p with ray tracing off. It lists models drawn wrongly at times, sunlit ground that is far too bright and textures that arrive late, and says its goal is a stable 20 frames a second and then 30.",
+      "changed": "2026-11-27T04:43:00Z",
+      "lanes": {
+        "picture": {
+          "step": 3,
+          "text": "lit in light and shade; sun too bright, models wrong at times"
+        },
+        "speed": {
+          "low": 18.9,
+          "high": 18.9,
+          "text": "18.9 fps median over a 27-minute play session"
+        },
+        "stability": {
+          "minutes": 27,
+          "text": "a 27-minute play session in the open world"
+        }
+      },
+      "tested": {
+        "os": [
+          "Windows"
+        ],
+        "gpu": [
+          "AMD"
+        ]
+      },
+      "basis": "Project README, measured on one machine"
+    },
+    {
       "pos": 31,
       "name": "PercyScarlett",
       "repo": "rpatty-dev/PercyScarlett",
@@ -1693,6 +1726,24 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T04:48:00Z",
+      "title": "Vice-Tay rewrites its README and the report stands",
+      "points": [
+        "Its README was rewritten at 04:34 UTC and extended at 04:39 UTC: the lines saying it plays and is not fast enough yet are gone, and it now gives the 30-minute playtest at a median of 21.1 rendered frames a second, a 6-minute frame generation sample that changes no lane, and a list of known problems that still names the frame time and the picture faults.",
+        "Its test and measurements pages still say the 30 minutes were played by hand at that median, so this page's reading is unchanged: it stays first at stage 7, 1 step short of the next goal. The page's wording of what its README says is corrected.",
+        "Nobody outside the project has checked it."
+      ]
+    },
+    {
+      "t": "2026-11-27T04:43:00Z",
+      "title": "A new fork on a Radeon RX 9070 XT reports 18.9 frames a second over a 27-minute session",
+      "points": [
+        "mavis-9070xt, a fork of VIctory-7900XTX tuned on a Radeon RX 9070 XT with 32 GB of memory, joins the table. Its README (19:29 UTC on 26 November) reports a median of 18.9 frames a second over a 27-minute play session in the open world on the larger console's profile at 1440p with ray tracing off, and lists models drawn wrongly at times, sunlit ground that is far too bright and textures that arrive late.",
+        "This page reads speed 18.9 (step 4) and stability 27 minutes (step 2), so the row enters at 10th, 2 steps short of the bar, and the rows below it each move down one place.",
+        "The figures are the project's own, from one machine, and unconfirmed; its goal is a stable 20 and then 30, and the session is short of both the 30 minutes and the 20 frames a second the bar asks for."
+      ]
+    },
     {
       "t": "2026-11-27T04:04:00Z",
       "title": "VIctory-NVIDIA reads 26 to 30 frames a second after moving to another base",
