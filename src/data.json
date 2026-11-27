@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T05:25:00Z",
+  "checked": "2026-11-27T05:56:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -201,21 +201,21 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README (03:39 UTC) still heads its status with play that is slow: about 11 frames a second at the first boat mission at 1,500 to 3,300 draws on an RTX 4070, a usual frame of 88 milliseconds, and 8.5 at 3,300 draws and more, with the water now showing its colour. It adds that the ray-tracing structure builder now runs by default but the title then crashes about 30 to 40 seconds after it starts, in two runs, and says the graphics device is still lost 30 to 50 minutes into a session and shadowed areas are still black; this page counts it as in-game, short of the 20 its playable bar asks for.",
-      "changed": "2026-11-27T04:04:00Z",
+      "status": "Its README (05:28 UTC) says it fixed the crash of its ray-tracing structure builder, which now runs by default, and that ray-traced shadows and light now show once a scene has streamed in, at about 0.2 to 3 frames a second on an RTX 4070, with runs of 5 to 9 minutes that end in a crash in the title's own script code. Its 11 frames a second at the first boat mission and its 30 to 50 minutes before a lost graphics device are from the path without the builder, which is no longer its default, so this page reads the default, in-game and well short of the 20 frames a second its bar asks for.",
+      "changed": "2026-11-27T05:56:00Z",
       "lanes": {
         "picture": {
-          "step": 2,
-          "text": "shadows black"
+          "step": 3,
+          "text": "ray-traced shadows after minutes; early stand-ins, black faces"
         },
         "speed": {
-          "low": 5,
-          "high": 11,
-          "text": "11 fps at the boat mission, 8.5 above 3,300 draws, 5 to 6 in heavy ones"
+          "low": 0.2,
+          "high": 3,
+          "text": "0.2 to 3 fps with the ray-tracing builder on, its default"
         },
         "stability": {
-          "minutes": 49,
-          "text": "49 minutes of play, then the card was lost"
+          "minutes": 9,
+          "text": "5 to 9 minutes, then a crash in the title's own script code"
         }
       },
       "lead": "victory-fork, a public fork of VIctory,",
@@ -1403,8 +1403,8 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (04:40 UTC) says geometry, normals and depth are right, surface colour is right for most surfaces and characters and clothing draw when the skinned passes are not skipped, but its lighting pass shades almost no pixels because its depth test rejects them, so the final frame is dark or blown out, at about 200 to 400 milliseconds a world frame, and that the graphics device is removed about 10 minutes in, which it has now traced in two boots to the NVIDIA driver giving the device up itself inside a game submission, with no kernel call failing first and no graphics fault reported.",
-      "changed": "2026-11-27T05:25:00Z",
+      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (05:42 UTC) says geometry, normals and depth are right, surface colour is right for most surfaces and characters and clothing draw when the skinned passes are not skipped, but its lighting pass shades almost no pixels because its depth test rejects them, so the final frame is dark or blown out, at about 200 to 400 milliseconds a world frame, and that the graphics device is removed about 10 minutes in, when an internal shader table of the NVIDIA driver, growing about 1 MiB a second, passes its 512 MiB maximum, with what fills it still being traced.",
+      "changed": "2026-11-27T05:56:00Z",
       "tested": {
         "os": [
           "Windows"
@@ -1785,6 +1785,16 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T05:56:00Z",
+      "title": "victory-fork shows ray-traced shadows, at 0.2 to 3 frames a second",
+      "points": [
+        "Its README (05:28 UTC) says the crash of its ray-tracing structure builder, which now runs by default, is fixed and that ray-traced shadows and light now show once a scene has streamed in, at about 0.2 to 3 frames a second on an RTX 4070, while the first minutes still show stand-in models and black faces.",
+        "It reports runs of 5 to 9 minutes on that path that end in a crash in the title's own script code. Its 11 frames a second at the first boat mission and its 30 to 50 minutes before a lost graphics device are from the path without the builder, which is no longer its default.",
+        "This page now reads the default: picture 3 (was 2), speed 0.2 to 3 (step 1, was 5 to 11, step 3) and stability 9 minutes (step 1, was 49 minutes, step 3), so the row moves from 14th to 34th, 6 steps short of the bar (was 2), and the 20 rows between each move up one place.",
+        "The figures are the project's own, from one PC, and unconfirmed."
+      ]
+    },
     {
       "t": "2026-11-27T05:25:00Z",
       "title": "DanziLoader-Cpp reports a 30-minute session at 6 frames a second",
