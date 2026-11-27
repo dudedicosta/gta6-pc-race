@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T06:54:00Z",
+  "checked": "2026-11-27T07:21:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -166,12 +166,13 @@
       "kind": "Fork of VIctory tuned on an RTX 4090, rebuilt on 26 November on the code PortWatch lists as CGBJ, itself VIctory-7900XTX with NVIDIA work on top. Published as victory-windows until 25 November",
       "stage": 7,
       "pos": 1,
-      "changed": "2026-11-27T04:48:00Z",
-      "status": "By its own report this is the first project at this page's playable bar: its README, test page and measurements page document one session on its RTX 4090 on the smaller console's profile, 30 minutes in the world of a title it does not name, played by hand, which its test page describes as pad inputs sent through a script while watching a capture after every move, from the prison through a boat section with three failed attempts picked up at checkpoints to an island on foot, at a median of 21.1 frames a second measured from the game's own frame lines. Nobody outside the project has checked it, the first 4 of the 30 minutes are cutscenes, its documents no longer say in words how the session ended, and its README, rewritten on 27 November, sets its goal at 30 and lists the frame time, colour banding, flat-colour surfaces, blocky clouds and reflections and missing or incorrect shading among its known problems.",
-      "basis": "Project README, test page and measurements page, read at 20:47 UTC and 21:22 UTC on 26 November, and again at 04:44 UTC on 27 November after the README was rewritten: the maintainer's own figures from one machine, not confirmed by anyone else, and this page has run nothing itself. That the test runner ended the session is from an earlier version of its README and from its maintainer's comment on this page's tracker",
+      "changed": "2026-11-27T07:21:00Z",
+      "status": "By its own report this is the first project at this page's playable bar: its README, test page and measurements page document one session on its RTX 4090 on the smaller console's profile, 30 minutes in the world of a title it does not name, played by hand, which its test page describes as pad inputs sent through a script while watching a capture after every move, from the prison through a boat section with three failed attempts picked up at checkpoints to an island on foot, at a median of 21.1 frames a second measured from the game's own frame lines. Nobody outside the project has checked it, the first 4 of the 30 minutes are cutscenes, its documents no longer say in words how the session ended, its README, rewritten on 27 November, sets its goal at 30 and lists the frame time, colour banding, flat-colour surfaces, blocky clouds and reflections and missing or incorrect shading among its known problems, and a Linux section added to that README at 07:14 UTC reports that on one RTX 5080 under Proton the opening area ran at about 20 frames a second, against 2.7 to 4 frames a second before a change on the Linux side, with no run length.",
+      "basis": "Project README, test page and measurements page, read at 20:47 UTC and 21:22 UTC on 26 November, again at 04:44 UTC on 27 November after the README was rewritten, and again at 07:17 UTC on 27 November after a Linux section was added: the maintainer's own figures from one machine and the README's Linux figure from an RTX 5080, none confirmed by anyone else, and this page has run nothing itself. That the test runner ended the session is from an earlier version of its README and from its maintainer's comment on this page's tracker",
       "tested": {
         "os": [
-          "Windows"
+          "Windows",
+          "Linux"
         ],
         "gpu": [
           "NVIDIA"
@@ -440,8 +441,8 @@
       "kind": "Build of victory-fork with its own changes",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "status": "Its README (02:25 UTC) reports 3.4 frames a second in the world on version 0.5.0 on an RTX 3060 on the smaller console's profile, with the player in control in the opening area and the full picture, and says version 0.5.2 is built and unit-tested but not yet measured in a game run on that card. It lists testers' figures with no run length, a median of 22.0 on an RX 9060 XT on 0.5.2 and an average of 13.4 on an RTX 4070 Ti on 0.5.1, says no long run has been recorded and sets its goal at a playable 30.",
-      "changed": "2026-11-27T02:44:00Z",
+      "status": "Its README (07:00 UTC) reports 3.4 frames a second in the world on version 0.5.0 on an RTX 3060 on the smaller console's profile, with the player in control in the opening area and the full picture, and says version 0.5.2 is built and unit-tested but not yet measured in a game run on that card. It lists testers' own figures on 0.5.2, among them 1 hour 20 minutes without a crash and 8.5 frames a second in the world on an RTX 3070, an average of 9.1 on an RTX 3060, up to 15 in the prologue on an RTX 5060 and a median of 22.0 on an RX 9060 XT, says no long run has been recorded yet and sets its goal at a playable 30.",
+      "changed": "2026-11-27T07:21:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -462,7 +463,8 @@
           "Windows"
         ],
         "gpu": [
-          "NVIDIA"
+          "NVIDIA",
+          "AMD"
         ]
       }
     },
@@ -1403,13 +1405,16 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (05:42 UTC) says geometry, normals and depth are right, surface colour is right for most surfaces and characters and clothing draw when the skinned passes are not skipped, but its lighting pass shades almost no pixels because its depth test rejects them, so the final frame is dark or blown out, at about 200 to 400 milliseconds a world frame, and that the graphics device is removed about 10 minutes in, when an internal shader table of the NVIDIA driver, growing about 1 MiB a second, passes its 512 MiB maximum, with what fills it still being traced.",
-      "changed": "2026-11-27T05:56:00Z",
+      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (07:09 UTC) says geometry, normals and depth are right and surface colour is right for most surfaces, that the lighting pass now shades its pixels on a branch that is not on main yet while the final frame is still banded, full of black holes, half black and blurred, at about 200 to 400 milliseconds a world frame, and that the NVIDIA device loss about 10 minutes in is fixed in one 14-minute boot, after it was traced to an internal shader table of the driver passing its 512 MiB maximum, with an RTX 5090 report still losing the device earlier in another way.",
+      "changed": "2026-11-27T07:21:00Z",
       "tested": {
         "os": [
           "Windows"
         ],
-        "gpu": []
+        "gpu": [
+          "NVIDIA",
+          "AMD"
+        ]
       }
     },
     {
