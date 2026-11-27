@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T04:51:00Z",
+  "checked": "2026-11-27T05:25:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -737,8 +737,8 @@
       "kind": "Xbox Series compatibility layer for Windows, published on 25 November",
       "stage": 6,
       "basis": "Project README, tested on one machine",
-      "changed": "2026-11-27T00:50:00Z",
-      "status": "Its README (00:41 UTC on 27 November) now reports 26 to 27 frames a second at 5,000 draws a frame and 17 to 19 at 10,000 to 11,000 on an RTX 5080 with a Ryzen 9 9950X3D on the smaller console's profile, up from 3 to 6 in the same place, after it replaced its own native engine, with the saved game loading into the open world, shade, faces and water drawn right and textures sometimes late. It still lists a driver timeout about 7 minutes in and 26 console programs whose draws are dropped on 32-lane cards, and it says the game is not playable yet.",
+      "changed": "2026-11-27T05:25:00Z",
+      "status": "Its README (04:51 UTC on 27 November) now reports 24 to 29 frames a second over a scripted walk and run through the day scene at 6,300 to 8,700 draws a frame on an RTX 5080 with a Ryzen 9 9950X3D on the smaller console's profile, up from 11 to 18 with freezes, after it changed how the game's pages are mapped, and its status table still reads 26 to 27 at 5,000 draws and 17 to 19 at 10,000 to 11,000. It still lists a driver timeout about 7 minutes in and 26 console programs whose draws are dropped on 32-lane cards, adds that shade is too dark in daylight, water is not fixed and 30 is not held everywhere, and says the game is not playable yet.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1102,10 +1102,10 @@
       "kind": "Fork of VIctory for NVIDIA cards, published on 25 November; on 26 November it moved to another base",
       "stage": 6,
       "pos": 29,
-      "changed": "2026-11-27T04:04:00Z",
+      "changed": "2026-11-27T05:25:00Z",
       "basis": "Project README: the maintainer's own figures from one machine, not confirmed by anyone else",
       "lead": "VIctory-NVIDIA, a fork of VIctory-7900XTX for NVIDIA cards,",
-      "status": "Its README (03:50 UTC) says it moved on 26 November to another base, with DLSS upscaling on the larger console's profile at 1440p, and reports the opening rooms of a title it does not name at mostly 26 to 30 rendered frames a second on an RTX 5070 with a Ryzen 7 9800X3D, where its earlier settings gave 15 to 17, before generated frames, which are off by default and not counted. It gives no session length, reports no crash or lost graphics device in its measured runs, and says ray tracing is off with an estimate standing in for indirect light and reflections; nobody else has confirmed it.",
+      "status": "Its README (05:02 UTC) says it moved on 26 November to another base, with DLSS upscaling on the larger console's profile at 1440p, and reports the opening rooms of a title it does not name at mostly 26 to 30 rendered frames a second on an RTX 5070 with a Ryzen 7 9800X3D, where its earlier settings gave 15 to 17, and 30 instead of 25 on the first boat ride after two water light programs were left out, which removes dark tiles in open water but leaves it darker and bluer; generated frames are off by default and not counted. It gives no session length, reports no crash or lost graphics device in its measured runs, and says ray tracing is off with an estimate standing in for indirect light and reflections; nobody else has confirmed it.",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1114,7 +1114,7 @@
         "speed": {
           "low": 26,
           "high": 30,
-          "text": "26 to 30 fps in the opening rooms on its new base"
+          "text": "26 to 30 fps in the opening rooms and on the first boat ride"
         },
         "stability": {
           "minutes": null,
@@ -1294,6 +1294,39 @@
       "basis": "Project README: its own measurements on one Mac; other Macs' reports are relayed and unverified"
     },
     {
+      "pos": 0,
+      "name": "DanziLoader-Cpp",
+      "repo": "Veria70/DanziLoader-Cpp",
+      "kind": "C++20 port of a runtime in the VIctory line",
+      "stage": 6,
+      "status": "Its maintainer's results files, on a separate branch of its repository (04:50 UTC on 27 November), report a player with a controller going from the boat section to a section on foot and then to flight in one 30-minute session that was still running at the end, at 6.05 frames a second by two counters, on an RTX 5080 on the smaller console's profile at half render scale, with 17.5 in a cutscene on a later build and 7 to 8.3 in two 60-second boat samples. It says the figures do not show a sustained 20 and that water and lighting faults and uneven frame pacing remain, and its main README (21:11 UTC on 26 November) still reports a session of more than 16 minutes and about 11 in a 45-second sample; nobody else has confirmed any of it.",
+      "changed": "2026-11-27T05:25:00Z",
+      "lanes": {
+        "picture": {
+          "step": 3,
+          "text": "water and lighting faults named; shading not described"
+        },
+        "speed": {
+          "low": 6.05,
+          "high": 6.05,
+          "text": "6.05 fps average over 30 minutes at half render scale"
+        },
+        "stability": {
+          "minutes": 30,
+          "text": "30 minutes by hand, still running when it ended"
+        }
+      },
+      "tested": {
+        "os": [
+          "Windows"
+        ],
+        "gpu": [
+          "NVIDIA"
+        ]
+      },
+      "basis": "Maintainer's results files on a separate branch of its repository: its own figures from one machine, not confirmed by anyone else"
+    },
+    {
       "pos": 31,
       "name": "PercyScarlett",
       "repo": "rpatty-dev/PercyScarlett",
@@ -1370,8 +1403,8 @@
       "kind": "GTA VI recompilation toolchain",
       "stage": 5,
       "basis": "Project status page",
-      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (03:52 UTC) says geometry, normals and depth are right, surface colour is right for most surfaces and characters and clothing draw when the skinned passes are not skipped, but its lighting pass shades almost no pixels because its depth test rejects them, so the final frame is dark or blown out, at about 200 to 400 milliseconds a world frame, and that the graphics device is removed about 10 minutes in for a cause it is still tracing.",
-      "changed": "2026-11-27T04:04:00Z",
+      "status": "Shows every first-run screen, loads story mode and runs the opening scenes. Its status page (04:40 UTC) says geometry, normals and depth are right, surface colour is right for most surfaces and characters and clothing draw when the skinned passes are not skipped, but its lighting pass shades almost no pixels because its depth test rejects them, so the final frame is dark or blown out, at about 200 to 400 milliseconds a world frame, and that the graphics device is removed about 10 minutes in, which it has now traced in two boots to the NVIDIA driver giving the device up itself inside a game submission, with no kernel call failing first and no graphics fault reported.",
+      "changed": "2026-11-27T05:25:00Z",
       "tested": {
         "os": [
           "Windows"
@@ -1726,11 +1759,6 @@
       "note": "A fork of VIctory tuned for a laptop RTX 4050 with 6 GB, added at its maintainer's request in this page's issues. Its README reports a controllable character at 6.35 to 7.5 frames a second by scene and runs of 14 to 15 minutes without a crash. Its maintainer has renamed the repository from ApexIV to ApexVI."
     },
     {
-      "name": "DanziLoader-Cpp",
-      "repo": "Veria70/DanziLoader-Cpp",
-      "note": "A C++20 port of a runtime in the VIctory line, published on 26 November and added at its maintainer's request in this page's issues. Its documents report a session on an RTX 5080 on the smaller console's profile at half render scale that reached the prison and a boat section of a title it does not name, with the process up for more than 16 minutes, 8.74 frames a second across a mixed stretch of about 12 minutes that may include menus, and water and frame-pacing faults."
-    },
-    {
       "name": "VIcky",
       "repo": "xeltax/vicky",
       "note": "A research fork that builds on victory-fork for NVIDIA cards, credited by ScarlettPort. Its README reports about 6.2 frames a second on an RTX 4080 on the larger console's profile with the title's own ray tracing on, from three runs, with a dark quarter of the picture in some rooms."
@@ -1757,6 +1785,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T05:25:00Z",
+      "title": "DanziLoader-Cpp reports a 30-minute session at 6 frames a second",
+      "points": [
+        "DanziLoader-Cpp, a C++20 port of a runtime in the VIctory line, joins the table at stage 6 on its maintainer's request. Results files on a separate branch of its repository (04:50 UTC on 27 November) report one 30-minute session, played with a controller from the boat section to a section on foot and then to flight and still running at the end, at 6.05 frames a second by two counters, on an RTX 5080 on the smaller console's profile at half render scale.",
+        "This page reads speed 6.05 (step 3) and stability 30 minutes (step 3, the bar), so the row enters at 12th, 2 steps short of the bar. Its files say the figures do not show a sustained 20 and that water and lighting faults and uneven frame pacing remain.",
+        "The figures are the project's own, from one PC, and unconfirmed; they are on a separate branch, not in its main README, which still reports a session of more than 16 minutes and about 11 in a 45-second sample."
+      ]
+    },
     {
       "t": "2026-11-27T04:51:00Z",
       "title": "A Mac project reports player control at 3 to 4.5 frames a second",
