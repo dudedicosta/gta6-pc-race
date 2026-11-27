@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T04:48:00Z",
+  "checked": "2026-11-27T04:51:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1263,6 +1263,37 @@
       "basis": "Project README, measured on one machine"
     },
     {
+      "pos": 0,
+      "name": "VIctory-macOS-halfwave50",
+      "repo": "halfwave50/VIctory-macOS-halfwave50",
+      "kind": "Fork of VIctory-macOS for Apple Silicon Macs through Wine and Apple's D3DMetal, its own repository since 27 November",
+      "stage": 6,
+      "status": "Its README (04:00 UTC on 27 November) says the world loads and gives player control, saved games load, and sunlight, shadows and room lighting are right, and reports 2.9 to 3.1 frames a second at the prison checkpoint and 4.5 on the boat on a MacBook Pro M4 Pro with 48 GB, on the larger console's profile, with 3.0 and 6.0 at 1080p output. It lists objects that flicker black for a frame, dark car interiors at night, black metal objects and one black patch on water, says playable speed is not reached with a next goal of 5 and then 10 at 1080p, and relays three other Macs' reports, from 0.25 to 3.8 frames a second, which this page does not read into a lane.",
+      "changed": "2026-11-27T04:51:00Z",
+      "lanes": {
+        "picture": {
+          "step": 4,
+          "text": "sun, shadows and room light right; black flicker and patches"
+        },
+        "speed": {
+          "low": 2.9,
+          "high": 4.5,
+          "text": "2.9 to 3.1 fps at the prison checkpoint, 4.5 on the boat"
+        },
+        "stability": {
+          "minutes": null,
+          "text": "no run length reported"
+        }
+      },
+      "tested": {
+        "os": [
+          "Mac"
+        ],
+        "gpu": []
+      },
+      "basis": "Project README: its own measurements on one Mac; other Macs' reports are relayed and unverified"
+    },
+    {
       "pos": 31,
       "name": "PercyScarlett",
       "repo": "rpatty-dev/PercyScarlett",
@@ -1726,6 +1757,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T04:51:00Z",
+      "title": "A Mac project reports player control at 3 to 4.5 frames a second",
+      "points": [
+        "VIctory-macOS-halfwave50, a fork of VIctory-macOS for Apple Silicon Macs through Wine and Apple's D3DMetal, joins the table at stage 6 on a reader's request. Its README (04:00 UTC on 27 November) says the world loads and gives player control, and that sunlight, shadows and room lighting are right, and reports 2.9 to 3.1 frames a second at the prison checkpoint and 4.5 on the boat on a MacBook Pro M4 Pro with 48 GB.",
+        "This page reads speed 2.9 to 4.5 (step 2) with no run length, so the row enters at 29th, 6 steps short of the bar. Its README says playable speed is not reached, with a next goal of 5 frames a second and then 10 at 1080p, and lists black flicker, dark car interiors at night and a black patch on water.",
+        "The figures are the project's own, from one Mac, and unconfirmed; three other Macs' reports in its README, from 0.25 to 3.8, are relayed and not read into a lane."
+      ]
+    },
     {
       "t": "2026-11-27T04:48:00Z",
       "title": "Vice-Tay rewrites its README and the report stands",
