@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T02:18:00Z",
+  "checked": "2026-11-27T02:44:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -440,8 +440,8 @@
       "kind": "Build of victory-fork with its own changes",
       "stage": 6,
       "basis": "Project README, measured on one machine",
-      "status": "Its README (01:54 UTC) reports 3.4 frames a second in the world on version 0.5.0 on an RTX 3060 on the smaller console's profile, with the player in control in the opening area and the full picture, and says version 0.5.2 is built and unit-tested but not yet measured in a game run on that card. It cites a tester's median of 22.0 on an RX 9060 XT on 0.5.2, up from 18.9, with no scene or run length given, says NVIDIA cards are still at 3 to 6 and no long run has been recorded, and sets its goal at a playable 30.",
-      "changed": "2026-11-27T02:18:00Z",
+      "status": "Its README (02:25 UTC) reports 3.4 frames a second in the world on version 0.5.0 on an RTX 3060 on the smaller console's profile, with the player in control in the opening area and the full picture, and says version 0.5.2 is built and unit-tested but not yet measured in a game run on that card. It lists testers' figures with no run length, a median of 22.0 on an RX 9060 XT on 0.5.2 and an average of 13.4 on an RTX 4070 Ti on 0.5.1, says no long run has been recorded and sets its goal at a playable 30.",
+      "changed": "2026-11-27T02:44:00Z",
       "lanes": {
         "picture": {
           "step": 3,
@@ -1679,7 +1679,7 @@
     {
       "name": "playablegames-peppa",
       "repo": "Peppacodes/playablegames-peppa",
-      "note": "A fork of VIctory that carries victory-fork's and VIctory-7900XTX's work, aimed at NVIDIA cards and tested on an RTX 5080 with a Ryzen 7 5700X3D on the smaller console's profile with the title's own upscaler at two-thirds scale and ray tracing off. Its README says a 55-minute session played with a controller ended without a crash and reports 21.7 frames a second over 12 minutes (20.1 to 21.5 over three 5-minute runs) with the character standing in a house interior and a button pressed every 10 seconds, so it gives no frame rate from play; it does not name its title and its goal is 30."
+      "note": "A fork of VIctory that carries victory-fork's and VIctory-7900XTX's work, aimed at NVIDIA cards and tested on an RTX 5080 with a Ryzen 7 5700X3D on the smaller console's profile with the title's own upscaler at two-thirds scale and ray tracing off. Its README says a 55-minute session played with a controller ended without a crash and reports 23.5 frames a second over 12 minutes (22.8 to 23.9 over three 5-minute runs) with the character standing in a house interior and a button pressed every 10 seconds, so it gives no frame rate from play; it does not name its title and its goal is 30."
     },
     {
       "name": "Victory Grimkaaah",
