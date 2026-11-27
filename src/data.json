@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T02:44:00Z",
+  "checked": "2026-11-27T03:11:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -936,22 +936,22 @@
       "kind": "Fork of VIctory's code line for NVIDIA cards with 8 GB, documented in Portuguese; on 26 November it moved to a new base that its README does not name",
       "stage": 6,
       "pos": 23,
-      "changed": "2026-11-26T20:56:00Z",
-      "status": "Its README, in Portuguese (17:09 UTC), says its base was changed for one that shows faces, skin, hair and light much better on the same RTX 4060 Ti with 8 GB, and reports about 14 frames a second in the playable prison section of a title it does not name on the smaller console's profile at 1080p, about 18 to 19 in the opening cutscene and about 5.6 on the larger profile. It says it is not playable yet and aims at 15 or more with a sharp picture, and it no longer gives the hour-long sessions without losing the graphics device that it reported on its earlier base.",
-      "basis": "Project README: its own figures from one machine on its new base, not confirmed by anyone else; its stability reading is from its earlier base",
+      "changed": "2026-11-27T03:11:00Z",
+      "status": "Its README, in Portuguese (02:59 UTC), says the prologue's prison section of a title it does not name is playable with the player in control on the smaller console's profile at 1080p, and reports 24.0 frames a second on average over a scripted three-minute walk on an RTX 4060 Ti with 8 GB (22.9 when the walk starts 470 seconds after launch), 30 standing still and 21.2 in the opening cutscene. It reports no crash in more than 30 runs of 7 to 12 minutes and says long sessions are not measured yet, and it lists thick fog, missing window glass and 35 lighting programs translated approximately.",
+      "basis": "Project README and benchmarks file: its own figures from one machine, from scripted walks, not confirmed by anyone else",
       "lanes": {
         "picture": {
           "step": 3,
-          "text": "coherent light, textured faces and skin; not yet sharp"
+          "text": "shadow maps, faces, skin, hair; thick fog, no window glass"
         },
         "speed": {
-          "low": 14,
-          "high": 14,
-          "text": "about 14 fps in the playable prison, smaller profile, 1080p"
+          "low": 22.9,
+          "high": 24.0,
+          "text": "22.9 to 24.0 fps, scripted prison walk, smaller profile, 1080p"
         },
         "stability": {
-          "minutes": 60,
-          "text": "sessions of an hour on its earlier base, reported on 25 Nov"
+          "minutes": 12,
+          "text": "runs up to 12 minutes, no crash; an hour on its earlier base"
         }
       },
       "tested": {
@@ -1693,6 +1693,15 @@
     }
   ],
   "updates": [
+    {
+      "t": "2026-11-27T03:11:00Z",
+      "title": "VI-BR-PORT reports 24 frames a second on a scripted walk, with runs up to 12 minutes",
+      "points": [
+        "Its README (02:59 UTC) says the prologue's prison section is playable with the player in control and reports 24.0 frames a second on average over a scripted three-minute walk (22.9 when the walk starts 470 seconds after launch) on an RTX 4060 Ti with 8 GB, on the smaller console's profile; 30 standing still.",
+        "This page reads speed 22.9 to 24.0 (step 5, was 14, step 4) and stability 12 minutes (step 2, was 60 on its earlier base, which its README no longer gives), so the row stays 1 step short of the bar and stays 3rd.",
+        "The figures are the project's own, from one machine and from scripted walks, and unconfirmed; it says long sessions are not measured yet."
+      ]
+    },
     {
       "t": "2026-11-27T02:18:00Z",
       "title": "VIctory-NVIDIA reads slower after changing its default",
