@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T05:56:00Z",
+  "checked": "2026-11-27T06:27:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -1387,8 +1387,8 @@
       "kind": "Runs VIctory on Apple Silicon Macs through CrossOver Wine and Apple's D3DMetal",
       "stage": 5,
       "basis": "Project README, from testers' reports on several Macs",
-      "status": "Tester reports in its README (15:55 UTC) say an M2 Pro reached the prologue's first gameplay prompt on 25 and 26 November, where the camera followed input at about 2 seconds a world frame, with one run lasting almost 35 minutes before the game's own watchdog stopped it and lighting still broken, and that a change now on by default took a world frame from 2.9 seconds to 0.88 on an M4 and from 5.29 to 0.71 on an M4 Pro. Its summary still says nobody has reached gameplay on a Mac and that the game is not playable there or anywhere else.",
-      "changed": "2026-11-26T16:15:00Z",
+      "status": "Tester reports in its README (05:58 UTC on 27 November) say an M2 Pro reached the prologue's first gameplay prompt, where the camera followed input at about 2 seconds a world frame, with one run lasting almost 35 minutes before the game's watchdog stopped it, an M1 Max reached the world and the opening credits at 0.4 to 3.4 seconds a world frame with a warm shader cache, and a change now on by default took a world frame from 2.9 seconds to 0.88 on an M4 and from 5.29 to 0.71 on an M4 Pro, with lighting still broken. Its summary still says nobody has reached gameplay and that the game is not playable on a Mac or anywhere else.",
+      "changed": "2026-11-27T06:27:00Z",
       "tested": {
         "os": [
           "Mac"
