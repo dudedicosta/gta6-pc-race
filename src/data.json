@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-27T01:13:00Z",
+  "checked": "2026-11-27T01:44:00Z",
   "cadence_minutes": 15,
   "playable": "Yes, by one project's own report, unverified",
   "leader": "klbf-lab, a build of VIctory tested on AMD cards,",
@@ -201,8 +201,8 @@
       "kind": "Fork of VIctory, formerly named victory-gta6",
       "stage": 6,
       "basis": "Project README and commit notes, open pull requests measured by their authors, and builds that use its code",
-      "status": "Its README (00:36 UTC) heads its status with play that is slow: about 9.7 frames a second at the first boat mission at 3,300 to 4,100 draws on an RTX 4070, a usual frame of 101 to 105 milliseconds with the card taking 58 to 61 of them, and 10 to 14 in lighter views, with open water showing waves and the sun's path without black patches. It says the graphics device is still lost now and then 30 to 50 minutes into a session, three times lately and one of them 16 minutes into play, and shadowed areas are still black; this page counts it as in-game, short of the 20 its playable bar asks for.",
-      "changed": "2026-11-27T00:50:00Z",
+      "status": "Its README (01:11 UTC) heads its status with play that is slow: about 11 frames a second at the first boat mission at 1,500 to 3,300 draws on an RTX 4070, a usual frame of 88 milliseconds, and 8.5 at 3,300 draws and more, with the card no longer the limit and open water showing waves and the sun's path without black patches. It says the graphics device is still lost now and then 30 to 50 minutes into a session, three times lately and one of them 16 minutes into play, and shadowed areas are still black; this page counts it as in-game, short of the 20 its playable bar asks for.",
+      "changed": "2026-11-27T01:44:00Z",
       "lanes": {
         "picture": {
           "step": 2,
@@ -210,8 +210,8 @@
         },
         "speed": {
           "low": 5,
-          "high": 14,
-          "text": "9.7 fps at the boat mission, 10 to 14 in lighter views, 5 to 6 in heavy ones"
+          "high": 11,
+          "text": "11 fps at the boat mission, 8.5 above 3,300 draws, 5 to 6 in heavy ones"
         },
         "stability": {
           "minutes": 49,
@@ -1680,6 +1680,16 @@
       "name": "playablegames-peppa",
       "repo": "Peppacodes/playablegames-peppa",
       "note": "A fork of VIctory that carries victory-fork's and VIctory-7900XTX's work, aimed at NVIDIA cards and tested on an RTX 5080 with a Ryzen 7 5700X3D on the smaller console's profile with the title's own upscaler at two-thirds scale and ray tracing off. Its README says a 55-minute session played with a controller ended without a crash and reports 18.7 frames a second over 12 minutes with the character standing in a house interior and a button pressed every 10 seconds, so it gives no frame rate from play; it does not name its title and its goal is 30."
+    },
+    {
+      "name": "Victory Grimkaaah",
+      "repo": "Grimkaaah/Victory-Grimkaaah",
+      "note": "A build of VIctory for AMD Radeon cards only, tested on an RX 7900 XTX with a Ryzen 9 7950X3D on the larger console's profile. Its README (version 1.0 of 27 November) reports 24.3 frames a second on average in busy world scenes with ray tracing off and 13.9 with it on, over sessions of 3 to 9 minutes with no crash or card loss in its last 10 sessions; it does not name its title or say whether the player was in control."
+    },
+    {
+      "name": "PiloteBox",
+      "repo": "PiloteCode/PiloteBox",
+      "note": "A compatibility layer built on VIctory's code for NVIDIA cards, started on 27 November and tested on an RTX 5090 with a Core i9-14900KF. Its README (version 0.12.2) reports 10.5 to 12.5 frames a second on the larger console's profile in the prologue's first playable scenes at about 4,800 draws a frame, with no crash in eleven automated runs of four to five minutes; it calls the opening and prologue playable, measures only in those automated runs and does not name its title."
     }
   ],
   "updates": [
